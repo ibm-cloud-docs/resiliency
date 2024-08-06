@@ -1,0 +1,86 @@
+toc:
+  properties:
+    subcollection: resiliency
+    category: solution_docs
+    audience: solution
+    content-type: solution
+    href: /docs/resiliency
+    path: resiliency
+    description: Reliability is the ability of your service or application to be available for your users as intended, while resiliency is the capacity for your service or application to recover from different types of failures.
+    label: IBM Cloud Resiliency
+  entries:
+  - navgroup:
+      id: overview
+      topics:
+      - cloud-resiliency.md
+      - zero_downtime.md
+      - topicgroup:
+          label: Availability
+          topics:
+          - ha-considerations.md
+      - topicgroup:
+          label: Disaster recovery
+          topics:
+          - bcdr-understand.md
+      - topicgroup:
+          label: Data
+          topics:
+          - data-residency.md
+      - topicgroup:
+          label: Service updates
+          topics:
+          - topic.md
+  - navgroup:
+      id: plan
+      topics:
+      - topicgroup:
+          label: Designing for resiliency
+          topics:
+          - bcdr-pitfalls.md
+          - bcdr-plan.md
+          - bcdr-networking.md
+      - topicgroup:
+          label: Planning for operational resiliency
+          topics:
+          - topic2.md
+      - topicgroup:
+          label: Planning for security
+          topics:
+          - topic3.md
+  - navgroup:
+      id: architecture
+      topics:
+      - topic4.md       
+  - navgroup:
+      id: howto
+      topics:
+      - topicgroup:
+          label: Testing your resiliency
+          topics:
+          - bcdr-testing.md
+      - topicgroup:
+          label: Deploying scalable and resilient apps
+          topics:
+          - topic5.md
+  - navgroup:
+      id: reference
+      topics:
+      - link:
+          label: IBM Well-Architected Framework Resiliency
+          href: https://www.ibm.com/architectures/well-architected/resiliency
+      - link:
+          label: IBM Cloud compliance programs
+          href: https://www.ibm.com/cloud/compliance
+      - topicgroup:
+          label: Product availability and locations
+          topics:
+          - services_region.md
+          - services_coming.md
+          - topic: locations.md
+            navtitle: Locations for resource deployment
+          - service-rollout.md
+      - slo.md
+  - navgroup:
+      id: help
+      topics:
+      - faqs.md
