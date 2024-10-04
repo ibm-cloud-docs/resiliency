@@ -84,6 +84,7 @@ toc:
           - services_region.md
           - services_coming.md
           - topic: locations.md
+            navtitle: Locations for resource deployment
           - service-rollout.md
       - slo.md
   - navgroup:
