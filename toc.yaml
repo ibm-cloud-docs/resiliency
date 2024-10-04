@@ -12,41 +12,48 @@ toc:
   - navgroup:
       id: overview
       topics:
-      - cloud-resiliency.md
-      - zero_downtime.md
+      - topic.md
       - topicgroup:
-          label: Availability
+          label: High Availability
           topics:
           - ha-considerations.md
       - topicgroup:
-          label: Disaster recovery
+          label: Disaster Recovery
           topics:
           - bcdr-understand.md
       - topicgroup:
-          label: Data
+          label: Cyber Resiliency
           topics:
-          - data-residency.md
-      - topicgroup:
-          label: Service updates
-          topics:
-          - topic.md
+          - topic1.md
+      - zero_downtime.md
   - navgroup:
       id: plan
       topics:
       - topicgroup:
-          label: Designing for resiliency
-          topics:
-          - bcdr-pitfalls.md
-          - bcdr-plan.md
-          - bcdr-networking.md
-      - topicgroup:
-          label: Planning for operational resiliency
+          label: Designing for Resiliency
           topics:
           - topic2.md
       - topicgroup:
-          label: Planning for security
+          label: Designing for HA
+          topics:
+          - bcdr-plan.md
+      - topicgroup:
+          label: Designing for DR
+          topics:
+          - bcdr-pitfalls.md
+          - bcdr-networking.md
+      - topicgroup:
+          label: Planning for Cyber Resiliency
           topics:
           - topic3.md
+      - topicgroup:
+          label: Planning for Operational Resiliency
+          topics:
+          - topic2.md
+      - topicgroup:
+          label: Data Residency
+          topics:
+          - data-residency.md
   - navgroup:
       id: architecture
       topics:
@@ -77,7 +84,6 @@ toc:
           - services_region.md
           - services_coming.md
           - topic: locations.md
-            navtitle: Locations for resource deployment
           - service-rollout.md
       - slo.md
   - navgroup:
