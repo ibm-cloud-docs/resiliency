@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021
-lastupdated: "2024-08-06"
+lastupdated: "2024-10-09"
 
 keywords: disaster recovery network, network aspects for DR, DR network, business continuity network considerations, disaster recovery network design
 
@@ -153,7 +153,7 @@ Compute instances that make up the application or database cluster must be deplo
 
 The DR test will be completed on a new set of on-demand, dynamically provisioned compute instances, that are duplicated by using snapshot functions. This validates the DR runbooks that will be run on the real alternative passive DR compute instances.
 
-![Continuously available class network architecture](images/BCDR-Architecture-Diagram-image12.svg "Continuously available class network architecture"){: caption="Figure 1. Continuously available class network architecture" caption-side="bottom"}
+![Continuously available class network architecture](images/BCDR-Architecture-Diagram-image12.svg "Continuously available class network architecture"){: caption="Continuously available class network architecture" caption-side="bottom"}
 
 On the DR side, you can see a solution where components are deployed on the cloud infrastructure and strictly connected with the correspondent that is deployed on premises. The components on cloud are passive in the sense that they do not perform active production workload, but they are receiving updates from the on premises components that are performing all of the productive workload.
 
@@ -185,7 +185,7 @@ Software Defined Storage (SDS)
 For an emergency, compute could be provisioned on demand, leveraging dynamic provisioning, subject to verification that cloud can commit on a provisioning time that allows you to meet the RTO of the applications or can be pre-provisioned and in stand-by mode, eventually.
 DR tests will be completed on a new set of on-demand, dynamically provisioned compute instances, that are duplicated by using snapshot functions.
 
-![Advanced recovery class network architecture](images/BCDR-Architecture-Diagram-Image13.svg "Advanced recovery class network architecture"){: caption="Figure 2. Advanced recovery class network architecture" caption-side="bottom"}
+![Advanced recovery class network architecture](images/BCDR-Architecture-Diagram-Image13.svg "Advanced recovery class network architecture"){: caption="Advanced recovery class network architecture" caption-side="bottom"}
 
 In the diagram, you can see production is performed by applications, both in Production Zone 1 and Production Zone 2, and data is stored in their respective sites.
 

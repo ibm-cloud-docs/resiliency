@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-09-17"
+lastupdated: "2024-10-09"
 
 keywords: data centers, datacenter, regions, locations, ibm cloud regions, multizone regions, MZRs, cloud regions, cloud data centers, multizone, geo, availability zone, zones
 
@@ -18,7 +18,7 @@ subcollection: resiliency
 {{site.data.keyword.cloud}} has a resilient global network of locations to host your highly available cloud workload. Resources in different locations are consolidated into an account-based billing and usage view. You can also deploy your workloads to the location that is nearest to your customers to achieve low latency connectivity. {{site.data.keyword.cloud_notm}} provides [multizone regions (MZR)](#x9774820){: term}, [single-campus multizone regions (SC-MZR)](#x10127487){: term}, and classic [data centers](#x2439906){: term} for classic infrastructure resources.
 {: shortdesc}
 
-![Global map showing MZR and data center locations](images/Global-View.svg "MZR and data center locations"){: caption="Figure 1. MZR and data center locations map" caption-side="bottom"}
+![Global map showing MZR and data center locations](images/Global-View.svg "MZR and data center locations"){: caption="MZR and data center locations map" caption-side="bottom"}
 
 This image is an artistic representation and does not reflect actual political or geographic boundaries.
 {: note}
@@ -43,7 +43,7 @@ MZRs are composed of three or more data centers in multiple zones with independe
 
 Offering the highest level of redundancy and availability by leveraging three separate sites within a region, MZRs have a minimum distance of at least 1 mile between zones and exact distances vary by region. Zone-to-zone latency can be found in the [network latency dashboards](/docs/vpc?topic=vpc-network-latency-dashboard).
 
-![This diagram shows a geography that contains buildings that host a multizone region (MZR)](images/mzr.svg){: caption="Figure 2. Multizone region (MZR)" caption-side="bottom"}
+![This diagram shows a geography that contains buildings that host a multizone region (MZR)](images/mzr.svg){: caption="Multizone region (MZR)" caption-side="bottom"}
 
 MZRs support different types of compute for both VPC and classic infrastructure resources. The location of classic resources is specified by a data center while VPC resource locations are specified by the zone. For more information about the physical locations available for your account per region for VPC resources, see [Zone mapping per account](#zone-mapping).
 
@@ -56,7 +56,7 @@ The following table lists the {{site.data.keyword.cloud_notm}} MZR locations and
 | Sao Paulo (`br-sao`) | br-sao-1  \n br-sao-2  \n br-sao-3 |
 | Toronto (`ca-tor`) | ca-tor-1  \n ca-tor-2  \n ca-tor-3 |
 | Washington DC (`us-east`) | us-east-1  \n us-east-2  \n us-east-3 |
-{: caption="Table 1. MZRs in North and South America" caption-side="top"}
+{: caption="MZRs in North and South America" caption-side="top"}
 {: #americas-mzr}
 {: tab-title="Americas"}
 {: tab-group="mzr"}
@@ -68,7 +68,7 @@ The following table lists the {{site.data.keyword.cloud_notm}} MZR locations and
 | Frankfurt (`eu-de`)    |eu-de-1  \n eu-de-2  \n eu-de-3 |
 | London (`eu-gb`)   |eu-gb-1  \n eu-gb-2  \n eu-gb-3 |
 | Madrid (`eu-es`)    |eu-es-1  \n eu-es-2  \n eu-es-3 |
-{: caption="Table 1. MZRs in Europe" caption-side="top"}
+{: caption="MZRs in Europe" caption-side="top"}
 {: #europe-mzr}
 {: tab-title="Europe"}
 {: tab-group="mzr"}
@@ -79,7 +79,7 @@ The following table lists the {{site.data.keyword.cloud_notm}} MZR locations and
 |----------|------|
 | Sydney (`au-syd`)   |au-syd-1  \n au-syd-2  \n au-syd-3 |
 | Tokyo (`jp-tok`)   |jp-tok-1  \n jp-tok-2  \n jp-tok-3 |
-{: caption="Table 1. MZRs in Asia Pacific" caption-side="top"}
+{: caption="MZRs in Asia Pacific" caption-side="top"}
 {: #asiapacific-mzr}
 {: tab-title="Asia Pacific"}
 {: tab-group="mzr"}
@@ -99,14 +99,14 @@ SLAs are maintained because the infrastructure is set up in a concurrently maint
 
 
 
-![This diagram shows a geography that contains an SC-MZR](images/single-campus-mzr.svg){: caption="Figure 3. Single-campus MZR" caption-side="bottom"}
+![This diagram shows a geography that contains an SC-MZR](images/single-campus-mzr.svg){: caption="Single-campus MZR" caption-side="bottom"}
 
 The following table lists the SC-MZR locations that are available in {{site.data.keyword.cloud_notm}} and the associated regions and zones.
 
 | Region   | Zone |
 |----------|------|
 | Osaka (`jp-osa`)   |jp-osa-1  \n jp-osa-2  \n jp-osa-3 |
-{: caption="Table 2. single-campus MZRs" caption-side="top"}
+{: caption="single-campus MZRs" caption-side="top"}
 
 ### Zone mapping per account
 {: #zone-mapping}
@@ -129,7 +129,7 @@ The following table shows the available physical locations by using their univer
 | Sao Paulo (`br-sao`) |  br-sao-sao01-a  \n br-sao-sao04-a  \n br-sao-sao05-a | SAO01  \n SAO04  \n SAO05 | SAO02  \n SAO03 |
 | Toronto (`ca-tor`)  | ca-tor-tor01-a  \n ca-tor-tor04-a  \n ca-tor-tor05-a  | TOR01  \n TOR04  \n TOR05 | TOR02  \n TOR03 |
 | Washington DC (`us-east`) | us-east-wdc04-a  \n us-east-wdc06-a  \n us-east-wdc07-a | WDC04  \n WDC06  \n WDC07 | WDC02  \n WDC05 |
-{: caption="Table 3. MZR universal zone names - North and South America" caption-side="top"}
+{: caption="MZR universal zone names - North and South America" caption-side="top"}
 {: #americas-universal-zone}
 {: tab-title="Americas"}
 {: tab-group="zone"}
@@ -141,7 +141,7 @@ The following table shows the available physical locations by using their univer
 | Frankfurt (`eu-de`)   | eu-de-fra02-a  \n eu-de-fra04-a  \n eu-de-fra05-a  | FRA02  \n FRA04  \n FRA05 | FRA01  \n FRA03 |
 | London (`eu-gb`)   | eu-gb-lon04-a  \n eu-gb-lon05-a  \n eu-gb-lon06-a  | LON04  \n LON05  \n LON06 | LON01  \n LON03 |
 | Madrid (`eu-es`)    | eu-es-mad02-a  \n eu-es-mad04-a  \n eu-es-mad05-a | MAD02  \n MAD04  \n MAD05 | MAD01  \n MAD03 |
-{: caption="Table 3. MZR universal zone names - Europe" caption-side="top"}
+{: caption="MZR universal zone names - Europe" caption-side="top"}
 {: #europe-universal-zone}
 {: tab-title="Europe"}
 {: tab-group="zone"}
@@ -152,7 +152,7 @@ The following table shows the available physical locations by using their univer
 |----------|------|------|----|
 | Sydney (`au-syd`) | au-syd-syd01-a  \n au-syd-syd04-a  \n au-syd-syd05-a | SYD01  \n SYD04  \n SYD05 | MEL02  \n PER01  \n SYD02  \n SYD03 |
 | Tokyo (`jp-tok`)   | jp-tok-tok02-a  \n jp-tok-tok04-a  \n jp-tok-tok05-a | TOK02  \n TOK04  \n TOK05 | TOK01  \n TOK03 |
-{: caption="Table 3. MZR universal zone names - Asia Pacific" caption-side="top"}
+{: caption="MZR universal zone names - Asia Pacific" caption-side="top"}
 {: #asiapacific-universal-zone}
 {: tab-title="Asia Pacific"}
 {: tab-group="zone"}
@@ -167,7 +167,7 @@ The following table shows the available physical locations using their universal
 | Region   |  Universal zone names |Data center | PoP |
 |----------|------|------|----|
 | Osaka (`jp-osa`)   | jp-osa-osa21-a  \n jp-osa-osa22-a  \n jp-osa-osa23-a | OSA21  \n OSA22  \n OSA23 | OSA01 |
-{: caption="Table 4. single-campus MZR universal zone names" caption-side="top"}
+{: caption="single-campus MZR universal zone names" caption-side="top"}
 
 
 
@@ -188,7 +188,7 @@ You might also want to display your resources that are located globally. The **G
 
 As illustrated in the following graphic, a data center is a physical building that represents a zone that is located within a multizone region (MZR). An MZR is organized by its metro location. For example, London can encompass more than one grouping of data centers within an MZR. The graphic shows three zones in one MZR that work together in the instance that one of the data centers becomes unavailable. Zones are connected directly to each or through low latency links.
 
-![A location hierarchy that shows a geography that contains data center buildings inside of zones that are interconnected with points-of-presence within a metro.](images/dc-geography.svg){: caption="Figure 4. Location hierarchy" caption-side="bottom"}
+![A location hierarchy that shows a geography that contains data center buildings inside of zones that are interconnected with points-of-presence within a metro.](images/dc-geography.svg){: caption="Location hierarchy" caption-side="bottom"}
 
 ## Classic data centers
 {: #data-centers}
@@ -222,7 +222,7 @@ See the following table for the specific code for each data center.
 | Washington DC 04 | WDC04 |
 | Washington DC 06 | WDC06 |
 | Washington DC 07 | WDC07 |
-{: caption="Table 5. Data centers in North and South America" caption-side="top"}
+{: caption="Data centers in North and South America" caption-side="top"}
 {: #americas}
 {: tab-title="Americas"}
 {: tab-group="dcs"}
@@ -248,7 +248,7 @@ See the following table for the specific code for each data center.
 |Madrid 05 | MAD05|
 |Milan 01 | MIL01|
 |Paris 01 | PAR01|
-{: caption="Table 5. Data centers in Europe" caption-side="top"}
+{: caption="Data centers in Europe" caption-side="top"}
 {: #europe}
 {: tab-title="Europe"}
 {: tab-group="dcs"}
@@ -268,7 +268,7 @@ See the following table for the specific code for each data center.
 |Tokyo 02 | TOK02|
 |Tokyo 04 | TOK04|
 |Tokyo 05 | TOK05|
-{: caption="Table 5. Data centers in Asia Pacific" caption-side="top"}
+{: caption="Data centers in Asia Pacific" caption-side="top"}
 {: #asiapacific}
 {: tab-title="Asia Pacific"}
 {: tab-group="dcs"}

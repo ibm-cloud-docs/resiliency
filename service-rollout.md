@@ -3,7 +3,7 @@
 copyright:
 
   years: 2022, 2024
-lastupdated: "2024-08-06"
+lastupdated: "2024-10-09"
 
 keywords: rollout
 
@@ -58,7 +58,7 @@ The {{site.data.keyword.cloud_notm}} platform, including the console, CLI, Ident
 |[MZR](/docs/overview?topic=overview-locations#table-mzr)| ![Checkmark icon](../icons/checkmark-icon.svg)    |    ![Checkmark icon](../icons/checkmark-icon.svg)   |
 |[Single campus MZR](/docs/overview?topic=overview-locations#single-campus-mzr)|    ![Checkmark icon](../icons/checkmark-icon.svg)   |    ![Checkmark icon](../icons/checkmark-icon.svg)    |
 |[Data center](/docs/overview?topic=overview-locations#data-centers)|       |    ![Checkmark icon](../icons/checkmark-icon.svg)    |
-{: caption="Table 1. Deployment tiers and service types" caption-side="top"}
+{: caption="Deployment tiers and service types" caption-side="top"}
 
 
 ### Core service deployments
@@ -159,4 +159,4 @@ Storage
 | [Shared Responsibility Matrix](/docs/overview?topic=overview-shared-responsibilities)  | {{site.data.keyword.IBM_notm}}'s customer shared responsibility matrix |
 | [Availability of services](/docs/overview?topic=overview-services_region) | Listing of services available by location   |
 | [SLO](/docs/overview?topic=overview-slo)  | {{site.data.keyword.cloud_notm}} SLO  |
-{: caption="Table 2. Related documents" caption-side="top"}
+{: caption="Related documents" caption-side="top"}

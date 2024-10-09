@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2024
-lastupdated: "2024-08-06"
+lastupdated: "2024-10-09"
 
 keywords: load balancing, global load balancing, HA, DR, high availability, disaster recovery, HA for the platform, high availability for platform, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -124,7 +124,7 @@ The following are global platform services, their control plane location in the 
 | Identity and Access management  \n [IAM Identity Services API](/apidocs/iam-identity-token-api) | The IAM control plane enables to  \n * authenticate and authorize the users log on and other action requests. \n * manage service identifiers, trusted profiles, and API key identities. \n * create, update, view, and delete IAM policies. An IAM policy enables a subject to access a resource. \n * create, update, view, and delete access groups allow for the assignment of policies to Users, service IDs and trusted profiles  | * us-south \n * eu-gb \n * eu-de \n * jp-tok \n * au-syd | Active/Active |
 | Business Support Services   \n [User Management API](/apidocs/user-management)   \n [Usage Metering API](/apidocs/usage-metering)   \n [Usage Reports API](/apidocs/metering-reporting) | The Business Support Services enables to  \n * manage accounts, enterprises, and users. \n * manage the users within account, such as inviting, retrieving, updating, or removing users. \n * update user profiles and settings. \n * collect services usage metrics and generate billing reports  | * us-south \n * us-east \n * eu-gb \n * eu-de \n * jp-tok \n * au-syd | Active/Active |
 | Cloud projects  \n [Projects API](/apidocs/projects) | The Project service enables to  \n * create, update, view, and delete projects. \n * deployment by using projects  | * us-south \n * us-east \n * eu-gb \n * eu-de  | Active/Active |
-{: caption="Table 1. Global platform services" caption-side="bottom"}
+{: caption="Global platform services" caption-side="bottom"}
 
 #### Services with global control planes
 {: #service-global-control-plane}
@@ -146,7 +146,7 @@ The following are services with global control planes, their control plane locat
 | Transit Gateway  \n [Transit Gateway API](/apidocs/transit-gateway) | Transit Gateway service control plane enables to  \n * create, update, view, and delete transit gateways to connect VPCs together or with classic infrastructure networks.  \n * attach, detach connections to VPCs or classic infrastructure networks to multiple local gateways and a single global gateway. | * us-south  \n * us-east | Primary/Secondary |
 | Direct Link  \n [Direct Link API](/apidocs/direct_link) | Direct Link service control plane enables to  \n * create, update, view, and delete direct links to connect VPCs or classic infrastructure networks with on-premises networks.  \n * attach, detach connections to on-premises networks to direct links. \n * configure import and export filters for a direct link. | * us-south  \n * us-east | Primary/Secondary |
 | Cloud Object Storage Provisioning | Cloud Object Storage service control plane enables to  \n * create or delete a new Cloud Object Storage bucket with a unique global name in a region.  \n NOTE: All other control plane APIs on Cloud Object Storage buckets are hosted in the same region or geography as the chose region or geography for each Cloud Object Storage bucket. | * us-south  \n * us-east | Primary/Secondary |
- {: caption="Table 2. Services with global control planes" caption-side="bottom"}
+ {: caption="Services with global control planes" caption-side="bottom"}
 
 For more information about the specific options for best practices when you use platform services for high availability, refer to the following documentation.
 
@@ -161,7 +161,7 @@ For more information about the specific options for best practices when you use 
 | {{site.data.keyword.cloud_notm}} CLI | [Understanding high availability and disaster recovery for the {{site.data.keyword.cloud_notm}} CLI](/docs/cli?topic=cli-ha-dr) |
 | {{site.data.keyword.cloud_notm}} projects| [Understanding high availability and disaster recovery for projects](/docs/secure-enterprise?topic=secure-enterprise-ha-dr) |
 | {{site.data.keyword.compliance_short}} | [Understanding high availability](/docs/security-compliance?topic=security-compliance-ha) and [disaster recovery](/docs/security-compliance?topic=security-compliance-bc-dr) for {{site.data.keyword.compliance_short}} |
-{: caption="Table 3. Platform services" caption-side="top"}
+{: caption="Platform services" caption-side="top"}
 
 ### Network backbone redundancy
 {: #network-backbone}

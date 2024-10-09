@@ -2,7 +2,7 @@
 
 copyright:
  years: 2021, 2022
-lastupdated: "2024-08-06"
+lastupdated: "2024-10-09"
 
 keywords: high availability, ha
 
@@ -25,7 +25,7 @@ One useful definition of availability is MTBF/(MTBF+MTTR), where MTBF is Mean Ti
 
 The reason the formula is useful is that it allows us to see how to improve availability. One can increase MTBF, decrease MTTR, or both. Put another way, this means that availability can be improved by increasing reliability, fixing things when they break more quickly, or both. Both approaches have been used with computer systems over the years. The mainframe, which uses high reliability parts, redundant parts, and modularity to allow quicker repairs, shows that significant levels of availability are possible with this approach.
 
-![Availability formula.](images/availability-formula.svg "Availability formula"){: caption="Figure 1. Summarized availability formula" caption-side="bottom"}
+![Availability formula.](images/availability-formula.svg "Availability formula"){: caption="Summarized availability formula" caption-side="bottom"}
 
 ## Redundancy in the cloud
 {: #redundancy}
@@ -45,7 +45,7 @@ An example can help to make this clear. In astronomy, it is understood that our 
 
 Levels of redundancy have both a technical and a geographic component. If you have two houses, are you more likely to become homeless if the houses are next door to each other or if they are in different countries? Similar considerations drive computer system redundancy, and are behind {{site.data.keyword.IBM}}’s use of local, regional, and global redundancy. Local redundancy duplicates some or all of a computer system in the same data center. This protects against many kinds of outages, but not all. Regional redundancy, as implemented by {{site.data.keyword.IBM_notm}}, provides at least three copies of the system in three different data centers, so a single local event, like a large fire, is unlikely to take down all the systems. Global redundancy is available for customers that want to avoid outages that are caused by large regional events such as severe hurricanes and typhoons.
 
-![Geographic levels of redundancy.](images/geographic-redundancy.svg "Geographic levels of redundancy"){: caption="Figure 2. Local, regional, and global geographic redundancy" caption-side="bottom"}
+![Geographic levels of redundancy.](images/geographic-redundancy.svg "Geographic levels of redundancy"){: caption="Local, regional, and global geographic redundancy" caption-side="bottom"}
 
 ### Technical redundancy
 {: #technical-redundancy}
