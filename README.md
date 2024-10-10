@@ -38,7 +38,10 @@ As of 2024-10-04:
 | 4.1.1 High Availability   |  ➡️ Responsible: @pkadiya  | Accountable | Consulted | Informed | 
 | 4.1.2 Disaster Recovery  |  ➡️ Responsible: @james-belton  | Accountable | Consulted | Informed |
 | 4.1.3 Cyber Resiliency  |  ➡️ Responsible: @bviswana | Accountable | Consulted | Informed | 
-| 4.2 Planning   |  ➡️ Responsible: @pquiring | Accountable | Consulted | Informed | 
+| 4.2 Planning   |  ➡️ Responsible: @pquiring | Accountable | Consulted | Informed |
+| 4.2.1 Designing for HA   |  ➡️ Responsible: @pkadiya | Accountable | Consulted | Informed | 
+| 4.2.2 Designing for DR   |  ➡️ Responsible: @james-belton | Accountable | Consulted | Informed |
+| 4.2.3 Planning for Cyber Resilience  |  ➡️ Responsible: @bviswana | Accountable | Consulted | Informed |
 | 4.3 Reference Architectures   |  ➡️ Responsible: @pkadiya  | Accountable | Consulted | Informed | 
 | 4.4 How to   |  ➡️ Responsible: @bviswana  | Accountable | Consulted | Informed | 
 | 4.5 Reference   |  ➡️ Responsible: Git issue owner  | Accountable | Consulted | Informed | 
