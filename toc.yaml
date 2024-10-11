@@ -12,7 +12,7 @@ toc:
   - navgroup:
       id: overview
       topics:
-      - topic.md
+      - resiliency-overview.md
       - topicgroup:
           label: High Availability
           topics:
