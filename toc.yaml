@@ -41,6 +41,7 @@ toc:
           label: Designing for DR
           topics:
           - bcdr-pitfalls.md
+          - bcdr-approaches.md
           - bcdr-networking.md
       - topicgroup:
           label: Planning for Cyber Resiliency
@@ -57,7 +58,7 @@ toc:
   - navgroup:
       id: architecture
       topics:
-      - topic4.md       
+      - topic4.md
   - navgroup:
       id: howto
       topics:

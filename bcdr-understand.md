@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-10-08"
+lastupdated: "2024-10-14"
 
 keywords: disaster recovery, DR, what is disaster recovery, DR strategy, disaster recovery options, disaster recovery strategy
 
@@ -21,7 +21,7 @@ When designing and building IT systems, there's often much focus on maintaining 
 
 But disasters are different. Disasters will cause a system to go down despite attempts to make it highly available and the worst disasters will have widespread consequences, meaning that the affected workloads may require recovery in a different region altogether.
 
-### What's meant by 'disaster recovery'?
+## What's meant by 'disaster recovery'?
 {: #Intro-whatIsMeant}
 
 For the purposes of this guide, [disaster recovery](#x2113280){: term} (DR) is defined as the process of recovering one or more workloads to a working state in a second {{site.data.keyword.cloud_notm}} region, following an unplanned outage. Remeber, high availablity does not equate to disaster recovery. They are different things.
@@ -116,4 +116,4 @@ When designing your disaster recovery solution, bear in mind that disasters have
 
 Consider carefully what you bring back in the event of a disaster too. Do you need every system or just a subset of core applications? Is there an order that they need to be restored in? Is data consistency across workloads important? Is it possible to to work in a degraded state and if so, for how long?
 
-Of course, these questions are as much a business consideration as a technical one, and costs might be prohibitive in some situations. However, you should have a clear view of what the minimal acceptable conditions are, and what other aspects you might eliminate when a solution is cost prohibitive while understanding what the impact would be. In other words, accept residual risks knowing the consequences. Planning the solution should work hand-in-hand with business requirements and both should be captured in a BCDR plan.
+Of course, these questions are as much a business consideration as a technical one, and costs might be prohibitive in some situations. However, you should have a clear view of what the minimal acceptable conditions are, and what other aspects you might eliminate when a solution is cost prohibitive while understanding what the impact would be. In other words, accept residual risks knowing the consequences. Planning the solution should work hand-in-hand with business requirements and both should be captured in a BCDR plan. This is explored further in the Planning for Disaster Recovery topic.
