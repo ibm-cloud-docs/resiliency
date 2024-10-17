@@ -88,6 +88,11 @@ toc:
             navtitle: Locations for resource deployment
           - service-rollout.md
       - slo.md
+      - topicgroup:
+          label: Services
+          topics:
+          - services/secrets_manager.md
+          - services/template.md
   - navgroup:
       id: help
       topics:
