@@ -42,7 +42,6 @@ toc:
           topics:
           - bcdr-pitfalls.md
           - bcdr-approaches.md
-          - bcdr-networking.md
       - topicgroup:
           label: Planning for Cyber Resiliency
           topics:
