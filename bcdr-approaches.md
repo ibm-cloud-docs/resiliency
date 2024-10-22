@@ -1,13 +1,11 @@
 ## Disaster recovery approaches within {{site.data.keyword.cloud_notm}}
 {: #dr-approaches}
 
+This section outlines four general approaches to DR in {{site.data.keyword.cloud_notm}} that will support a disaster recovery plan. These are not intended to be ‘one size fits all’ approaches, meaning that a mix and match approach can be taken, based on the workloads, environments and RTO / RPO values the business assigns to them.
 
+As an example, crucial systems which tolerate zero downtime should run in an Active / Active cross-regional configuration, as detailed in Approach 4. Maintaining systems in such a configuration involves most cost and effort though, so Approach 3 will be appropriate for workloads where a few hours downtime can be tolerated, which in turn will reduce the overall cost.  Approach 1 is really only suitable for systems that can tolerate extended downtime – such as non-critical development and test environments – but again, it’s a means to reduce the DR overhead by using the rapid scaling features of cloud computing. Approach 2 builds on that but has some components built out, particularly those thtat can take time to deliver. So, when considering the DR plan and strategy, consider a mix and match approach, especially where budget is a constraint.
 
-There are four general approaches to DR in {{site.data.keyword.cloud_notm}} outlined below that will support a disaster recovery plan. These are not intended to be ‘one size fits all’, meaning that a mix and match approach can be taken, based on the workloads, environments and RTO / RPO values the business assigns to them.
-
-As an example, crucial systems which tolerate zero downtime should run in an Active / Active cross-regional configuration, as detailed in Approach 4. Maintaining systems in such a configuration involves most cost and effort though, so Approach 3 will be appropriate for workloads where a few hours downtime can be tolerated, which in turn will reduce the overall cost.  Approach 1 is really only suitable for systems that can tolerate extended downtime – such as non-critical development and test environments – but again, it’s a means to reduce the DR overhead by using the rapid scaling features of cloud computing. So, when considering the DR plan and strategy, consider a mix and match approach, especially where budget is a constraint.
-
-The DR approaches covered focus on VPC and database services in particular. Of course there are many other services available from {{site.data.keyword.cloud_notm}} but the same general principles will apply. When determining an approach, it’s important to understand if and how backups of customer data are taken within the service. Also ensure you understand how those backups are made available to you, how they can be recovered and where there can be recovered.
+The four DR approaches covered focus on VPC and database services in particular. Of course there are many other services available from {{site.data.keyword.cloud_notm}} but the same general principles will apply. When determining an approach, it’s important to understand if and how backups of your data - the data you are responsible for restoring - are taken within the service. Also ensure you understand how those backups are made available to you, how they can be recovered and where there can be recovered.
 
 For example, if the service automatically takes backups of your data, including snapshots, ensure they are placed in cross-region or buckets replicated to another region. Again, this may be done by the service, or you may need to configure such replication. If the service does not automatically take backups of your data, be sure to understand how backups can be taken and stored.  Remember, the IBM Cloud shared responsibility model states that it is the customer's responsiblity to ensure that they have backups of their data, and to ensure that it is recoverable. Refer to appropriate sections in the IBM Cloud Docs for more service-by-service information.
 
@@ -19,17 +17,17 @@ Using this approach:
 * No infrastructure or services are present at a second region, everything is re-created should a disaster be called
 * Server-based data is backed up using a cross-region snapshots
 * Database data is recovered through the use of database backups
-* Use of Infrastructure as Code via IBM Cloud Schematics is highly recommended, as is the use of Toolchains to deploy application code
+* Use of Infrastructure as Code via IBM Cloud Schematics is highly recommended, as is the use of toolchains to deploy application code
 * Suitable for least stringent RTO and RPO, though some support for point in time recovery is available for certain databases
 * This is the least-cost approach.
 
-With a zero DR footprint, this approach will have the longest overall recovery time, though it does have the lowest cost profile. For many organizations, this will not be an acceptable approach for production workloads, but it may be considered for development, system test workloads or other workloads that need a disaster recovery provision but are low on the list of priorities.
+With a zero DR footprint, this approach will have the longest overall recovery time, though it does have the lowest cost profile. For many organizations, this will not be an acceptable approach for production workloads, but it may be considered for development, system test workloads or other workloads that need a disaster recovery provision but are low on the list of recovery priority.
 
 To enable an accurate and faster rebuild of the environment, create and utilise a toolchain that will deploy infrastructure services via {{site.data.keyword.bplong_notm}} and then deploy code to those services, using Git-based code repositories.
 
 To backup and replicate data which is written to block storage volumes or file storage, use Backup for VPC and store as cross-region backup snapshots and/or file storage replication in the first instance, or optionally deploy and configure a Veeam agent on each server or a central Veeam Backup and Replication server (or similar ‘bring your own’ backup software).  Depending on the chosen tool, devise a suitable backup or replication schedule. If using Veeam, write backup files to an Object Storage bucket. The bucket should be cross-regional or, where compliance needs dictate, be configured for replication to another specified bucket hosted in a second region of choice.
 
-For VSIs running Linux operating systems, the bucket can mounted directly using s3fs, based on FUSE. For VSIs running Windows, rclone is the preferred tool.  In each case, the bucket is mounted as a network drive and operates in a similar way to CIFS or NFS shared drive. The installation of the Veeam agent and the bucket mount can be scripted and automated at VSI provision time, using the ‘user-data’ settings. Be sure to use the appropriate endpoint for the bucket.
+For VSIs running Linux operating systems, the bucket can mounted directly using s3fs, based on FUSE. For VSIs running Windows, rclone is the preferred tool for direct mounting.  In each case, the bucket is mounted as a network drive and operates in a similar way to CIFS or NFS shared drive. The installation of the Veeam agent and the bucket mount can be scripted and automated at VSI provision time, using the ‘user-data’ settings. Be sure to use the appropriate endpoint for the bucket.
 
 More complex application data should be stored within a database and IBM Cloud offers several that are suitable for most workloads.
 
@@ -55,7 +53,7 @@ Using this approach:
 
 This approach differs to  Approach 1 in that some elements of the DR environment are built out, particularly networking services that have a longer lead time, thereby saving time should DR be called. This is a lower cost option compared to maintaining a full active/passive DR environment.
 
-While still taking an infrastructure as code / IBM Cloud Schematics approach, elements such as the VPC are built out into the DR region. This will include the ‘layout’ of the VPC networks and elements such as access control lists, security groups and so on. This will increase the overall admin overhead since changes to the production environment must be rolled out to the DR environment to ensure consistency.
+While still taking an infrastructure as code / IBM Cloud Schematics approach, elements such as the VPC are built out into the DR region. This will include the ‘layout’ of the VPC networks and elements such as access control lists, security groups and so on. This will increase overall operational overheads, since changes to the production environment must be rolled out to the DR environment to ensure consistency and problems with mis-configuration are not encountered, should DR be called.
 
 Optionally, single servers of each type used in the deployment can be provisioned, configured and then shut down. In doing this, runtime costs are avoided, though there will be charges made for any storage consumed. This approach can enable a faster RTO for some services, where instances can be switched on and then scaled using instance templating and autoscaling techniques.
 
@@ -111,7 +109,7 @@ Managing changing application data is the most complex consideration with this a
 ## General DR guidance for common services
 {: #general-dr-guidance}
 
-Review the following sections covering general DR guidance for specific {{site.data.keyword.cloud_notm}} products and services.
+Review the following sections covering general DR guidance for specific {{site.data.keyword.cloud_notm}} products and services. For more detailed guidance, visit specific DR pages in the service's docs pages.
 
 ### IBM Cloud Object Storage
 {: #IBMCloudObjectStorage}
@@ -125,7 +123,7 @@ These backups are performed through the creation of a simple script, typically w
 ### Virtual Private Cloud
 {: #DRinVPC}
 
-There are three ways to back up data in VPC, depending on storage type. Backup for VPC, file share replication, and Veeam.
+There are three ways to back up data within VPC, depending on storage type. Backup for VPC, file share replication, and Veeam.
 
 #### Backup for VPC
 {: #BackupforVPC}
@@ -168,11 +166,11 @@ VMware for vSsphere and VMware for vCenter environments can take some time to pr
 ### Container Services
 {: #ContainerServices}
 
-The approaches highlighted above largely concentrate on IBM Cloud VPC and IBM Cloud Databases For services. While many environments include both VPC and databases (and by extension, Bare Metal Servers and Classic Infrastructure) many others will be based around container services that include IBM Cloud Kubernetes Service and Red Hat OpenShift on IBM Cloud.
+The approaches highlighted above largely concentrate on IBM Cloud VPC and IBM Cloud Databases For services. While many environments include both VPC and databases (and by extension, Bare Metal Servers and Classic Infrastructure) many others will be based around container services that include IBM Cloud Kubernetes Service (IKS) and Red Hat OpenShift on IBM Cloud.
 
-In terms of cluster infrastructure, the approaches above generally hold, from having a zero DR footprint through to having active/active clusters. Care needs to be taken with storage choices though.
+In terms of cluster infrastructure, the four approaches discussed above generally hold, from having a zero DR footprint through to having active/active clusters. Care needs to be taken with storage choices though.
 
-Both service types deal with persistent and non-persistent storage. Non-persistent storage is storage that is effectively removed when the container, worker node or cluster is removed. When the storage is removed, the data that goes with it is lost as well, so disaster recovery does not concern itself with the recovery of non-persistent storage and related data.
+Both IKS and Red Hat OpenShift on IBM Cloud can be configured with persistent and non-persistent storage. Non-persistent storage is storage that is effectively removed when the container, worker node or cluster is removed. When the storage is removed, the data that goes with it is lost as well, so disaster recovery does not concern itself with the recovery of non-persistent storage and related data.
 
 Persistent storage, on the other hand, is used for data that needs to exist and be kept beyond the lifespan of the container, worker node or cluster that it is attached to and so does come into the scope of disaster recovery.
 
@@ -218,8 +216,6 @@ From a DR perspective, read-only replicas provide a means to fail over to a data
 
 ### IBM Cloudant
 {: #IBMCloudant}
-
-
 
 While IBM Cloudant instances are highly available, they still require backup to protect against accidental or malicious data loss or corruption. Backup and recovery tooling is not provided as part of the IBM Cloudant dashboard but IBM Cloud recommends the use of CouchBackup, which is an open source, command line tool that is simple to download and use.
 
