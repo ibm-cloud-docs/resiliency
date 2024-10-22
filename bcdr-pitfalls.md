@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021
-lastupdated: "2024-10-14"
+  years: 2024
+lastupdated: "2024-10-22"
 
 keywords: DR for IBM Cloud, disaster recovery, common mistakes for disaster recovery, plan a disaster recovery strategy
 
@@ -20,7 +20,7 @@ To be effective, a disaster recovery solution should be planned and designed in 
 ## What do I need to consider for my DR Plan?
 {: #DRPlan}
 
-A disaster recovery plan is a set of procedures and strategies that an organization follows to recover from a disaster or unexpected event. It is a critical document that outlines the steps that an organization will take to minimize the impact of a disaster and get back to normal operations as quickly as possible. A disaster recovery plan is primarily a business plan and requires input from stakeholders across the business organisation, not just the IT department. It also requires appropriate funding and resourcing to ensure that it remains a living, rather than a one-off document.
+A disaster recovery plan is a set of procedures and strategies that an organization follows to recover from a disaster or unexpected event. It is a critical document that outlines the steps that an organization will take to minimize the impact of a disaster and get back to normal operations as quickly as possible. A disaster recovery plan is primarily a business plan and requires input from stakeholders across the business organisation, not just the IT department. It also requires appropriate funding and resourcing to ensure that it remains a living, rather than a one-off, document.
 
 A DR plan will usually cover the following:
 
@@ -66,7 +66,7 @@ To ensure that your plans provide the results that you require in the event of a
 
 It is important that the solution and the testing methodology are planned and designed to mimic what the real conditions might be.
 
-A DR plan is a set of policies, tools, and procedures that enable organizations to recover from and continue the operation of vital technology systems following a natural or human-induced disaster. The business continuity and disaster recovery (BCDR) infrastructure capacity should be able to manage the workloads of the production sites, unless your plan dictates otherwise. Assuming that this condition will not occur might seem attractive from a cost perspective, but it can make the effects of a disaster much more severe when there is not enough capacity to manage normal business. Of course, services in the cloud are scalable, so you can add capacity later, but also be aware that you may not be the only customer vacating to the region due to the disaster, which may cause short-term capcity shortages.
+A DR plan is a set of policies, tools, and procedures that enable organizations to recover from and continue the operation of vital technology systems following a natural or human-induced disaster. The business continuity and disaster recovery (BCDR) infrastructure capacity should be able to manage the workloads of the production sites, unless your plan dictates otherwise. Assuming that this condition will not occur might seem attractive from a cost perspective, but it can make the effects of a disaster much more severe when there is not enough capacity to cope with normal business activity. Of course, services in the cloud are scalable, so you can add capacity later, but also be aware that you may not be the only customer vacating to the region due to the disaster, which may cause short-term capcity shortages.
 
 Also, avoid reusing dismissed production components or lower grade and quality assets to build the DR solution, since it will affect the reliability of the solution. The amount of time that this solution needs to manage production is not predictable, and this variable introduces more risks.
 
@@ -127,7 +127,7 @@ If a disaster strikes that causes you to enact your disaster recovery plan, be a
 
 This increase in local demand could hamper recovery efforts and increase recovery times for a period of time.
 
-To avoid such problems, either consider building out as much required capacity as possible in the DR region of choice (though this comes with cost implications) or consider using other locations, such as those which are not near-neighbour regions. Note though, that some services, such as IBM Cloud Databases, backup data to cross-regional Object Storage buckets, which the service 'owns' and cannot be customer configured. This may place a constraint on the DR locations you can choose from.
+To avoid such problems, either consider pre-building out as much required capacity as possible in the DR region of choice (though this comes with cost implications) or consider using other locations, such as those which are not near-neighbour regions. Note though, that some services, such as IBM Cloud Databases, backup data to cross-regional Object Storage buckets, which the service 'owns' and cannot be customer configured. This may place a constraint on the DR locations you can choose from.
 
 ## Connectivity considerations
 {: #ConnectivityConsiderations}

@@ -86,7 +86,7 @@ Many environments will have a mix of workload types, some which are fundamentall
 
 Typically, costs will rise as RTO and RPO targets become lower, so as a rule of thumb, workloads that have the most stringent RTO and RPO targets will be those that are the most business critical. This ratio is depicted in the following diagram.
 
-![Diagram depicting RTO/RPO to Cost ratio ](images/rto-rpo-cost-curve.png "Diagram depicting RTO/RPO to Cost ratio"){:caption="Diagram depicting RTO/RPO to Cost ratio" caption-side="bottom"}
+![Diagram depicting RTO/RPO to Cost ratio](images/rto-rpo-cost-curve.png "Diagram depicting RTO/RPO to Cost ratio"){:caption="Diagram depicting RTO/RPO to Cost ratio" caption-side="bottom"}
 
 ## General disaster recovery strategy
 {: #bcdr-general}
