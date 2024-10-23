@@ -4,7 +4,7 @@ copyright:
   years: 2024
 lastupdated: "2024-10-23"
 
-keywords:
+keywords: disaster recovery, dr
 
 subcollection: resiliency
 

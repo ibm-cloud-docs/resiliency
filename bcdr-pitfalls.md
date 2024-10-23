@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-10-22"
+lastupdated: "2024-10-23"
 
 keywords: DR for IBM Cloud, disaster recovery, common mistakes for disaster recovery, plan a disaster recovery strategy
 
@@ -13,7 +13,7 @@ subcollection: resiliency
 {{site.data.keyword.attribute-definition-list}}
 
 # Planning for Disaster Recovery
-{:PlanningforDR}
+{: #PlanningforDR}
 
 To be effective, a disaster recovery solution should be planned and designed in such a way that it meets both business and technical requirements. In doing this, it should be accepted that a balance may need to be struck between the two. For example, a business requirement may be technically unfeasable to implement, or perhaps the technical implementation becomes cost prohibitive for the business. The starting point for any disaster recovery solution should be a disaster recovery plan.
 

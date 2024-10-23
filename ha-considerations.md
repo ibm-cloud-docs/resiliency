@@ -1,8 +1,8 @@
 ---
 
 copyright:
- years: 2021, 2022
-lastupdated: "2024-10-17"
+  years: 2024
+lastupdated: "2024-10-23"
 
 keywords: high availability, ha
 
@@ -16,11 +16,12 @@ subcollection: resiliency
 {: #understanding-ha}
 
 ## What is High Availability?
+{: #what}
 
 When it comes to running enterprise workloads in a cloud environment, its system components and services remain operational and accessible for an extended periods of time without any interruption during unexpected failures or events. This level of resiliency is known as [high availability](#x2284708){: term}. The two main factors for [High Availability](#x2284708){: term} are, downtime of the whole system endured and how long did the system run without any interruption. [High Availability](#x2284708){: term} requires redundancy by cloning the system components, services and by distributing across many environments.
 
 When it comes to [high availability](#x2284708){: term} in the cloud, it's important to understand the high-level concepts that need to be addressed by anyone who is looking to build or run a highly available cloud system. 
-{: shortdesc}
+
 
 ## Formula for high availability
 {: #ha-formula}
@@ -32,6 +33,7 @@ The reason the formula is useful is that it allows us to see how to improve avai
 ![Availability formula.](images/availability-formula.svg "Availability formula"){: caption="Summarized availability formula" caption-side="bottom"}
 
 ## Why do you need high availability?
+{: #why}
 
 With IBM Cloud®, you can protect your critical workloads by building resilient highly available infrastructure. Using the backup, disaster recovery, and high availability features, you can minimize your downtime if a severe failure condition happens. You can safeguard your classic or VPC application with multiple availability zones or regions. By creating cloud infrastructures that are protected against a single point of failure, and backing up your data, you keep your workloads and web applications highly available.
 
