@@ -12,7 +12,7 @@ subcollection: resiliency
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Understanding disasterrecovery
+# Understanding disaster recovery
 {: #understanding-dr}
 
 When designing and building IT workloads, there's often much focus on maintaining [high availability](#x2284708){: term} (HA), which is the process of designing out single points of failure, so that workloads can survive and avoid outages that are otherwise caused by failing infrastructure.
@@ -20,6 +20,7 @@ When designing and building IT workloads, there's often much focus on maintainin
 {{site.data.keyword.cloud_notm}} supports high availability through its multizone region (MZR) architecture. This is baked into many {{site.data.keyword.cloud_notm}} services and it allows customers to easily deploy workloads across multiple zones in a region, where even the complete failure of a single zone won’t affect the availability of a workload - assuming the workload has been correctly deployed to take full advantage of the MZR.
 
 But disasters are different. Disasters will cause a workload to go down despite attempts to make it highly available and the worst disasters will have widespread consequences, meaning that the affected workloads may require recovery in a different region altogether.
+{: shortdesc}
 
 ## What's meant by 'disaster recovery'?
 {: #Intro-whatIsMeant}

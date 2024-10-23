@@ -19,6 +19,7 @@ subcollection: resiliency
 {: #what}
 
 When it comes to running enterprise workloads in a cloud environment, its system components and services remain operational and accessible for an extended periods of time without any interruption during unexpected failures or events. This level of resiliency is known as [high availability](#x2284708){: term}. The two main factors for [High Availability](#x2284708){: term} are, downtime of the whole system endured and how long did the system run without any interruption. [High Availability](#x2284708){: term} requires redundancy by cloning the system components, services and by distributing across many environments.
+{: shortdesc}
 
 When it comes to [high availability](#x2284708){: term} in the cloud, it's important to understand the high-level concepts that need to be addressed by anyone who is looking to build or run a highly available cloud system. 
 

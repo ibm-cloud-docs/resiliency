@@ -19,7 +19,7 @@ In {{site.data.keyword.cloud_notm}}, four general approaches to disaster recover
 
 The four DR approaches focus on VPC and database services in particular. Many other services are available from {{site.data.keyword.cloud_notm}}, but the same general principles apply. To choose an approach, it’s important to understand if and how backups of your data - the data you are responsible for restoring - are taken within the service. Make sure that you understand how the backups are available to you, how they can be recovered, and where there can be recovered.
 
-As an example, crucial systems, which tolerate zero downtime should run in an active or active cross-regional configuration, as detailed in approach 4. Maintaining systems in such a configuration involves most cost and effort, so Approach 3 is appropriate for workloads where a few hours downtime can be tolerated, which in turn reduces the overall cost. Approach 1 is only suitable for systems that can tolerate extended downtime – such as noncritical development and test environments – but again, it’s a means to reduce the DR overhead by using the rapid scaling features of cloud computing. Approach 2 builds on the first approach but has some components that are built out, particularly those that can take time to deliver. So, when considering the DR plan and strategy, consider a mix and match approach, especially where budget is a constraint.
+As an example, crucial systems, which tolerate zero downtime should run in an active or active cross-regional configuration, as detailed in Approach 4. Maintaining systems in such a configuration involves most cost and effort, so Approach 3 is appropriate for workloads where a few hours downtime can be tolerated, which in turn reduces the overall cost. Approach 1 is only suitable for systems that can tolerate extended downtime – such as noncritical development and test environments – but again, it’s a means to reduce the DR overhead by using the rapid scaling features of cloud computing. Approach 2 builds on the first approach but has some components that are built out, particularly those that can take time to deliver. So, when considering the DR plan and strategy, consider a mix and match approach, especially where budget is a constraint.
 
 If the service automatically takes backups of your data, including snapshots, help ensure that they are placed in cross-region or buckets that are replicated to another region. This might be done by the service, or you might need to configure such replication. If the service does not automatically take backups of your data, be sure to understand how backups can be taken and stored. Remember, the {{site.data.keyword.Bluemix_notm}} shared responsibility model states that it is the customer's responsibility to help ensure that they have backups of their data, and to help ensure that it is recoverable. Review the {{site.data.keyword.Bluemix_notm}} docs for more service-by-service information.
 
@@ -41,7 +41,7 @@ To enable an accurate and faster rebuild of the environment, create and use a to
 
 To backup and replicate data, which is written to block storage volumes or file storage, use Backup for VPC and store as cross-region backup snapshots and file storage replication in the first instance. Optionally, deploy and configure a Veeam agent on each server or a central Veeam Backup and Replication server or similar ‘bring your own’ backup software.  Depending on the chosen tool, devise a suitable backup or replication schedule. If you decide to use Veeam, write backup files to a IBM Cloud Object Storage bucket. The bucket should be cross-regional or, where compliance needs dictate, be configured for replication to another specified bucket hosted in a second region of choice.
 
-For VSIs running Linux operating systems, the bucket can be mounted directly by using s3fs, based on FUSE. For VSIs running Windows, rclone is the preferred tool for direct mounting.  In each case, the bucket is mounted as a network drive and operates in a similar way to a CIFS or NFS shared drive. The installation of the Veeam agent and the bucket mount can be scripted and automated at the VSI provision time, by using the user-data settings. Be sure to use the appropriate endpoint for the bucket.
+For VSIs running Linux operating systems, the bucket can be mounted directly by using `s3fs`, based on FUSE. For VSIs running Windows, rclone is the preferred tool for direct mounting.  In each case, the bucket is mounted as a network drive and operates in a similar way to a CIFS or NFS shared drive. The installation of the Veeam agent and the bucket mount can be scripted and automated at the VSI provision time, by using the user-data settings. Be sure to use the appropriate endpoint for the bucket.
 
 More complex application data should be stored within a database and IBM Cloud offers several that are suitable for most workloads.
 {: note}
@@ -59,14 +59,14 @@ If you are using another bring your own database, refer to product documentation
 
 Using this approach:
 
-* Zero-cost infrastructure is stood up and ready in a second region.
-* Networking infrastructure that has longer lead times, global load balancers, Direct Link, VPNs, or similar, should be stood up and ready. 
+* Zero-cost infrastructure is stood up and ready in a second region
+* Networking infrastructure that has longer lead times, global load balancers, Direct Link, VPNs, or similar, should be stood up and ready
 * Limited VSI images may be created and shut down, attracting minimal cost
 * Use of autoscaling groups to bring up services more quickly
-* Use of read-replica databases, where they aresupported.
+* Use of read-replica databases, where they are supported
 * Provides a faster RTO, since some services are pre-created but attracts more cost for DR provision
 
-This approach differs from  approach 1 because some elements of the DR environment are built out, particularly networking services that have a longer lead time, which saves time if DR is called. This is a lower cost option compared to maintaining a full active and passive DR environment.
+This approach differs from Approach 1 because some elements of the DR environment are built out, particularly networking services that have a longer lead time, which saves time if DR is called. This is a lower cost option compared to maintaining a full active and passive DR environment.
 
 While still taking an infrastructure as code / IBM Cloud Schematics approach, elements such as the VPC are built out into the DR region. This will include the ‘layout’ of the VPC networks and elements such as access control lists, security groups and so on. This will increase overall operational overheads, since changes to the production environment must be rolled out to the DR environment to ensure consistency and problems with mis-configuration are not encountered, should DR be called.
 
@@ -92,9 +92,9 @@ Using this approach:
 * Minimal Infrastructure is stood up and active in a second region, with autoscaling
 * Networking infrastructure such as Direct Link, VPN and global load balancers are in place
 * Block storage data is frequently restored in the DR region from backups made using Backup for VPC or Veeam
-* Database Read replicas are in-place where available.
+* Database read replicas are in-place, where available
 * Provides a faster RTO, since services are running and data is at least partially restored
-* Increased costs
+* Increases cost
 
 This approach differs to Approach 2 in so far as a minimal service is maintained and running on the DR site, reducing RTO. This includes required networking fabric, such as Direct Link, VPNs and global load balancers, which may otherwise have lead times of several days.
 
@@ -112,8 +112,8 @@ Using this approach:
 * Two regions are built out and each is actively used
 * Databases maintain two copies, one per region
 * Provides a fastest RTO, since services are running
-* Greatest cost
-* Greatest complexity
+* Increases complexity
+* Most costly option
 
 As implied, this approach basically means running two deployments, each of which is active. This affords little recovery time, other than perhaps scaling up resources at the surviving site but is more complex from a data point of view.
 
@@ -131,7 +131,7 @@ Review the following sections covering general DR guidance for specific {{site.d
 
 Data that is stored in buckets should be periodically backed up to a second bucket location to protect against loss or corruption. This is a different use case to replication, since replication maintains the current state of a bucket, including deletions.
 
-To perform a bucket backup, the current method is to use rclone from a client computer. This can either be a local machine or a VSI based in the cloud. Both the source and the destination bucket must have public HMAC credentials configured.
+To perform a bucket backup, the current method is to use `rclone` from a client computer. This can either be a local machine or a VSI based in the cloud. Both the source and the destination bucket must have public HMAC credentials configured.
 
 These backups are performed through the creation of a simple script, typically written in the python language. They can either be run manually or could be set to automatically run through a job scheduler, such as cron.
 
@@ -196,8 +196,8 @@ The means to create DR recoverable copies of persistent data, depends on the typ
 | Classic File Storage (NFS) | Backup to Object Storage via a backup and restore pod | Bucket replication | RPO to point of last backuo and replication |
 | Classic Block Storage | Backup to Object Storage via a backup and restore pod | Bucket replication | RPO to point of last backuo and replication |
 | Object Storage |  | Bucket Replication or use a Cross-regional bucket | RPO to point of last replication |
-| Block Storage for VPC |	Use kubectl cp to copy files to Object Storage | Bucket Replication or use a Cross-regional bucket |	RPO to point of last backup & replication |
-| File Storage for VPC	| Use kubectl cp to copy files to Object Storage	| Bucket Replication or use a Cross-regional bucket	| RPO to point of last backup & replication |
+| Block Storage for VPC |	Use `kubectl cp` to copy files to Object Storage | Bucket Replication or use a Cross-regional bucket |	RPO to point of last backup & replication |
+| File Storage for VPC	| Use `kubectl cp` to copy files to Object Storage	| Bucket Replication or use a Cross-regional bucket	| RPO to point of last backup & replication |
 | Portworx (with DR recovery Plan) |	Asynchronous DR	| Clusters deployed in two regions, each with Portworx installation	| RPO up to 15 mins |
 | Portworx – PX-Backup |	Backup / recovery software |	Portworx only	 | Point of last backup & replication |
 |OADP - OpenShift Operator backup/recovery software |	Write backup to Object Storage bucket	Bucket | Replication or use a Cross-regional bucket |	Point of last backup & replication |
