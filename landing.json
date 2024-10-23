@@ -1,9 +1,8 @@
 {
   "version": 2,
-  "title": "IBM Cloud Resiliency",
+  "title": "Resiliency",
   "introduction": "Discover resiliency from the perspective of our IBM Cloud clients, their solution planners, architects and builders and the resilient solutions they create on our platform.",
-  "product_page": "https://ibm.com/cloud/solution-page",
-  "deployment_url": "https://cloud.ibm.com/catalog/content/url/to/deploy",
+  "product_page": "https://ibm.com/cloud",
   "section_topics": {
     "links": [
       {
@@ -25,36 +24,13 @@
       "title": "Resiliency IBM Well-Architected Framework",
       "description": "Reliability is the ability of your service or application to be available for your users as intended, while resiliency is the capacity for your service or application to recover from different types of failures",
       "href": "https://www.ibm.com/architectures/well-architected/resiliency",
-      "type": "white-paper"
+      "type": "training"
     },
     {
-      "title": "Introducing IBM Cloud enterprise-managed IAM",
+      "title": "IBM Cloud VPC resiliency",
       "description": "High availability and disaster recovery are important considerations to meet continuous business operations and resiliency requirements for enterprise workloads.",
-      "href": "/docs/vpc-resiliency",
-      "type": "white-paper",
-      "recommended": true
-    }
-  ],
-  "section_architectures": [
-    {
-      "title": "Acme Test on VPC",
-      "href": "/docs/acme-test?topic=acme-test-reference-architecture",
-      "deployable": true
-    },
-    {
-      "title": "Acme Test on Power Virtual Servers",
-      "href": "/docs/acme-test?topic=acme-test-reference-architecture",
-      "deployable": true
-    },
-    {
-      "title": "Acme Test on Power Virtual Servers",
-      "href": "/docs/acme-test?topic=acme-test-reference-architecture",
-      "deployable": true
-    },
-    {
-      "title": "Acme Test on Power Virtual Servers",
-      "href": "/docs/acme-test?topic=acme-test-reference-architecture",
-      "deployable": true
+      "href": "https://cloud.ibm.com/docs/vpc-resiliency",
+      "type": "white-paper"
     }
   ],
   "section_updates": {
@@ -63,18 +39,6 @@
       {
         "date": "07 August 2024",
         "title": "Experimental: Access resources from the Resources tab"
-      },
-      {
-        "date": "07 August 2024",
-        "title": "View counts for all resources in the resource summary widget"
-      },
-      {
-        "date": "17 June 2024",
-        "title": "Experimental: Using AI to answer your questions about IBM Cloud"
-      },
-      {
-        "date": "17 June 2024",
-        "title": "Changes to IBM Cloud projects API method to list all deployed resources"
       }
     ]
   }
