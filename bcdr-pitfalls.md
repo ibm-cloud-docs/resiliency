@@ -59,7 +59,7 @@ By following these steps and regularly reviewing and updating the disaster recov
 {: #common-pitfalls}
 
 To ensure that your plans provide the results that you require in the event of a disaster, be aware of the following common disaster recovery pitfalls when planning your solution.
-{: shortdesc}
+
 
 ## Plan and design for the “best conditions”
 {: #best-conditions}
