@@ -22,7 +22,7 @@
   "section_highlights": [
     {
       "title": "Resiliency IBM Well-Architected Framework",
-      "description": "Reliability is the ability of your service or application to be available for your users as intended, while resiliency is the capacity for your service or application to recover from different types of failures",
+      "description": "Resiliency is the capacity for your service or application to recover from different types of failures.",
       "href": "https://www.ibm.com/architectures/well-architected/resiliency",
       "type": "training"
     },
