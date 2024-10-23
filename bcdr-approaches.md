@@ -15,57 +15,58 @@ subcollection: resiliency
 # Disaster recovery approaches within {{site.data.keyword.cloud_notm}}
 {: #dr-approaches}
 
-This section outlines four general approaches to DR in {{site.data.keyword.cloud_notm}} that will support a disaster recovery plan. These are not intended to be ‘one size fits all’ approaches, meaning that a mix and match approach can be taken, based on the workloads, environments and RTO / RPO values the business assigns to them.
+In {{site.data.keyword.cloud_notm}}, four general approaches to disaster recovery (DR) support a disaster recovery plan. Depending on your use case, you can mix and match the available options based on the workloads, environments, and Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO) values that the business assigns.
 
-As an example, crucial systems which tolerate zero downtime should run in an Active / Active cross-regional configuration, as detailed in Approach 4. Maintaining systems in such a configuration involves most cost and effort though, so Approach 3 will be appropriate for workloads where a few hours downtime can be tolerated, which in turn will reduce the overall cost.  Approach 1 is really only suitable for systems that can tolerate extended downtime – such as non-critical development and test environments – but again, it’s a means to reduce the DR overhead by using the rapid scaling features of cloud computing. Approach 2 builds on that but has some components built out, particularly those thtat can take time to deliver. So, when considering the DR plan and strategy, consider a mix and match approach, especially where budget is a constraint.
+The four DR approaches focus on VPC and database services in particular. Many other services are available from {{site.data.keyword.cloud_notm}}, but the same general principles apply. To choose an approach, it’s important to understand if and how backups of your data - the data you are responsible for restoring - are taken within the service. Make sure that you understand how the backups are available to you, how they can be recovered, and where there can be recovered.
 
-The four DR approaches covered focus on VPC and database services in particular. Of course there are many other services available from {{site.data.keyword.cloud_notm}} but the same general principles will apply. When determining an approach, it’s important to understand if and how backups of your data - the data you are responsible for restoring - are taken within the service. Also ensure you understand how those backups are made available to you, how they can be recovered and where there can be recovered.
+As an example, crucial systems, which tolerate zero downtime should run in an active or active cross-regional configuration, as detailed in approach 4. Maintaining systems in such a configuration involves most cost and effort, so Approach 3 is appropriate for workloads where a few hours downtime can be tolerated, which in turn reduces the overall cost. Approach 1 is only suitable for systems that can tolerate extended downtime – such as noncritical development and test environments – but again, it’s a means to reduce the DR overhead by using the rapid scaling features of cloud computing. Approach 2 builds on the first approach but has some components that are built out, particularly those that can take time to deliver. So, when considering the DR plan and strategy, consider a mix and match approach, especially where budget is a constraint.
 
-For example, if the service automatically takes backups of your data, including snapshots, ensure they are placed in cross-region or buckets replicated to another region. Again, this may be done by the service, or you may need to configure such replication. If the service does not automatically take backups of your data, be sure to understand how backups can be taken and stored.  Remember, the IBM Cloud shared responsibility model states that it is the customer's responsiblity to ensure that they have backups of their data, and to ensure that it is recoverable. Refer to appropriate sections in the IBM Cloud Docs for more service-by-service information.
+If the service automatically takes backups of your data, including snapshots, help ensure that they are placed in cross-region or buckets that are replicated to another region. This might be done by the service, or you might need to configure such replication. If the service does not automatically take backups of your data, be sure to understand how backups can be taken and stored. Remember, the {{site.data.keyword.Bluemix_notm}} shared responsibility model states that it is the customer's responsibility to help ensure that they have backups of their data, and to help ensure that it is recoverable. Review the {{site.data.keyword.Bluemix_notm}} docs for more service-by-service information.
 
-## Approach 1 - Zero Footprint
+## Approach 1: Zero footprint
 {: #ZeroFootprint}
 
-Using this approach:
+With a zero DR footprint, this approach has the longest overall recovery time, though it does have the lowest cost profile. For many organizations, this is not an acceptable approach for production workloads, but it might be considered for development, system test workloads, or other workloads that need a disaster recovery provision but are low on the list of recovery priority. 
 
-* No infrastructure or services are present at a second region, everything is re-created should a disaster be called
-* Server-based data is backed up using a cross-region snapshots
-* Database data is recovered through the use of database backups
-* Use of Infrastructure as Code via IBM Cloud Schematics is highly recommended, as is the use of toolchains to deploy application code
-* Suitable for least stringent RTO and RPO, though some support for point in time recovery is available for certain databases
-* This is the least-cost approach.
+By using this approach:
 
-With a zero DR footprint, this approach will have the longest overall recovery time, though it does have the lowest cost profile. For many organizations, this will not be an acceptable approach for production workloads, but it may be considered for development, system test workloads or other workloads that need a disaster recovery provision but are low on the list of recovery priority.
+* No infrastructure or services are present at a second region. Everything is re-created if a disaster occurs.
+* Server-based data is backed up using a cross-region snapshot.
+* Database data is recovered by using database backups.
+* Use of Infrastructure as Code through IBM Cloud Schematics is highly recommended, as is the use of toolchains to deploy application code.
+* Suitable for least stringent RTO and RPO, though some support for point in time recovery is available for certain databases.
+* This is the least cost approach.
 
-To enable an accurate and faster rebuild of the environment, create and utilise a toolchain that will deploy infrastructure services via {{site.data.keyword.bplong_notm}} and then deploy code to those services, using Git-based code repositories.
+To enable an accurate and faster rebuild of the environment, create and use a toolchain that deploys infrastructure services by using {{site.data.keyword.bplong_notm}}. Then, deploy code to those services by using Git-based code repositories.
 
-To backup and replicate data which is written to block storage volumes or file storage, use Backup for VPC and store as cross-region backup snapshots and/or file storage replication in the first instance, or optionally deploy and configure a Veeam agent on each server or a central Veeam Backup and Replication server (or similar ‘bring your own’ backup software).  Depending on the chosen tool, devise a suitable backup or replication schedule. If using Veeam, write backup files to an Object Storage bucket. The bucket should be cross-regional or, where compliance needs dictate, be configured for replication to another specified bucket hosted in a second region of choice.
+To backup and replicate data, which is written to block storage volumes or file storage, use Backup for VPC and store as cross-region backup snapshots and file storage replication in the first instance. Optionally, deploy and configure a Veeam agent on each server or a central Veeam Backup and Replication server or similar ‘bring your own’ backup software.  Depending on the chosen tool, devise a suitable backup or replication schedule. If you decide to use Veeam, write backup files to a IBM Cloud Object Storage bucket. The bucket should be cross-regional or, where compliance needs dictate, be configured for replication to another specified bucket hosted in a second region of choice.
 
-For VSIs running Linux operating systems, the bucket can mounted directly using s3fs, based on FUSE. For VSIs running Windows, rclone is the preferred tool for direct mounting.  In each case, the bucket is mounted as a network drive and operates in a similar way to CIFS or NFS shared drive. The installation of the Veeam agent and the bucket mount can be scripted and automated at VSI provision time, using the ‘user-data’ settings. Be sure to use the appropriate endpoint for the bucket.
+For VSIs running Linux operating systems, the bucket can be mounted directly by using s3fs, based on FUSE. For VSIs running Windows, rclone is the preferred tool for direct mounting.  In each case, the bucket is mounted as a network drive and operates in a similar way to a CIFS or NFS shared drive. The installation of the Veeam agent and the bucket mount can be scripted and automated at the VSI provision time, by using the user-data settings. Be sure to use the appropriate endpoint for the bucket.
 
 More complex application data should be stored within a database and IBM Cloud offers several that are suitable for most workloads.
+{: note}
 
-If using IBM Cloud Databases for MySQL, IBM Cloud Databases for PostgreSQL, or IBM Cloud Databases for MongoDB, point in time recovery from backups is available,  Here, the deployment can perform continuous incremental backups and transactions can be replayed to a point in time, within the last 7 days. Other databases will be recoverable to 'point of last backup'. Backups are automatically taken every 24 hours.  Recovery is possible to another MZR in the same geography, so ensure that your chosen DR region is included.
+If you are using IBM Cloud Databases for MySQL, IBM Cloud Databases for PostgreSQL, or IBM Cloud Databases for MongoDB, point in time recovery from backups is available. The deployment can perform continuous incremental backups and transactions can be replayed to a point in time, within the last 7 days. Other databases are recoverable to the point of last backup. Backups are automatically taken every 24 hours. Recovery is possible to another MZR in the same geography, so help ensure that your chosen DR region is included.
 
-As well as the automatic database backups, customers can take ‘on demand’ backups too. On demand backups can either be taken through the console or via a CLI or API call, which means they can be automated through a job using, for example, IBM Cloud Code Engine. All backups are written to a multi-region object storage bucket.
+As well as the automatic database backups, customers can take on-demand backups too. On-demand backups can either be taken through the console or by using a CLI or API call, which means they can be automated through a job by using like IBM Cloud Code Engine. All backups are written to a multi-region object storage bucket.
 
-If using another ‘bring your own’ database, then refer to product documentation on the most suitable backup method. Generally, back up the data to a Cross Region Object Storage bucket, including any logs that provide point in time recovery.
+If you are using another bring your own database, refer to product documentation on the most suitable backup method. Generally, back up the data to a Cross Region Object Storage bucket, including any logs that provide point in time recovery.
 
 ![Diagram depiting an example architecture for a zero footpring DR solution](images/DRApproach1.png "Diagram depiting an example architecture for a zero footpring DR solution"){: caption="Diagram depiting an example architecture for a zero footpring DR solution" caption-side="bottom"}
 
-## Approach 2 - Basic Standby
+## Approach 2: Basic standby
 {: #DRApproach2}
 
 Using this approach:
 
-* Zero-cost Infrastructure is stood up and ready in a second region
-* Networking infrastructure that has longer lead times (global load balancers, Direct Link, VPNs or similar) should be stood up and ready
+* Zero-cost infrastructure is stood up and ready in a second region.
+* Networking infrastructure that has longer lead times, global load balancers, Direct Link, VPNs, or similar, should be stood up and ready. 
 * Limited VSI images may be created and shut down, attracting minimal cost
-* Use of autoscaling groups to bring services up more quickly
-* Use of read-replica databases, where supported
+* Use of autoscaling groups to bring up services more quickly
+* Use of read-replica databases, where they aresupported.
 * Provides a faster RTO, since some services are pre-created but attracts more cost for DR provision
 
-This approach differs to  Approach 1 in that some elements of the DR environment are built out, particularly networking services that have a longer lead time, thereby saving time should DR be called. This is a lower cost option compared to maintaining a full active/passive DR environment.
+This approach differs from  approach 1 because some elements of the DR environment are built out, particularly networking services that have a longer lead time, which saves time if DR is called. This is a lower cost option compared to maintaining a full active and passive DR environment.
 
 While still taking an infrastructure as code / IBM Cloud Schematics approach, elements such as the VPC are built out into the DR region. This will include the ‘layout’ of the VPC networks and elements such as access control lists, security groups and so on. This will increase overall operational overheads, since changes to the production environment must be rolled out to the DR environment to ensure consistency and problems with mis-configuration are not encountered, should DR be called.
 
