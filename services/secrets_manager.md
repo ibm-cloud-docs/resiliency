@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2024
-lastupdated: "2024-10-18"
+lastupdated: "2024-10-23"
 
 keywords: HA, DR, high availability, disaster recovery, disaster recovery plan, disaster event, recovery time objective, recovery point objective
 
@@ -14,7 +14,7 @@ subcollection: resiliency
 
 # Secrets Manager - Understanding high availability and disaster recovery
 
-## Resource Availability
+## High Availability
 **This service** is a regional service that fulfills the defined [Service Level Objectives](/docs/resiliency?topic=resiliency-slo) with the **Standard** plan.
 
 This service is provisioned via the [Resource Controller](/apidocs/resource-controller/resource-controller) see [Resource Controller - Understanding high availability](/docs/doesnotexist).
@@ -29,9 +29,11 @@ IBM Cloud will resolve the outage and when the zone comes back on-line, the glob
 ### Customer disaster definition
 A disaster of an instance can be due to:
 - Accidental or malicious data corruption.
-- Instance in an unavailable region
+- Service becomes unavailable 
 
-Secret Manager secrets are generally updated through “rotation” that creates a new version of the secret maintaining a fixed number of previous secret versions and it may be possible to repair accidental data corruption by restoring secrets from older versions.
+A disaster recovery solution
+
+Secret Manager secrets are generally updated through “rotation” that creates a new version of the secret. It may be possible to restore data corruption by restoring secrets from older versions. Only a fixed number of versions are persisted. See [managing secret versions](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-version-history).
 {: .note}
 
 ### Customer disaster planning
@@ -43,11 +45,11 @@ Secret Manager service instance dependencies to consider when designing a recove
 - Keys, or configurations that may be unique to the recovery region.
 
 The recovery instance should track data changes to primary service instance for data including groups, secrets, secret versions, certificates, event notifications,... Consider one of the following strategies for keeping the recovery service instance up to date:
-1.	Use some combination of terraform, script or program as the source of truth. First update the source of truth and then use the source of truth to create/update the primary service instance and the recovery service instance.
+1.	Use some combination of terraform, script or program as the source of truth. First update the source of truth and then use the source of truth to create/update the primary service instance and the recovery service instance. The versions of the script may be part of the point in time backup for the service.
 2.	It is possible to create a script or program to download secrets from your primary service instance by using the Secrets Manager API or and populate the recovery service instance with the data. The script can take advantage of Activity Tracker audit events of the primary instance to keep the recovery instance in sync along with Code Engine. Customer managed backups should be kept to restore from the disaster.
 
 ### Customer disaster recovery
-In the event of a customer declared disaster, redirect your applications to the Secrets Manager instance in the second region or optionally insert into the retry code within your application to redirect requests to the second region. 
+In the event of a customer declared disaster in the primary region the service in the recovery region will be used. Redirect your applications to the Secrets Manager instance in the second region or optionally insert into the retry code within your application to redirect requests to the second region. 
 
 ### Customer recovery from BYOK loss
 If your service instance was provisioned by using the root key from either Key Protect or IBM Cloud® Hyper Protect Crypto Services (HPCS) and you accidentally deleted the root key, open a case and include the following information:
@@ -59,16 +61,16 @@ See Recovering from an accidental key loss for authorization in the Key Protect 
 
 ## IBM Disaster Recovery
 ### IBM disaster definition
-The service is damaged in such a way that it can only be restored from backups.
+As described above this service is highly available, even in the presence of a zonal failure. The service has suffered a disaster when damaged and must be restored from backups.
 
 ### IBM disaster planning
-All data associated with a service instance is backed up daily by the service. There is no configuration or visibility to this backup.  The backup is in a cross-region Cloud Object Storage bucket managed by the service. There is a potential for 24-hour’s worth of data loss. **These backups are not available for customer managed disaster recovery.**
+All data associated with the service is backed up daily by the service. There is no configuration or visibility to this backup.  The backup is in a cross-region Cloud Object Storage bucket managed by the service. There is a potential for 24-hour’s worth of data loss. **These backups are not available for customer managed disaster recovery.**
 
 ### IBM Disaster Recovery
 When a service is recovered from backups the service ID for the instance will be restored so clients using the endpoint will not need to be updated with new connection strings.
 
 ### Service Maintenance
-Regular upgrades for new features and maintenance occur as part of normal operations. Such maintenance can occasionally cause short interruption intervals.
+Regular upgrades for new features and maintenance occur as part of normal operations. Such maintenance can occasionally cause short interruption intervals that will be handled by retry login within client applications.
 
 All upgrades follow the IBM service best practices and have a recovery plan and rollback process in-place. Changes are thoroughly tested before release. Complex changes are enabled/disabled to control exposure. When updates are rolled out, they are planned on a region-by-region basis. If at any point a release causes an issue, the release is automatically stopped. Upgrades are implemented and then provisioned to insure zero downtime for the service instance unless notified.
 

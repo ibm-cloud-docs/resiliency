@@ -21,7 +21,7 @@ As part of a broader goal to deliver resiliency as a key capability of IBM Cloud
 - Organizing consolidated content per proposed solution guide outline
 - Target date to deliver an initial solution guide: December 2024
 
-_Team working box note: [here](https://ibm.ent.box.com/notes/1644965930257)_
+_Team working box note: [here](https://ibm.ent.box.com/file/1644965930257?s=48bp2gwgt4gxg8dkaf3ldgrkh6cwc0ds)_
 
 ## RACI
 
