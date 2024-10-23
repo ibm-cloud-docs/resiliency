@@ -91,6 +91,7 @@ toc:
           label: Services
           topics:
           - services/secrets_manager.md
+          - services/postgresql.md
           - services/template.md
   - navgroup:
       id: help
