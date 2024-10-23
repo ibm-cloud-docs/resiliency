@@ -1,4 +1,18 @@
-## Disaster recovery approaches within {{site.data.keyword.cloud_notm}}
+---
+
+copyright:
+  years: 2024
+lastupdated: "2024-10-23"
+
+keywords:
+
+subcollection: resiliency
+
+---
+
+{{site.data.keyword.attribute-definition-list}}
+
+# Disaster recovery approaches within {{site.data.keyword.cloud_notm}}
 {: #dr-approaches}
 
 This section outlines four general approaches to DR in {{site.data.keyword.cloud_notm}} that will support a disaster recovery plan. These are not intended to be ‘one size fits all’ approaches, meaning that a mix and match approach can be taken, based on the workloads, environments and RTO / RPO values the business assigns to them.
@@ -9,7 +23,7 @@ The four DR approaches covered focus on VPC and database services in particular.
 
 For example, if the service automatically takes backups of your data, including snapshots, ensure they are placed in cross-region or buckets replicated to another region. Again, this may be done by the service, or you may need to configure such replication. If the service does not automatically take backups of your data, be sure to understand how backups can be taken and stored.  Remember, the IBM Cloud shared responsibility model states that it is the customer's responsiblity to ensure that they have backups of their data, and to ensure that it is recoverable. Refer to appropriate sections in the IBM Cloud Docs for more service-by-service information.
 
-### Approach 1 - Zero Footprint
+## Approach 1 - Zero Footprint
 {: #ZeroFootprint}
 
 Using this approach:
@@ -39,7 +53,7 @@ If using another ‘bring your own’ database, then refer to product documentat
 
 ![Diagram depiting an example architecture for a zero footpring DR solution](images/DRApproach1.png "Diagram depiting an example architecture for a zero footpring DR solution"){: caption="Diagram depiting an example architecture for a zero footpring DR solution" caption-side="bottom"}
 
-### Approach 2 - Basic Standby
+## Approach 2 - Basic Standby
 {: #DRApproach2}
 
 Using this approach:
@@ -69,7 +83,7 @@ In each of these cases, data loss will depend on the time of the last available 
 
 ![Diagram depiting an example architecture for a basic standby DR solution](images/DRApproach2.png "Diagram depiting an example architecture for a basic standby DR solution"){: caption="Diagram depiting an example architecture for a basic standby DR solution" caption-side="bottom"}
 
-### Approach 3 - Minimal Operation
+## Approach 3 - Minimal Operation
 {: #Approach3MinimalOperation}
 
 Using this approach:
@@ -89,7 +103,7 @@ In the event of a disaster, the recovery of outstanding, unapplied backups is ca
 
 ![Diagram depicting an example architecture for a minimal operation DR solution](images/DRApproach3.png "Diagram depicting an example architecture for a minimal operation DR solution"){: caption="Diagram depicting an example architecture for a minimal operation DR solution" caption-side="bottom"}
 
-### Approach 4 - Active / Active Cross Regional Services
+## Approach 4 - Active / Active Cross Regional Services
 {: #Approach4-ActiveActive}
 
 Using this approach:
