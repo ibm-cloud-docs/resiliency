@@ -59,72 +59,72 @@ If you are using another bring your own database, refer to product documentation
 
 Using this approach:
 
-* Zero-cost infrastructure is stood up and ready in a second region
-* Networking infrastructure that has longer lead times, global load balancers, Direct Link, VPNs, or similar, should be stood up and ready
-* Limited VSI images may be created and shut down, attracting minimal cost
-* Use of autoscaling groups to bring up services more quickly
-* Use of read-replica databases, where they are supported
-* Provides a faster RTO, since some services are pre-created but attracts more cost for DR provision
+* Zero-cost infrastructure is stood up and ready in a second region.
+* Networking infrastructure that has longer lead times, global load balancers, Direct Link, VPNs, or similar, should be stood up and ready.
+* Limited VSI images may be created and shut down, attracting minimal cost.
+* Use of autoscaling groups to bring up services more quickly.
+* Use of read-replica databases, where they are supported.
+* Provides a faster RTO, since some services are pre-created. This incurs a higher cost for disaster recovery provisioning.
 
 This approach differs from Approach 1 because some elements of the DR environment are built out, particularly networking services that have a longer lead time, which saves time if DR is called. This is a lower cost option compared to maintaining a full active and passive DR environment.
 
-While still taking an infrastructure as code / IBM Cloud Schematics approach, elements such as the VPC are built out into the DR region. This will include the ‘layout’ of the VPC networks and elements such as access control lists, security groups and so on. This will increase overall operational overheads, since changes to the production environment must be rolled out to the DR environment to ensure consistency and problems with mis-configuration are not encountered, should DR be called.
+Considering the Infrastructure as Code (IaC) and IBM Cloud Schematics approach, elements such as the VPC are built out into the DR region. This includes the layout of the VPC networks and elements such as access control lists, security groups, and more. This increases overall operational overheads, since changes to the production environment must be rolled out to the DR environment to ensure consistency and problems with mis-configuration are not encountered if DR is called.
 
-Optionally, single servers of each type used in the deployment can be provisioned, configured and then shut down. In doing this, runtime costs are avoided, though there will be charges made for any storage consumed. This approach can enable a faster RTO for some services, where instances can be switched on and then scaled using instance templating and autoscaling techniques.
+Optionally, single servers of each type that are used in the deployment can be provisioned, configured and shut down. Runtime costs are then avoided but there are charges made for any storage that's consumed. This approach can enable a faster RTO for some services, where instances can be switched on and then scaled using instance templating and autoscaling techniques.
 
-To avoid delays associated with lead times, certain networking elements, where used, should be created. These include items such as Direct Link, which can have significant lead times, VPN connections and global load balancers. While this adds to ongoing costs, it does reduce overall recovery times as configuration can be put in place to quickly re-route traffic to the new region, without needing to make connection changes at the client end.
+To avoid delays associated with lead times, certain networking elements should be created. These include items such as Direct Link, which can have significant lead times, VPN connections, and global load balancers. While this adds to ongoing costs, it does reduce overall recovery times as configurations can be put in place to quickly re-route traffic to the new region, without needing to make connection changes at the client end.
 
-As before, VSI volumes should either be subject to cross-regional backup snapshots, file storage replication or configured with the Veeam backup agent or similar. Data may then be recovered to the VSIs that are created in the DR region.
+As before, VSI volumes should either be subject to cross-regional backup snapshots, file storage replication or configured with the Veeam backup agent or similar. Data might then be recovered to the VSIs that are created in the DR region.
 
-If using IBM Cloud Databases for MySQL or IBM Cloud Databases for PostgreSQL, it’s possible to create a read-replica database in the region chosen for DR. Here, a copy of the database is maintained automatically in the second region, which can be turned into a stand-alone copy in the event of a disaster.  This provides a low RTO (minutes) and typically, data loss will be limited to 15 minutes at most, through asynchronous replication.
+If IBM Cloud Databases are used for MySQL or IBM Cloud Databases for PostgreSQL, it’s possible to create a read-replica database in the region chosen for DR. A copy of the database is maintained automatically in the second region, which can be turned into a stand-alone copy in the event of a disaster. This provides a low RTO and typically, data loss is limited to 15 minutes through asynchronous replication.
 
-For other IBM Cloud Database services, backups must be restored to a new instance at the DR region. In other words, you cannot apply backups to an existing instancein order to bring that up to date. Again, it’s recommended that on-demand backups are taken in addition to the automatic daily backup and these can be scheduled as a job using IBM Cloud Code Engine. Note that IBM Cloud Databases for MongoDB can be configured with continuous backup, which is automated. Note that database restores can take many hours, and the time taken will increase with the size of the database.
+For other IBM Cloud Database services, backups must be restored to a new instance at the DR region. You can't apply backups to an existing instance in order to bring that up to date. It’s recommended that on-demand backups are taken in addition to the automatic daily backup and these can be scheduled as a job by using IBM Cloud Code Engine. IBM Cloud Databases for MongoDB can be configured with continuous backup, which is automated. Database restores can take a few hours, and the time taken increases with the size of the database. 
 
 In each of these cases, data loss will depend on the time of the last available database backup.
 
 ![Diagram depiting an example architecture for a basic standby DR solution](images/DRApproach2.png "Diagram depiting an example architecture for a basic standby DR solution"){: caption="Diagram depiting an example architecture for a basic standby DR solution" caption-side="bottom"}
 
-## Approach 3 - Minimal Operation
+## Approach 3: Minimal operation
 {: #Approach3MinimalOperation}
 
 Using this approach:
 
-* Minimal Infrastructure is stood up and active in a second region, with autoscaling
-* Networking infrastructure such as Direct Link, VPN and global load balancers are in place
-* Block storage data is frequently restored in the DR region from backups made using Backup for VPC or Veeam
-* Database read replicas are in-place, where available
-* Provides a faster RTO, since services are running and data is at least partially restored
-* Increases cost
+* Minimal infrastructure is stood up and active in a second region, with autoscaling
+* Networking infrastructure such as Direct Link, VPN, and global load balancers are in place
+* Block storage data is frequently restored in the DR region from backups made using Backup for VPC or Veeam.
+* Database read replicas are in-place, where available.
+* Provides a faster RTO, since services are running and data is at least partially restored.
+* Increases the cost.
 
-This approach differs to Approach 2 in so far as a minimal service is maintained and running on the DR site, reducing RTO. This includes required networking fabric, such as Direct Link, VPNs and global load balancers, which may otherwise have lead times of several days.
+This approach differs from approach 2 because a minimal service is maintained and running on the DR site, reducing RTO. This includes required networking fabric, such as Direct Link, VPNs, and global load balancers, which might otherwise have lead times of several days.
 
-Data backups are applied to the active DR services at a frequency which supports a more aggressive RTO. Again, it may be possible to automate this through jobs running on IBM Cloud Code Engine.
+Data backups are applied to the active DR services at a frequency which supports a more aggressive RTO. It might be possible to automate this through jobs running on IBM Cloud Code Engine.
 
-In the event of a disaster, the recovery of outstanding, unapplied backups is carried out and services are scaled to an appropriate level. If using a read replica IBM Cloud Databases for service, then the read replica is transitioned into a stand-alone copy.
+In the event of a disaster, the recovery of outstanding, unapplied backups is carried out and services are scaled to an appropriate level. If a read replica IBM Cloud Databases for service is used, the read replica is transitioned into a stand-alone copy.
 
 ![Diagram depicting an example architecture for a minimal operation DR solution](images/DRApproach3.png "Diagram depicting an example architecture for a minimal operation DR solution"){: caption="Diagram depicting an example architecture for a minimal operation DR solution" caption-side="bottom"}
 
-## Approach 4 - Active / Active Cross Regional Services
+## Approach 4:  Active/active cross regional services
 {: #Approach4-ActiveActive}
 
 Using this approach:
 
-* Two regions are built out and each is actively used
-* Databases maintain two copies, one per region
-* Provides a fastest RTO, since services are running
+* Two regions are built out and each is actively used.
+* Databases maintain two copies, one per region.
+* Provides a fastest RTO, since services are running.
 * Increases complexity
 * Most costly option
 
-As implied, this approach basically means running two deployments, each of which is active. This affords little recovery time, other than perhaps scaling up resources at the surviving site but is more complex from a data point of view.
+This approach basically means running two deployments, each of which is active. This affords little recovery time, other than scaling up resources at the surviving site but is more complex from a data point of view.
 
-Managing changing application data is the most complex consideration with this approach. Where databases are used, a true active/active deployment will have databases that are read and writable in two regions. In order to keep both copies in synch, the customer application must manage and ensure writes are successfull to both database instances.
+Managing changing application data is the most complex consideration with this approach. Where databases are used, a true active/active deployment has databases that are read and writable in two regions. In order to keep both copies in sync, the customer application must manage and ensure writes are successfull to both database instances.
 
 ![Diagram depicting an example architecture for an Active/Active solution](images/DRApproach4.png "Diagram depicting an example architecture for an Active/Active solution"){: caption="Diagram depicting an example architecture for an Active/Active solution" caption-side="bottom"}
 
 ## General DR guidance for common services
 {: #general-dr-guidance}
 
-Review the following sections covering general DR guidance for specific {{site.data.keyword.cloud_notm}} products and services. For more detailed guidance, visit specific DR pages in the service's docs pages.
+Review the following sections covering general DR guidance for specific {{site.data.keyword.cloud_notm}} products and services. For more detailed guidance, visit specific DR pages in the service's documentation.
 
 ### IBM Cloud Object Storage
 {: #IBMCloudObjectStorage}
@@ -133,7 +133,7 @@ Data that is stored in buckets should be periodically backed up to a second buck
 
 To perform a bucket backup, the current method is to use `rclone` from a client computer. This can either be a local machine or a VSI based in the cloud. Both the source and the destination bucket must have public HMAC credentials configured.
 
-These backups are performed through the creation of a simple script, typically written in the python language. They can either be run manually or could be set to automatically run through a job scheduler, such as cron.
+The backups are performed through the creation of a simple script, typically written in the python language. They can be run manually or set to automatically run through a job scheduler, such as cron.
 
 ### Virtual Private Cloud
 {: #DRinVPC}
@@ -143,7 +143,7 @@ There are three ways to back up data within VPC, depending on storage type. Back
 #### Backup for VPC
 {: #BackupforVPC}
 
-VPC has a built-in service - Backup for VPC - to back up data on attached block storage volumes, which allows the user to create different backup policies based on different frequencies of backup. For example, static data will not need to be backed up at the same frequency to non-static data, which is likely to need several backups per day and so each data type will have a separate backup policy. Up to 10 backup policies can be created per region using Backup for VPC with up to four plans per policy, which can be edited or deleted as necessary.
+VPC has a built-in service called Backup for VPC that's used to back up data on attached block storage volumes. This allows the user to create different backup policies based on different frequencies of backup. For example, static data will not need to be backed up at the same frequency to non-static data, which is likely to need several backups per day and so each data type will have a separate backup policy. Up to 10 backup policies can be created per region using Backup for VPC with up to four plans per policy, which can be edited or deleted as necessary.
 
 VPC backups are based on data snapshots. Each is a cumulative snapshot, meaning that a snapshot only contains the changes made to data since the snapshot before it. Therefore, when restoring, multiple snapshots may need to be recovered. Snapshots can be stored as cross-regional copies. When enabling cross-regional copies, it means that a volume can be can be created from the snapshots in a target region, so this can be used in a disaster recovery situation.
 
