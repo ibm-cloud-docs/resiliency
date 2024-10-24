@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-10-23"
+lastupdated: "2024-10-24"
 
 keywords: disaster recovery, dr
 
@@ -78,9 +78,9 @@ As before, VSI volumes should either be subject to cross-regional backup snapsho
 
 If using IBM Cloud Databases for MySQL or IBM Cloud Databases for PostgreSQL, it’s possible to create a read-replica database in the region chosen for DR. Here, a copy of the database is maintained automatically in the second region, which can be turned into a stand-alone copy in the event of a disaster.  This provides a low RTO (minutes) and typically, data loss will be limited to 15 minutes at most, through asynchronous replication.
 
-For other database services, backups must be restored to a new instance at the DR region. Again, it’s recommended that on-demand backups are taken in addition to the automatic daily backup and these can be scheduled as a job using IBM Cloud Code Engine. Note that IBM Cloud Databases for MongoDB can be configured with continuous backup, which is automated.
+For other IBM Cloud Database services, backups must be restored to a new instance at the DR region. In other words, you cannot apply backups to an existing instancein order to bring that up to date. Again, it’s recommended that on-demand backups are taken in addition to the automatic daily backup and these can be scheduled as a job using IBM Cloud Code Engine. Note that IBM Cloud Databases for MongoDB can be configured with continuous backup, which is automated. Note that database restores can take many hours, and the time taken will increase with the size of the database.
 
-In each of these cases, data loss will depend on the time of the last available backup.
+In each of these cases, data loss will depend on the time of the last available database backup.
 
 ![Diagram depiting an example architecture for a basic standby DR solution](images/DRApproach2.png "Diagram depiting an example architecture for a basic standby DR solution"){: caption="Diagram depiting an example architecture for a basic standby DR solution" caption-side="bottom"}
 
@@ -225,9 +225,11 @@ Such backups provide ‘at the time of the backup’ restoration points. If a di
 
 A few IBM Cloud Databases (MySQL, PostgreSQL, EnterpriseDB and MongoDB) also provide Point-in-Time recovery, meaning that they can be restored to a particular timestamp within the past 7 days.
 
-Databases for PostgreSQL, EnterpriseDB and MySQL also support Read-only Replicas. These are replicated databases that are set up in a Master / Replica configuration where the master sends changes to the replica and those changes are applied to the replica instance asynchronously. Under normal operation, the replica can only be used for read transactions, so can support read-intensive operations, such as reporting.
+A point to remember with IBM Cloud database backups is that backups can only be restored by creating a new instance - you cannot have an existing instance and apply backups to it in a cumulative manner. The tine it takes to fully restore a database may range from minutes, to hours, even to days, depending on the amount of data that it stores. It's therefore important to test restores to have some indication as to how long the restore process might take, baring in mind, this may still only provide a rough indication, since restores can be affected by many different factors. If the restore process is longer than desired, then consider breaking the database down into several, smaller instances or taking other actions - such as purging old data - which has the effect of reducing the overall size of the database.
 
-From a DR perspective, read-only replicas provide a means to fail over to a database instance at another location relatively quickly, with little or no data restores being necessary. However, if the disaster is caused by data corruption or deletion, then it is likely the replica will also contain the corrupted data or have had the deletion processed, so they should not be wholly relied on for all disaster scenarios.
+Databases for PostgreSQL, EnterpriseDB and MySQL also support Read-only Replicas. These are replicated databases that are set up in a Master / Replica configuration where the master sends changes to the replica and those changes are applied to the replica instance asynchronously. Under normal operation, the replica can only be used for read transactions, so can support read-intensive operations, such as reporting. From a DR perspective, read-only replicas provide a means to fail over to a database instance at another location relatively quickly, with little or no data restores being necessary.
+
+While loss of the database is one scenario to consider, another is corruption of the data it stores. Data corruption within databases can be caused by multiole means, inculding malfunctioning software, bad disks and even through the hands of users, whether accidental or deliberate. Sometimes this corruption can be quickly identified, other times, it may take a lot longer for a data problem to be spotted. Remember that if you rely solely on read-replica databases for disaster recovery, then it is likely the replica will also contain any data corruption, which may be difficult to reverse, if at all - so taking backups as well as having read-replicas is advised. It's therefore important to think about how data corruption might affect the databases your workloads rely on, and how to recover from that corruption. If the corruption is discovered quicky, then using database backups from a point in time before the corruption occured may be a way to recover. If the corruption is discovered more slowly, then other means of repair may need to be considered, such as scripting to directly fix data. The tactic deployed will usaully depend on factors such as potential for data loss.
 
 ### IBM Cloudant
 {: #IBMCloudant}
