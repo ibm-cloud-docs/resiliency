@@ -14,15 +14,15 @@ toc:
       topics:
       - resiliency-overview.md
       - topicgroup:
-          label: High availability
+          label: What is high availability?
           topics:
           - ha-considerations.md
       - topicgroup:
-          label: Disaster recovery
+          label: What is disaster recovery?
           topics:
           - bcdr-understand.md
       - topicgroup:
-          label: Cyber resiliency
+          label: What is cyber resiliency?
           topics:
           - topic1.md
       - zero_downtime.md
@@ -61,7 +61,7 @@ toc:
   - navgroup:
       id: architecture
       topics:
-      - topic4.md
+      - resiliency-arch.md
   - navgroup:
       id: howto
       topics:
