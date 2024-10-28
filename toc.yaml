@@ -14,23 +14,27 @@ toc:
       topics:
       - resiliency-overview.md
       - topicgroup:
-          label: High Availability
+          label: High availability
           topics:
           - ha-considerations.md
       - topicgroup:
-          label: Disaster Recovery
+          label: Disaster recovery
           topics:
           - bcdr-understand.md
       - topicgroup:
-          label: Cyber Resiliency
+          label: Cyber resiliency
           topics:
           - topic1.md
       - zero_downtime.md
+      - topicgroup:
+          label: Best practices
+          topics:
+          - dr-bp.md
   - navgroup:
       id: plan
       topics:
       - topicgroup:
-          label: Designing for Resiliency
+          label: Designing for resiliency
           topics:
           - topic2.md
       - topicgroup:
@@ -43,15 +47,15 @@ toc:
           - bcdr-pitfalls.md
           - bcdr-approaches.md
       - topicgroup:
-          label: Planning for Cyber Resiliency
+          label: Planning for cyber resiliency
           topics:
           - topic3.md
       - topicgroup:
-          label: Planning for Operational Resiliency
+          label: Planning for operational resiliency
           topics:
           - topic2.md
       - topicgroup:
-          label: Data Residency
+          label: Data residency
           topics:
           - data-residency.md
   - navgroup:
