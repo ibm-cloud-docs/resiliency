@@ -28,7 +28,7 @@ The following list includes the requirements that {{site.data.keyword.IBM_notm}}
 - It must confirm how the Maximum Tolerable Downtime is met and be stored on the Disaster Recovery Plan database.
 - The disaster recovery plan specifies the security controls for running in Disaster mode, if they are different from what's running in production.
 
-# Management of the disaster recovery plan
+## Management of the disaster recovery plan
 {: #dr-plan-mgmt}
 
 The requirements that {{site.data.keyword.cloud_notm}} follows are:
