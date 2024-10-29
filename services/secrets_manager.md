@@ -24,7 +24,9 @@ In the event of a HA instance node or availability zone failure, the service wil
 IBM Cloud will resolve the outage and when the zone comes back on-line, the global load balancer will resume sending API requests to the restored instance node without need for customer action. 
 
 ## Customer disaster recovery
+
 ### Customer disaster definition
+
 A disaster of an instance can be due to:
 - Data corruption.
 - Service becomes unavailable or regional disaster.
@@ -33,11 +35,13 @@ Secret Manager secrets are generally updated through “rotation” where writin
 {: .note}
 
 ### Customer disaster planning
-To recover from a service instance outage a recovery service instance should be created in a recovery region. The recovery service instance should be configured with same data as the source service instance.  The recovery service instance may have secrets that are unique to the recovery region.
+
+To recover from a service instance outage a recovery service instance should be created in a recovery region. The recovery service instance should be configured with same data as the source service instance. The recovery service instance may have secrets that are unique to the recovery region.
 
 Secret Manager service instance may have customer created dependencies on these optional services, make sure these exist in the recovered region:
-- Key Protect or HPCS service instance.
-- Event notification service.
+- {{site.data.keyword.keymanagementservicefull}}
+- {{site.data.keyword.hscrypto}}
+- {{site.data.keyword.messagehub_full}}
 
 Some secrets will need to be adjusted for the recovery region, for example connection strings or API keys to the regional services.
 
@@ -46,26 +50,29 @@ The recovery instance should align with the workload [disaster recovery approach
 The recovery instance should track data changes to primary service instance for data including groups, secrets, secret versions, certificates, event notifications,... Consider one of the following approaches for recovery:
 
 1.	Use some combination of terraform, script or program as the source of truth. First update the source of truth and then use the source of truth to create/update the primary service instance and the recovery service instance. The source must be available to the restore version and is a single point of failure.
-  - Zero footprint.
-    - RTO - amount of time to provision and populate with data.
-    - RPO - no data loss.
-  - Minimal Operation. Restore instance is always fully populated.
-    - RTO - 0 seconds
-    - RPO no data loss
+   - Zero footprint.
+      - RTO - amount of time to provision and populate with data.
+      - RPO - no data loss.
+   - Minimal Operation. Restore instance is always fully populated.
+      - RTO - 0 seconds
+      - RPO no data loss
 2.	It is possible to create a script or program to download secrets from your primary service instance by using the Secrets Manager API or and populate the recovery service instance with the data. The script can take advantage of Activity Tracker audit events of the primary instance to keep the recovery instance in sync along with Code Engine. Customer managed backups should be kept to restore from the disaster.
-  - Minimal Operation. Restore instance is always fully populated.
-    - RTO - 0 seconds
-    - RPO - 15 min of data synchronization loss depending on details approach.
+   - Minimal Operation. Restore instance is always fully populated.
+      - RTO - 0 seconds
+      - RPO - 15 min of data synchronization loss depending on details approach.
 
 ### Customer disaster recovery
+
 In the event of a customer declared disaster in the primary instance the service in the recovery region will be used (Minimal Operation) or the created (Zero Footprint). Redirect your workload components to the recovered instance or optionally insert into the retry code within your application to redirect requests to the second instance (Minimal Operation). 
 
 ### Customer recovery from BYOK loss
+
 If your service instance was provisioned by using the root key from either {{site.data.keyword.keymanagementservicefull}} or {{site.data.keyword.hscrypto}} and you accidentally deleted the root key, open a case and include the following information:
-•	Your service instance's CRN
-•	Your backup Key Protect or HPCS instance's CRN
-•	The new Key Protect or HPCS root key ID
-•	The original Key Protect or HPCS instance's CRN and key ID, if available
+- Your service instance's CRN
+- Your backup Key Protect or HPCS instance's CRN
+- The new Key Protect or HPCS root key ID
+- The original Key Protect or HPCS instance's CRN and key ID, if available
+
 See Recovering from an accidental key loss for authorization in the Key Protect and HPCS docs.
 
 ## IBM Disaster Recovery

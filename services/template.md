@@ -84,6 +84,6 @@ If dependent storage devices in the region are damaged the service is recovered 
 ## IBM Service Maintenance
 Regular upgrades for new features and maintenance occur as part of normal operations. Such maintenance can occasionally cause short interruption intervals that will be handled by retry login within client applications.
 
-All upgrades follow the IBM service best practices and have a recovery plan and rollback process in-place. Changes are thoroughly tested before release. Complex changes are enabled/disabled to control exposure. When updates are rolled out, they are planned on a region-by-region basis. Upgrades are implemented and then provisioned to insure zero downtime for the service instance unless notified.
+All upgrades follow the IBM service best practices and have a recovery plan and rollback process in-place. Changes are thoroughly tested before release. Complex changes are enabled/disabled with configuration to control exposure. When updates are rolled out, they are planned on a region-by-region basis. Upgrades are implemented and then provisioned to insure zero downtime for the service instance unless notified.
 
 See [monitoring notifications and status](/docs/account?topic=account-viewing-cloud-status) for planned maintenance, announcements, and release notes that impact this service.
