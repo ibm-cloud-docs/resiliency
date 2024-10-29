@@ -25,7 +25,7 @@ _Team working box note: [here](https://ibm.ent.box.com/file/1644965930257?s=48bp
 
 ## RACI
 
-As of 2024-10-04:
+As of 2024-10-29:
 
 | Deliverables | Authors  | Reviewers | Approvers | Stakeholders |
 |---|---|---|---|---|
@@ -38,6 +38,7 @@ As of 2024-10-04:
 | 4.1.1 High Availability   |  ➡️ Responsible: @pkadiya  | Accountable | Consulted | Informed | 
 | 4.1.2 Disaster Recovery  |  ➡️ Responsible: @james-belton  | Accountable | Consulted | Informed |
 | 4.1.3 Cyber Resiliency  |  ➡️ Responsible: @bviswana | Accountable | Consulted | Informed | 
+| 4.1.4 Best Practices  |  ➡️ Responsible: @james-belton | Accountable | Consulted | Informed | 
 | 4.2 Planning   |  ➡️ Responsible: @pquiring | Accountable | Consulted | Informed |
 | 4.2.1 Designing for HA   |  ➡️ Responsible: @pkadiya | Accountable | Consulted | Informed | 
 | 4.2.2 Designing for DR   |  ➡️ Responsible: @james-belton | Accountable | Consulted | Informed |
