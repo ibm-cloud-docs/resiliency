@@ -12,8 +12,7 @@ subcollection: resiliency
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Understanding high availability and disaster recovery
-REMOVE - {{site.data.keyword.databases-for-postgresql}}
+# {{site.data.keyword.databases-for-postgresql}} Understanding high availability and disaster recovery
 
 ## Service High Availability
 {: #postgresql-service-high-availability}
