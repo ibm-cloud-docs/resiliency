@@ -12,7 +12,7 @@ subcollection: resiliency
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Secrets Manager - Understanding high availability and disaster recovery
+# {{site.data.keyword.secrets-manager_short}} - Understanding high availability and disaster recovery
 
 ## High Availability
 **This service** is a regional service that fulfills the defined [Service Level Objectives](/docs/resiliency?topic=resiliency-slo) with the **Standard** plan.

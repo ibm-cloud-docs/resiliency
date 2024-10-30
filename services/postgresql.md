@@ -12,7 +12,7 @@ subcollection: resiliency
 
 {{site.data.keyword.attribute-definition-list}}
 
-# {{site.data.keyword.databases-for-postgresql}} Understanding high availability and disaster recovery
+# {{site.data.keyword.databases-for-postgresql}} - Understanding high availability and disaster recovery
 
 ## Service High Availability
 {: #postgresql-service-high-availability}
@@ -116,9 +116,9 @@ The database is resilient from a single zone failure.  See [service availability
 ### IBM recovery from regional failure
 {: #postgresql-ibm-recovery-from-regional-failure}
 
-After a regional failure IBM will attempt to restore the service instance with the same connection strings from the current state in internal persistent storage.
-- RTO
-- RPO
+After a regional failure IBM will attempt to restore the service instance with the same connection strings from the last state in internal persistent storage.
+- RTO - TODO help
+- RPO - TODO help
 
 It may not be possible for IBM to restore the database, and it will be required for the customer restore the database - see [customer disaster recovery](#postgresql-customer-disaster-recovery)
 

@@ -97,6 +97,7 @@ toc:
           - services/secrets_manager.md
           - services/postgresql.md
           - services/template.md
+          - services/iam.md
   - navgroup:
       id: help
       topics:
