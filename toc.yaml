@@ -24,7 +24,7 @@ toc:
       - topicgroup:
           label: What is cyber resiliency?
           topics:
-          - topic1.md
+          - cyberresiliency-overview.md
       - zero_downtime.md
       - topicgroup:
           label: Best practices
@@ -49,7 +49,7 @@ toc:
       - topicgroup:
           label: Planning for cyber resiliency
           topics:
-          - topic3.md
+          - cyberresiliency-plan.md
       - topicgroup:
           label: Planning for operational resiliency
           topics:
