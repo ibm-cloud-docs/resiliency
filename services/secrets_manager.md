@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2024
-lastupdated: "2024-10-29"
+lastupdated: "2024-10-30"
 
 keywords: HA, DR, high availability, disaster recovery, disaster recovery plan, disaster event, recovery time objective, recovery point objective
 
@@ -29,7 +29,8 @@ IBM Cloud will resolve the outage and when the zone comes back on-line, the glob
 
 A disaster of an instance can be due to:
 - Data corruption.
-- Service becomes unavailable or regional disaster.
+- Service becomes unavailable.
+- Regional disaster.
 
 Secret Manager secrets are generally updated through “rotation” where writing a value results in the creation of a new version of the secret. It may be possible to restore data corruption by restoring secrets from older versions. Only a fixed number of versions are persisted. See [managing secret versions](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-version-history).
 {: .note}
