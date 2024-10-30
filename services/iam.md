@@ -12,8 +12,8 @@ subcollection: resiliency
 
 {{site.data.keyword.attribute-definition-list}}
 
-# template - Understanding high availability and disaster recovery
-{: #template-high-availability-disaster-recovery}
+# {{site.data.keyword.iamshort}} - Understanding high availability and disaster recovery
+{: #iam-high-availability-disaster-recovery}
 
 Topics to cover:
 Customer
@@ -41,12 +41,12 @@ Questions:
    - do not cover dependencies
 
 ## Service High Availability
-{: #template-high-availability}
+{: #iam-high-availability}
 
 This service is a global platform service that fulfills the defined [Service Level Objectives](/docs/resiliency?topic=resiliency-slo). See [How IBM Cloud ensures high availability and disaster recovery](https://cloud.ibm.com/docs/overview?topic=overview-zero-downtime) and specifically [Global platform services](https://cloud.ibm.com/docs/overview?topic=overview-zero-downtime#global-platform).
 
 ## Customer Disaster Recovery - DR
-{: #template-customer-disaster-recovery-dr}
+{: #iam-customer-disaster-recovery-dr}
 
 Things to cover in the sections below
 - Customer recover from zonal failure. could be detailed like VPC block storage, or could be just a note like ICD - see HA above
@@ -56,14 +56,14 @@ Things to cover in the sections below
 - Customer recovery from BYOK loss this was covered in Secrets Manager is it a general problem
 
 ### Customer disaster definition
-{: #template-customer-disaster-definition}
+{: #iam-customer-disaster-definition}
 
 A disaster of an instance can be due to:
 - Data corruption.
 - Service becomes unavailable.
 
 ### Customer disaster planning
-{: #template-customer-disaster-planning}
+{: #iam-customer-disaster-planning}
 
 The data that is managed by {{site.data.keyword.iamshort}} can be backed. Consider one of the following approaches for recovery:
 
@@ -75,26 +75,26 @@ The data that is managed by {{site.data.keyword.iamshort}} can be backed. Consid
 - RPO - time since last backup
 
 ### Customer disaster recovery
-{: #template-customer-disaster-recovery}
+{: #iam-customer-disaster-recovery}
 
 When a global service becomes unavailable there is no action that can be taken by a customer to resolve the issue. [Create a support case](https://cloud.ibm.com/docs/account?topic=account-open-case&interface=ui)
 
-In the event that data is corrupted the data must be recreated. See [customer disaster planning](#template-customer disaster-recovery) to restore the corrupted data.
+In the event that data is corrupted the data must be recreated. See [customer disaster planning](#iam-customer disaster-recovery) to restore the corrupted data.
 
 ## IBM disaster recovery
-{: #template-ibm-disaster-recovery}
+{: #iam-ibm-disaster-recovery}
 
 ### IBM recovery from global platform failure
-{: #template-ibm-recovery-from-global-platform-failure}
+{: #iam-ibm-recovery-from-global-platform-failure}
 
 After a global platform failure IBM will attempt to restore the data from the last state in internal persistent storage.
 - RTO - TODO
 - RPO - TODO
 
-It may not be possible for IBM to restore all state, and it will be required for the customer restore the database - see [customer disaster recovery](#template-customer-disaster-recovery)
+It may not be possible for IBM to restore all state, and it will be required for the customer restore the database - see [customer disaster recovery](#iam-customer-disaster-recovery)
 
 ## IBM Service Maintenance
-{: #template-ibm-service-maintenance}
+{: #iam-ibm-service-maintenance}
 
 All upgrades follow the IBM service best practices and have a recovery plan and rollback process in-place. Regular upgrades for new features and maintenance occur as part of normal operations. Such maintenance can occasionally cause short interruption intervals that will be handled by [client availability retry logic](/docs/doesnotexist) within client applications. Changes are initially rolled out sequentially on a region-by-region basis.
 
