@@ -15,9 +15,9 @@ subcollection: resiliency
 # Disaster recovery approaches within {{site.data.keyword.cloud_notm}}
 {: #dr-approaches}
 
-In {{site.data.keyword.cloud_notm}}, four general approaches to disaster recovery (DR) support a disaster recovery plan. Depending on your use case, you can mix and match the available options based on the workloads, environments, and Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO) values that the business assigns.
+This page outlines four general approaches or strategies to disaster recovery (DR) support a disaster recovery plan. Depending on your use case, you can mix and match the these based on the workloads, environments, and Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO) values that the business assigns.
 
-The four DR approaches focus on VPC and database services in particular. Many other services are available from {{site.data.keyword.cloud_notm}}, but the same general principles apply. To choose an approach, it’s important to understand if and how backups of your data - the data you are responsible for restoring - are taken within the service. Make sure that you understand how the backups are available to you, how they can be recovered, and where there can be recovered.
+The four DR approaches focus on VPC and database services in particular. Of course, many other services are available from {{site.data.keyword.cloud_notm}}, but the same general principles apply. To choose an approach, it’s important to understand if and how backups of your data - the data you are responsible for restoring - are taken within the service. Make sure that you understand how the backups are available to you, how they can be recovered, and where there can be recovered.
 
 As an example, crucial systems, which tolerate zero downtime should run in an active or active cross-regional configuration, as detailed in Approach 4. Maintaining systems in such a configuration involves most cost and effort, so Approach 3 is appropriate for workloads where a few hours downtime can be tolerated, which in turn reduces the overall cost. Approach 1 is only suitable for systems that can tolerate extended downtime – such as noncritical development and test environments – but again, it’s a means to reduce the DR overhead by using the rapid scaling features of cloud computing. Approach 2 builds on the first approach but has some components that are built out, particularly those that can take time to deliver. So, when considering the DR plan and strategy, consider a mix and match approach, especially where budget is a constraint.
 
@@ -25,8 +25,10 @@ If the service automatically takes backups of your data, including snapshots, he
 
 Another consideration to note is the scope of the recovery that you attempt for any given disaster. While this guide may focus on a complete outage of a region, requiring full recovery elsewhere, outages that invoke disaster recovery plans may only befall one or a small number of cloud services. In these cases, consider your approach and the scenarios that you have planned for. Does your plan allow for the recovery of one or more cloud services in isolation, or does it demand that all services are recovered elsewhere, regardless? If you do just recover a single service, how will your workloads react and perform? What configuration changes might be needed and how easy are they to complete? Key to this is working through different disaster scenarios, that enrich your planning accordingly.
 
-## Approach 1: Zero footprint
-{: #ZeroFootprint}
+There is, of course, a silent fifth approach: wait for the affected region or service to be recovered by {{site.data.keyword.cloud_notm}}. This is a valid path but rememeber that it may take many hours or longer (depending on the cause of the outage) for recovery to complete in the affected region and you may still need to spend futher time restoring your data and so forth, in accordance with the shared responsibility model.
+
+## Approach 1: Zero Footprint
+{: #Approach1-ZeroFootprint}
 
 With a zero DR footprint, this approach has the longest overall recovery time, though it does have the lowest cost profile. For many organizations, this is not an acceptable approach for production workloads, but it might be considered for development, system test workloads, or other workloads that need a disaster recovery provision but are low on the list of recovery priority. That said, unless you adopt a read replica instance, this is effectively the only way to recover an IBM Cloud Database service.
 
@@ -57,8 +59,8 @@ If you are using another, bring your own database, refer to product documentatio
 
 ![Diagram depiting an example architecture for a zero footpring DR solution](images/DRApproach1.png "Diagram depiting an example architecture for a zero footpring DR solution"){: caption="Diagram depiting an example architecture for a zero footpring DR solution" caption-side="bottom"}
 
-## Approach 2: Basic standby
-{: #DRApproach2}
+## Approach 2: Basic Standby
+{: #DRApproach2-BasicStandby}
 
 Using this approach:
 
@@ -88,7 +90,7 @@ In each of these cases, data loss will depend on the time of the last available 
 ![Diagram depiting an example architecture for a basic standby DR solution](images/DRApproach2.png "Diagram depiting an example architecture for a basic standby DR solution"){: caption="Diagram depiting an example architecture for a basic standby DR solution" caption-side="bottom"}
 
 ## Approach 3: Minimal operation
-{: #Approach3MinimalOperation}
+{: #Approach3-MinimalOperation}
 
 Using this approach:
 
@@ -107,7 +109,7 @@ In the event of a disaster, the recovery of outstanding, unapplied backups is ca
 
 ![Diagram depicting an example architecture for a minimal operation DR solution](images/DRApproach3.png "Diagram depicting an example architecture for a minimal operation DR solution"){: caption="Diagram depicting an example architecture for a minimal operation DR solution" caption-side="bottom"}
 
-## Approach 4:  Active/active cross regional services
+## Approach 4:  Active/active
 {: #Approach4-ActiveActive}
 
 Using this approach:
@@ -201,8 +203,8 @@ The means to create DR recoverable copies of persistent data, depends on the typ
 | Classic File Storage (NFS) | Backup to Object Storage via a backup and restore pod | Bucket replication | RTO minutes to hours, RPO to point of last backup and replication |
 | Classic Block Storage | Backup to Object Storage via a backup and restore pod | Bucket replication | RTO minutes to hours, RPO to point of last backup and replication |
 | Object Storage |  | Bucket Replication or use a Cross-regional bucket | RTO minutes to hours, RPO to point of last replication |
-| Block Storage for VPC |	Use `kubectl cp` to copy files to Object Storage | Bucket Replication or use a Cross-regional bucket |	RTO minutes to hours, RPO to point of last backup & replication |
-| File Storage for VPC	| Use `kubectl cp` to copy files to Object Storage	| Bucket Replication or use a Cross-regional bucket	| RTO minutes to hours, RPO to point of last backup & replication |
+| Block Storage for VPC |	Use `kubectl cp` to copy files to Object Storage, or use snapshots | Bucket Replication or use a Cross-regional bucket |	RTO minutes to hours, RPO to point of last backup & replication |
+| File Storage for VPC	| Use `kubectl cp` to copy files to Object Storage, or use snapshots	| Bucket Replication or use a Cross-regional bucket	| RTO minutes to hours, RPO to point of last backup & replication |
 | Portworx (with DR recovery Plan) |	Asynchronous DR	| Clusters deployed in two regions, each with Portworx installation	| RTO minutes to hours, RPO up to 15 mins |
 | Portworx – PX-Backup |	Backup / recovery software |	Portworx only	 | Point of last backup & replication |
 |OADP - OpenShift Operator backup/recovery software |	Write backup to Object Storage bucket	Bucket | Replication or use a Cross-regional bucket |	RTO minutes to hours, Point of last backup & replication |
@@ -211,13 +213,11 @@ The means to create DR recoverable copies of persistent data, depends on the typ
 {: caption="Backup and replication strategy by storage type" caption-side="top"}
 
 
-For critical container-based applications, Portworx Asynchronous DR is the recommended approach for persistent storage.
-
-Other backups are at the control plane level and the application level.
+For critical container-based applications, Portworx Asynchronous DR is the recommended approach for persistent storage since this provides the simplest means to replicate data to a second site and potentially the shortest recovery time.
 
 IBM Cloud takes care of backups at the control plane level – this is essentially a backup of the etcd database in the master cluster, which contains configuration information.
 
-To backup applications, users need to use the ‘backup’ custom resource within OpenShift. IKS users need to bring their own solution such as Kasten or use Portworx
+To backup applications that have been deployed, use the ‘backup’ custom resource within OpenShift. IKS users need to bring their own backup solution such as Kasten or use Portworx.
 
 ### IBM Cloud Databases
 {: #ICD}

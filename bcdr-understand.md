@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-10-25"
+lastupdated: "2024-10-31"
 
 keywords: disaster recovery, DR, what is disaster recovery, DR strategy, disaster recovery options, disaster recovery strategy
 
@@ -33,7 +33,7 @@ These circumstances typically occur where there is a widespread issue, affecting
 
 However, as a customer, there is still a small chance that a disaster can take out the region where your critical workloads are running, so it’s best to be prepared, if you want to avoid extended periods of downtime that are caused by disasters.
 
-### Why is high availability not disaster recovery? Are both required? 
+### Why is high availability not disaster recovery? Are both required?
 {: #WhyIsHAnotDR}
 
 High availability and disaster recovery are easily confused, but they are distinctly different. Designing high availability into a workload is an effort to prevent a workload from failing. For example, spreading data over multiple disks in a RAID array is an effort to prevent an outage caused by disk failure. Multiple power supplies in a server are an effort to prevent a failure caused by an outage in a power circuit, while running applications across multiple servers in different zones is an effort to prevent an outage caused by a server failure and zone failure.
@@ -99,14 +99,14 @@ Because each business application has a unique set of compute, services, and oth
 
 There are many options to implement DR solutions. For the sake of simplicity, we can group the different options in four major categories:
 
-Active/Nothing
-:   Active/Nothing sees the full application stack active in one location, with the ability to recover the application stack in another location but where nothing at all is built-out. In practice, this means helping ensure that all backups are available in the second location for recovery and should there be a situation where disaster strikes, all services are provisioned (preferably from Terraform templates or similar) from the ground up before backups are applied. While this is the least-cost approach, it is only suitable where RTO and RPO objectives are at least several hours in length, due to the time it would take to provision and configure services.
+Zero Footprint
+:   Zero Footprint sees the full application stack active in one location, with the ability to recover the application stack in another location but where nothing at all is built-out. In practice, this means helping ensure that all backups are available in the second location for recovery and should there be a situation where disaster strikes, all services are provisioned (preferably from Terraform templates or similar) from the ground up before backups are applied. While this is the least-cost approach, it is only suitable where RTO and RPO objectives are at least several hours in length, due to the time it would take to provision and configure services.
 
-Active/Passive
-:   Active/Passive options are based on keeping the full application stack active in one location, while another application stack is deployed in a different location but kept idle or shut down. In the case of prolonged unavailability of the primary site, the application stack is activated in the backup site. Often that requires the restoring of backups that are taken in the primary site. This approach may not use continuous data replication, so is not recommended if recovery to the point of last backup (which may be some hours behind a disaster) is not appropriate for the workload - for example when the RPO is less than a few hours. It may also take some time to instantiate and recover the services when using this model, so if the availability of the service is critical and the RTO objective is less than a few hours, this approach may not be optimal.
+Basic Standby
+:   Basic Standby options are based on keeping the full application stack active in one location, while another application stack is deployed in a different location but kept idle or shut down. In the case of prolonged unavailability of the primary site, the application stack is activated in the backup site. Often that requires the restoring of backups that are taken in the primary site. This approach may not use continuous data replication, so is not recommended if recovery to the point of last backup (which may be some hours behind a disaster) is not appropriate for the workload - for example when the RPO is less than a few hours. It may also take some time to instantiate and recover the services when using this model, so if  the availability of the service is critical and the RTO objective is less than a few hours, this approach may not be optimal.
 
-Active/Standby
-:   In the Active/Standby case, the full application stack is active in both the primary and backup location. However, user's transactions are served by the primary site only. The backup site takes care of keeping a replica of the state of the main location through data replication, such as database replication or disk replication. In cases of prolonged unavailability of the primary site, all client transactions are routed to the backup site. This approach provides good RPO and RTO, measured in minutes; however, it is more expensive than the Active/Passive options because of the double deployment. For example, resources are wasted because the standby assets can't be used to improve scalability and throughput.
+Minimal Operation
+:   In the Minimal Operation case, the full application stack is active in both the primary and backup location. However, user's transactions are served by the primary site only. The backup site takes care of keeping a replica of the state of the main location through data replication, such as database replication or disk replication. In cases of prolonged unavailability of the primary site, all client transactions are routed to the backup site. This approach provides good RPO and RTO, generally measured in minutes; however, it is significantly more expensive than the Active/Passive options because of the double deployment. For example, resources are wasted because the standby assets can't be used to improve scalability and throughput.
 
 Active/Active
 :   In the Active/Active case both locations are active, and client transactions are distributed to both regions according to predefined policies, such as round-robin, geographical load balancing, and so on. In the case of the failure of one site, the other site must be able to serve all clients. It's possible to achieve both an RPO and RTO close to zero with this configuration. The drawback is that both regions must be sized to handle the full load, even if they are used at half of their capabilities when both locations are available. In such cases, auto scaling can help in keeping resources allocated according to the needs. The data across the two sites is continuously synced with some kind of replication mechanism. Relying solely on this approach is problematic in instances where data corruption or loss is the root cause of the disaster, since of course the corruption will be replicated between locations. To resolve such disasters still relies on data backups and recover of that non-corrupted or lost data.
