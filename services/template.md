@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2024
-lastupdated: "2024-10-30"
+lastupdated: "2024-10-31"
 
 keywords: HA, DR, high availability, disaster recovery, disaster recovery plan, disaster event, recovery time objective, recovery point objective
 
@@ -78,7 +78,7 @@ To achieve high availability it is up to customers to create a workload from the
 ## Customer Disaster Recovery - DR
 {: #template-customer-disaster-recovery-dr}
 
-Things to cover in the sections below
+TODO REMOVE: Things to cover in the sections below
 - Customer recover from zonal failure. could be detailed like VPC block storage, or could be just a note like ICD - see HA above
 - Customer recover from regional failure
 - Customer recover from service failure may be same as regional failure
@@ -100,8 +100,30 @@ To recover from a service instance outage a recovery service instance should be 
 
 The recovery instance should align with the workload [disaster recovery approaches within IBM Cloud](https://test.cloud.ibm.com/docs/resiliency?topic=resiliency-dr-approaches)
 
+**Zero Footprint** -
+Restore from backups ...
+- RTO ...
+- RPO ...
+
+**Basic Standby** - 
+...
+- RTO ...
+- RPO ...
+
+**Minimal Operation** - Create a [read-only replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) for cross-regional failover. [Promote the read-only replica](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas&interface=ui#promoting-read-only-replica) to recover from a disaster.
+- RTO - few minutes
+- RPO - few minutes
+
+**Active/Active**
+Data in postgreSQL can be lost due to bugs in software, accidental or malicious operations. See **Active/Nothing** above for recovery. If only a portion of the database has been corrupted consider using the newly created database instance to harvest the corrupted data.
+
+
 ### Customer disaster recovery
 {: #template-customer-disaster-recovery}
+
+This service instance may have customer created dependencies on these optional services, make sure these exist in the recovered region:
+- {{site.data.keyword.keymanagementservicefull}}
+- {{site.data.keyword.hscrypto}}
 
 In the event of a customer declared disaster in the primary instance the service in the recovery region will be used (Minimal Operation) or the created (Zero Footprint). Redirect your workload components to the recovered instance or optionally insert into the retry logic to redirect requests to the second instance (Minimal Operation). 
 
@@ -129,3 +151,8 @@ ADD THIS IF APPROPRIATE:
 Complex changes are enabled/disabled with feature flags to control exposure.
 
 Changes that impact customer workloads will be described by notifications. See [monitoring notifications and status](/docs/account?topic=account-viewing-cloud-status) for planned maintenance, announcements, and release notes that impact this service.
+
+## TODO Issues to resolve in this template
+
+Customer recovery from BYOK loss -  this was covered in Secrets Manager is it a general problem?
+Term to use for a service instance: service instance, cluster, resource

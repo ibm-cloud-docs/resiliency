@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2024
-lastupdated: "2024-10-30"
+lastupdated: "2024-10-31"
 
 keywords: HA, DR, high availability, disaster recovery, disaster recovery plan, disaster event, recovery time objective, recovery point objective
 
@@ -21,7 +21,7 @@ This service is a regional service that fulfills the defined [Service Level Obje
 
 {{site.data.keyword.databases-for-postgresql}} provides replication, failover, and high-availability features to protect your databases and data from infrastructure maintenance, upgrades, and some failures. Deployments contain a cluster with two data **members** - leader and replica. The replica is kept up to date using asynchronous replication. A distributed consensus mechanism is used to maintain cluster state and handle failovers. If the leader becomes unreachable, the cluster initiates a failover, and the replica is promoted to leader and a new replica rejoins the cluster as a replica. The leader and replica will always be in different zones of an MZR. If the replica fails, a new replica created. If a zone failure results in a member failing the new replica will be created in a surviving zone.
 
-You can extend high-availability further by adding [PostgreSQL members](https://cloud.ibm.com/docs/databases-for-postgresql?topic=databases-for-postgresql-horizontal-scaling) to the instance, for greater in-region redundancy, or by provisioning [read-only replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) for cross-regional failover or read offloading. 
+You can extend high-availability further by adding [PostgreSQL members](/docs/databases-for-postgresql?topic=databases-for-postgresql-horizontal-scaling) to the instance, for greater in-region redundancy, or by provisioning [read-only replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) for cross-regional failover or read offloading. 
 
 Review the PostgreSQL documentation on [replication techniques](https://www.postgresql.org/docs/current/wal-async-commit.html){: .external} to understand the constraints and tradeoffs that are associated with the asynchronous replication strategy that is deployed by default.
 
@@ -78,32 +78,31 @@ To recover from a disaster one of the following mechanisms will be used:
 - Create a new instance from a point-in-time of a working database. 
 - Promote a read-only replica to a read/write database.
 
-Planning for regional or database resource failure. Consider the framework defined in [Understanding disaster recovery - DR strategy options](/docs/resiliency?topic=resiliency-understanding-dr#dr-categories)
+The recovery instance should align with the workload [disaster recovery approaches within IBM Cloud](https://test.cloud.ibm.com/docs/resiliency?topic=resiliency-dr-approaches)
 
-**Active/Nothing** -
-Restore from backups is available as described in [Managing Cloud Databases backups](/docs/cloud-databases?topic=cloud-databases-dashboard-backups). The restore is to a new database instance with a new connection strings used by clients.
-- RTO for this approach will be partially dependent on the size of the database. Large databases may take hours or days to restore.
+**Zero Footprint** - Restore from backups is available as described in [Managing Cloud Databases backups](/docs/cloud-databases?topic=cloud-databases-dashboard-backups). The restore is to a new database instance with a new connection strings used by clients.
+- RTO will be partially dependent on the size of the database. Large databases may take hours or days to restore.
 - RPO will be dependent on the frequency of backups - 24 hours is the default. Consider a script using [IBM Cloud® Code Engine - Working with the Periodic timer (cron) event producer](/docs/codeengine?topic=codeengine-subscribe-cron) to produce on demand backups to improve RPO.
 
-**Active/Passive** - It is not possible to restore to an existing instance.
+**Basic Standby** - It is not possible to restore to an existing instance.
 
-**Active/Standby, Active/Active** - Create a [read-only replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) for cross-regional failover. [Promote the read-only replica](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas&interface=ui#promoting-read-only-replica) to recover from a disaster.
+**Minimal Operation** or **Active/Active** - Create a [read-only replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) for cross-regional failover. [Promote the read-only replica](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas&interface=ui#promoting-read-only-replica) to recover from a disaster.
 - RTO - few minutes
 - RPO - few minutes
 
-**Data Disaster**
-Data in postgreSQL can be lost due to bugs in software, accidental or malicious operations. See **Active/Nothing** above for recovery. If only a portion of the database has been corrupted consider using the newly created database instance to harvest the corrupted data.
 
 ### Customer disaster recovery
 {: #postgresql-customer-disaster-recovery}
 
-Secret Manager service instance may have customer created dependencies on these optional services, make sure these exist in the recovered region:
-- {{site.data.keyword.keymanagementservicefull}}
-- {{site.data.keyword.hscrypto}}
+Data in postgreSQL can be lost due to bugs in software, accidental or malicious operations. See **Active/Nothing** above for recovery. If only a portion of the database has been corrupted consider using the newly created database instance to harvest the corrupted data to apply to the production database.
 
 Creating a new database from the live production using [point-in-time recovery](/docs/databases-for-postgresql?topic=databases-for-postgresql-pitr) is possible when the disaster database is available and the RPO (disaster) falls within the supported window.
 
-Follow the recovery plan created in the previous section to create a new service. The new recovered instance will have a different connection strings. Redirect your workload components to the recovered instance.
+A new recovered database may also need the same customer created dependencies of the disaster database - make sure these exist in the recovered region:
+- {{site.data.keyword.keymanagementservicefull}}
+- {{site.data.keyword.hscrypto}}
+
+Follow the recovery plan created in the previous section to create a new service. The new, recovered instance, will have a different connection strings. Redirect your workload components to the recovered instance.
 
 ## IBM disaster recovery
 {: #postgresql-ibm-disaster-recovery}
@@ -117,10 +116,10 @@ The database is resilient from a single zone failure.  See [service availability
 {: #postgresql-ibm-recovery-from-regional-failure}
 
 After a regional failure IBM will attempt to restore the service instance with the same connection strings from the last state in internal persistent storage.
-- RTO - TODO help
-- RPO - TODO help
+- RTO - TODO
+- RPO - TODO
 
-It may not be possible for IBM to restore the database, and it will be required for the customer restore the database - see [customer disaster recovery](#postgresql-customer-disaster-recovery)
+It may not be possible for IBM to restore the database, in which case it will be required for the customer restore the database - see [customer disaster recovery](#postgresql-customer-disaster-recovery)
 
 ## IBM Service Maintenance
 {: #postgresql-ibm-service-maintenance}
@@ -133,11 +132,11 @@ Complex changes are enabled/disabled with feature flags to control exposure.
 Changes that impact customer workloads will be described by notifications. See [monitoring notifications and status](/docs/account?topic=account-viewing-cloud-status) for planned maintenance, announcements, and release notes that impact this service.
 
 ## Links
-- [Understanding high availability for Cloud Databases](https://cloud.ibm.com/docs/cloud-databases?topic=cloud-databases-ha-dr)
-- [Understanding business continuity and disaster recovery for Cloud Databases](https://cloud.ibm.com/docs/cloud-databases?topic=cloud-databases-bc-dr)
-- [Shared responsibilities for Cloud Databases](https://cloud.ibm.com/docs/cloud-databases?topic=cloud-databases-responsibilities-cloud-databases)
-- [High availability - Databases for PostgreSQL](https://cloud.ibm.com/docs/databases-for-postgresql?topic=databases-for-postgresql-high-availability)
-- [The high-availability read-only replica - Databases for PostgreSQL](https://cloud.ibm.com/docs/databases-for-postgresql?topic=databases-for-postgresql-the-ha-read-only-replica)
+- [Understanding high availability for Cloud Databases](/docs/cloud-databases?topic=cloud-databases-ha-dr)
+- [Understanding business continuity and disaster recovery for Cloud Databases](/docs/cloud-databases?topic=cloud-databases-bc-dr)
+- [Shared responsibilities for Cloud Databases](/docs/cloud-databases?topic=cloud-databases-responsibilities-cloud-databases)
+- [High availability - Databases for PostgreSQL](/docs/databases-for-postgresql?topic=databases-for-postgresql-high-availability)
+- [The high-availability read-only replica - Databases for PostgreSQL](/docs/databases-for-postgresql?topic=databases-for-postgresql-the-ha-read-only-replica)
 
 ## Author section TODO Remove
 ## Author Links
