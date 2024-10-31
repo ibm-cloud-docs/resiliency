@@ -70,6 +70,10 @@ toc:
           topics:
           - bcdr-testing.md
       - topicgroup:
+          label: Chaos Testing
+          topics:
+          - chaos-engineering.md
+      - topicgroup:
           label: Deploying scalable and resilient apps
           topics:
           - topic5.md
