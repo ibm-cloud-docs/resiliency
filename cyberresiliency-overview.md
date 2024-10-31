@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-10-30"
+lastupdated: "2024-10-31"
 
 
 keywords: cyber resiliency overview, resilient app, cyber recovery
@@ -13,7 +13,7 @@ subcollection: resiliency
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Understanding cyberresiliency
+# Understanding cyber resiliency
 {: #cyber-resiliency-overview}
 
 Cyber resilience is the capacity of an organization to prevent, withstand and recover from cybersecurity incidents, including ransomware attacks and other malicious actions. In an environment where threats and threat actors are continuously evolving, adopting a secure-by-design approach is essential to prepare for the inevitability of an attack. Business continuity planning in these scenarios should prioritize the safe and secure restoration of critical applications and infrastructure to maintain operational stability, which is the focus of cyber recovery. {{site.data.keyword.cloud_notm}} could host both your production and recovery environments or the recovery environment for an on-prem or remote production environment or be a secure vault to store your backup copies of golden images, configuration and data for recovery. 
