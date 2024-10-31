@@ -21,17 +21,17 @@ This service is a regional service that fulfills the defined [Service Level Obje
 
 {{site.data.keyword.databases-for-postgresql}} provides replication, failover, and high-availability features to protect your databases and data from infrastructure maintenance, upgrades, and some failures. Deployments contain a cluster with two data **members** - leader and replica. The replica is kept up to date using asynchronous replication. A distributed consensus mechanism is used to maintain cluster state and handle failovers. If the leader becomes unreachable, the cluster initiates a failover, and the replica is promoted to leader and a new replica rejoins the cluster as a replica. The leader and replica will always be in different zones of an MZR. If the replica fails, a new replica created. If a zone failure results in a member failing the new replica will be created in a surviving zone.
 
-You can extend high-availability further by adding [PostgreSQL members](/docs/databases-for-postgresql?topic=databases-for-postgresql-horizontal-scaling) to the instance, for greater in-region redundancy, or by provisioning [read-only replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) for cross-regional failover or read offloading. 
+You can extend high-availability further by adding [PostgreSQL members](/docs/databases-for-postgresql?topic=databases-for-postgresql-horizontal-scaling) to the cluster, for greater in-region redundancy, or by provisioning [read-only replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) for cross-regional failover or read offloading. 
 
 Review the PostgreSQL documentation on [replication techniques](https://www.postgresql.org/docs/current/wal-async-commit.html){: .external} to understand the constraints and tradeoffs that are associated with the asynchronous replication strategy that is deployed by default.
 
 In scenarios where a database becomes critically unhealthy, such as a server crash on the leader, {{site.data.keyword.databases-for-postgresql}} attempts a failover. This auto failover capability is capped at 16 MB of data lag from leader to replica (a few rows of data once accounting for more PostgreSQL data overhead) and is not performed if the lag threshold is exceeded. If the potential for 16 MB of data loss is intolerable for the application, see [synchronous replication](#postgresql-sync-repl) below.
 
-Workloads that programmatically access the service instance should follow the [client availability retry logic](/docs/doesnotexist) to maintain availability.
+Workloads that programmatically access the cluster should follow the [client availability retry logic](/docs/doesnotexist) to maintain availability.
 
 The service will, at times, do controlled failovers under normal operation. These failovers are no-data-loss events but result in resets of active connections. There is a period of up to 15 seconds where reconnections can fail. At times, unplanned failovers might occur due to unforeseen events on the operating environment. These can take up to 45 seconds, but generally less than 30. [Service maintenance](#postgresql-ibm-service-maintenance), for example, trigger a controlled failover.
 
-A two member instance will automatically recover from a single zone failure (with data loss up to the lag threshold). During data synchronization for a new replica the instance has exposure to second failure causing data loss. A three member, see [adding PostgreSQL members](/docs/databases-for-postgresql?topic=databases-for-postgresql-horizontal-scaling), is resilient to the failure of two members during that time.
+A two member cluster will automatically recover from a single zone failure (with data loss up to the lag threshold). During data synchronization for a new replica the cluster has exposure to second failure causing data loss. A three member, see [adding PostgreSQL members](/docs/databases-for-postgresql?topic=databases-for-postgresql-horizontal-scaling), is resilient to the failure of two members during that time.
 
 TODO clarify
 - Loss of leader may result in data loss:
@@ -65,7 +65,7 @@ Things to cover in the sections below
 ### Customer disaster definition
 {: #postgresql-customer-disaster-definition}
 
-A disaster of an instance can be due to:
+A disaster of an cluster can be due to:
 - Data corruption.
 - Service becomes unavailable.
 - Regional disaster.
@@ -74,17 +74,17 @@ A disaster of an instance can be due to:
 {: #postgresql-customer-disaster-planning}
 
 To recover from a disaster one of the following mechanisms will be used:
-- Create a new instance from a backup.
-- Create a new instance from a point-in-time of a working database. 
+- Create a new cluster from a backup.
+- Create a new cluster from a point-in-time of a working database. 
 - Promote a read-only replica to a read/write database.
 
-The recovery instance should align with the workload [disaster recovery approaches within IBM Cloud](https://test.cloud.ibm.com/docs/resiliency?topic=resiliency-dr-approaches)
+The recovery cluster should align with the workload [disaster recovery approaches within IBM Cloud](https://test.cloud.ibm.com/docs/resiliency?topic=resiliency-dr-approaches)
 
-**Zero Footprint** - Restore from backups is available as described in [Managing Cloud Databases backups](/docs/cloud-databases?topic=cloud-databases-dashboard-backups). The restore is to a new database instance with a new connection strings used by clients.
+**Zero Footprint** - Restore from backups is available as described in [Managing Cloud Databases backups](/docs/cloud-databases?topic=cloud-databases-dashboard-backups). The restore is to a new database cluster with a new connection strings used by clients.
 - RTO will be partially dependent on the size of the database. Large databases may take hours or days to restore.
 - RPO will be dependent on the frequency of backups - 24 hours is the default. Consider a script using [IBM Cloud® Code Engine - Working with the Periodic timer (cron) event producer](/docs/codeengine?topic=codeengine-subscribe-cron) to produce on demand backups to improve RPO.
 
-**Basic Standby** - It is not possible to restore to an existing instance.
+**Basic Standby** - It is not possible to restore to an existing cluster.
 
 **Minimal Operation** or **Active/Active** - Create a [read-only replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) for cross-regional failover. [Promote the read-only replica](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas&interface=ui#promoting-read-only-replica) to recover from a disaster.
 - RTO - few minutes
@@ -94,7 +94,7 @@ The recovery instance should align with the workload [disaster recovery approach
 ### Customer disaster recovery
 {: #postgresql-customer-disaster-recovery}
 
-Data in postgreSQL can be lost due to bugs in software, accidental or malicious operations. See **Active/Nothing** above for recovery. If only a portion of the database has been corrupted consider using the newly created database instance to harvest the corrupted data to apply to the production database.
+Data in postgreSQL can be lost due to bugs in software, accidental or malicious operations. See **Active/Nothing** above for recovery. If only a portion of the database has been corrupted consider using the newly created database cluster to harvest the corrupted data to apply to the production database.
 
 Creating a new database from the live production using [point-in-time recovery](/docs/databases-for-postgresql?topic=databases-for-postgresql-pitr) is possible when the disaster database is available and the RPO (disaster) falls within the supported window.
 
@@ -102,7 +102,7 @@ A new recovered database may also need the same customer created dependencies of
 - {{site.data.keyword.keymanagementservicefull}}
 - {{site.data.keyword.hscrypto}}
 
-Follow the recovery plan created in the previous section to create a new service. The new, recovered instance, will have a different connection strings. Redirect your workload components to the recovered instance.
+Follow the recovery plan created in the previous section to create a new service. The new, recovered cluster, will have a different connection strings. Redirect your workload components to the recovered cluster.
 
 ## IBM disaster recovery
 {: #postgresql-ibm-disaster-recovery}
@@ -115,7 +115,7 @@ The database is resilient from a single zone failure.  See [service availability
 ### IBM recovery from regional failure
 {: #postgresql-ibm-recovery-from-regional-failure}
 
-After a regional failure IBM will attempt to restore the service instance with the same connection strings from the last state in internal persistent storage.
+After a regional failure IBM will attempt to restore the cluster with the same connection strings from the last state in internal persistent storage.
 - RTO - TODO
 - RPO - TODO
 
@@ -148,7 +148,7 @@ Changes that impact customer workloads will be described by notifications. See [
 - [ ] Why is SC-MZR backups stored in SC-MZR buckets? How do I move these to a different region for restore in case of the SC-MZR failure
 - [ ] Not following the logic of the following statement:
 > If a single-campus multizone region failure in an MZR or a hardware failure in any region occurs, your data is still accessible as it is replicated onto other fully functioning database servers. Such issues are addressed by IBM Cloud® Specialists in place.
-- [ ] `deployment` - service instance
+- [ ] `deployment` - cluster
 - [ ] only if I have more than one region?  I have to deploy monitoring or what - no customer support?
 > If you have deployments in more than one region, you must provision IBM Cloud® Monitoring and enable platform metrics in each region. For more information, see IBM Cloud Monitoring integration.
 
