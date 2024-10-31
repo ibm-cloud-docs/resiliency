@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-10-24"
+lastupdated: "2024-10-31"
 
 keywords: disaster recovery, dr
 
@@ -23,10 +23,12 @@ As an example, crucial systems, which tolerate zero downtime should run in an ac
 
 If the service automatically takes backups of your data, including snapshots, help ensure that they are placed in cross-region or buckets that are replicated to another region. This might be done by the service, or you might need to configure such replication. If the service does not automatically take backups of your data, be sure to understand how backups can be taken and stored. Remember, the {{site.data.keyword.Bluemix_notm}} shared responsibility model states that it is the customer's responsibility to help ensure that they have backups of their data, and to help ensure that it is recoverable. Review the {{site.data.keyword.Bluemix_notm}} docs for more service-by-service information.
 
+Another consideration to note is the scope of the recovery that you attempt for any given disaster. While this guide may focus on a complete outage of a region, requiring full recovery elsewhere, outages that invoke disaster recovery plans may only befall one or a small number of cloud services. In these cases, consider your approach and the scenarios that you have planned for. Does your plan allow for the recovery of one or more cloud services in isolation, or does it demand that all services are recovered elsewhere, regardless? If you do just recover a single service, how will your workloads react and perform? What configuration changes might be needed and how easy are they to complete? Key to this is working through different disaster scenarios, that enrich your planning accordingly.
+
 ## Approach 1: Zero footprint
 {: #ZeroFootprint}
 
-With a zero DR footprint, this approach has the longest overall recovery time, though it does have the lowest cost profile. For many organizations, this is not an acceptable approach for production workloads, but it might be considered for development, system test workloads, or other workloads that need a disaster recovery provision but are low on the list of recovery priority. 
+With a zero DR footprint, this approach has the longest overall recovery time, though it does have the lowest cost profile. For many organizations, this is not an acceptable approach for production workloads, but it might be considered for development, system test workloads, or other workloads that need a disaster recovery provision but are low on the list of recovery priority. That said, unless you adopt a read replica instance, this is effectively the only way to recover an IBM Cloud Database service.
 
 By using this approach:
 
@@ -35,6 +37,7 @@ By using this approach:
 * Database data is recovered by using database backups.
 * Use of Infrastructure as Code through IBM Cloud Schematics is highly recommended, as is the use of toolchains to deploy application code.
 * Suitable for least stringent RTO and RPO, though some support for point in time recovery is available for certain databases.
+* Allows for recovery from data corruption
 * This is the least cost approach.
 
 To enable an accurate and faster rebuild of the environment, create and use a toolchain that deploys infrastructure services by using {{site.data.keyword.bplong_notm}}. Then, deploy code to those services by using Git-based code repositories.
@@ -46,11 +49,11 @@ For VSIs running Linux operating systems, the bucket can be mounted directly by 
 More complex application data should be stored within a database and IBM Cloud offers several that are suitable for most workloads.
 {: note}
 
-If you are using IBM Cloud Databases for MySQL, IBM Cloud Databases for PostgreSQL, or IBM Cloud Databases for MongoDB, point in time recovery from backups is available. The deployment can perform continuous incremental backups and transactions can be replayed to a point in time, within the last 7 days. Other databases are recoverable to the point of last backup. Backups are automatically taken every 24 hours. Recovery is possible to another MZR in the same geography, so help ensure that your chosen DR region is included.
+If you are using IBM Cloud Databases for MySQL, IBM Cloud Databases for PostgreSQL, or IBM Cloud Databases for MongoDB, point in time recovery from backups is available. Simply put, this works by a full backup being taken, with subsequent transactional changes being recorded, until the next full backup is taken. This means that when recovering the database, a date and time within the past 7 days can be chosen and the nearest full backup taken prior to that time is restored into a new instance before recorded transactional changes are replayed, up to the desired point in time. The very latest point in time for the recovery is that when the last transactional change was recorded and is available from the source database. Note that restores of this kind are rolled forward, but not backwards. Other databases are recoverable to the point of last backup, meaning they do not then have additional transactional changes applied to them. Backups are automatically taken every 24 hours and backup files placed in a cross-regional object storage bucket for resiliency. Recovery is possible to any other multi-zone region, except across compliance zone boundaries and note that database restores can take several hours to complete.
 
-As well as the automatic database backups, customers can take on-demand backups too. On-demand backups can either be taken through the console or by using a CLI or API call, which means they can be automated through a job by using like IBM Cloud Code Engine. All backups are written to a multi-region object storage bucket.
+As well as the automatic database backups, customers can take on-demand backups too. Since automatic backups are taken once every 24 hours, this can result in the loss of up to 24 hours-worth of transactions when restored, if point-in-time restores are not available. Customers wishing to reduce that up to 24 hour figure, are therefore encouraged to take additional on-demand backups. On-demand backups can either be taken through the console or by using a CLI or API call, which means they can be automated through a job by using, for example, IBM Cloud Code Engine. All on-demand backups are also written to a multi-region object storage bucket.
 
-If you are using another bring your own database, refer to product documentation on the most suitable backup method. Generally, back up the data to a Cross Region Object Storage bucket, including any logs that provide point in time recovery.
+If you are using another, bring your own database, refer to product documentation on the most suitable backup method. Generally, back up the data to a cross region object storage bucket, including any logs that provide point in time recovery.
 
 ![Diagram depiting an example architecture for a zero footpring DR solution](images/DRApproach1.png "Diagram depiting an example architecture for a zero footpring DR solution"){: caption="Diagram depiting an example architecture for a zero footpring DR solution" caption-side="bottom"}
 
@@ -59,28 +62,28 @@ If you are using another bring your own database, refer to product documentation
 
 Using this approach:
 
-* Zero-cost infrastructure is stood up and ready in a second region.
-* Networking infrastructure that has longer lead times, global load balancers, Direct Link, VPNs, or similar, should be stood up and ready.
+* Limited infrastructure is stood up and ready in a second region.
+* Networking infrastructure that has longer lead times such as global load balancers, Direct Link, VPNs or similar, should be stood up and ready.
 * Limited VSI images may be created and shut down, attracting minimal cost.
-* Use of autoscaling groups to bring up services more quickly.
-* Use of read-replica databases, where they are supported.
-* Provides a faster RTO, since some services are pre-created. This incurs a higher cost for disaster recovery provisioning.
+* Use autoscaling groups to bring up services more quickly.
+* Use read-replica databases, where they are supported.
+* Provides a faster RTO, compared to Approach 1 since some services are pre-created, though incurs a higher cost.
 
-This approach differs from Approach 1 because some elements of the DR environment are built out, particularly networking services that have a longer lead time, which saves time if DR is called. This is a lower cost option compared to maintaining a full active and passive DR environment.
+This approach differs from Approach 1 because some elements of the DR environment are built out, particularly networking services that have a longer lead time. This helps reduce the RTO if DR is called. This is a lower cost option compared to maintaining a full active and passive DR environment.
 
-Considering the Infrastructure as Code (IaC) and IBM Cloud Schematics approach, elements such as the VPC are built out into the DR region. This includes the layout of the VPC networks and elements such as access control lists, security groups, and more. This increases overall operational overheads, since changes to the production environment must be rolled out to the DR environment to ensure consistency and problems with mis-configuration are not encountered if DR is called.
+Consider using Infrastructure as Code (IaC) to capture production infrastructure changes in a single source repository for accurate replication in the DR region. Use this code to deply elements such as the VPC into the DR region. This includes the layout of the VPC networks and elements such as access control lists, security groups, and more. This increases overall operational overheads, since changes to the production environment must be rolled out to the DR environment to ensure consistency and problems with mis-configuration are not encountered if DR is called.
 
-Optionally, single servers of each type that are used in the deployment can be provisioned, configured and shut down. Runtime costs are then avoided but there are charges made for any storage that's consumed. This approach can enable a faster RTO for some services, where instances can be switched on and then scaled using instance templating and autoscaling techniques.
+While calling for a slightly more complex IaC and scripting approach if fully automated, single servers of each type that are used in the deployment can be provisioned, configured and shut down. Runtime costs are then avoided but there are charges made for any storage that's consumed. This approach can enable a faster RTO for some services, where instances can be switched on and then scaled using instance templating and autoscaling techniques.
 
 To avoid delays associated with lead times, certain networking elements should be created. These include items such as Direct Link, which can have significant lead times, VPN connections, and global load balancers. While this adds to ongoing costs, it does reduce overall recovery times as configurations can be put in place to quickly re-route traffic to the new region, without needing to make connection changes at the client end.
 
-As before, VSI volumes should either be subject to cross-regional backup snapshots, file storage replication or configured with the Veeam backup agent or similar. Data might then be recovered to the VSIs that are created in the DR region.
+As before, to backup and replicate data which is written to block storage volumes or file storage, use Backup for VPC and store as cross-region backup snapshots and file storage replication in the first instance. Optionally, deploy and configure a Veeam agent on each server or a central Veeam Backup and Replication server or similar ‘bring your own’ backup software.  Depending on the chosen tool, devise a suitable backup or replication schedule. If you decide to use Veeam, write backup files to a IBM Cloud Object Storage bucket. The bucket should be cross-regional or, where compliance needs dictate, be configured for replication to another specified bucket hosted in a second region of choice.
 
-If IBM Cloud Databases are used for MySQL or IBM Cloud Databases for PostgreSQL, it’s possible to create a read-replica database in the region chosen for DR. A copy of the database is maintained automatically in the second region, which can be turned into a stand-alone copy in the event of a disaster. This provides a low RTO and typically, data loss is limited to 15 minutes through asynchronous replication.
+It’s possible to create a read-replica database in the region chosen for DR for certain IBM Cloud databases. A copy of the database is maintained automatically in the second region, which can be turned into a stand-alone copy in the event of a disaster. This provides a lower RTO and asynchronous replication from the production database will typically limit any transactional data loss to under 15 minutes.
 
-For other IBM Cloud Database services, backups must be restored to a new instance at the DR region. You can't apply backups to an existing instance in order to bring that up to date. It’s recommended that on-demand backups are taken in addition to the automatic daily backup and these can be scheduled as a job by using IBM Cloud Code Engine. IBM Cloud Databases for MongoDB can be configured with continuous backup, which is automated. Database restores can take a few hours, and the time taken increases with the size of the database. 
+For other IBM Cloud Database services, the last backup must be restored to a new instance at the DR region, noting that some database types will allow point-in-time recovery within the past 7 days. For databases that don't allow point-in-time recovery, it’s recommended that on-demand backups are taken in addition to the automatic daily backup and these can be scheduled as a job using, for example, IBM Cloud Code Engine. Database restores can take several hours or more, and the time taken increases with the size of the database.
 
-In each of these cases, data loss will depend on the time of the last available database backup.
+In each of these cases, data loss will depend on the time of the last available database backup, which could be up to 24 hours ago.
 
 ![Diagram depiting an example architecture for a basic standby DR solution](images/DRApproach2.png "Diagram depiting an example architecture for a basic standby DR solution"){: caption="Diagram depiting an example architecture for a basic standby DR solution" caption-side="bottom"}
 
@@ -131,9 +134,11 @@ Review the following sections covering general DR guidance for specific {{site.d
 
 Data that is stored in buckets should be periodically backed up to a second bucket location to protect against loss or corruption. This is a different use case to replication, since replication maintains the current state of a bucket, including deletions.
 
-To perform a bucket backup, the current method is to use `rclone` from a client computer. This can either be a local machine or a VSI based in the cloud. Both the source and the destination bucket must have public HMAC credentials configured.
+To perform a bucket backup, the current method is to use `rclone`. rclone creates a simple, point in time copy of the bucket. rclone itself is a program which needs to be run from a compute node of some kind, with network access to the source and destination bucket.  The compute node can either be a local machine or a VSI based in the cloud. Both the source and the destination bucket must have public HMAC credentials configured to enable rclone to connect.
 
-The backups are performed through the creation of a simple script, typically written in the python language. They can be run manually or set to automatically run through a job scheduler, such as cron.
+The backups are performed through the creation of a simple script, typically written in the python language. The script can be run manually on demand or set to automatically run through a job scheduler, such as cron.
+
+Further instructions can be found at: [Moving data between buckets](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-region-copy).
 
 ### Virtual Private Cloud
 {: #DRinVPC}
@@ -145,7 +150,7 @@ There are three ways to back up data within VPC, depending on storage type. Back
 
 VPC has a built-in service called Backup for VPC that's used to back up data on attached block storage volumes. This allows the user to create different backup policies based on different frequencies of backup. For example, static data will not need to be backed up at the same frequency to non-static data, which is likely to need several backups per day and so each data type will have a separate backup policy. Up to 10 backup policies can be created per region using Backup for VPC with up to four plans per policy, which can be edited or deleted as necessary.
 
-VPC backups are based on data snapshots. Each is a cumulative snapshot, meaning that a snapshot only contains the changes made to data since the snapshot before it. Therefore, when restoring, multiple snapshots may need to be recovered. Snapshots can be stored as cross-regional copies. When enabling cross-regional copies, it means that a volume can be can be created from the snapshots in a target region, so this can be used in a disaster recovery situation.
+VPC backups are based on data snapshots. Each is a cumulative snapshot, meaning that a snapshot only contains the changes made to data since the snapshot before it. Therefore, when restoring, multiple snapshots may need to be recovered. Snapshots can be stored as cross-regional copies, meaning that a copy of the snapshot is stored in a second region. When enabling cross-regional copies, it means that a volume can be can be created from the snapshots in a target region, so this can be used in a disaster recovery situation.
 
 Backup snapshots are taken at the volume level and both boot and data volumes can be targeted. A backup policy will have targets added to it and plans within policies can make backups more granular, with different backup points. The most granular backup point that can be defined is once per hour, via a cron expression.
 
@@ -170,7 +175,7 @@ An alternate recommended approach, where this is a larger deployment of VSIs, is
 ### VMware Services on IBM Cloud
 {: #VMwareonIBMCloud}
 
-IBM Cloud recommends the use of Veeam to back up VMware services on IBM Cloud. Veeam on IBM Cloud is offered as an add-on service for this purpose, although the Veeam on IBM Cloud serivce itself is operated via Veeam – in other words, it is essentially a third party service, supported directly by Veeam.
+IBM Cloud recommends the use of Veeam to back up VMware services on IBM Cloud. Veeam on IBM Cloud is offered as an add-on service for this purpose, although the Veeam on IBM Cloud serivce itself is operated via Veeam – in other words, it is a third party service, supported directly by Veeam.
 
 The service can be deployed on either a Bare Metal Server (the only choice for Regulated Workloads), a public Windows Server-based VSI or a Windows Server VM in the VMware management cluster.
 
@@ -181,11 +186,11 @@ VMware for vSsphere and VMware for vCenter environments can take some time to pr
 ### Container Services
 {: #ContainerServices}
 
-The approaches highlighted above largely concentrate on IBM Cloud VPC and IBM Cloud Databases For services. While many environments include both VPC and databases (and by extension, Bare Metal Servers and Classic Infrastructure) many others will be based around container services that include IBM Cloud Kubernetes Service (IKS) and Red Hat OpenShift on IBM Cloud.
+The approaches highlighted above largely concentrate on IBM Cloud VPC and IBM Cloud Databases For services. While many customer workloads include both VPC and databases (and by extension, Bare Metal Servers and Classic Infrastructure) many others will be based around container services that include IBM Cloud Kubernetes Service (IKS) and Red Hat OpenShift on IBM Cloud.
 
 In terms of cluster infrastructure, the four approaches discussed above generally hold, from having a zero DR footprint through to having active/active clusters. Care needs to be taken with storage choices though.
 
-Both IKS and Red Hat OpenShift on IBM Cloud can be configured with persistent and non-persistent storage. Non-persistent storage is storage that is effectively removed when the container, worker node or cluster is removed. When the storage is removed, the data that goes with it is lost as well, so disaster recovery does not concern itself with the recovery of non-persistent storage and related data.
+Both IKS and Red Hat OpenShift on IBM Cloud can be configured with persistent and non-persistent storage. Non-persistent storage is only used to store ephemeral data, so when non-persistent storage is lost, its data is not retained. Disaster recovery does not concern itself with the recovery of non-persistent storage for this reason.
 
 Persistent storage, on the other hand, is used for data that needs to exist and be kept beyond the lifespan of the container, worker node or cluster that it is attached to and so does come into the scope of disaster recovery.
 
@@ -193,16 +198,16 @@ The means to create DR recoverable copies of persistent data, depends on the typ
 
 | Type | Backup Strategy | Replcation Strategy | Suitable RTO/RPO |
 | --- | --- | --- | --- |
-| Classic File Storage (NFS) | Backup to Object Storage via a backup and restore pod | Bucket replication | RPO to point of last backuo and replication |
-| Classic Block Storage | Backup to Object Storage via a backup and restore pod | Bucket replication | RPO to point of last backuo and replication |
-| Object Storage |  | Bucket Replication or use a Cross-regional bucket | RPO to point of last replication |
-| Block Storage for VPC |	Use `kubectl cp` to copy files to Object Storage | Bucket Replication or use a Cross-regional bucket |	RPO to point of last backup & replication |
-| File Storage for VPC	| Use `kubectl cp` to copy files to Object Storage	| Bucket Replication or use a Cross-regional bucket	| RPO to point of last backup & replication |
-| Portworx (with DR recovery Plan) |	Asynchronous DR	| Clusters deployed in two regions, each with Portworx installation	| RPO up to 15 mins |
+| Classic File Storage (NFS) | Backup to Object Storage via a backup and restore pod | Bucket replication | RTO minutes to hours, RPO to point of last backup and replication |
+| Classic Block Storage | Backup to Object Storage via a backup and restore pod | Bucket replication | RTO minutes to hours, RPO to point of last backup and replication |
+| Object Storage |  | Bucket Replication or use a Cross-regional bucket | RTO minutes to hours, RPO to point of last replication |
+| Block Storage for VPC |	Use `kubectl cp` to copy files to Object Storage | Bucket Replication or use a Cross-regional bucket |	RTO minutes to hours, RPO to point of last backup & replication |
+| File Storage for VPC	| Use `kubectl cp` to copy files to Object Storage	| Bucket Replication or use a Cross-regional bucket	| RTO minutes to hours, RPO to point of last backup & replication |
+| Portworx (with DR recovery Plan) |	Asynchronous DR	| Clusters deployed in two regions, each with Portworx installation	| RTO minutes to hours, RPO up to 15 mins |
 | Portworx – PX-Backup |	Backup / recovery software |	Portworx only	 | Point of last backup & replication |
-|OADP - OpenShift Operator backup/recovery software |	Write backup to Object Storage bucket	Bucket | Replication or use a Cross-regional bucket |	Point of last backup & replication |
-| Valero – Open source tool for backup / recovery / DR for Kubernetes |	Write backup to Object Storage bucket |	Bucket Replication or use a Cross-regional bucket |	Point of last backup & replication |
-| Veeam (OpenShift ony)	| Write backup to Object Storage bucket |	Bucket Replication or use a Cross-regional bucket	| Point of last backup & replication |
+|OADP - OpenShift Operator backup/recovery software |	Write backup to Object Storage bucket	Bucket | Replication or use a Cross-regional bucket |	RTO minutes to hours, Point of last backup & replication |
+| Valero – Open source tool for backup / recovery / DR for Kubernetes |	Write backup to Object Storage bucket |	Bucket Replication or use a Cross-regional bucket |	RTO minutes to hours, Point of last backup & replication |
+| Veeam (OpenShift ony)	| Write backup to Object Storage bucket |	Bucket Replication or use a Cross-regional bucket	| RTO minutes to hours, Point of last backup & replication |
 {: caption="Backup and replication strategy by storage type" caption-side="top"}
 
 
@@ -219,17 +224,17 @@ To backup applications, users need to use the ‘backup’ custom resource withi
 
 Backups are automatically taken of IBM Cloud Databases once per day and are retained and available for 30 days thereafter, unless the database instance itself is deleted, in which case the backups are also removed.
 
-Backups are placed in a cross-regional Object Storage bucket, which enables them to be restored in a second region in the wider geo and even across accounts, if using the API and sufficient account access is granted. Note backups cannot be downloaded - if local copies are needed, then a database flavour specific backup tool is needed. To guard against malicious deletion of a database service, having a local backup is advisable.
+Backups are placed in a cross-regional Object Storage bucket, which enables them to be restored in any region (though not across compliance boundaries) and even across accounts, if using the API and sufficient account access is granted. Note backups cannot be downloaded - if local copies are needed, then a database flavour specific backup tool is needed. To guard against malicious deletion of a database service, having a local backup is advisable.
 
 Such backups provide ‘at the time of the backup’ restoration points. If a different restoration point is required (i.e. with less than up to 24 hours data loss), then ‘on demand’ backups can be taken either through the console or via CLI or API. Using the CLI or API means they can be scheduled using cron, for example.
 
-A few IBM Cloud Databases (MySQL, PostgreSQL, EnterpriseDB and MongoDB) also provide Point-in-Time recovery, meaning that they can be restored to a particular timestamp within the past 7 days.
+A few IBM Cloud Databases (including MySQL, PostgreSQL, EnterpriseDB and MongoDB) also provide Point-in-Time recovery, meaning that they can be restored to a particular timestamp within the past 7 days. These work by taking a full backup and then recording transactions that change the database, until the next full backup is taken. When a restore action is performed, the last full backup prior to the requested restore point is recovered and then recorded transactions are replayed on the data, up to the point in time specified.
 
 A point to remember with IBM Cloud database backups is that backups can only be restored by creating a new instance - you cannot have an existing instance and apply backups to it in a cumulative manner. The tine it takes to fully restore a database may range from minutes, to hours, even to days, depending on the amount of data that it stores. It's therefore important to test restores to have some indication as to how long the restore process might take, baring in mind, this may still only provide a rough indication, since restores can be affected by many different factors. If the restore process is longer than desired, then consider breaking the database down into several, smaller instances or taking other actions - such as purging old data - which has the effect of reducing the overall size of the database.
 
-Databases for PostgreSQL, EnterpriseDB and MySQL also support Read-only Replicas. These are replicated databases that are set up in a Master / Replica configuration where the master sends changes to the replica and those changes are applied to the replica instance asynchronously. Under normal operation, the replica can only be used for read transactions, so can support read-intensive operations, such as reporting. From a DR perspective, read-only replicas provide a means to fail over to a database instance at another location relatively quickly, with little or no data restores being necessary.
+A number of IBM Cloud Databases, including PostgreSQL, EnterpriseDB and MySQL, also support Read-only Replicas. These are replicated databases that are set up in a Master / Replica configuration where the master sends changes to the replica and those changes are applied to the replica instance asynchronously. Under normal operation, the replica can only be used for read transactions, so can support read-intensive operations, such as reporting. In a DR situation, a read-only replica can be promoted to a read-write, stand-alone instance, with and RTO/RPO of minutes. Once completed, client connection strings will need to be redirected to this instance.
 
-While loss of the database is one scenario to consider, another is corruption of the data it stores. Data corruption within databases can be caused by multiple means, inculding malfunctioning software, bad disks and even through the hands of users, whether accidental or deliberate. Sometimes this corruption can be quickly identified, other times, it may take a lot longer for a data problem to be spotted. Remember that if you rely solely on read-replica databases for disaster recovery, then it is likely the replica will also contain any data corruption, which may be difficult to reverse, if at all - so taking backups as well as having read-replicas is advised. It's therefore important to think about how data corruption might affect the databases your workloads rely on, and how to recover from that corruption. If the corruption is discovered quicky, then using database backups from a point in time before the corruption occured may be a way to recover. If the corruption is discovered more slowly, then other means of repair may need to be considered, such as scripting to directly fix data. The tactic deployed will usaully depend on factors such as potential for data loss.
+While loss of the database is one scenario to consider, another is corruption of the data it stores. Data corruption within databases can be caused by multiple means, inculding malfunctioning software, bad disks and even through the hands of users, whether accidental or deliberate. Sometimes this corruption can be quickly identified, other times, it may take a lot longer for a data problem to be spotted. Remember that if you rely solely on read-replica databases for disaster recovery, then it is likely the replica will also contain any data corruption, which may be difficult to reverse, if at all - so taking backups as well as having read-replicas is advised. It's therefore important to think about how data corruption might affect the databases your workloads rely on, and how to recover from that corruption. If the corruption is discovered quicky, then using database backups taken before the corruption occured may be a way to recover. If the corruption is discovered more slowly, then other means of repair may need to be considered, such as scripting to directly fix data. The tactic deployed will usaully depend on factors such as potential for data loss.
 
 ### IBM Cloudant
 {: #IBMCloudant}
