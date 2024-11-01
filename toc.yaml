@@ -16,7 +16,7 @@ toc:
       - topicgroup:
           label: What is high availability?
           topics:
-          - ha-considerations.md
+          - ha-understand.md
       - topicgroup:
           label: What is disaster recovery?
           topics:
@@ -25,7 +25,6 @@ toc:
           label: What is cyber resiliency?
           topics:
           - cyberresiliency-overview.md
-      - zero_downtime.md
       - topicgroup:
           label: Best practices
           topics:
