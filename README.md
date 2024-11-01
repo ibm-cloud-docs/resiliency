@@ -4,11 +4,14 @@
 
 As part of a broader goal to deliver resiliency as a key capability of IBM Cloud, the objective of this documentation workstream is to consolidate, update and enhance existing content into a new solution guide publication. 
 
+_Take note: For usage of Resiliency glossary terms, see [here](https://ibm.ent.box.com/notes/1667651992654?s=nwfybs96ktxilmfvqbfk2oolvxhje4he). Target date to update these in [Glossary Terms for IBM Cloud](https://cloud.ibm.com/docs/overview?topic=overview-glossary) is mid-Nov 2024._
+
+
 ## Team 
 
 **Authors**: James Belton, Powell Quiring, Balaji Viswanathan, Pradeep Kadiyala, Jennifer Glover, Ana Biazetti
 
-**Reviewers**: John Easton, Jenifer Schlotfeldt, Haley Anderson, Daisy Aye. (Also, authors should review each other's sections)
+**Reviewers**: John Easton, Jenifer Schlotfeldt, Haley Anderson, Addison Martin, Daisy Aye. (Also, authors should review each other's sections)
 
 **Approvers**:  Ana Biazetti, Fabio Benedetti
 
@@ -45,7 +48,7 @@ As of 2024-10-29:
 | 4.2.3 Planning for Cyber Resilience  |  ➡️ Responsible: @bviswana | Accountable | Consulted | Informed |
 | 4.3 Reference Architectures   |  ➡️ Responsible: @pkadiya  | Accountable | Consulted | Informed | 
 | 4.4 How to   |  ➡️ Responsible: @bviswana  | Accountable | Consulted | Informed | 
-| 4.5 Reference   |  ➡️ Responsible: Git issue owner  | Accountable | Consulted | Informed | 
+| 4.5 Reference   |  ➡️ Responsible: @pquiring  | Accountable | Consulted | Informed | 
 | 4.6 Help   |  ➡️ Responsible: Git issue owner  | Accountable | Consulted | Informed | 
 | 5. Review PRs  | Accountable: Git issue owner |  ➡️ Responsible: Tagged Reviewer(s)  | Consulted | Informed | 
 | **Solution Guide Docs Publishing** |---|---|---|---|---|
