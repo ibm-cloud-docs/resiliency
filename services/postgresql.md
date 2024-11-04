@@ -21,7 +21,10 @@ This service is a regional service that fulfills the defined [Service Level Obje
 
 ### High Availability Architecture
 {: #postgresql-high-availability-architecture}
-TODO add diagram
+
+![Architecture](images/postgresql-base.svg){: caption="Postgresql architecture" caption-side="bottom"}
+{: style="text-align: center;"}
+
 
 {{site.data.keyword.databases-for-postgresql}} provides replication, failover, and high-availability features to protect your databases and data from infrastructure maintenance, upgrades, and some failures. Deployments contain a cluster with two data **members** - leader and replica. The replica is kept up to date using asynchronous replication. A distributed consensus mechanism is used to maintain cluster state and handle failovers. If the leader becomes unreachable, the cluster initiates a failover, and the replica is promoted to leader and a new replica rejoins the cluster as a replica. The leader and replica will always be in different zones of an MZR. If the replica fails, a new replica created. If a zone failure results in a member failing the new replica will be created in a surviving zone.
 
@@ -65,10 +68,18 @@ While unlikely, it is possible that more than one replica might become unavailab
 Employing synchronous replication negatively impacts the performance of the database. Typically, a performant and effective way to employ this feature is by using it only on specific databases or workloads that require the highest degree of data durability available.
 {: .note}
 
-## Disaster recovery options
+## Disaster recovery
 {: #postgresql-disaster-recovery}
 
-The service supports the following disaster recovery features:
+The general strategy for disaster recovery to create a new database, like the `Restore` database below from a backup, point-in-time or read replica promotion as described below.
+
+![Architecture](images/postgresql-restore.svg){: caption="Postgresql architecture" caption-side="bottom"}
+{: style="text-align: center;"}
+
+## Disaster recovery options
+{: #postgresql-disaster-recovery-options}
+
+The service supports the following disaster recovery options:
 
 Feature | Description | Consideration
 -|-|-
@@ -103,7 +114,7 @@ Feature | RTO/RPO
 **Automatic failover** | RTO = minutes, RPO = minutes (TODO populate from test results)
 **Synchronous replication** | RTO = minutes, RPO = 0
 **Backup restore** | RTO is based on the size of data and is approximately 10min + 1min/10GB, RPO = time of last backup (TODO real numbers)
-**Point-in-time restore** | RTO 10min + 1min/10GB, RPO = 0  (TODO real numbers)
+**Point-in-time restore** | RTO 10min + 1min/10GB, RPO = 5 min  (TODO real numbers)
 **Promote read replica**| RTO = 10min, RPO = 1min
 
 ## Feature check list
