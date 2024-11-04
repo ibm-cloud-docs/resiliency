@@ -13,18 +13,9 @@ toc:
       id: overview
       topics:
       - resiliency-overview.md
-      - topicgroup:
-          label: What is high availability?
-          topics:
-          - ha-understand.md
-      - topicgroup:
-          label: What is disaster recovery?
-          topics:
-          - bcdr-understand.md
-      - topicgroup:
-          label: What is cyber resiliency?
-          topics:
-          - cyberresiliency-overview.md
+      - ha-understand.md
+      - bcdr-understand.md
+      - cyberresiliency-overview.md
       - topicgroup:
           label: Best practices
           topics:
@@ -101,6 +92,7 @@ toc:
           - services/postgresql.md
           - services/template.md
           - services/iam.md
+          - services/vpc.md
   - navgroup:
       id: help
       topics:

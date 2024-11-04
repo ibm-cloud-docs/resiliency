@@ -56,7 +56,7 @@ As of 2024-10-29:
  |  |  |  |  |  |
 | **Other Doc Deliverables** | **Authors**  | **Reviewers** | **Approvers** | **Stakeholders** |
  |  |  |  |  |  |
-| 7. IBM Cloud Glossary  | Powell Quiring | Haley Anderson | Jenifer Schlotfeldt | all others |  |
+| 7. IBM Cloud Glossary  | Powell Quiring | Haley Anderson Fabio Benedetti| Jenifer Schlotfeldt | all others |  |
 | 8. IBM Cloud Service-specific Resiliency docs  | Powell Quiring  | Fabio Benedetti | Andrew Hately | all others |  |
 | 9. DORA Guide  | Maureen Stanton | Ana Biazetti  | Anne Leslie | all others |  |  
  |  |  |  |  |  |
