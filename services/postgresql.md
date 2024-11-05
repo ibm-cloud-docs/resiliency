@@ -101,7 +101,9 @@ Disaster recovery steps must be practiced on a regular basis. When building your
 
 Failure | Resolution
 -|-
-Automatic failover | IBM provides a database that is resilient from hardware failures contained within a zone or an entire zone failure
+Hardware failure (single point) | IBM provides a database that is resilient from single point of hardware failure within a zone - no configuration required.
+Zone failure | **Automatic failover** (#postgresql-high-availability). The database members are distributed between zones. Configuring three members will provide additional resiliency to multiple zone failures.
+Zone failure | **Synchronous-replication** will reduce RPO at the expense of performance.
 Data corruption | [**Backup restore**](#postgresql-disaster-recovery). Use the restored database in production or for source data to correct the corruption in restored database.
 Data corruption | [**Point-in-time restore**](#postgresql-disaster-recovery). Use the restored database in production or for source data to correct the corruption in restored database.
 Regional failure | [**Backup restore**](#postgresql-disaster-recovery). Use the restored database in production
@@ -145,8 +147,7 @@ Disaster recovery steps must be practiced on a regular basis. The following chec
 
 ### Additional DR considerations
 
-Keep in mind that when a database is deleted the associated backups are deleted as well.
-It is not possible to copy backups off the {{site.data.keyword.cloud_notm}} so consider using the database specific tools for additional backup. It may be required to recover from malicious deletion/reclamation of a database. Carefully manage the IAM for critical resources. It may be possible to restore a database [using resource reclamations](/docs/account?topic=account-resource-reclamation)
+Keep in mind that when a database is deleted the associated backups are deleted as well. It is not possible to copy backups off the {{site.data.keyword.cloud_notm}} so consider using the database specific tools for additional backup. It may be required to recover from malicious deletion/reclamation of a database. Carefully manage the IAM for critical resources. It may be possible to restore a database [using resource reclamations](/docs/account?topic=account-resource-reclamation)
 
 ## IBM disaster recovery
 {: #postgresql-ibm-disaster-recovery}
