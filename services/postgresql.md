@@ -132,10 +132,11 @@ Disaster recovery steps must be practiced on a regular basis. The following chec
 - Verify that [synchronous replication](/todo) is configured.
 
 **Backup restore** 
-- Verify backups are available at desired frequency. Automated backups are created every 24 hours. Consider a script using [IBM Cloud® Code Engine - Working with the Periodic timer (cron) event producer](/docs/codeengine?topic=codeengine-subscribe-cron) to create additional on-demand backups to improve RPO if the size and criticality of the database.
-- There are some restrictions on database restore regions - verify your restore goals can be achieved by reading [Managing Cloud Databases backups](/docs/cloud-databases?topic=cloud-databases-dashboard-backups).
+- Verify backups are available at desired frequency to meet RPO requirements. [Managing Cloud Databases backups](/docs/cloud-databases?topic=cloud-databases-dashboard-backups) documents backup frequency. Consider a script using [IBM Cloud® Code Engine - Working with the Periodic timer (cron) event producer](/docs/codeengine?topic=codeengine-subscribe-cron) to create additional on-demand backups to improve RPO if the criticality and size of the database allow.
+- There are some restrictions on database restore regions - verify your restore goals can be achieved by reading [managing Cloud Databases backups](/docs/cloud-databases?topic=cloud-databases-dashboard-backups).
 - Verify the retention period of the backups meet your requirements.
 - Verify the RTO time for restoring a database is met - keeping in mind the size of the database will increase the restore time - consider breaking one large database in to multiple smaller ones and purging unused data.
+- Verify the Key Protect service ... yada yada - todo what needs to be done here?
 
 **Point-in-time restore**
 - Verify the procedures covered earlier.
