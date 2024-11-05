@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2024
-lastupdated: "2024-10-31"
+lastupdated: "2024-11-05"
 
 keywords: HA, DR, high availability, disaster recovery, disaster recovery plan, disaster event, recovery time objective, recovery point objective
 
@@ -10,149 +10,128 @@ subcollection: resiliency
 
 ---
 
+
+
 {{site.data.keyword.attribute-definition-list}}
 
-# template - Understanding high availability and disaster recovery
-{: #template-high-availability-disaster-recovery}
+# {{site.data.keyword.X}} - Understanding high availability and disaster recovery
+## High Availability
+{: #X-high-availability}
 
-Customer visible HA and DR concerns. How to configure for HA. What are the different kinds of disasters. How to recover from common failures and disasters. HA and DR planning and design considerations for workloads that consume this service.
+This service is a regional service that fulfills the defined [Service Level Objectives](/docs/resiliency?topic=resiliency-slo) with the **todo Standard** plan.
 
-Topics to cover:
-Customer
-- Single zone failure (if applicable) - restore to recovery zone
-- Regional failure - restore to recovery region
-- Service/instance failure - restore to new instance, perhaps in a recovery region
-- Disaster Data corruption - restore to new instance.
-- RTO/RPO within [Disaster recovery approaches within IBM Cloud](/docs/resiliency?topic=resiliency-dr-approaches):
-  - Zero footprint
-  - Basic standby
-  - Minimal operation
-- Configure for DR options
-- Reference to client retry logic
-- Reference to SLA verify it is correct
-- Reference to SLO verify it is correct
-- Configure for HA to meet SLA
+### High Availability Architecture
+{: #X-high-availability-architecture}
 
-IBM
-- IBM recovery from zone failure.
-- IBM recovery from region failure, restore from backups.
-- IBM updates the software with fixes and new features with minimal impact....
+![Architecture](images/X-base.svg){: caption="Postgresql architecture" caption-side="bottom"}
+{: style="text-align: center;"}
 
-Questions:
-- Provisioned by resource controller?  Seems interesting but is it getting into the entire dependency tree?
-   - do not cover dependencies
+todo description
 
-## Service High Availability
-{: #template-high-availability}
-
-This service is a regional service that fulfills the defined [Service Level Objectives](/docs/resiliency?topic=resiliency-slo) with the **Standard** plan.
-
-1. Active/Active. Modern architecture built in the cloud distributed evenly across 3 zones.  See Secrets Manager. Zonal failure will be covered here
-
-The service is provisioned across three zones in a multi-zone region with no single point of failure and is resilient in the event of a zonal failure. API requests are routed through a global load balancer to three HA instance nodes each in a different availability zone.
-
-In the event of a HA instance node or availability zone failure, the service will continue to run with API requests being routed through a global load balancer to the surviving HA instance nodes. There may be a short period of time (seconds) between the outage and the global load balancer recognizing the failure, during which time, requests may be sent to the failed instance.
-
-Workloads that programmatically access the service instance should follow the [client availability retry logic](/docs/doesnotexist) to maintain availability.
-
-IBM Cloud will resolve the outage and when the zone comes back on-line, the global load balancer will resume sending API requests to the restored instance node without need for customer action. 
-
-`A simple description of the underlying architecture that explains HA. It may fall into a few types:`
+### High Availability Options
+{: #X-high-availability-options}
 
 
-1. Active/Passive. Along with an active node a hot standby is available to take over and switched to when a problem is detected. Software is deployed by first updating the standby and failing over. The new standby can then be updated. Active and standby are in different zone to ensure availability in a zone failure. Some services support two standbys allowing two simultaneous zone failures.
 
-## Customer High Availability - HA
-{: #template-customer-high-availability}
+High availability features
+Feature | Description | Consideration
+--|--|--
+option-1 | todo minor configuraion that changes availability | watch out for todo
+**feature-1** | configuration that effects availability that requires additional discussion | watch out for todo
 
-Optional section describing configuration requirements for reaching levels of HA.
-
-1. Zonal
-High availability is achieved for an individual instance at the zonal level by removing single point of failure where possible including:
-- power
-- networking connectivity
-- ?
-
-To achieve high availability it is up to customers to create a workload from the zonal components distributed over multiple zones using a load balancer or other description.
-
-## Customer Disaster Recovery - DR
-{: #template-customer-disaster-recovery-dr}
-
-TODO REMOVE: Things to cover in the sections below
-- Customer recover from zonal failure. could be detailed like VPC block storage, or could be just a note like ICD - see HA above
-- Customer recover from regional failure
-- Customer recover from service failure may be same as regional failure
-- Customer recover from data corruption
-- Customer recovery from BYOK loss this was covered in Secrets Manager is it a general problem
-
-### Customer disaster definition
-{: #template-customer-disaster-definition}
-
-A disaster of an instance can be due to:
-- Data corruption.
-- Service becomes unavailable.
-- Regional disaster.
-
-### Customer disaster planning
-{: #template-customer-disaster-planning}
-
-To recover from a service instance outage a recovery service instance should be created in a recovery region. The recovery service instance should be configured with same data as the source service instance.
-
-The recovery instance should align with the workload [disaster recovery approaches within IBM Cloud](https://test.cloud.ibm.com/docs/resiliency?topic=resiliency-dr-approaches)
-
-**Zero Footprint** -
-Restore from backups ...
-- RTO ...
-- RPO ...
-
-**Basic Standby** - 
-...
-- RTO ...
-- RPO ...
-
-**Minimal Operation** - Create a [read-only replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) for cross-regional failover. [Promote the read-only replica](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas&interface=ui#promoting-read-only-replica) to recover from a disaster.
-- RTO - few minutes
-- RPO - few minutes
-
-**Active/Active**
-Data in postgreSQL can be lost due to bugs in software, accidental or malicious operations. See **Active/Nothing** above for recovery. If only a portion of the database has been corrupted consider using the newly created database instance to harvest the corrupted data.
+todo Optional details describing how the options and features work.
 
 
-### Customer disaster recovery
-{: #template-customer-disaster-recovery}
+#### Optional feature-1
+{: #X-feature-1}
 
-This service instance may have customer created dependencies on these optional services, make sure these exist in the recovered region:
-- {{site.data.keyword.keymanagementservicefull}}
-- {{site.data.keyword.hscrypto}}
+todo description
 
-In the event of a customer declared disaster in the primary instance the service in the recovery region will be used (Minimal Operation) or the created (Zero Footprint). Redirect your workload components to the recovered instance or optionally insert into the retry logic to redirect requests to the second instance (Minimal Operation). 
+
+## Disaster recovery
+{: #X-disaster-recovery}
+
+todo general info
+
+![Architecture](images/X-restore.svg){: caption="X disaster recovery" caption-side="bottom"}
+{: style="text-align: center;"}
+
+## Disaster recovery options
+{: #X-disaster-recovery-options}
+
+The service supports the following disaster recovery options:
+
+Feature | Description | Consideration
+-|-|-
+**Feature-2** | todo description of feature-1 | watch out
+**Feature-3** | todo description of feature-2 | watch out
+
+### How to use the options for business continuity
+{:-#X-how-to-use-the-options-for-business-continuity)
+
+Todo description
+
+Disaster recovery steps must be practiced on a regular basis. When building your plan consider the following failure scenarios and resolution.
+
+Failure | Resolution
+-|-
+Hardware failure (single point) | todo IBM provides a database that is resilient from single point of hardware failure within a zone - no configuration required.
+Zone failure | **feature-1**. todo feature-1 yada yada
+Data corruption | **feature-2**. todo feature-2 yada yada
+Regional failure | **feature-3** todo feature-3 yada yada
+
+### Feature RTO/RPO
+
+Each feature covered above has a related RTO/RPO time as discussed below.
+
+Feature | RTO/RPO
+-|-
+**feature-1** | RTO = x minutes, RPO = y seconds (todo if HA populate from test results)
+**feature-2** | RTO = todo 10 min + 1min/10GB, RPO = todo maybe time of last backup
+**feature-3** | RTO = todo 10 min + 1min/10GB, RPO = todo maybe time of last backup
+
+### Feature check list
+
+Disaster recovery steps must be practiced on a regular basis. The following check list can help you create and practice your plan.
+
+**feature-1** - todo simple feature see: [Todo how to turn on feature](/docs/todo)
+
+**feature-2** 
+- todo See dependent service configured in recovery region
+- todo See [ backups available](/service/backuphistory)
+
+**feature-3** 
+- todo step 1 
+- todo step 2 
+- todo step 3 
+
+### Additional DR considerations
+
+todo anything not covered above, mabye entire resource deleted. When a servicxe instance is deleted the associated backups are deleted as well. It is not possible to copy backups off the {{site.data.keyword.cloud_notm}} so consider using the database specific tools for additional backup. It may be required to recover from malicious deletion/reclamation of a database. Carefully manage the IAM for critical resources. It may be possible to restore the service instance [using resource reclamations](/docs/account?topic=account-resource-reclamation)
 
 ## IBM disaster recovery
-{: #template-ibm-disaster-recovery}
+{: #X-ibm-disaster-recovery}
 
 ### IBM recovery from zone failure 
-{: #template-ibm-recovery-from-zone-failure}
+{: #X-ibm-recovery-from-zone-failure}
+
+todo What does IBM do when a zone goes down and comes back up?
 
 ### IBM recovery from regional failure
-{: #template-ibm-recovery-from-regional-failure}
+{: #X-ibm-recovery-from-regional-failure}
 
-After a regional failure IBM will attempt to restore the service instance with the same connection strings from the last state in internal persistent storage.
-- RTO - TODO
-- RPO - TODO
+todo After a regional has failed and has then been restored IBM will attempt to restore the service instance in the same region with the same connection strings from the last state in internal persistent storage.
+- RTO - todo
+- RPO - todo
 
-It may not be possible for IBM to restore the service instance, and it will be required for the customer restore the database - see [customer disaster recovery](#template-customer-disaster-recovery)
+In the event that IBM can not restore the database, the customer must restore the database using one of the disaster recovery features described above.
 
 ## IBM Service Maintenance
-{: #template-ibm-service-maintenance}
+{: #X-ibm-service-maintenance}
 
-All upgrades follow the IBM service best practices and have a recovery plan and rollback process in-place. Regular upgrades for new features and maintenance occur as part of normal operations. Such maintenance can occasionally cause short interruption intervals that will be handled by [client availability retry logic](/docs/doesnotexist) within client applications. Changes are initially rolled out sequentially on a region-by-region basis.
+todo All upgrades follow the IBM service best practices and have a recovery plan and rollback process in-place. Regular upgrades for new features and maintenance occur as part of normal operations. Such maintenance can occasionally cause short interruption intervals that will be handled by [client availability retry logic](/docs/doesnotexist) within client applications. Changes are initially rolled out sequentially on a region-by-region basis.
 
-ADD THIS IF APPROPRIATE:
 Complex changes are enabled/disabled with feature flags to control exposure.
+- todo is this true?  Do a number of changes get dropped in from the X open source?
 
 Changes that impact customer workloads will be described by notifications. See [monitoring notifications and status](/docs/account?topic=account-viewing-cloud-status) for planned maintenance, announcements, and release notes that impact this service.
-
-## TODO Issues to resolve in this template
-
-Customer recovery from BYOK loss -  this was covered in Secrets Manager is it a general problem?
-Term to use for a service instance: service instance, cluster, resource
