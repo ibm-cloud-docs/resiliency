@@ -124,17 +124,21 @@ Feature | RTO/RPO
 Disaster recovery steps must be practiced on a regular basis. The following check list can help you create and practice your plan.
 
 **Automatic failover** - Use monitoring to detect failover with lag or failover failure, Todo get description from team.
+
 **Synchronous replication**
 - Verify the [member count](/not-fount-yet) is set to three.
 - Verify that [synchronous replication](/todo) is configured.
+
 **Backup restore** 
 - Verify backups are available at desired frequency. Automated backups are created every 24 hours. Consider a script using [IBM Cloud® Code Engine - Working with the Periodic timer (cron) event producer](/docs/codeengine?topic=codeengine-subscribe-cron) to create additional on-demand backups to improve RPO if the size and criticality of the database.
 - There are some restrictions on database restore regions - verify your restore goals can be achieved by reading [Managing Cloud Databases backups](/docs/cloud-databases?topic=cloud-databases-dashboard-backups).
 - Verify the retention period of the backups meet your requirements.
 - Verify the RTO time for restoring a database is met - keeping in mind the size of the database will increase the restore time - consider breaking one large database in to multiple smaller ones and purging unused data.
+
 **Point-in-time restore**
 - Verify the procedures covered earlier.
 - Verify desired backup is in the window.
+
 **Promote read replica** 
 - Verify that a read replica exists in the recovery region.
 - Practice the promotion process - create a temporary read replica in the desired region. The temporary replica can be promoted to read/write and some testing performed with little impact to production.
@@ -142,7 +146,7 @@ Disaster recovery steps must be practiced on a regular basis. The following chec
 ### Additional DR considerations
 
 Keep in mind that when a database is deleted the associated backups are deleted as well.
-It is not possible to copy backups off the {{site.data.keyword.cloud_notm}} so consider using the database specific tools for additional backup. It may be required to recover from malicious deletion/reclamation of a database. Carefully manage the IAM for critical resources. It may be possible to restore a database [using resource reclamations](/docs/account?topic=account-resource-reclamation&interface=cli)
+It is not possible to copy backups off the {{site.data.keyword.cloud_notm}} so consider using the database specific tools for additional backup. It may be required to recover from malicious deletion/reclamation of a database. Carefully manage the IAM for critical resources. It may be possible to restore a database [using resource reclamations](/docs/account?topic=account-resource-reclamation)
 
 ## IBM disaster recovery
 {: #postgresql-ibm-disaster-recovery}
