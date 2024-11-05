@@ -30,7 +30,8 @@ toc:
       - topicgroup:
           label: Designing for HA
           topics:
-          - bcdr-plan.md
+          - ha-redundancy.md
+          - ha-appconfig.md
       - topicgroup:
           label: Designing for DR
           topics:

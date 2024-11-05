@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-10-31"
+lastupdated: "2024-11-05"
 
 keywords: disaster recovery, DR, what is disaster recovery, DR strategy, disaster recovery options, disaster recovery strategy
 
@@ -101,6 +101,7 @@ There are many options to implement DR solutions. For the sake of simplicity, we
 
 Zero Footprint
 :   Zero Footprint sees the full application stack active in one location, with the ability to recover the application stack in another location but where nothing at all is built-out. In practice, this means helping ensure that all backups are available in the second location for recovery and should there be a situation where disaster strikes, all services are provisioned (preferably from Terraform templates or similar) from the ground up before backups are applied. While this is the least-cost approach, it is only suitable where RTO and RPO objectives are at least several hours in length, due to the time it would take to provision and configure services.
+
 
 Basic Standby
 :   Basic Standby options are based on keeping the full application stack active in one location, while another application stack is deployed in a different location but kept idle or shut down. In the case of prolonged unavailability of the primary site, the application stack is activated in the backup site. Often that requires the restoring of backups that are taken in the primary site. This approach may not use continuous data replication, so is not recommended if recovery to the point of last backup (which may be some hours behind a disaster) is not appropriate for the workload - for example when the RPO is less than a few hours. It may also take some time to instantiate and recover the services when using this model, so if  the availability of the service is critical and the RTO objective is less than a few hours, this approach may not be optimal.
