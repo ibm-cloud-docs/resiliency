@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2024
-lastupdated: "2024-11-04"
+lastupdated: "2024-11-05"
 
 keywords: HA, DR, high availability, disaster recovery, disaster recovery plan, disaster event, recovery time objective, recovery point objective
 
@@ -83,11 +83,11 @@ The service supports the following disaster recovery options:
 
 Feature | Description | Consideration
 -|-|-
-**Backup restore** | Create database from previously created backup, see [Managing Cloud Databases backups](https://cloud.ibm.com/docs/cloud-databases?topic=cloud-databases-dashboard-backups). | New connection strings for the restored database must be referenced throughout workload.
+**Backup restore** | Create database from previously created backup, see [Managing Cloud Databases backups](/docs/cloud-databases?topic=cloud-databases-dashboard-backups). | New connection strings for the restored database must be referenced throughout workload.
 **Point-in-time restore** | Create database from the live production using [point-in-time recovery](/docs/databases-for-postgresql?topic=databases-for-postgresql-pitr) | Only possible if the active database is available and the RPO (disaster) falls within the supported window. Not useful if production cluster is unavailable.New connection strings for the restored database must be referenced throughout workload. 
 **Promote read replica** | Create a [read-only replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) when planning for a disaster in the same or remote region. [Promote the read-only replica](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas&interface=ui#promoting-read-only-replica) to recover from a disaster. | Previously created read replica must be available. New connection strings for the restored database must be referenced for throughout workload. 
 
-## How to use the options for business continuity
+### How to use the options for business continuity
 
 When restoring a database from backups or using point-in-time restore a new database is created with new connection strings. Existing workloads and processes will need to be adjusted to consume the new connection strings. Promoting a read replica to a cluster will have similar impact - although existing read-only portions of the workload will not be impacted.
 
@@ -107,7 +107,9 @@ Data corruption | [**Point-in-time restore**](#postgresql-disaster-recovery). Us
 Regional failure | [**Backup restore**](#postgresql-disaster-recovery). Use the restored database in production
 Regional failure | [**Promote read replica**](#postgresql-disaster-recovery). Promote a read-only replica to a read/write database. Use the restored database in production
 
-## Feature RTO/RPO
+### Feature RTO/RPO
+
+Each feature covered above has a related RTO/RPO time as discussed below.
 
 Feature | RTO/RPO
 -|-
@@ -117,17 +119,30 @@ Feature | RTO/RPO
 **Point-in-time restore** | RTO 10min + 1min/10GB, RPO = 5 min  (TODO real numbers)
 **Promote read replica**| RTO = 10min, RPO = 1min
 
-## Feature check list
+### Feature check list
 
 Disaster recovery steps must be practiced on a regular basis. The following check list can help you create and practice your plan.
 
-Feature | Description
--|-
-**Automatic failover** | Use monitoring to detect failover with lag or failover failure, Todo get description from team.
-**Synchronous replication** | Verify the [member count](/not-fount-yet) is set to three. Verify that [synchronous replication](/todo) is configured.
-**Backup restore** | Verify backups are available at desired frequency. Automated backups are created every 24 hours. Consider a script using [IBM Cloud® Code Engine - Working with the Periodic timer (cron) event producer](/docs/codeengine?topic=codeengine-subscribe-cron) to produce on-demand backups to improve RPO. For the [SC-MZR](todo) todo special steps required
-**Point-in-time restore** | Verify the procedure
-**Promote read replica** | Create a temporary additional read replica to simulate the promotion process.
+**Automatic failover** - Use monitoring to detect failover with lag or failover failure, Todo get description from team.
+**Synchronous replication**
+- Verify the [member count](/not-fount-yet) is set to three.
+- Verify that [synchronous replication](/todo) is configured.
+**Backup restore** 
+- Verify backups are available at desired frequency. Automated backups are created every 24 hours. Consider a script using [IBM Cloud® Code Engine - Working with the Periodic timer (cron) event producer](/docs/codeengine?topic=codeengine-subscribe-cron) to create additional on-demand backups to improve RPO if the size and criticality of the database.
+- There are some restrictions on database restore regions - verify your restore goals can be achieved by reading [Managing Cloud Databases backups](/docs/cloud-databases?topic=cloud-databases-dashboard-backups).
+- Verify the retention period of the backups meet your requirements.
+- Verify the RTO time for restoring a database is met - keeping in mind the size of the database will increase the restore time - consider breaking one large database in to multiple smaller ones and purging unused data.
+**Point-in-time restore**
+- Verify the procedures covered earlier.
+- Verify desired backup is in the window.
+**Promote read replica** 
+- Verify that a read replica exists in the recovery region.
+- Practice the promotion process - create a temporary read replica in the desired region. The temporary replica can be promoted to read/write and some testing performed with little impact to production.
+
+### Additional DR considerations
+
+Keep in mind that when a database is deleted the associated backups are deleted as well.
+It is not possible to copy backups off the {{site.data.keyword.cloud_notm}} so consider using the database specific tools for additional backup. It may be required to recover from malicious deletion/reclamation of a database. Carefully manage the IAM for critical resources. It may be possible to restore a database [using resource reclamations](/docs/account?topic=account-resource-reclamation&interface=cli)
 
 ## IBM disaster recovery
 {: #postgresql-ibm-disaster-recovery}
@@ -196,3 +211,13 @@ There is a period of up to 15 seconds where reconnections can fail. At times, un
 {: #ha-recovery-sla}
 
 {{site.data.keyword.databases-for-postgresql}} deployments conform to the {{site.data.keyword.cloud_notm}} Databases [High availability, Disaster recovery, and Service Level Agreement (SLA)](/docs/cloud-databases?topic=cloud-databases-ha-dr) information and terms.
+
+## General DR Guidance
+
+Backups are placed in a cross-regional Object Storage bucket, which enables them to be restored in any region (though not across compliance boundaries) and even across accounts, if using the API and sufficient account access is granted.
+
+A point to remember with IBM Cloud database backups is that backups can only be restored by creating a new instance - you cannot have an existing instance and apply backups to it in a cumulative manner. The tine it takes to fully restore a database may range from minutes, to hours, even to days, depending on the amount of data that it stores. It's therefore important to test restores to have some indication as to how long the restore process might take, baring in mind, this may still only provide a rough indication, since restores can be affected by many different factors. If the restore process is longer than desired, then consider breaking the database down into several, smaller instances or taking other actions - such as purging old data - which has the effect of reducing the overall size of the database.
+
+A number of IBM Cloud Databases, including PostgreSQL, EnterpriseDB and MySQL, also support Read-only Replicas. These are replicated databases that are set up in a Master / Replica configuration where the master sends changes to the replica and those changes are applied to the replica instance asynchronously. Under normal operation, the replica can only be used for read transactions, so can support read-intensive operations, such as reporting. In a DR situation, a read-only replica can be promoted to a read-write, stand-alone instance, with and RTO/RPO of minutes. Once completed, client connection strings will need to be redirected to this instance.
+
+While loss of the database is one scenario to consider, another is corruption of the data it stores. Data corruption within databases can be caused by multiple means, inculding malfunctioning software, bad disks and even through the hands of users, whether accidental or deliberate. Sometimes this corruption can be quickly identified, other times, it may take a lot longer for a data problem to be spotted. Remember that if you rely solely on read-replica databases for disaster recovery, then it is likely the replica will also contain any data corruption, which may be difficult to reverse, if at all - so taking backups as well as having read-replicas is advised. It's therefore important to think about how data corruption might affect the databases your workloads rely on, and how to recover from that corruption. If the corruption is discovered quicky, then using database backups taken before the corruption occured may be a way to recover. If the corruption is discovered more slowly, then other means of repair may need to be considered, such as scripting to directly fix data. The tactic deployed will usaully depend on factors such as potential for data loss.

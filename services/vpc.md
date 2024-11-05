@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2024
-lastupdated: "2024-11-04"
+lastupdated: "2024-11-05"
 
 keywords: HA, DR, high availability, disaster recovery, disaster recovery plan, disaster event, recovery time objective, recovery point objective
 
@@ -42,10 +42,15 @@ Questions:
 - Provisioned by resource controller?  Seems interesting but is it getting into the entire dependency tree?
    - do not cover dependencies
 
-## Service High Availability
+## Service High Availability - VPC Zonal 
 {: #vpc-high-availability}
 
-This service is a regional service that fulfills the defined [Service Level Objectives](/docs/resiliency?topic=resiliency-slo) with the **Standard** plan.
+This service manages zonal network resources like subnets, Access Control Lists (ACLs), security groups, network interfaces and connects them to zonal compute resources like Virtual Server Instances (VSIs) and bare metal instances, block storage. There are also zonal highly available services like VPN and File Storage.
+
+A customer can design a workload that is highly available to a zone failure in an MZR using zonal resources by leveraging regional resources like load balancers. Zone layout in an MZR and redundancy descriptions are captured in [IBM Cloud region and data center locations for resource deployment](https://cloud.ibm.com/docs/overview?topic=overview-locations)
+
+These zonal services are not
+is a regional service that fulfills the defined [Service Level Objectives](/docs/resiliency?topic=resiliency-slo) with the **Standard** plan.
 
 1. Active/Active. Modern architecture built in the cloud distributed evenly across 3 zones.  See Secrets Manager. Zonal failure will be covered here
 
