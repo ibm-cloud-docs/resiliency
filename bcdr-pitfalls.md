@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-10-23"
+lastupdated: "2024-11-05"
 
 keywords: DR for IBM Cloud, disaster recovery, common mistakes for disaster recovery, plan a disaster recovery strategy
 
@@ -61,7 +61,7 @@ By following these steps and regularly reviewing and updating the disaster recov
 To ensure that your plans provide the results that you require in the event of a disaster, be aware of the following common disaster recovery pitfalls when planning your solution.
 
 
-### Plan and design for the “best conditions”
+### Planning and designing for the “best conditions”
 {: #best-conditions}
 
 It is important that the solution and the testing methodology are planned and designed to mimic what the real conditions might be.
@@ -71,7 +71,7 @@ A DR plan is a set of policies, tools, and procedures that enable organizations 
 Also, avoid reusing dismissed production components or lower grade and quality assets to build the DR solution, since it will affect the reliability of the solution. The amount of time that this solution needs to manage production is not predictable, and this variable introduces more risks.
 
 
-### Avoiding single-point-of-failure (SPOF)
+### Only considering technical single-points-of-failure (SPOF)
 {: #spof}
 
 SPOF can be anywhere in a solution, not only on the technology side. Your solution might depend on people, vendors, providers, and other external dependencies. You must know and identify clearly in advance most of your SPOFs and have a plan to mitigate your dependencies. Be prepared to discover SPOFs during the first sessions of your [disaster recovery test](/docs/overview?topic=overview-dr-testing).
@@ -151,62 +151,3 @@ There’s an additional need to consider the failback position once the dust has
 * how should failback be enabled to create as little further disturbance to users as possible?
 
 Whether failback is enacted or not, the DR provision will need to be recreated or reset, so the activities required to do this need to be considered.
-
-## Key {{site.data.keyword.cloud_notm}} services that help facilitate DR
-{: #KeyServicesTitle}
-
-There are a number of {{site.data.keyword.cloud_notm}} services which can be used to facilitate a disaster recovery provision and to enact the plan, if needed. In this section, we explore some of them.
-
-### {{site.data.keyword.cos_full_notm}}
-{: #KeyServicesCOS}
-
-Key to DR is the ability to recover data and key to recovering data is being able to retrieve it in the DR region. For many {{site.data.keyword.cloud_notm}} services, Object Storage is used to make data, particularly backups and snapshots, available in secondary regions, using either a cross-regional bucket or a replicated bucket.
-
-Everything that is stored in {{site.data.keyword.cos_full_notm}} is highly resilient by being stored in three locations, to a degree based on the bucket type and its related data dispersal type. Single site buckets have data dispersed in three locations in a data center. Regional buckets have data dispersed over the region’s three zones. Cross-region buckets have data dispersed over regions in the geo.
-
-Cross-region buckets offer the simplest choice for disaster recovery and are available as follows:
-
-* ap-geo – Asia Pacific (Japan, Australia)
-* us-geo – North America (USA, Canada)
-* eu-geo – Europe (UK, Germany, Spain)
-
-When addressing a cross-region bucket, a tethered endpoint will keep all data ingress and egress within a specified region, while still distributing the data. However, this does not provide an automated failover if the tethered region fails. Therefore, it’s important to connect services to your buckets using an endpoint that will be available in the region where it’s needed.
-
-Cross Region buckets may not suitable for all users with regulatory compliance concerns. Take for example a US based organization that cannot store data in Canada, or a European-based one that cannot store data outside of the European Union - in the UK, for example.
-
-In these cases, bucket replication offers a solution. Here, objects from a specified source bucket are replicated on write to a specified target bucket, with eventual consistency (asynchronous replication). Replication must be set up and managed by the user but using this method, users can control the location(s) of the data and its sovereignty.
-
-Versioning is a requirement for bucket replication, so buckets that are configured with an immutable object storage policy cannot be replicated.  Server-side encryption with customer-provided keys is not supported. Where server-side encryption is required, Key Protect must be used.
-
-### {{site.data.keyword.bplong_notm}}
-{: #KeyServicesSchematics}
-
-Automation can play a important role in deploying or recovering an environment quickly and accurately. Customers that automate large parts of their deployments through Infrastructure as Code (IaC), Configuration as Code and deployment Toochains, are likely to recover workloads faster than those that do not becasue they will be more accurate representations of the lost environment. Using automation will also enable you to react faster to unexpected disaster scenarios, especially if you need to create and configure services on-demand, perhaps even in a different region from that at first planned.
-
-{{site.data.keyword.bpshort}} is a key service that can play an important part in any disaster recovery strategy. {{site.data.keyword.bpshort}} provides the ability to deploy infrastructure and services quickly and consistently though IaC, via Terraform, Ansible, Helm and OpenShift Operators.
-
-Codifying the environment means that it can be quickly provisioned and configured in any {{site.data.keyword.cloud_notm}} region. Terraform and Ansible can be used to provision services including servers, storage, networking and databases. They can also be used to configure the services, as can Helm and Operators.
-
-IaC source will need to be maintained and version controlled in the same manner as any other application code and stored in such a way that it is available to multiple regions. It’s recommended that a Git-based code repository is used.
-
-As with any code, it is best practice not to hard-code elements, such as regions or zone names and instead use variables, which can be resolved through the Schematics interface.
-
-Employing DevOps toochains can automate a lot of the environment build too – including configuration - so it is worth investing time in considering how these tools can be used.
-
-
-### Deployable Architectures
-{: #KeyServicesDeployableArchitectures}
-
-{{site.data.keyword.cloud_notm}} now provides a number of deployable architectures. A deployable architecture is a preconfigured set of IaC assets that are based on the {{site.data.keyword.cloud_notm}} for Financial Services reference architecture and so enable customers to follow the best practices of the {{site.data.keyword.cloud_notm}} Framework for Financial Services. Again, using a deployable architecture provides a means to accurately deploy the same architecture into different regions, so may represent a good starting point, especially since they can be customised. When customising,  care must be taken to ensure that any customisations are maintained throughout each deployment.
-
-From a disaster recovery point of view, when using a deployable architecture, the customer is responsible for:
-
-* provisioning disaster recovery environments, including any dependencies
-* data and configuration backup
-* replicating that data and configuration to the disaster recovery environment,
-* managing any failover operations.
-
-### {{site.data.keyword.codeenginefull_notm}}
-{: #KeyServicesCodeEngine}
-
-While Code Engine can be used to deploy containerised workloads quickly – meaning it could be employed to quickly recover certain containerized applications without the need to rebuild an entire OpenShift or {{site.data.keyword.cloud_notm}} Kubernetes cluster - it can also be used to configure and run jobs, such as triggering database or server backups.

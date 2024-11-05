@@ -124,4 +124,6 @@ This approach basically means running two deployments, each of which is active. 
 
 Managing changing application data is the most complex consideration with this approach. Where databases are used, a true active/active deployment has databases that are read and writable in two regions. In order to keep both copies in sync, the customer application must manage and ensure writes are successfull to both database instances.
 
+Strictly speaking, this isn't really an approach to disaster recovery - rather it's an approach to ensuring high availability where an IBM Cloud region is removed as a possibe single point of failure. However, in the event of a failure, measures are needed to ensure that services scale quicky and workloads recognise that one region is unavialable and switch to use services in the remaining region.
+
 ![Diagram depicting an example architecture for an Active/Active solution](images/DRApproach4.png "Diagram depicting an example architecture for an Active/Active solution"){: caption="Diagram depicting an example architecture for an Active/Active solution" caption-side="bottom"}
