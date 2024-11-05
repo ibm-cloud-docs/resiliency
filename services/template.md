@@ -14,7 +14,9 @@ subcollection: resiliency
 
 {{site.data.keyword.attribute-definition-list}}
 
-# {{site.data.keyword.X}} - Understanding high availability and disaster recovery
+# Template - Understanding high availability and disaster recovery
+
+
 ## High Availability
 {: #X-high-availability}
 
