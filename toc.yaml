@@ -49,10 +49,6 @@ toc:
           topics:
           - data-residency.md
   - navgroup:
-      id: architecture
-      topics:
-      - resiliency-arch.md
-  - navgroup:
       id: howto
       topics:
       - topicgroup:
@@ -67,6 +63,10 @@ toc:
           label: Deploying scalable and resilient apps
           topics:
           - topic5.md
+  - navgroup:
+      id: architecture
+      topics:
+      - resiliency-arch.md
   - navgroup:
       id: reference
       topics:
