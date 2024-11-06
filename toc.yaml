@@ -98,4 +98,5 @@ toc:
       id: help
       topics:
       - faqs.md
+      - bcdr-faq.md
       - get-help.md
