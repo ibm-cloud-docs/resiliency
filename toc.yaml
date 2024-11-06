@@ -24,10 +24,6 @@ toc:
       id: plan
       topics:
       - topicgroup:
-          label: Designing for resiliency
-          topics:
-          - topic2.md
-      - topicgroup:
           label: Designing for HA
           topics:
           - ha-redundancy.md
@@ -41,14 +37,7 @@ toc:
           label: Designing for cyber resiliency
           topics:
           - cyberresiliency-plan.md
-      - topicgroup:
-          label: Planning for operational resiliency
-          topics:
-          - topic2.md
-      - topicgroup:
-          label: Data residency
-          topics:
-          - data-residency.md
+      - data-resiliency.md
   - navgroup:
       id: howto
       topics:
@@ -60,10 +49,6 @@ toc:
           label: Chaos Testing
           topics:
           - chaos-engineering.md
-      - topicgroup:
-          label: Deploying scalable and resilient apps
-          topics:
-          - topic5.md
   - navgroup:
       id: architecture
       topics:

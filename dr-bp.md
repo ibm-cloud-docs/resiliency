@@ -2,9 +2,9 @@
 
 copyright:
   years: 2018, 2024
-lastupdated: "2024-11-05"
+lastupdated: "2024-11-06"
 
-keywords: DR, high availability, disaster recovery, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
+keywords: resiliency, DR, high availability, disaster recovery, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
 subcollection: resiliency
 
@@ -13,15 +13,15 @@ subcollection: resiliency
 {{site.data.keyword.attribute-definition-list}}
 
 
-# Best practices for {{site.data.keyword.cloud_notm}} disaster recovery
-{: #disaster-recovery}
+# Best practices for {{site.data.keyword.cloud_notm}} resiliency
+{: #resiliency}
 
-This page provides some recommended best practices for disaster recovery for your {{site.data.keyword.cloud_notm}}-deployed workloads.
+This page provides some recommended best practices for resiliency for your {{site.data.keyword.cloud_notm}}-deployed workloads.
 
 ## Always have a plan
 {: #have-a-plan}
 
-Working through any crisis is stressful and disasters are no different. You are likely trying to bring business critical services up and may be under pressure to do so quickly, which could even lead to mistakes. In the unlikely event of a disaster, having a well defined, pre-determined plan will help you and your business recover in an orderly and predicatble way, which will help alleviate stress and execute your recovery without mistakes. You can read more about creating a disaster reovery plan in the [Planning for Disaster Recovery](bcdr-pitfalls.md) section of this guide.
+Working through any crisis is stressful and disasters are no different. You are likely trying to bring business critical services up and may be under pressure to do so quickly, which could even lead to mistakes. In the unlikely event of a disaster, having a well defined, pre-determined plan will help you and your business recover in an orderly and predicatble way, which will help alleviate stress and execute your recovery without mistakes. You can read more about creating a disaster recovery plan in the [Planning for Disaster Recovery](bcdr-pitfalls.md) section of this guide.
 
 ## Work with the business to determine priorites
 {: #work-with-business}
@@ -49,17 +49,17 @@ Reacting to a real disaster probably isn't the ideal time to try your plan for t
 
 Each {{site.data.keyword.cloud_notm}} service has a 'roles and responsibilties' matrix. This clearly deliniates the responsibilites that sit with IBM, those that sit with customers, and those which are shared, including those around backup, recovery and disasters. Ensure that you fully understand these for each of the services which you use, since they may determine actions you need to carry out to successfully recover your service instances and will help planning acordingly.
 
-## Design DR into your workloads
+## Design HA and DR into your workloads
 {: #desin-in-dr}
 
-When designing cloud-deployed workloads, think about disaster revcovery as part of the requirement-gathering stage. By understanding early in the design process what the disaster recovery qualities of the workload need to be, descisions can be made that influence the architure and in turn, make recovery easier. For example, by having an understanding of the recovery time objective for a workload, you can make descisions about how to deploy a workload to meet that objective, using the features of avalable services. Similarly, understanding the recovery point objective allows you to better understand descisions you need to make about data and how to back it up or replicate it. Designing this in at an early stage also allow the business to better understand running costs for the workload.
+When designing cloud-deployed workloads, think about high availabilty and disaster recovery as part of the requirement-gathering stage. By understanding early in the design process what the resiliency qualities of the workload need to be, descisions can be made that influence the architure and in turn, make recovery easier. For example, by having an understanding of the recovery time objective for a workload, you can make descisions about how to deploy a workload to meet that objective, using the features of avalable services. Similarly, understanding the recovery point objective allows you to better understand descisions you need to make about data and how to back it up or replicate it. Designing this in at an early stage also allow the business to better understand running costs for the workload.
 
-Additionally, consider how application code can be deliveloped to make a switch over to a disaster recover site easier. For example, it is best practce to avoid hard-coding connection strings or other config that could change as a result of connectimg to alternate resources.
+Additionally, consider how application code can be developed to make a switch over to a disaster recover site easier. For example, it is best practce to avoid hard-coding connection strings or other config that could change as a result of connectimg to alternate resources.
 
 ## Work with the cloud, not against it
 {: #work-with-the-cloud}
 
-Think of {{site.data.keyword.cloud_notm}} as a toolbox with a set of tools or services that enable you to deploy and run workloads. To use any tool properly, you need to understand what it can and cannot do, and use the right one. Often, if you try and use a tool to do a job that it wasn't designed for, something will go wrong. When designing your disaster recovery provision, as a best practice, understand in as much detail as possible how the services that your workload uses operate and what their capabilities and limits are. If the service makes it difficult or impossible to meet your RTO or RPO objectives, then consider other services or tools that may help plug the gap. Also consider whether the objectives that have been set are realistic, or whether shaving off a few extra minutes or seconds for recovery is introducing undue complexity and cost into your solution for little real gain.
+Think of {{site.data.keyword.cloud_notm}} as a toolbox with a set of tools or services that enable you to deploy and run workloads. To use any tool properly, you need to understand what it can and cannot do, and use the right one. Often, if you try and use a tool to do a job that it wasn't designed for, something will go wrong. When designing your resiliency provision, as a best practice, understand in as much detail as possible how the services that your workload uses operate and what their capabilities and limits are. If the service makes it difficult or impossible to meet your RTO or RPO objectives, then consider other services or tools that may help plug the gap. Also consider whether the objectives that have been set are realistic, or whether shaving off a few extra minutes or seconds for recovery is introducing undue complexity and cost into your solution for little real gain.
 
 ## Keep up to date with notificatins from {{site.data.keyword.cloud_notm}}
 {: #IBM-cloud-notifications}
@@ -69,7 +69,7 @@ Of course, should the worst happen and there is a disaster which affects an {{si
 ## Use {{site.data.keyword.cloud_notm}} services that help facilitate DR
 {: #KeyServicesTitle}
 
-There are a number of {{site.data.keyword.cloud_notm}} services which can be used to facilitate a disaster recovery provision and to enact the plan, if needed. Here, we provide a breif overview for awareness but it's recommended that you refer to each service's documentation set for further details.
+There are a number of {{site.data.keyword.cloud_notm}} services which can be used to facilitate a disaster recovery provision and to enact the plan, if needed. Here, we provide a brief overview for awareness but it's recommended that you refer to each service's documentation set for further details.
 
 ### {{site.data.keyword.cos_full_notm}}
 {: #KeyServicesCOS}
