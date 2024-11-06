@@ -86,6 +86,7 @@ toc:
             navtitle: Locations for resource deployment
           - service-rollout.md
       - slo.md
+      - services-ha-dr.md
       - topicgroup:
           label: Services
           topics:
