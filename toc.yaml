@@ -38,7 +38,7 @@ toc:
           - bcdr-pitfalls.md
           - bcdr-approaches.md
       - topicgroup:
-          label: Planning for cyber resiliency
+          label: Designing for cyber resiliency
           topics:
           - cyberresiliency-plan.md
       - topicgroup:
