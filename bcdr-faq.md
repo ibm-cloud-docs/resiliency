@@ -13,12 +13,12 @@ subcollection: resiliency
 {{site.data.keyword.attribute-definition-list}}
 
 # Disaster recovery FAQ
-{: #dr-testing}
+{: #dr-faq}
 
 This page discusses some common frequently asked questions about disaster recovery.
 
 ## Why is high availability not disaster recovery? Are both required?
-{: #WhyIsHAnotDR}
+{: #ha-dr-required}
 
 High availability and disaster recovery are easily confused, but they are distinctly different. Designing high availability into a workload is an effort to prevent a workload from failing. For example, spreading data over multiple disks in a RAID array is an effort to prevent an outage caused by disk failure. Multiple power supplies in a server are an effort to prevent a failure caused by an outage in a power circuit, while running applications across multiple servers in different zones is an effort to prevent an outage caused by a server failure and zone failure.
 
@@ -27,7 +27,7 @@ Disaster recovery is the practice of recovering a workload after it has failed, 
 Usually, the more highly available a workload needs to be, the more valuable and vital it is to the business. Since it’s vital to the business, the more likely the need for it to have a well-documented, stringent disaster recovery plan.
 
 ## What counts as a disaster?
-{: #WhatCountsasaDisaster}
+{: #what-counts-disaster}
 
 An IT disaster is an event that causes serious disruption to the functioning of an application or environment that goes beyond its ability to survive. These can be short or long-term events but their effect is typically damaging to the business, either financially, reputationally, or both.
 
@@ -41,7 +41,7 @@ Such events will normally be the result of:
 In each event, it is important to have a planned recovery approach that provides for the restoration of service within a given time frame, to an agreed point in time before the disaster occurred. It’s probably also advisable to be aware of the costs involved, both in terms of the cost of downtime to the business and the cost of the solution put in place.
 
 ## Can DR take place in one region?
-{: #DR-same-region}
+{: #dr-same-region}
 
 The short answer to this is yes – but in practical terms. It comes down to how quickly recovery is needed for your circumstances. In practice, true DR should take place in a separate region.
 
