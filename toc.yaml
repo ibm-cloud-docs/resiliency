@@ -97,6 +97,9 @@ toc:
   - navgroup:
       id: help
       topics:
-      - faqs.md
-      - bcdr-faq.md
       - get-help.md
+      - topicgroup:
+          label: FAQs
+          topics:
+          - faqs.md
+          - bcdr-faq.md
