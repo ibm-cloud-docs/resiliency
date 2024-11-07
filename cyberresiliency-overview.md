@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-11-06"
+lastupdated: "2024-11-07"
 
 
 keywords: cyber resiliency overview, resilient app, cyber recovery
@@ -13,12 +13,12 @@ subcollection: resiliency
 
 {{site.data.keyword.attribute-definition-list}}
 
-# What is cyber resiliency? 
+# Understanding cyber resiliency
 {: #cyber-resiliency-overview}
 
 Cyber resilience is the capacity of an organization to prevent, withstand, and recover from cybersecurity incidents, which include ransomware attacks and other malicious actions. In an environment where threats and threat actors are continuously evolving, adopting a secure-by-design approach is essential to prepare for the inevitability of an attack. Business continuity planning in these scenarios should prioritize the safe and secure restoration of critical applications and infrastructure to maintain operational stability, which is the focus of cyber recovery. Cyber recovery is the process of increasing your organization’s cyber resilience or ability to restore access to and functions of critical IT systems and data if a cyberattack occurs. {{site.data.keyword.cloud_notm}} can host both your production and recovery environments. Host the recovery environment for an on-premises or remote production environment, or use {{site.data.keyword.cloud_notm}} as a vault to securely store and verify your backup copies of golden images, configuration, and data for recovery.
 
-## The difference between cyber resiliency and disaster recovery
+## What's the difference between cyber resiliency and disaster recovery?
 {: #cyber-dr-difference}
 
 While both cyber recovery and disaster recovery deal with recovering from backups, their goals differ significantly and this drives different requirements, processes, tools and techniques. It is good to consider cyber resiliency as the third and separate pillar from backup and disaster recovery of your operational resiliency. The following are a few of the significant differences: 
