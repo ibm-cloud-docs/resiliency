@@ -18,7 +18,8 @@ Data resiliency refers to the ability to access, maintain or quickly recover dat
 
 Another aspect that data resiliency needs to consider is data residency, that is, where the data will be located (both for production, backup or recovery) and any restrictions or requirements on its placement. The next section explains IBM Cloud capabilities and provides considerations on this topic.
 
-# Understanding data residency in {{site.data.keyword.cloud_notm}}
+## Understanding data residency in {{site.data.keyword.cloud_notm}}
+{: #data-residency}
 
 {{site.data.keyword.cloud_notm}}'s global network of locations provides you with the flexibility of choosing where you want to run your workloads.
 
