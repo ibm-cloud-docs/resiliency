@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2024
-lastupdated: "2024-11-05"
+lastupdated: "2024-11-07"
 
 keywords: load balancing, global load balancing, HA, DR, high availability, disaster recovery, HA for the platform, high availability for platform, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -12,7 +12,7 @@ subcollection: design
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Redundancy
+# High Availability and Redundancy Design within IBM Cloud
 
 ## How {{site.data.keyword.cloud_notm}} ensures high availability through redundancy
 {: #zero-downtime}
@@ -23,6 +23,21 @@ subcollection: design
 {{site.data.keyword.cloud_notm}} services are designed with different redundant deployments and fault isolation patterns depending on their location and availability scopes across the different {{site.data.keyword.cloud_notm}} regions and data centers.
 
 It's important that you understand how {{site.data.keyword.cloud_notm}} services are designed and their deployment in {{site.data.keyword.cloud_notm}} global locations so that you can make appropriate choices about the dependencies on services and their location that you select in designing your workload and application high availability.
+
+## What levels of resiliency do the different zones and regions provide
+{: #landing-levels-of-resiliency}
+
+![Levels of Resiliency](images/ha-resiliency-infographic.png){: caption="Figure 5. Levels of Resiliency" caption-side="bottom"}
+
+Whether the data centers are single-zone or multi-zone, all of them avoid a single-point-of-failure (SPOF) between zones and regions by providing:
+
+* Multiple power feeds 
+* Fiber links
+* Dedicated generators
+* Battery backup 
+
+While all the data centers have multiple power feeds, several of the more mature sites have some 1U single socket server chassis that might not accommodate a dual power feed. If you have a 1U single socket server in one of these sites, you might want to consider a 2U chassis with redundant power supplies. For more information about availability zones, see [Locations for resource deployment](/docs/overview?topic=overview-locations).
+{: note}
 
 ## {{site.data.keyword.cloud_notm}} services architecture for high availability and resiliency
 {: #services-architecture}
