@@ -26,8 +26,8 @@ toc:
       - topicgroup:
           label: Designing for HA
           topics:
-          - ha-redundancy.md
           - ha-appconfig.md
+          - ha-redundancy.md          
       - topicgroup:
           label: Designing for DR
           topics:
