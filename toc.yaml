@@ -24,12 +24,12 @@ toc:
       id: plan
       topics:
       - topicgroup:
-          label: Designing for HA
+          label: Designing for high availability
           topics:
           - ha-appconfig.md
           - ha-redundancy.md          
       - topicgroup:
-          label: Designing for DR
+          label: Designing for disaster recovery
           topics:
           - bcdr-pitfalls.md
           - bcdr-approaches.md
@@ -46,7 +46,7 @@ toc:
           topics:
           - bcdr-testing.md
       - topicgroup:
-          label: Chaos Testing
+          label: Chaos testing
           topics:
           - chaos-engineering.md
   - navgroup:
