@@ -14,14 +14,13 @@ subcollection: resiliency
 
 # Data resiliency
 {: #data-resiliency}
-Data resiliency refers to the ability to access, maintain or quickly recover data in the event of failures or disasters. It is related to the previous discussed concepts of High Availability, Disaster Recovery and Cyber Resiliency, and the previous planning sessions address techniques to be considered to achieve data resiliency. For more general info on Data Resiliency, see [IBM Well-Architected Framework](https://www.ibm.com/architectures/well-architected/resiliency#Practices){: external}.
+Data resiliency refers to the ability to access, maintain or quickly recover data in the event of failures or disasters. It is related to the previous discussed concepts of High Availability, Disaster Recovery and Cyber Resiliency, and the previous planning sessions address techniques to be considered to achieve data resiliency. {: shortdesc} For more general info on Data Resiliency, see [IBM Well-Architected Framework](https://www.ibm.com/architectures/well-architected/resiliency#Practices){: external}.
 
 Another aspect that data resiliency needs to consider is data residency, that is, where the data will be located (both for production, backup or recovery) and any restrictions or requirements on its placement. The next section explains IBM Cloud capabilities and provides considerations on this topic.
 
 # Understanding data residency in {{site.data.keyword.cloud_notm}}
 
 {{site.data.keyword.cloud_notm}}'s global network of locations provides you with the flexibility of choosing where you want to run your workloads.
-{: shortdesc}
 
 For regional and zonal services, you request instances of the service to be deployed in a specific region in accordance with your specific geographic requirements. {{site.data.keyword.cloud_notm}} ensures that content that is provided by you and your workload (as defined in the [{{site.data.keyword.cloud_notm}} Service Agreement](https://www.ibm.com/support/customer/csol/terms/?id=Z126-6304&cc=us&lc=en){: external}) is stored and processes locally in the selected region location. For a complete list of the locations where {{site.data.keyword.cloud_notm}} services are available see [Service and infrastructure availability by location](/docs/overview?topic=overview-services_region).
 
