@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2024
-lastupdated: "2024-11-06"
+lastupdated: "2024-11-07"
 
 keywords: load balancing, global load balancing, HA, DR, high availability, disaster recovery, HA for the platform, high availability for platform, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -12,7 +12,7 @@ subcollection: resiliency
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Understanding resiliency in {{site.data.keyword.cloud_notm}}
+# Resiliency in {{site.data.keyword.cloud_notm}}
 {: #resiliency-overview}
 
 In information technology (IT), resiliency is broadly defined as the ability of an organization or solution to maintain essential systems and applications and to recover from disruptions. Resiliency in {{site.data.keyword.cloud_notm}} focuses on the perspective of {{site.data.keyword.IBM_notm}} clients, their solution planners, architects, and builders and the resilient solutions that they create on the {{site.data.keyword.cloud_notm}} platform.
