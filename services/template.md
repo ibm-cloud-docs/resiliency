@@ -15,6 +15,7 @@ subcollection: repo-name
 
 
 # Understanding high availability and disaster recovery for _service-name_ 
+{: #_service-name_-ha-dr}
 
 
 
@@ -23,12 +24,12 @@ subcollection: repo-name
 [High availability](#x2284708){: term} (HA) is the ability for a service remain operational and accessible in the presence of unexpected failures.  [Disaster recovery](#x2113280){: term} process of recovering the service working state.
 
 ## High availability
-{: #ha-service-name}
+{: #_service-name_-ha}
 
 _Service-name_ is a regional service that fulfills the defined [Service Level Objectives](/docs/resiliency?topic=resiliency-slo) with the **example standard** plan.
 
 ### High availability architecture
-{: #ha-architecture}
+{: #_service-name_-ha-architecture}
 
 
 
@@ -38,7 +39,7 @@ Add short description...
 {: style="text-align: center;"}
 
 ### High availability options
-{: #ha-options}
+{: #_service-name_-ha-options}
 
 
 
@@ -51,12 +52,12 @@ Add short description...
 To do: Add optional details describing how the options and features work.
 
 #### Optional feature 1 
-{: #service-name-feature-1}
+{: #_service-name_-feature-1}
 
 To do: Add description
 
 ## Disaster recovery
-{: #service-name-disaster-recovery}
+{: #_service-name_-disaster-recovery}
 
 To do: Deeper dive into disaster recovery.
 
@@ -64,7 +65,7 @@ To do: Deeper dive into disaster recovery.
 {: style="text-align: center;"}
 
 ## Disaster recovery options
-{: #X-disaster-recovery-options}
+{: #_service-name_-disaster-recovery-options}
 
 
 
@@ -78,7 +79,7 @@ _Service-name_ supports the following disaster recovery options:
 {: caption="Disater recovery options" caption-side="bottom"}
 
 ### How to use the options for business continuity
-{: #options-for-business-continuity)
+{: #_service-name_-options-for-business-continuity}
 
 To do: Add description.
 
@@ -94,7 +95,7 @@ The disaster recovery steps must be practiced on a regular basis. When building 
 {: caption="Failure scenarios for DR" caption-side="bottom"}
 
 ### Features for Recovery Time Objective (RTO) and Recovery Point Objective (RPO)
-{: #rto-rpo-features} 
+{: #_service-name_-rto-rpo-features} 
 
 Each feature covered above has a related RTO/RPO time as discussed below.
 
@@ -107,7 +108,7 @@ Each feature covered above has a related RTO/RPO time as discussed below.
 | DR Feature 3 | RTO = todo 10 min + 1min/10GB, RPO = todo maybe time of last backup |
 
 ### Feature check list
-{: #feature-checklist} 
+{: #_service-name_-feature-checklist} 
 
 Disaster recovery steps must be practiced on a regular basis. The following check list can help you create and practice your plan. 
 
@@ -126,20 +127,20 @@ Disaster recovery steps must be practiced on a regular basis. The following chec
    - Verify 2
 
 ### Additional DR considerations
-{: #additional-considerations} 
+{: #_service-name_-additional-considerations} 
 
 
 
 ## IBM disaster recovery
-{: #ibm-disaster-recovery}
+{: #_service-name_-ibm-disaster-recovery}
 
 ### IBM recovery from zone failure 
-{: #ibm-recovery-from-zone-failure}
+{: #_service-name_-ibm-recovery-from-zone-failure}
 
 
 
 ### IBM recovery from regional failure
-{: #recovery-from-regional-failure}
+{: #_service-name_-recovery-from-regional-failure}
 
 To do: After a regional has failed and has then been restored IBM will attempt to restore the service instance in the same region with the same connection strings from the last state in internal persistent storage.
 
@@ -149,7 +150,7 @@ To do: After a regional has failed and has then been restored IBM will attempt t
 In the event that IBM can not restore the database, the customer must restore the database using one of the disaster recovery features described above.
 
 ## IBM service maintenance
-{: #X-ibm-service-maintenance}
+{: #_service-name_-X-ibm-service-maintenance}
 
 To do: All upgrades follow the IBM service best practices and have a recovery plan and rollback process in-place. Regular upgrades for new features and maintenance occur as part of normal operations. Such maintenance can occasionally cause short interruption intervals that will be handled by [client availability retry logic](/docs/doesnotexist) within client applications. Changes are initially rolled out sequentially on a region-by-region basis.
 
