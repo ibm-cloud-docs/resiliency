@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2024
-lastupdated: "2024-10-30"
+lastupdated: "2024-11-08"
 
 keywords: HA, DR, high availability, disaster recovery, disaster recovery plan, disaster event, recovery time objective, recovery point objective
 
@@ -10,18 +10,140 @@ subcollection: resiliency
 
 ---
 
+
+
 {{site.data.keyword.attribute-definition-list}}
 
-# {{site.data.keyword.secrets-manager_short}} - Understanding high availability and disaster recovery
+# Secrets Manager - Understanding high availability and disaster recovery
+
 
 ## High Availability
-**This service** is a regional service that fulfills the defined [Service Level Objectives](/docs/resiliency?topic=resiliency-slo) with the **Standard** plan.
+{: #secrets-manager-high-availability}
+
+This service is a regional service that fulfills the defined [Service Level Objectives](/docs/resiliency?topic=resiliency-slo) with the **Standard** plan.
+
+### High Availability Architecture
+{: #secrets-manager-high-availability-architecture}
 
 The service is provisioned across three zones in a multi-zone region with no single point of failure. API requests are routed through a global load balancer to three HA instance nodes each in a different availability zone.
 
 In the event of a HA instance node or availability zone failure, the service will continue to run with API requests being routed through a global load balancer to the surviving HA instance nodes. There may be a short period of time (seconds) between the outage and the global load balancer recognizing the failure, during which time, requests may be sent to the failed instance. Workloads that programmatically access the service instance should follow the [client availability retry logic](/docs/doesnotexist) to maintain availability. There is no noticeable degradation of service during a zonal failure.
 
 IBM Cloud will resolve the outage and when the zone comes back on-line, the global load balancer will resume sending API requests to the restored instance node without need for customer action. 
+
+![Architecture](images/secrets-manager-base.svg){: caption="Postgresql architecture" caption-side="bottom"}
+{: style="text-align: center;"}
+
+
+### High Availability Options
+{: #secrets-manager-high-availability-options}
+
+
+
+High availability features
+Feature | Description | Consideration
+--|--|--
+option-1 | todo minor configuraion that changes availability | watch out for todo
+**feature-1** | configuration that effects availability that requires additional discussion | watch out for todo
+
+todo Optional details describing how the options and features work.
+
+
+#### Optional feature-1
+{: #secrets-manager-feature-1}
+
+todo description
+
+
+## Disaster recovery
+{: #secrets-manager-disaster-recovery}
+
+todo general info
+
+![Architecture](images/secrets-manager-restore.svg){: caption="secrets-manager disaster recovery" caption-side="bottom"}
+{: style="text-align: center;"}
+
+## Disaster recovery options
+{: #secrets-manager-disaster-recovery-options}
+
+The service supports the following disaster recovery options:
+
+Feature | Description | Consideration
+-|-|-
+**Feature-2** | todo description of feature-1 | watch out
+**Feature-3** | todo description of feature-2 | watch out
+
+### How to use the options for business continuity
+{:-#secrets-manager-how-to-use-the-options-for-business-continuity}
+
+Todo description
+
+Disaster recovery steps must be practiced on a regular basis. When building your plan consider the following failure scenarios and resolution.
+
+Failure | Resolution
+-|-
+Hardware failure (single point) | todo IBM provides a database that is resilient from single point of hardware failure within a zone - no configuration required.
+Zone failure | **feature-1**. todo feature-1 yada yada
+Data corruption | **feature-2**. todo feature-2 yada yada
+Regional failure | **feature-3** todo feature-3 yada yada
+
+### Feature RTO/RPO
+
+Each feature covered above has a related RTO/RPO time as discussed below.
+
+Feature | RTO/RPO
+-|-
+**feature-1** | RTO = x minutes, RPO = y seconds (todo if HA populate from test results)
+**feature-2** | RTO = todo 10 min + 1min/10GB, RPO = todo maybe time of last backup
+**feature-3** | RTO = todo 10 min + 1min/10GB, RPO = todo maybe time of last backup
+
+### Feature check list
+
+Disaster recovery steps must be practiced on a regular basis. The following check list can help you create and practice your plan.
+
+**feature-1** - todo simple feature see: [Todo how to turn on feature](/docs/todo)
+
+**feature-2** 
+- todo See dependent service configured in recovery region
+- todo See [ backups available](/service/backuphistory)
+
+**feature-3** 
+- todo step 1 
+- todo step 2 
+- todo step 3 
+
+### Additional DR considerations
+
+todo anything not covered above, mabye entire resource deleted. When a servicxe instance is deleted the associated backups are deleted as well. It is not possible to copy backups off the {{site.data.keyword.cloud_notm}} so consider using the database specific tools for additional backup. It may be required to recover from malicious deletion/reclamation of a database. Carefully manage the IAM for critical resources. It may be possible to restore the service instance [using resource reclamations](/docs/account?topic=account-resource-reclamation)
+
+## IBM disaster recovery
+{: #secrets-manager-ibm-disaster-recovery}
+
+### IBM recovery from zone failure 
+{: #secrets-manager-ibm-recovery-from-zone-failure}
+
+todo What does IBM do when a zone goes down and comes back up?
+
+### IBM recovery from regional failure
+{: #secrets-manager-ibm-recovery-from-regional-failure}
+
+todo After a regional has failed and has then been restored IBM will attempt to restore the service instance in the same region with the same connection strings from the last state in internal persistent storage.
+- RTO - todo
+- RPO - todo
+
+In the event that IBM can not restore the database, the customer must restore the database using one of the disaster recovery features described above.
+
+## IBM Service Maintenance
+{: #secrets-manager-ibm-service-maintenance}
+
+todo All upgrades follow the IBM service best practices and have a recovery plan and rollback process in-place. Regular upgrades for new features and maintenance occur as part of normal operations. Such maintenance can occasionally cause short interruption intervals that will be handled by [client availability retry logic](/docs/doesnotexist) within client applications. Changes are initially rolled out sequentially on a region-by-region basis.
+
+Complex changes are enabled/disabled with feature flags to control exposure.
+- todo is this true?  Do a number of changes get dropped in from the secrets-manager open source?
+
+Changes that impact customer workloads will be described by notifications. See [monitoring notifications and status](/docs/account?topic=account-viewing-cloud-status) for planned maintenance, announcements, and release notes that impact this service.
+
+------------------
 
 ## Customer disaster recovery
 

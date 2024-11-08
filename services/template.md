@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-11-07"
+lastupdated: "2024-11-08"
 
 keywords: HA, DR, high availability, disaster recovery, disaster recovery plan, disaster event, recovery time objective, recovery point objective
 
@@ -20,7 +20,7 @@ subcollection: repo-name
 
 
 
-[High availability](#x2284708){: term} (HA) is a core discipline in an IT infrastructure to keep your apps up and running, even after a partial or full site failure. The main purpose of high availability is to eliminate potential points of failures in an IT infrastructure. [Disaster recovery](#x2113280){: term} involves a set of policies, tools, and procedures for returning a system, an application, or an entire data center to full operation after a catastrophic interruption. It includes procedures for copying and storing an installed system's essential data in a secure location, and for recovering that data to restore normalcy of operation. Together, the two help ensure resiliency for your service.
+[High availability](#x2284708){: term} (HA) is the ability for a service remain operational and accessible in the presence of unexpected failures.  [Disaster recovery](#x2113280){: term} process of recovering the service working state.
 
 ## High availability
 {: #ha-service-name}
@@ -44,8 +44,8 @@ Add short description...
 
 | Feature | Description | Consideration |
 | -------------- | -------------- | -------------- |
-| Example feature option 1 | Minor configuraion that changes the availability. | Consider xxx. |
-| Example feature option 2| A configuration that effects availability that requires additional discussion. | Consider xxx. |
+| HA feature option 1 | Minor configuraion that changes the availability. | Consider xxx. |
+| HA feature option 2| A configuration that effects availability that requires additional discussion. | Consider xxx. |
 {: caption="High availability options" caption-side="bottom"}
 
 To do: Add optional details describing how the options and features work.
@@ -73,8 +73,8 @@ _Service-name_ supports the following disaster recovery options:
 
 | Feature | Description | Consideration |
 | -------------- | -------------- | -------------- |
-| Example feature option 1 | Minor configuraion that changes the availability. | Consider xxx. |
-| Example feature option 2| A configuration that effects availability that requires additional discussion. | Consider xxx. |
+| DR feature option 1 | Minor configuraion that changes the availability. | Consider xxx. |
+| DR feature option 2| A configuration that effects availability that requires additional discussion. | Consider xxx. |
 {: caption="Disater recovery options" caption-side="bottom"}
 
 ### How to use the options for business continuity
@@ -83,6 +83,7 @@ _Service-name_ supports the following disaster recovery options:
 To do: Add description.
 
 The disaster recovery steps must be practiced on a regular basis. When building your plan, consider the following failure scenarios and resolution.
+
 
 | Failure | Resolution |
 | -------------- | -------------- |
@@ -97,34 +98,37 @@ The disaster recovery steps must be practiced on a regular basis. When building 
 
 Each feature covered above has a related RTO/RPO time as discussed below.
 
+
+
 | Feature | RTO and RPO |
 | -------------- | -------------- |
-| Feature 1 | RTO = x minutes, RPO = y seconds (todo if HA populate from test results) |
-| Feature 2 | RTO = todo 10 min + 1min/10GB, RPO = todo maybe time of last backup |
-| Feature 3 | RTO = todo 10 min + 1min/10GB, RPO = todo maybe time of last backup |
+| HA Feature 2 | RTO = x minutes, RPO = y seconds (todo if HA populate from test results) |
+| DR Feature 2 | RTO = todo 10 min + 1min/10GB, RPO = todo maybe time of last backup |
+| DR Feature 3 | RTO = todo 10 min + 1min/10GB, RPO = todo maybe time of last backup |
 
 ### Feature check list
 {: #feature-checklist} 
 
-Disaster recovery steps must be practiced on a regular basis. The following check list can help you create and practice your plan.
+Disaster recovery steps must be practiced on a regular basis. The following check list can help you create and practice your plan. 
 
-- [ ] Enabling feature 1
-   - Step 1 
-   - Step 2 
 
-- [ ] Configuring Feature 2 
-   - todo See dependent service configured in recovery region
-   - todo See [ backups available](/service/backuphistory)
 
-- [ ] Managing Feature 3 
-    - todo step 1 
-    - todo step 2 
-    - todo step 3 
+- [ ] HA feature 2
+   - Verify 1
+   - Verify 2
+
+- [ ] DR Feature 1
+   - Verify dependent service configured in recovery region
+   - See [ backups available](/service/backuphistory)
+
+- [ ] DR Feature 2
+   - Verify 1
+   - Verify 2
 
 ### Additional DR considerations
 {: #additional-considerations} 
 
-To do: anything not covered above, mabye entire resource deleted. When a servicxe instance is deleted the associated backups are deleted as well. It is not possible to copy backups off the {{site.data.keyword.cloud_notm}} so consider using the database specific tools for additional backup. It may be required to recover from malicious deletion/reclamation of a database. Carefully manage the IAM for critical resources. It may be possible to restore the service instance [using resource reclamations](/docs/account?topic=account-resource-reclamation)
+
 
 ## IBM disaster recovery
 {: #ibm-disaster-recovery}
@@ -133,7 +137,6 @@ To do: anything not covered above, mabye entire resource deleted. When a servicx
 {: #ibm-recovery-from-zone-failure}
 
 
-To do: What does IBM do when a zone goes down and comes back up?
 
 ### IBM recovery from regional failure
 {: #recovery-from-regional-failure}
