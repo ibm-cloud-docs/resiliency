@@ -41,14 +41,8 @@ toc:
   - navgroup:
       id: howto
       topics:
-      - topicgroup:
-          label: Testing your resiliency
-          topics:
-          - bcdr-testing.md
-      - topicgroup:
-          label: Chaos testing
-          topics:
-          - chaos-engineering.md
+      - bcdr-testing.md
+      - chaos-engineering.md
   - navgroup:
       id: architecture
       topics:
