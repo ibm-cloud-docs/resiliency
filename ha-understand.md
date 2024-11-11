@@ -20,7 +20,7 @@ subcollection: resiliency
 ## What is high availability?
 {: #what-is-ha}
 
-When you run enterprise workloads in a cloud environment, its system components and services remain operational and accessible for an extended period without any interruption during unexpected failures or events. This level of resiliency is known as [high availability](#x2284708){: term}. The two main factors for HA are the downtime that the whole system endures and how long the system runs without any interruption. HA requires redundancy by cloning the system components, services, and by distributing across many environments.
+When you run enterprise workloads in a cloud environment, its system components and services remain operational and accessible for an extended period without any interruption during unexpected failures or events. This level of resiliency is known as [high availability](#x2284708){: term}. The two main factors for HA are the downtime that the whole system endures and how long the system runs without any interruption. HA requires redundancy by cloning the system components, services, and by distributing across many environments. IBM Cloud supports high availability of its services and client workloads by applying redundancy of its components and eliminating single points of failure. At the Multi Zone Region (MZR) level, this means having workloads running in multiple Availability Zones (AZs) in the MZR, which provide the redundancy for local failures.
 {: shortdesc}
 
 For HA in the cloud, it's important to understand the high-level concepts that you need to address if you're building or running a highly available cloud system.
@@ -37,7 +37,7 @@ The formula is useful because it shows you how to improve availability. You can 
 ## Why do you need high availability?
 {: #why-ha}
 
-With {{site.data.keyword.cloud_notm}}, you can protect your critical workloads by building resilient, highly available infrastructure. IBM Cloud supports high availability through its multizone region (MZR) architecture. This is added into many IBM Cloud services and it allows customers to easily deploy workloads across multiple zones in a region, where even the complete failure of a single zone won’t affect the availability of a workload - assuming that the workload is correctly deployed to take full advantage of the MZR.By using the backup, disaster recovery, and high availability features, you can minimize your downtime if a severe failure condition happens. You can safeguard your classic or VPC application with multiple availability zones or regions. By creating cloud infrastructures that are protected against a single point of failure, and backing up your data, you keep your workloads and web applications highly available.
+With {{site.data.keyword.cloud_notm}}, you can protect your critical workloads by building resilient, highly available infrastructure. By using the backup, disaster recovery, and high availability features, you can minimize your downtime if a severe failure condition happens. You can safeguard your classic or VPC application with multiple availability zones or regions. By creating cloud infrastructures that are protected against a single point of failure, and backing up your data, you keep your workloads and web applications highly available.
 
 A resilient infrastructure keeps your cloud solution running even if one or more areas of the infrastructure experiences a minor or major problem:
 
