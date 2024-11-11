@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2024
-lastupdated: "2024-11-07"
+lastupdated: "2024-11-11"
 
 keywords: high availability, regions, zones, resiliency
 
@@ -13,7 +13,7 @@ subcollection: ha-infrastructure
 # High availability design for applications
 {: #high-availability-design}
 
-IBM Cloud supports high availability application deployments in a single zone, across multiple zones in a multi-zone region, and across multiple regions to achieve high availability.
+IBM Cloud supports [high availability](#x2284708){: term} application deployments in a single zone, across multiple zones in a multi-zone region, and across multiple regions to achieve high availability.
 
 Failure domains determine the level of protection from infrastructure failures for each option. Application instances that are deployed in multiple availability zones are within a metro area that is connected over a low latency network and data can be replicated synchronously across the zones. Application instances that are deployed in multiple regions are typically in different geos that are connected over a WAN and data can be replicated asynchronously across the regions. The following table shows application deployment options based on failure domains available in a public cloud.
 
