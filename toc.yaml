@@ -56,6 +56,27 @@ toc:
       - link:
           label: IBM Cloud compliance programs
           href: https://www.ibm.com/cloud/compliance
+      - link:
+          label: IBM Cloud VSI on VPC landing Zone
+          href: https://cloud.ibm.com/docs/deployable-reference-architectures?topic=deployable-reference-architectures-vsi-ra
+      - link:
+          label: Red Hat OpenShift Container Platform on VPC landing zone
+          href: https://cloud.ibm.com/docs/deployable-reference-architectures?topic=deployable-reference-architectures-ocp-ra
+      - link:
+          label: Cyber resiliency pattern on VPC
+          href: https://cloud.ibm.com/docs/pattern-cyber-resiliency-vpc?topic=pattern-cyber-resiliency-vpc-cyber-resiliency
+      - link:
+          label: Web app cross-region resiliency
+          href: https://cloud.ibm.com/docs/pattern-vpc-vsi-cross-region-resiliency?topic=pattern-vpc-vsi-cross-region-resiliency-web-app-cross-region
+      - link:
+          label: IBM® Power® Virtual Server resiliency on AIX
+          href: https://cloud.ibm.com/docs/pattern-pvs-aix-resiliency?topic=pattern-pvs-aix-resiliency-power-virtual-server-on-AIX
+      - link:
+          label: Veeam on VMware resiliency
+          href: https://cloud.ibm.com/docs/vmware-cross-region-dr?topic=vmware-cross-region-dr-deploy-veeam-arch
+      - link: 
+          label: Oracle Database Disaster Recovery on IBM PowerVS
+          href: https://cloud.ibm.com/docs/pattern-oracle-disaster-recovery-on-powervs?topic=pattern-oracle-disaster-recovery-on-powervs-oracle-database-disaster-recovery-on-ibm-powervs-cross-region      
       - topicgroup:
           label: Product availability and locations
           topics:
