@@ -46,16 +46,6 @@ toc:
   - navgroup:
       id: architecture
       topics:
-      - resiliency-arch.md
-  - navgroup:
-      id: reference
-      topics:
-      - link:
-          label: IBM Well-Architected Framework Resiliency
-          href: https://www.ibm.com/architectures/well-architected/resiliency
-      - link:
-          label: IBM Cloud compliance programs
-          href: https://www.ibm.com/cloud/compliance
       - link:
           label: IBM Cloud VSI on VPC landing Zone
           href: https://cloud.ibm.com/docs/deployable-reference-architectures?topic=deployable-reference-architectures-vsi-ra
@@ -77,6 +67,15 @@ toc:
       - link: 
           label: Oracle Database Disaster Recovery on IBM PowerVS
           href: https://cloud.ibm.com/docs/pattern-oracle-disaster-recovery-on-powervs?topic=pattern-oracle-disaster-recovery-on-powervs-oracle-database-disaster-recovery-on-ibm-powervs-cross-region      
+  - navgroup:
+      id: reference
+      topics:
+      - link:
+          label: IBM Well-Architected Framework Resiliency
+          href: https://www.ibm.com/architectures/well-architected/resiliency
+      - link:
+          label: IBM Cloud compliance programs
+          href: https://www.ibm.com/cloud/compliance      
       - topicgroup:
           label: Product availability and locations
           topics:
