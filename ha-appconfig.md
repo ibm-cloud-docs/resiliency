@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2024
-lastupdated: "2024-11-12"
+lastupdated: "2024-11-13"
 
 keywords: high availability, regions, zones, resiliency
 
@@ -59,9 +59,9 @@ Multi-zone deployments rely on application-aware data replication across availab
 The following Architecture Framework provides design considerations and architecture decisions for deploying resilient applications on IBM Cloud Virtual Private Cloud (VPC) infrastructure. It covers the following solution aspects and domains:
 - **Networking:** Load balancing, Domain name system
 - **Security:** Data security
-- **Resiliency:** High Availability, Backup and restore, Disaster recovery
+- **Resiliency:** High availability, Backup and restore, Disaster recovery
 - **Service Management:** Monitoring, Logging, Auditing, Alerting
 
 ![VPC resiliency architecture design scope](images/heat-map-vpc-resiliency.svg){: caption="Figure 1. VPC resiliency architecture design scope" caption-side="bottom"}
 
-The Architecture Framework provides a consistent approach to design cloud solutions by addressing requirements across a set of "aspects" and "domains", which are technology-agnostic architectural areas that need to be considered for any enterprise solution.
+The Architecture Framework provides a consistent approach to design cloud solutions by addressing requirements across a set of aspects and domains, which are technology-agnostic architectural areas that need to be considered for any enterprise solution.
