@@ -21,7 +21,7 @@ A cyber-resiliency strategy uses a risk-based approach to align organizational o
 Before we delve deeper, we need to clarify the scope of the attack and recovery which is inherent to a cloud. For customer workloads deployed on {{site.data.keyword.cloud_notm}}, there is a clear boundary between customer account and resources provisioned within and the common {{site.data.keyword.cloud_notm}} fabric and underlying resources that support all customer resources. This boundary is enforced by strict multi-layered security measures such as separation of concern, access control, network isolation etc. In case of a cyber incident affecting {{site.data.keyword.cloud_notm}} fabric itself, {{site.data.keyword.cloud_notm}} will excercise its cyber recovery plan and restore its services first before notifying and working with affected customers to perform recovery of their resources. This document provides guidance for the case wherein a cyber incident affects only the customer account and resources provisioned within while the underlying {{site.data.keyword.cloud_notm}} fabric is unaffected. You should familiarise yourself with the [shared responsibilities](/docs/overview?topic=overview-shared-responsibilities) between {{site.data.keyword.cloud_notm}} and customers for running workloads on {{site.data.keyword.cloud_notm}}. 
 
 ## Data Consistency
-{: data-consistency}
+{: #data-consistency}
 
 An important consideration to address as you identify critical applications is also how the data backup and recovery needs to be performed. The type of data backup you take will affect whether further steps are needed post restoration. A consistent backup of live data typically means that a copy of the data can be captured without the need for stopping the application writing to it. Modern systems offer different types of backups including crash-consistent and application-consistent backup
 
@@ -29,7 +29,7 @@ An important consideration to address as you identify critical applications is a
 * Application-consistent -
 
 ## Architectural Concepts
-{: architectural-concepts}
+{: #architectural-concepts}
 
 ![Diagram depicting cyber resiliency architectural components](images/cyber-resiliency-arch.png "Diagram depicting cyber resiliency architectural components"){: caption="Diagram depicting cyber resiliency architectural components" caption-side="bottom"}
 
@@ -44,6 +44,6 @@ The [cyber resiliency pattern on VPC](/docs/pattern-cyber-resiliency-vpc?topic=p
 
 
 ## Roles and Responsibilities
-{: roles-and-responsibilities}
+{: #roles-and-responsibilities}
 
 Organizations often create a separate cyber response team, with representatives from every business department who are responsible for co-ordinating recovery. In cases where the disruption is extensive, the team has to rely on separation of tools, processes and environments to initiate recovery from. Often, finding the right owners
