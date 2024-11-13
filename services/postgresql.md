@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2024
-lastupdated: "2024-11-05"
+lastupdated: "2024-11-13"
 
 keywords: HA, DR, high availability, disaster recovery, disaster recovery plan, disaster event, recovery time objective, recovery point objective
 
@@ -46,7 +46,7 @@ Feature | Description | Consideration
 Automatic failover | Standard on all clusters and resilient against a zone or single member failure |
 Member count | Minimum - 2 members. Default - 2 members. A two member cluster will automatically recover from a single instance or zone failure (with data loss up to the lag threshold). During data synchronization for a new replica the cluster has exposure to second failure causing data loss. A three member, see [adding PostgreSQL members](/docs/databases-for-postgresql?topic=databases-for-postgresql-horizontal-scaling), is resilient to the failure of two members during the same failure period | Three members required for synchronous replication
 **Synchronous replication** | Improves RPO by adding remote member sync to the data write path. [Synchronous replication](#postgresql-sync-repl}) below. | Performance impact and cost.
-Read-only replica | Read-only replicas can provide local access in remote regions improving availability to potential network latency or connectivity issues. | Writes can only be made to the cluster
+Read-only replica | Read-only replicas can provide local access in remote regions improving availability to potential network latency or connectivity issues. | Writes can only be made to the cluster.
 
 
 
@@ -71,7 +71,8 @@ Employing synchronous replication negatively impacts the performance of the data
 ## Disaster recovery
 {: #postgresql-disaster-recovery}
 
-The general strategy for disaster recovery to create a new database, like the `Restore` database below from a backup, point-in-time or read replica promotion as described below.
+The general strategy for disaster recovery to create a new database, like the `Restore` database below. The contents of the new database can be a backup of the source database created before the disaster. If the production database is available a new database can be created using the point-in-time feature.
+
 
 ![Architecture](images/postgresql-restore.svg){: caption="Postgresql architecture" caption-side="bottom"}
 {: style="text-align: center;"}
@@ -84,7 +85,7 @@ The service supports the following disaster recovery options:
 Feature | Description | Consideration
 -|-|-
 **Backup restore** | Create database from previously created backup, see [Managing Cloud Databases backups](/docs/cloud-databases?topic=cloud-databases-dashboard-backups). | New connection strings for the restored database must be referenced throughout workload.
-**Point-in-time restore** | Create database from the live production using [point-in-time recovery](/docs/databases-for-postgresql?topic=databases-for-postgresql-pitr) | Only possible if the active database is available and the RPO (disaster) falls within the supported window. Not useful if production cluster is unavailable.New connection strings for the restored database must be referenced throughout workload. 
+**Point-in-time restore** | Create database from the live production using [point-in-time recovery](/docs/databases-for-postgresql?topic=databases-for-postgresql-pitr) | Only possible if the active database is available and the RPO (disaster) falls within the supported window. Not useful if production cluster is unavailable. New connection strings for the restored database must be referenced throughout workload. 
 **Promote read replica** | Create a [read-only replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) when planning for a disaster in the same or remote region. [Promote the read-only replica](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas&interface=ui#promoting-read-only-replica) to recover from a disaster. | Previously created read replica must be available. New connection strings for the restored database must be referenced for throughout workload. 
 
 ### How to use the options for business continuity
@@ -148,7 +149,9 @@ Disaster recovery steps must be practiced on a regular basis. The following chec
 
 ### Additional DR considerations
 
-Keep in mind that when a database is deleted the associated backups are deleted as well. It is not possible to copy backups off the {{site.data.keyword.cloud_notm}} so consider using the database specific tools for additional backup. It may be required to recover from malicious deletion/reclamation of a database. Carefully manage the IAM for critical resources. It may be possible to restore a database [using resource reclamations](/docs/account?topic=account-resource-reclamation)
+Keep in mind that when a database is deleted the associated backups are deleted as well. For a limited time a deleted database can be reclaimed - see [What happens to the backups if I accidentally delete an instance?](/docs/cloud-databases?topic=cloud-databases-faq-backups).
+
+It is not possible to copy backups off the {{site.data.keyword.cloud_notm}} so consider using the database specific tools for additional backup. It may be required to recover from malicious database deletion followed by a reclamation-delete of a database. Careful management of IAM access to databases can help reduce exposure to this problem.
 
 ## IBM disaster recovery
 {: #postgresql-ibm-disaster-recovery}

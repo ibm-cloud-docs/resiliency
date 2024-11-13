@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2024
-lastupdated: "2024-11-08"
+lastupdated: "2024-11-13"
 
 keywords: HA, DR, high availability, disaster recovery, disaster recovery plan, disaster event, recovery time objective, recovery point objective
 
@@ -20,7 +20,7 @@ subcollection: resiliency
 ## High Availability
 {: #secrets-manager-high-availability}
 
-This service is a regional service that fulfills the defined [Service Level Objectives](/docs/resiliency?topic=resiliency-slo) with the **Standard** plan.
+This service is a regional service that fulfills the defined [Service Level Objectives (SLO_)](/docs/resiliency?topic=resiliency-slo) with the **Standard** plan. See [service Level Agreement (SLA)](https://test.cloud.ibm.com/docs/overview?topic=overview-slas) for more information.
 
 ### High Availability Architecture
 {: #secrets-manager-high-availability-architecture}
@@ -68,7 +68,8 @@ All other disaster recovery options are created and supported by the customer. T
 
 Feature | Description | Consideration
 -|-|-
-External source of truth | All secrets created via a script, described below. | Customer must create the script and persist where it can be used during disaster
+External source of truth | All secrets created via a script, described below. | Customer must create the script and persist the configuration where it can be used during disaster
+Backup and restore | Backup a service instance using customer written script. | Customer must create the script and persist the backup copy where it can be used during recovery
 Live synchronization | Secret changes in production are automatically observed and propagated to recover service instance, see description below | Customer must create and maintain tools. Data corruption will be synchronized to the recovery instance.
 
 ### Rotation
@@ -86,10 +87,33 @@ In the event of a customer declared disaster in the primary instance the service
 
 The repository that contains the source of truth should have point in time recovery like {{site.data.keyword.cos_short}} versioned buckets or Github repositories.
 
+### Backup and restore
+{: #secrets-manager-backup-and-restore}
+
+To manually back up your secrets across regions, you must first have an instance of Secrets Manager in another region. Then, use the following steps to ensure cross-region availability.
+
+List and download secrets from your instance by using the [Secrets Manager API](https://test.cloud.ibm.com/apidocs/secrets-manager/secrets-manager-v2) or CLI.
+
+If you have existing configurations on secrets engines in your instance, you can also retrieve the information programmatically so that it can be re-created in a new instance. For more information, see the [Get the configuration of a secret type API](https://test.cloud.ibm.com/apidocs/secrets-manager/secrets-manager-v2#get-configuration).
+
+Add your downloaded secrets to the newly created instance.
+
+Creating an automatic backup of your secrets is possible by automating the manual flow, which can be done in various ways. Check out some of the following examples to see whether one of them might work for you.
+
+
 ### Live synchronization
 {: #secrets-manager-live syncrhonization}
 
 It is possible for the customer to create a script or program to download secrets from your primary service instance by using the Secrets Manager API or and populate the recovery service instance with the data. The script can take advantage of Activity Tracker audit events of the primary instance to keep the recovery instance in sync along with Code Engine. Customer managed backups should be kept to restore from the disaster.
+
+Create a script that periodically downloads all of your secrets and then imports them into your backup instance.
+
+Create a destination and subscription in Event Notifications that points to an IBM Cloud Code Engine action. Configure the action to listen for lifecycle events such as secret_created and secret_rotated. Then, when the action receives the event, the action downloads the secret from one instance and adds it to the backup instance.
+
+Currently, Secrets Manager supports notifications for certificates only. To learn about the various available lifecycle event types, see [Enabling event notifications](https://test.cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-event-notifications).
+{: note}
+
+TODO: explain the difference between certificate notifications and other notifications, i read the above and it seems like the notification only works with certificates.
 
 ### How to use the options for business continuity
 {:-#secrets-manager-how-to-use-the-options-for-business-continuity}
@@ -101,8 +125,8 @@ Failure | Resolution
 Hardware failure (single point) | IBM provides an instance that is resilient from single point of hardware failure within a zone - no configuration required.
 Zone failure | IBM provides an instance that is resilient from single point of hardware failure within a zone - no configuration required.
 Data corruption | Use rotation to restore previous secret version in an available service instance.
-Data corruption | Restore a point in time uncorrupted version from the external source of truth
-Regional failure | Switch critical workloads to use the restored version in a recovery region. Restore the instance using external source of truth or live synchronization.
+Data corruption | Restore a point in time uncorrupted version from the external source of truth or backup and restore.
+Regional failure | Switch critical workloads to use the restored version in a recovery region. Restore the instance using external source of truth, backup and restore, or live synchronization.
 
 ### Feature RTO/RPO
 
@@ -113,7 +137,10 @@ Feature | RTO/RPO
 Restore previous secret version | RTO = minutes, practice and potentially scripting will you to identify recovery time, RPO = 0.
 External source of truth - zero footprint | RTO = few minutes. Amount of time to provision and populate with data. Also consider the amount of time to adjust recovered workloads to the new service instance endpoint. RPO = 0, the source of truth is changed before making production changes.
 External source of truth - minimal operation| RTO = few seconds, RPO = 0. Enhance the zero footprint description to keep a live service instance in the recovery region.
-Live synchronization | RTO = minutes, RPO = minutes.
+Backup and restore | RTO = few minutes. Amount of time to provision and populate with data. Also consider the amount of time to adjust recovered workloads to the new service instance endpoint. RPO = time of last backup.
+Live synchronization | RTO = minutes, RPO = minutes if event driven or the period, for example daily, if using periodic backups.
+
+When creating a new service instance the RTO of the workload using {{site.data.keyword.secrets-manager_short}} will include the time required to adjust recovered workloads to the new service instance endpoint.
 
 ### Feature check list
 
@@ -123,8 +150,13 @@ Rotation
 - Create a test resource instance and practice rotating secrets versions and restoring a secret version.
 
 External source of truth
-- Verify the source of truth is in a repository that is available to the restore location.
+- Verify the source of truth is in a repository that is available at the restore location.
 - Verify the source of truth is not dependent on the disaster region to avoid dependency on a failed region.
+
+Backup and restore
+- Verify the backup is in a repository that is available at the restore location.
+- Verify the customer written script to restore the data is available at the restore region.
+- Verify the script and backup not dependent on the disaster region to avoid dependency on a failed region. Consider a {{site.data.keyword.cos_short}} cross regional bucket.
 
 Live syncrhonization
 - Verify the recovery service instance is currently available in the restore region
@@ -154,15 +186,17 @@ IBM Cloud will resolve the outage and when the zone comes back on-line, the glob
 ### IBM recovery from regional failure
 {: #secrets-manager-ibm-recovery-from-regional-failure}
 
-todo After a regional has failed and has then been restored IBM will attempt to restore the service instance in the same region with the same connection strings from the last state in internal persistent storage.
-- RTO - todo
-- RPO - todo
+When a regional is restored after a failure, IBM will attempt to restore the service instance from the regional state resulting in no loss of data and the service instance restored with the same connection strings.
+- RTO = todo
+- RPO = 0 minutes
+
+If regional state is corrupted the service will be restored to the state of the last internal backup.  All data associated with the service is backed up once daily by the service in a cross-region Cloud Object Storage bucket managed by the service. There is a potential for 24-hour’s worth of data loss. **These backups are not available for customer managed disaster recovery.** When a service is recovered from backups the service ID for the instance will be restored so clients using the endpoint will not need to be updated with new connection strings (todo verify the connection strings are restored).
+
+- RTO = todo
+- RPO = 24 hours maximum
+
 
 In the event that IBM can not restore the service instance, the customer must restore as described in the disaster recovery section above.
-
-All data associated with the service is backed up once daily by the service. There is no configuration or visibility to this backup.  The backup is in a cross-region Cloud Object Storage bucket managed by the service. There is a potential for 24-hour’s worth of data loss. **These backups are not available for customer managed disaster recovery.**
-
-When a service is recovered from backups the service ID for the instance will be restored so clients using the endpoint will not need to be updated with new connection strings.
 
 ## IBM Service Maintenance
 {: #secrets-manager-ibm-service-maintenance}
