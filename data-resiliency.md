@@ -18,7 +18,7 @@ subcollection: resiliency
 Data resiliency refers to the ability to access, maintain or quickly recover data in the event of failures or disasters. It is related to the previous discussed concepts of High Availability, Disaster Recovery and Cyber Resiliency, and the previous planning sessions address techniques to be considered to achieve data resiliency {: shortdesc}.
 For more general info on Data Resiliency, see [IBM Well-Architected Framework](https://www.ibm.com/architectures/well-architected/resiliency#Practices){: external}.
 
-Another aspect that data resiliency needs to consider is data residency, that is, where the data will be located (both for production, backup or recovery) and any restrictions or requirements on its placement. The next section explains IBM Cloud capabilities and provides considerations on this topic.
+Another aspect that data resiliency needs to consider is data residency, that is, where the data will be located (both for production, backup or recovery) and any restrictions or requirements on its placement. The next section explains {{site.data.keyword.cloud_notm}} capabilities and provides considerations on this topic.
 
 ## Understanding data residency in {{site.data.keyword.cloud_notm}}
 {: #data-residency}

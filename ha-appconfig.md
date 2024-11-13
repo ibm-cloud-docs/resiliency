@@ -48,7 +48,7 @@ Multi-zone deployments rely on application-aware data replication across availab
 | Single-zone                | 99.9% [^footnote1]           | - Multiple compute instances in one zone \n - Protection from infrastructure failures \n - Low/Medium cost \n | - Low to medium priority applications \n - Nonproduction workloads |
 | Multi-zone, single-region | 99.99% [^footnote2]          | - Multiple compute instances across 2 or more availability zones \n - Synchronous data replication across zones \n - Protection from zone outages \n - Medium/high cost | - Core business applications \n - Production level workloads with stringent resiliency requirements \n - Business continuity policies with country boundaries or geo data residence constraints |
 | Multi-zone, multi-region  | &amp;gt;99.99% [^footnote3]        | - Multiple compute instances across multiple availability zones in 2 or more regions \n - Asynchronous data replication across regions \n - Protection from region outages \n - High cost | - Mission-critical applications with continuous or near continuous availability requirements \n - Business continuity policies with cross geo or distance requirements \n - Disaster recovery |
-{: caption="Table 2. High availability deployment recommendations" caption-side="bottom"}
+{: caption="High availability deployment recommendations" caption-side="bottom"}
 
 [^footnote1]: Todo text.
 
@@ -62,6 +62,6 @@ The following Architecture Framework provides design considerations and architec
 - **Resiliency:** High availability, Backup and restore, Disaster recovery
 - **Service Management:** Monitoring, Logging, Auditing, Alerting
 
-![VPC resiliency architecture design scope](images/heat-map-vpc-resiliency.svg){: caption="Figure 1. VPC resiliency architecture design scope" caption-side="bottom"}
+![VPC resiliency architecture design scope](images/heat-map-vpc-resiliency.svg){: caption="VPC resiliency architecture design scope" caption-side="bottom"}
 
-The Architecture Framework provides a consistent approach to design cloud solutions by addressing requirements across a set of aspects and domains, which are technology-agnostic architectural areas that need to be considered for any enterprise solution.
+The [Architecture Design Framework](https://cloud.ibm.com/docs/architecture-framework) provides a consistent approach to design cloud solutions by addressing requirements across a set of aspects and domains, which are technology-agnostic architectural areas that need to be considered for any enterprise solution.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2024
-lastupdated: "2024-11-07"
+lastupdated: "2024-11-13"
 
 keywords: load balancing, global load balancing, HA, DR, high availability, disaster recovery, HA for the platform, high availability for platform, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -13,6 +13,7 @@ subcollection: design
 {{site.data.keyword.attribute-definition-list}}
 
 # High Availability and Redundancy Design within IBM Cloud
+{: #ha-redundancy}
 
 ## How {{site.data.keyword.cloud_notm}} ensures high availability through redundancy
 {: #zero-downtime}
@@ -27,7 +28,7 @@ It's important that you understand how {{site.data.keyword.cloud_notm}} services
 ## What levels of resiliency do the different zones and regions provide
 {: #landing-levels-of-resiliency}
 
-![Levels of Resiliency](images/ha-resiliency-infographic.png){: caption="Figure 5. Levels of Resiliency" caption-side="bottom"}
+![Levels of Resiliency](images/ha-resiliency-infographic.png){: caption="Levels of Resiliency" caption-side="bottom"}
 
 Whether the data centers are single-zone or multi-zone, all of them avoid a single-point-of-failure (SPOF) between zones and regions by providing:
 
