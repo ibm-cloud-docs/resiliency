@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-11-08"
+lastupdated: "2024-11-13"
 
 keywords: DR for IBM Cloud, disaster recovery, common mistakes for disaster recovery, plan a disaster recovery strategy
 
@@ -28,27 +28,27 @@ Under the following headings, a DR plan:
 * Identifies potential disasters and the likelihood of them occurring.
 * Evaluates the impact that each disaster would have on the organization.
 
-2. Emergency Response
+1. Emergency Response
 * Designates a disaster management team.
 * Established communication protocols.
 * Identifies emergency response procedures.
 
-3. Business Continuity
+1. Business Continuity
 * Develops a business continuity plan that includes procedures for keeping the organization running during a disaster.
 * Identifies key personnel and their roles in the recovery process.
 * Establishes procedures for communication with customers, vendors, and other stakeholders.
 
-4. Cloud Environment Recovery
+1. Cloud Environment Recovery
 * Establishes procedures for the provision of replacement services.
 * Establishes procedures for the provision of standby services.
 * Establishes procedures for the scaling of standby services.
 
-5. Data Backup and Recovery
+1. Data Backup and Recovery
 * Establishes backup procedures for critical data and systems.
 * Validates that backup systems are regularly tested and updated.
 * Develops procedures for recovering lost data and systems.
 
-6. Training and Testing
+1. Training and Testing
 * Provides regular training to employees on disaster recovery procedures.
 * Conducts regular testing of the disaster recovery plan.
 * Adds updates to the disaster recovery plan, based on testing and new risks identified.

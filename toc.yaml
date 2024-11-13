@@ -4,6 +4,7 @@ toc:
     category: solution_docs
     audience: solution
     content-type: solution
+    industry: FinancialSector, Government, Insurance, Banking, Healthcare
     href: /docs/resiliency
     path: resiliency
     description: Reliability is the ability of your service or application to be available for your users as intended, while resiliency is the capacity for your service or application to recover from different types of failures.

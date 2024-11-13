@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2024
-lastupdated: "2024-11-06"
+lastupdated: "2024-11-13"
 
 keywords: resiliency, DR, high availability, disaster recovery, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -39,7 +39,7 @@ To enact the disaster recovery plan, you need to be sure that what you are exper
 In a disaster situation, strong and effective communication between teams is going to be important. Your plan should clearly state which individuls can call a disaster and how they communicate they have done so, in particular to the individuals who are required to enact the disaster recovery plan.  The plan should clearly state channels of communication, be that phone, email or some other means, to ensure that important messages are not missed. Think about backup channels of communication too, in case primary channels are affected. The plan may also prescribe certain meetings that must take place to capture situation updates and so forth.
 
 ## Test your plan (then test it again)
-{: #test-the-plam}
+{: #test-the-plan}
 
 Reacting to a real disaster probably isn't the ideal time to try your plan for the first time. Therefore, it's best practice to regularly test your plan. This ensures that the plan fundamentally works, you understand how long it might take to enact the plan in practice and where other personnel are involved, it allows them to better understand their roles. Following the test, ensure that you incorporate any 'lessons learnt' into the plan, to make it better next time. For more information about testing your disaster recovery plan, see [Disaster Recovery Testing](bcdr-testing.md).
 
@@ -50,11 +50,11 @@ Reacting to a real disaster probably isn't the ideal time to try your plan for t
 Each {{site.data.keyword.cloud_notm}} service has a 'roles and responsibilties' matrix. This clearly deliniates the responsibilites that sit with IBM, those that sit with customers, and those which are shared, including those around backup, recovery and disasters. Ensure that you fully understand these for each of the services which you use, since they may determine actions you need to carry out to successfully recover your service instances and will help planning acordingly.
 
 ## Design HA and DR into your workloads
-{: #desin-in-dr}
+{: #design-in-dr}
 
 When designing cloud-deployed workloads, think about high availabilty and disaster recovery as part of the requirement-gathering stage. By understanding early in the design process what the resiliency qualities of the workload need to be, descisions can be made that influence the architure and in turn, make recovery easier. For example, by having an understanding of the recovery time objective for a workload, you can make descisions about how to deploy a workload to meet that objective, using the features of avalable services. Similarly, understanding the recovery point objective allows you to better understand descisions you need to make about data and how to back it up or replicate it. Designing this in at an early stage also allow the business to better understand running costs for the workload.
 
-Additionally, consider how application code can be developed to make a switch over to a disaster recover site easier. For example, it is best practce to avoid hard-coding connection strings or other config that could change as a result of connectimg to alternate resources.
+Additionally, consider how application code can be developed to make a switch over to a disaster recover site easier. For example, it is best practce to avoid hard-coding connection strings or other config that could change as a result of connecting to alternate resources.
 
 ## Work with the cloud, not against it
 {: #work-with-the-cloud}
@@ -74,15 +74,15 @@ There are a number of {{site.data.keyword.cloud_notm}} services which can be use
 ### {{site.data.keyword.cos_full_notm}}
 {: #KeyServicesCOS}
 
-One obbvious key to DR is the ability to retrieve and recover data in the DR region. For many {{site.data.keyword.cloud_notm}} services, Object Storage is used to make data, particularly backups and snapshots, available in secondary regions, using either a cross-regional bucket or a replicated bucket.
+One obvious key to DR is the ability to retrieve and recover data in the DR region. For many {{site.data.keyword.cloud_notm}} services, Object Storage is used to make data, particularly backups and snapshots, available in secondary regions, using either a cross-regional bucket or a replicated bucket.
 
 Everything that is stored in {{site.data.keyword.cos_full_notm}} is highly resilient by being stored in three locations, to a degree based on the bucket type and its related data dispersal type. Single site buckets have data dispersed in three locations in a data center. Regional buckets have data dispersed over the region’s three zones. Cross-region buckets have data dispersed over regions in the geo.
 
 Cross-region buckets offer the simplest choice for disaster recovery and are available as follows:
 
-* ap-geo – Asia Pacific (Japan, Australia)
-* us-geo – North America (USA, Canada)
-* eu-geo – Europe (UK, Germany, Spain)
+* `ap-geo` – Asia Pacific (Japan, Australia)
+* `us-geo` – North America (USA, Canada)
+* `eu-geo` – Europe (UK, Germany, Spain)
 
 When addressing a cross-region bucket, a tethered endpoint will keep all data ingress and egress within a specified region, while still distributing the data. However, this does not provide an automated failover if the tethered region fails. Therefore, it’s important to connect services to your buckets using an endpoint that will be available in the region where it’s needed.
 
@@ -117,10 +117,10 @@ From a disaster recovery point of view, when using a deployable architecture, th
 
 * provisioning disaster recovery environments, including any dependencies
 * data and configuration backup
-* replicating that data and configuration to the disaster recovery environment,
-* managing any failover operations.
+* replicating that data and configuration to the disaster recovery environment
+* managing any failover operations
 
 ### {{site.data.keyword.codeenginefull_notm}}
 {: #KeyServicesCodeEngine}
 
-While Code Engine can be used to deploy containerised workloads quickly – meaning it could be employed to quickly recover certain containerized applications without the need to rebuild an entire OpenShift or {{site.data.keyword.cloud_notm}} Kubernetes cluster - it can also be used to configure and run jobs, such as triggering database or server backups.
+While Code Engine can be used to deploy containerized workloads quickly – meaning it could be employed to quickly recover certain containerized applications without the need to rebuild an entire OpenShift or {{site.data.keyword.cloud_notm}} Kubernetes cluster - it can also be used to configure and run jobs, such as triggering database or server backups.
