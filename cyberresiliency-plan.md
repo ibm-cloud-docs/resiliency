@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-11-13"
+lastupdated: "2024-11-14"
 
 
 keywords: cyber resiliency plan, resilient app, cyber recovery
@@ -23,10 +23,12 @@ Before we delve deeper, we need to clarify the scope of the attack and recovery 
 ## Data Consistency
 {: #data-consistency}
 
-An important consideration to address as you identify critical applications is also how the data backup and recovery needs to be performed. The type of data backup you take will affect whether further steps are needed post restoration. A consistent backup of live data typically means that a copy of the data can be captured without the need for stopping the application writing to it. Modern systems offer different types of backups including crash-consistent and application-consistent backup
+An important consideration to address as you identify critical applications is how the data backup and recovery needs to be performed. The type of data backup you take will affect whether further steps are needed post restoration. A consistent backup of live data typically means that a copy of the data can be captured without the need for stopping the application writing to it. Modern systems offer different types of backups including crash-consistent and application-consistent backup
 
-* Crash-consistent - 
-* Application-consistent -
+* Crash-consistent - Records all the data written to persistent store but not those in memory or pending I/O. Such types of backups are fast as no special application quiescing or memory flush operation is needed, but applications should be able to recover from a crash-consistent backup. For instance, many databases use a special log-based recovery approach to recover the database to a consistent state. A copy of transaction logs and data volumes is sufficient to bring the database back to consistent state.
+
+* Application-consistent - An application aware backup, quiesces the application stopping it from processing any updates and flushes any dirty data in memory and pending I/O queues to persistent store before capturing the backup. This is typically done through hooks into the application or as pre and post scripts run on servers. During recovery, since the backup is already consistent, the application does not need to do any additional processing making recovery faster and reliable.
+
 
 ## Architectural Concepts
 {: #architectural-concepts}
@@ -37,7 +39,7 @@ The critical workloads running in the production environment should be securely 
 
 * Isolation - Multiple environments, each setup for a specific purpose and isolated both in terms of administrative boundaries and network boundaries ensures that there is clear separation of concern and any malicious actor or code does not laterally gain access.
 * Virtual Air-Gap - Air-gapping ensures that no malicious actors or code can gain access to criticial systems like the cyber vault and the backup data within it. A virtual air-gap is typically enforced using network rules which allow only trusted traffic to go through and deny all others. In addition, the air-gap may be closed or opened only at scheduled periods. It can be implemented using an appliance or built-in capabilities like the {{site.data.keyword.cloud_notm}} VPC network access control lists and security groups.
-* Immutable Storage - Backups written to immutable storage and retained for a configurable period of time, provide a technical assurance that even with elevated privileges, a bad actor cannot cause [data corruption](){: term}. For instance, {{site.data.keyword.cloud_notm}} cloud object storage immutable storage feature preserves records and maintains data integrity in a write-once-read-many (WORM), non-erasable and non-rewritable manner until end of retention period and the removal of any legal holds.
+* Immutable Storage - Backups written to immutable storage and retained for a configurable period of time, provide a technical assurance that even with elevated privileges, a bad actor cannot cause data corruption. For instance, {{site.data.keyword.cloud_notm}} cloud object storage immutable storage feature preserves records and maintains data integrity in a write-once-read-many (WORM), non-erasable and non-rewritable manner until end of retention period and the removal of any legal holds.
 * Cleanroom - Data backups are only useful if you can recover to a stable state from them. A recovery point could be a collection of individual backups of different components which when restored can bring an application to consistent state. A cleanroom is an isolated environment where recovery points can be verified and even potentially cleaned off malware, either by restoring them or using forensic tools. Additionally, the ability to rapidly tear down and spin up a new cleanroom environment is essential for having a clean state infrastructure everytime to start testing from and also for automating the whole process.
 
 The [cyber resiliency pattern on VPC](/docs/pattern-cyber-resiliency-vpc?topic=pattern-cyber-resiliency-vpc-cyber-resiliency) provides an approach to build a cyber resiliency solution on top of a secure VPC environment.
