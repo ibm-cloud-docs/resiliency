@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-10-31"
+lastupdated: "2024-11-14"
 
 
 keywords: chaos testing, resilient app, client testing
@@ -20,8 +20,21 @@ Now that you have designed and deployed resilient applications which can withsta
 One approach to address this, is chaos engineering. Chaos engineering is the intentional and controlled injection of failures in production and pre-production environments to understand their impact and verify your preparedness. It is not a random process where dependencies are turned off or instances or services shutdown. The process begins with identifying potential future issues and creating hypothesis about how your system will behave and verifying that by running an experiment and observing the results. Did your hypothesis hold true or do you need to handle them differently?
 
 ## Where should you run chaos tests?
-{: #target-environments}
+{: #chaos-target-environments}
 
-Chaos tests are ideally conducted in a production environment, yet the risks associated with intentionally disrupting live operations—and potentially impacting customer experience—make this approach challenging. Pre-production environments are a good starting point as one gets familiar with the process and builds a level of confidence in running these tests and handling issues that arise. While pre-production environment might mimic production, the differences in configuration and load characteristics from production make running chaos tests and observing its impact on live production environment more beneficial. 
+Chaos experiments are ideally conducted in a production environment, yet the risks associated with intentionally disrupting live operations—and potentially impacting customer experience—make this approach challenging to many. While pre-production environment might mimic production, the differences in configuration and load characteristics from production make running chaos tests and observing its impact on live production environment more beneficial. Hence, pre-production environments are a good starting point as one gets familiar with the process and builds a level of confidence in running these tests and handling issues that arise. 
 
-## Types of faults
+## Fault space
+{: #chaos-fault-types}
+
+Chaos experiments should mirror real world incidents as closely as possible instead of complex and unlikely scenarios. In any cloud environment, infrastructure can fail and instances of replicated components can fail. Dependencies can fail and connectivity to dependent services can also be interrupted intermittently or for longer durations. 
+
+Given the complexity of applications and its dependencies, the experiment space can explode quickly if one considers all combinations of components and single and multiple concurrent failures. It is important hence to model the experiments based on application characteristics. This comes primarily with knowledge of the system under test and the cloud environment its running it, but can be augmented by profiling tools such as [Chaos-recommender](). 
+
+
+## Observability
+{: #chaos-observability}
+
+
+## Running within your CI/CD pipeline
+{: #chaos-ci-cd}
