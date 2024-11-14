@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-11-08"
+lastupdated: "2024-11-14"
 
 keywords: disaster recovery, dr
 
@@ -17,7 +17,9 @@ subcollection: resiliency
 
 Several approaches or strategies to disaster recovery (DR) can support a disaster recovery plan and four are outlined here. Depending on your use case, you can mix and match these approaches based on the workloads, environments, and Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO) values that the business assigns.
 
-The four DR approaches focus on VPC and database services in particular. Many other services are available from {{site.data.keyword.cloud_notm}}, but the same general principles apply. To choose an approach, it’s important to understand if and how backups of your data - the data you are responsible for restoring - are taken within the service. Check that you understand where the backups are stored, how they can be recovered, and where there can be recovered.
+Backup and restore is pivotal to any approach. As an absolute minimum, you must be sure you are backing up your workload data. Verify that backups are stored so they are available to restore if a disaster strikes. Also, be sure you understand how to access backup files and how to restore them.
+
+The four DR approaches presented here focus on VPC and database services in particular. Many other services are available from {{site.data.keyword.cloud_notm}}, but the same general principles apply. To choose an approach, it’s important to understand if and how backups of your data - the data you are responsible for restoring - are taken within the service. Check that you understand where the backups are stored, how they can be recovered, and where there can be recovered.
 
 As an example, crucial systems, which tolerate zero downtime, run in an active-active cross-regional configuration, as detailed in Approach 4. Maintaining systems in such a configuration involves most cost and effort. Approach 3 is appropriate for workloads where a few hours downtime can be tolerated, reducing the overall cost. Approach 1 is only suitable for systems that tolerate extended downtime. That includes noncritical development and test environments – but again, it’s a means to reduce DR costs by using the rapid scaling features of cloud computing. Approach 2 builds on the first approach but has some components that are built out, particularly those components that can take time to deliver. So, for your DR plan and strategy, consider a mix and match approach, especially where budget is a constraint.
 

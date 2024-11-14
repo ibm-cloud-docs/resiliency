@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2024
-lastupdated: "2024-11-13"
+lastupdated: "2024-11-14"
 
 keywords: resiliency, DR, high availability, disaster recovery, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -60,6 +60,11 @@ Additionally, consider how application code can be developed to make a switch ov
 {: #work-with-the-cloud}
 
 Think of {{site.data.keyword.cloud_notm}} as a toolbox with a set of tools or services that enable you to deploy and run workloads. To use any tool properly, you need to understand what it can and cannot do, and use the right one. Often, if you try and use a tool to do a job that it wasn't designed for, something will go wrong. When designing your resiliency provision, as a best practice, understand in as much detail as possible how the services that your workload uses operate and what their capabilities and limits are. If the service makes it difficult or impossible to meet your RTO or RPO objectives, then consider other services or tools that may help plug the gap. Also consider whether the objectives that have been set are realistic, or whether shaving off a few extra minutes or seconds for recovery is introducing undue complexity and cost into your solution for little real gain.
+
+## Take backups before making changes
+{: #backup-before-changes}
+
+Running IT systems is never risk free. Introducing change into your workload environment is a point when risk increases. It's a good practice to have a change release plan, as well as a backout plan to manage changes that you make to your environment. Include taking backups of data and configuration as one of the first steps of any change release plan. If something goes wrong during or shortly after the release, you can recover from your backups.
 
 ## Keep up to date with notificatins from {{site.data.keyword.cloud_notm}}
 {: #IBM-cloud-notifications}
