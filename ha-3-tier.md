@@ -28,6 +28,7 @@ This reference architecture describes three methods of deploying a 3-tier web ap
 |The front-end web tier|The 1st- tier is usually the user interaction that takes in user input and parses the data to be handed off to the next tier.
 |The application tier|The 2nd-tier takes the data from the web tier to process and apply logic. This action can include writing or pulling data from the data tier or providing results back to the web tier.
 |The data tier|The 3rd-tier stores the application data that can be in written form or query form. The storage varies across different storage technologies, such as block volumes or object storage, depending on the application requirements.
+{: caption="Three tiers of web applications" caption-side="bottom"}
 
 ## Deployment Considerations
 {: #ha-deployment-considerations}
@@ -50,6 +51,7 @@ Servers in each of the 3-tiers have different requirements. When you provision y
 
 ### Load balancers
 {: #ha-lb}
+
 You can order two types of load balancers from {{site.data.keyword.cloud}}. While both load balancers can distribute both HTTP/HTTPS and TCP traffic, each provides different capabilities that might be more suited for different deployment types.
 
 1. You can deploy {{site.data.keyword.loadbalancer_full}} either in public or private scenarios. For a public scenario, the load balancer has a public interface to take incoming traffic from the internet and distribute the traffic through its private interface connecting to the virtual servers as shown in [Scenario 1 - deploying in single zone](#single-zone). For a private scenario, the incoming and distributed outgoing traffic goes through private subnets, such as the traffic between the application tier and the data tier.
@@ -156,6 +158,7 @@ You can also deploy your application in multiple zones by using only {{site.data
 
 ## Reference
 {: #ha-reference}
+
 For more {{site.data.keyword.Bluemix_notm}} high availability content, see:
 * [Cloud reliability and disaster recovery architecture](https://www.ibm.com/garage/method/practices/run/cloud-platform-for-ha).
 * [Application-level high availability](https://www.ibm.com/cloud/architecture/architectures/resilience/overview).

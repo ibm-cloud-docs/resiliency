@@ -30,6 +30,7 @@ subcollection: resiliency
 {: toc-content-type="tutorial"} 
 {: toc-services="virtual-servers, vpc, loadbalancer-service, cis"} 
 {: toc-completion-time="90m"}
+{: toc-subcollection="resiliency"}
 
 Use this tutorial to deploy availability pools in a VPC for a single MZR. Creating server pools with origins provides your DevOps team with a staging environment so they can validate near-production ready code in parallel with an existing production environment.
 {: shortdesc}
@@ -48,6 +49,7 @@ This tutorial uses a web server, which can provide a full stack within a single 
 
 ## Architecture
 {: #architecture}
+
 The following diagram depicts the architecture of this solution.
 
 ![Deploying server pools and origins in a single MZR.](images/ha-pools-origins-1zone.svg){: caption="Figure 1. Deploying server pools and origins in a single MZR" caption-side="bottom"}
@@ -187,7 +189,8 @@ To specify which traffic to allow to the application, you deploy the following r
 After you successfully connect to the server in the subnet of zone 1 of region 1 by using SSH, complete the following steps to install and configure the Nginx web server.
 
 Complete this procedure for each web server virtual server (vpc-region1-zone1-vsi, vpc-region1-zone2-vsi).
-{: important}
+{: #important}
+
 1.  Open a command line, and run the following commands.
 
     ```sh
@@ -279,6 +282,7 @@ In the following section, you create two load balancers, one in each region. Thi
 
 ### Configure load balancers
 {: #lb-config}
+
 1.  Go to [Load balancers](https://cloud.ibm.com/vpc/network/loadBalancers){: external} and click **Create... New load balancer for VPC**.
 2.  Type _vpc-lb-region1-zone1_ as the unique name
 3.  Select _vpc-region1_ as your Virtual private cloud, select the **Resource group**, set **Region** as _region1_ and set **Type** to **Public**.
@@ -320,6 +324,7 @@ Complete this procedure for each load balancer.
 ## Provision a {{site.data.keyword.cis_full_notm}} instance and configure custom domain
 {: step}
 {: #provision-cis}
+
 In the following section, you create an {{site.data.keyword.cis_full_notm}} instance, configure a custom domain by pointing it to {{site.data.keyword.cis_short_notm}} name servers and later configure a global load balancer.
 1.  Navigate to the [IBM Cloud Internet Services](https://cloud.ibm.com/catalog/services/internet-services){: external} in the {{site.data.keyword.Bluemix_notm}} catalog.
 2.  Enter a **Service name**, select a resource group, and click **Create** to provision an instance of the service. You can use any pricing plans for this tutorial.
