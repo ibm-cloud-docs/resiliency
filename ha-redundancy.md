@@ -76,17 +76,17 @@ Control plane failures might impact the ability to create, modify, or delete res
 
 Zonal services allow the request of service instances to be deployed in a specific zone of a multizone region or a specific data center.
 
-These service instances deployed in a specific zone or specific data center are implemented and operated independently within its region, without dependencies on components of the services in other zones or data centers. Therefore failures in one zone may impact the instance that is hosted in that zone but they will not impact any instance in other zones in the same region or in other regions.
+These service instances that are deployed in a specific zone or specific data center are implemented and operated independently within its region, without dependencies on components of the services in other zones or data centers. Therefore, failures in one zone might impact the instance that is hosted in that zone but they will not impact any instance in other zones in the same region or in other regions.
 
-Zonal service architectures uses a zonal data plane that is deployed in each zone of a region and managed from the local in-region control plane component.
+Zonal service architectures use a zonal data plane that is deployed in each zone of a region and managed from the local in-region control plane component.
 
 The user or application interacts with the service instance function by using a zonal API endpoint that is located in each target zone.
 
-The service control plane, with some exceptions described in [Global service redundancy](#global-service), is located in the same region of the data plane and deployed across 3 zones of the regions. It is independent from control planes in other regions. Therefore, a control plane failure in one region might  impact only service functions in that region, but not service functions in other regions.
+The service control plane, with some exceptions that are described in [Global service redundancy](#global-service), is located in the same region of the data plane and deployed across 3 zones of the regions. It is independent from control planes in other regions. Therefore, a control plane failure in one region might impact only service functions in that region, but not service functions in other regions.
 
-If there is a failure of the control plane in one zone, or if a zone is completely unavailable, administrator requests to manage the data plane lifecycle phases like resource creation, configuration, upgrade and decommission, are performed by the control plane in the remaining two zones.
+If there is a failure of the control plane in one zone, or if a zone is unavailable, administrator requests to manage the data plane lifecycle phases like resource creation, configuration, upgrade and decommission, are performed by the control plane in the remaining two zones.
 
-In exceptional cases where the control plane is globally deployed, it is still deployed across multiple regions to ensure high availability. Therefore failures in one region would not impact service functions in the other regions.
+In exceptional cases where the control plane is globally deployed, it is still deployed across multiple regions to help ensure high availability. Therefore, failures in one region would not impact service functions in the other regions.
 
 For more information about the specific options for deploying your workloads that use a zonal service, see [Locations for resource deployment](/docs/overview?topic=overview-locations) and [Considerations for high availability](/docs/overview?topic=overview-ha-considerations).
 
@@ -95,17 +95,17 @@ For more information about the specific options for deploying your workloads tha
 
 Regional services allow the request of service instances to be deployed in a specific region as a whole without specifying a single target zone or data center.
 
-These service instances deployed in one region are implemented and operated with redundant components that are deployed in multiple zones within the same region. This way, there is no single point of failure on any specific zone within a region.
+These service instances that are deployed in one region are implemented and operated with redundant components that are deployed in multiple zones within the same region. This way, there is no single point of failure on any specific zone within a region.
 
-The regional service architecture uses a regional data plane deployed across 3 zones in each region that is managed from the local in-region control plane. If there is a data plane failure in one zone, or if a zone is completely unavailable, the requests from users and client applications are automatically rerouted to the data plane in the remaining two zones.
+The regional service architecture uses a regional data plane that is deployed across 3 zones in each region that is managed from the local in-region control plane. If there is a data plane failure in one zone, or if a zone is unavailable, the requests from users and client applications are automatically rerouted to the data plane in the remaining two zones.
 
 The user or application interacts with the service instance function by using a regional API endpoint that is located in each target region.
 
 The service control plane, with some exceptions that are described in [Global service redundancy](#global-service), is located in the same region of the data plane and deployed across 3 zones of the regions, independent from other regions control planes. This way, the control plane failures in one region might impact only the service functions in that region and not the service functions in other regions.
 
-If there is failure of control plane in one zone, or even complete losss, the request from administrators to manage the data plane lifecycle through the resource creation, configuration, upgrade, decommission phases of service instances are performed by the control plane on the remaining zones.
+If there is failure of the control plane in one zone, or even complete loss, the request from administrators to manage the data plane lifecycle through the resource creation, configuration, upgrade, decommission phases of service instances are performed by the control plane on the remaining zones.
 
-Even in the exceptional cases that the control plane is globally deployed, it is still deployed across multiple regions to ensure high availability to guarantee that failures in one region do not impact service functions in other regions.
+Even in the exceptional cases that the control plane is globally deployed, it is still deployed across multiple regions to help ensure high availability and to guarantee that failures in one region do not impact service functions in other regions.
 
 For more information about the specific options for deploying your workloads that use a regional service, see [Locations for resource deployment](/docs/overview?topic=overview-locations) and [Considerations for high availability](/docs/overview?topic=overview-ha-considerations).
 
@@ -126,7 +126,7 @@ This approach helps remove single points of failure in your architecture, but mi
 
 Global platform services provide common functions that other zonal or regional services depend upon. They are control plane only that have the purpose of orchestrating user interfaces, user identities and accounts, access, billing, and so on, across all the {{site.data.keyword.cloud_notm}} global infrastructure.
 
-The global platform services use global load-balancing strategies to ensure a redundant, highly available platform is available for you to access and manage your cloud services.
+The global platform services use global load-balancing strategies to help ensure a redundant, highly available platform is available for you to access and manage your cloud services.
 
 If there is an event that impacts availability in the regions that the components of a global platform service are located, the management functions provided by the service can be degraded or not available.
 
@@ -180,22 +180,22 @@ For more information about best practices when you use platform services for hig
 
 The {{site.data.keyword.cloud_notm}} network is designed such that a single point of failure never happens. Diverse, redundant connectivity exists at every point of the network by using diverse telecommunication providers for the same service connectivity whenever possible within each region.
 
-{{site.data.keyword.cloud_notm}} uses diverse dark fiber providers to connect edge sites to all of the regional compute facilities. Additionally, each edge site has a redundant backbone connectivity into other regions, and peers with multiple providers, directly and indirectly through a local exchange.
+{{site.data.keyword.cloud_notm}} uses diverse dark fiber providers to connect edge sites to all of the regional compute facilities. Additionally, each edge site has a redundant backbone of connectivity into other regions, and peers with multiple providers, directly and indirectly through a local exchange.
 
-### Zonal and regional service isolation from cross region dependencies
+### Zonal and regional service isolation from cross-region dependencies
 {: #zone-region-service-isolation}
 
 In general, if there is an event that impacts availability in one region, only zonal and regional services in that region are impacted. Services in other regions are not impacted.
 
 The data planes of zonal and regional services rely on resources within the same region, including essential dependencies like infrastructure, container orchestration, databases, security, and more.
 
-The data plane of a service located in a region also depends on service instances that are provided by the user to support the following service-to-service functions:
+The data plane of a service that is located in a region also depends on service instances that are provided by the user to support the following service-to-service functions:
 
 - {{site.data.keyword.keymanagementserviceshort}} instance for bring-your-own-key (BYOK) encryption support.
 - {{site.data.keyword.hscrypto}} instance for keep-your-own-key (KYOK) encryption support.
 - {{site.data.keyword.cos_short}}  buckets for storing backups, Security Control Center evidence and results, archived logs, and so on, and in general for any function that supports to store or process large amount of data into or from {{site.data.keyword.cos_short}} buckets.
 
-Carefully select the region for service allocation to ensure availability. It is recommended to place services in the same region as dependent services to prevent the impact of cross-region failure.
+Carefully select the region for service allocation to help ensure availability. It is recommended to place services in the same region as dependent services to prevent the impact of cross-region failure.
 {: note}
 
-Each services documentation provides clear directions on how you can use them, the location and configuration choices, to architecture of their applications for the desired level of resilience.
+Each services documentation provides clear directions on how you can use them, the location and configuration choices, to the architecture of their applications for the wanted level of resilience.

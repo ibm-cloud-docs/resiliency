@@ -57,7 +57,7 @@ toc:
       topics:
       - reference-arch.md
       - topicgroup:
-          label: High Availability
+          label: High availability
           topics:
           - link:
               label: IBM Cloud VSI on VPC landing Zone
@@ -66,17 +66,17 @@ toc:
               label: Red Hat OpenShift Container Platform on VPC landing zone
               href: https://cloud.ibm.com/docs/deployable-reference-architectures?topic=deployable-reference-architectures-ocp-ra
       - topicgroup:
-          label: Disaster Recovery
-          topics:  
+          label: Disaster recovery
+          topics:
             - link:
                 label: Cyber resiliency pattern on VPC
                 href: https://cloud.ibm.com/docs/pattern-cyber-resiliency-vpc?topic=pattern-cyber-resiliency-vpc-cyber-resiliency
-            - link: 
+            - link:
                 label: Oracle Database Disaster Recovery on IBM PowerVS
                 href: https://cloud.ibm.com/docs/pattern-oracle-disaster-recovery-on-powervs?topic=pattern-oracle-disaster-recovery-on-powervs-oracle-database-disaster-recovery-on-ibm-powervs-cross-region
-      - topicgroup:  
-          label: High Availability and Disaster Recovery
-          topics: 
+      - topicgroup:
+          label: High availability and disaster recovery
+          topics:
             - link:
                 label: Web app cross-region resiliency
                 href: https://cloud.ibm.com/docs/pattern-vpc-vsi-cross-region-resiliency?topic=pattern-vpc-vsi-cross-region-resiliency-web-app-cross-region
