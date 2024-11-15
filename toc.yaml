@@ -42,8 +42,16 @@ toc:
   - navgroup:
       id: howto
       topics:
-      - bcdr-testing.md
-      - chaos-engineering.md
+      - topicgroup:
+          label: Create highly available applications in VPC
+          topics:
+          - ha-3-tier.md
+          - ha-pools-origins-1zone.md
+      - topicgroup:
+          label: Testing your resiliency
+          topics:
+            - bcdr-testing.md
+            - chaos-engineering.md
   - navgroup:
       id: architecture
       topics:
