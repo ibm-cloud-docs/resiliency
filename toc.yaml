@@ -62,6 +62,8 @@ toc:
           - link:
               label: IBM Cloud VSI on VPC landing Zone
               href: https://cloud.ibm.com/docs/deployable-reference-architectures?topic=deployable-reference-architectures-vsi-ra
+          - include: ../deployable-reference-architectures/deploy-arch-ibm-slz-vsi-standard.md
+            navtitle: IBM Cloud VSI on VPC landing Zone
           - link:
               label: Red Hat OpenShift Container Platform on VPC landing zone
               href: https://cloud.ibm.com/docs/deployable-reference-architectures?topic=deployable-reference-architectures-ocp-ra
