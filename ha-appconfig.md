@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2024
-lastupdated: "2024-11-13"
+lastupdated: "2024-11-15"
 
 keywords: high availability, regions, zones, resiliency
 
@@ -13,9 +13,11 @@ subcollection: ha-infrastructure
 # High availability design for applications
 {: #high-availability-design}
 
-{{site.data.keyword.cloud_notm}} supports [high availability](#x2284708){: term} application deployments in a single zone, across multiple zones in a multi-zone region, and across multiple regions.
+{{site.data.keyword.cloud_notm}} supports [high availability](#x2284708){: term} application deployments within a single zone, across multiple zones in a multi-zone region, and across multiple regions.
 
-Failure domains determine the level of protection from infrastructure failures for each HA deployment option. Application instances that are deployed in multiple availability zones are within a metro area that is connected over a low latency network and data can be replicated synchronously across the zones. Application instances that are deployed in multiple regions are typically in different geos that are connected over a WAN and data can be replicated asynchronously across the regions. The following table shows application deployment options based on failure domains available in a public cloud.
+Failure domains determine the degree of protection from infrastructure failures for each deployment option. An application instance deployed in a single zone is not protected against a failure of that zone. Application instances deployed in multiple availability zones are protected against a failure of a single zone.  The multiple availability zones are within the same metropolitan area and are connected by low latency network links that allow data to be synchronously replicated across the zones. Application instances deployed in multiple regions are protected against a failure of an entire region.  Different regions are located in different countries or in different parts of a single country.  The distances between regions typically only allows data to be replicated asynchronously.
+
+The following table shows application deployment options based on failure domains available in a public cloud.
 
 
 
@@ -29,25 +31,25 @@ Failure domains determine the level of protection from infrastructure failures f
 ## Single-zone deployment
 {: #single-zone}
 
-In single-zone deployments, multiple compute instances are deployed in one zone by using [Placement Groups](/docs/vpc?topic=vpc-about-placement-groups-for-vpc) to provision virtual servers in separate physical hosts and [VPC Autoscale](/docs/vpc?topic=vpc-creating-auto-scale-instance-group) to enable dynamic adjustment of capacity based on load changes. Single zone deployment provides cost-effective solutions with 99.9% infrastructure availability that might be appropriate for nonproduction environments or nonbusiness critical applications. However, single-zone deployments provide no protection from zone outages.
+In single-zone deployments, multiple application instances are deployed in one zone.  If an application instance runs in a single virtual server, [Placement Groups](/docs/vpc?topic=vpc-about-placement-groups-for-vpc) allow these virtual servers to be provisioned in separate physical hosts. [VPC Autoscale](/docs/vpc?topic=vpc-creating-auto-scale-instance-group) can be used to enable dynamic adjustment of capacity based on workload changes. Single zone deployments provide cost-effective solutions with 99.9% infrastructure availability.  This may be appropriate for non-production environments or non-business critical applications. However, single-zone deployments provide no protection from zone outages.
 
 ## Multi-zone, single-region deployment
 {: #multi-zone-single-region}
 
-In a multi-zone, single-region deployment, multiple compute instances are deployed across two or more availability zones within a region. Multi-zone, single region deployment can provide up to 99.99% infrastructure availability, when the application is deployed across 3 availability zones. This deployment protects the application from zone failures and is suitable for production-level enterprise workloads with \>99.9% availability requirements. Actual application availability depends on the application high availability design.
+In a multi-zone, single-region deployment, multiple application instances are deployed across two or more availability zones within the region. Multi-zone, single region deployments can provide up to 99.99% infrastructure availability, when the application is deployed across three availability zones. This deployment protects the application from zone failures, and is suitable for production-level enterprise workloads with \>99.9% availability requirements. Actual application availability will depend on the application high availability design.
 
 ## Multi-zone, multi-region deployment
 {: #multi-zone-multi-region}
 
-A multi-zone, multi-region deployment provides protection against region outages. This is the recommended deployment for mission-critical applications with continuous or near continuous availability requirements. This deployment also supports out of region disaster recovery and business continuity policies with cross geo or distance requirements.
+A multi-zone, multi-region deployment provides protection against region outages. This is the recommended deployment for mission-critical applications with continuous or near-continuous availability requirements. This deployment also supports out of region disaster recovery and business continuity for applications with cross-geography or specific separation distance requirements.
 
-Multi-zone deployments rely on application-aware data replication across availability zones and support active-active and active-standby architecture patterns. Multi-zone, multi-region deployments support architecture patterns for enterprise applications with continuous availability/always on requirements. The following tables show a comparison of the different deployment options and recommended use.
+Multi-zone deployments rely on application-aware data replication across availability zones and support active-active and active-standby architecture patterns. Multi-zone, multi-region deployments support architecture patterns for enterprise applications with continuous availability/always-on requirements. The following tables show a comparison of the different deployment options and recommended use.
 
 | Deployment    | Availability | Description   | Recommended use   |
 |------------------|------------------|------------------|------------------|
-| Single-zone                | 99.9% [^footnote1]           | - Multiple compute instances in one zone \n - Protection from infrastructure failures \n - Low/Medium cost \n | - Low to medium priority applications \n - Nonproduction workloads |
-| Multi-zone, single-region | 99.99% [^footnote2]          | - Multiple compute instances across 2 or more availability zones \n - Synchronous data replication across zones \n - Protection from zone outages \n - Medium/high cost | - Core business applications \n - Production level workloads with stringent resiliency requirements \n - Business continuity policies with country boundaries or geo data residence constraints |
-| Multi-zone, multi-region  | &amp;gt;99.99% [^footnote3]        | - Multiple compute instances across multiple availability zones in 2 or more regions \n - Asynchronous data replication across regions \n - Protection from region outages \n - High cost | - Mission-critical applications with continuous or near continuous availability requirements \n - Business continuity policies with cross geo or distance requirements \n - Disaster recovery |
+| Single-zone                | 99.9% [^footnote1]           | - Multiple compute instances in one zone \n - Protection from infrastructure failures \n - Low/Medium cost \n | - Low to medium priority applications \n - Non-critical production workloads |
+| Multi-zone, single-region | 99.99% [^footnote2]          | - Multiple compute instances across 2 or more availability zones \n - Synchronous data replication across zones \n - Protection from zone outages \n - Medium/high cost | - Core business applications \n - Production level workloads with stringent resiliency requirements \n - Business continuity policies with country boundaries or geographic data residence constraints |
+| Multi-zone, multi-region  | &amp;gt;99.99% [^footnote3]        | - Multiple compute instances across multiple availability zones in 2 or more regions \n - Asynchronous data replication between regions \n - Protection from region outages \n - High cost | - Mission-critical applications with continuous or near continuous availability requirements \n - Business continuity policies with cross geography or specific separation distance requirements \n - Disaster recovery |
 {: caption="High availability deployment recommendations" caption-side="bottom"}
 
 [^footnote1]: Todo text.
@@ -57,6 +59,7 @@ Multi-zone deployments rely on application-aware data replication across availab
 [^footnote3]: Todo text.
 
 The following Architecture Framework provides design considerations and architecture decisions for deploying resilient applications on IBM Cloud Virtual Private Cloud (VPC) infrastructure. It covers the following solution aspects and domains:
+
 - **Networking:** Load balancing, Domain name system
 - **Security:** Data security
 - **Resiliency:** High availability, Backup and restore, Disaster recovery
@@ -64,4 +67,4 @@ The following Architecture Framework provides design considerations and architec
 
 ![VPC resiliency architecture design scope](images/heat-map-vpc-resiliency.svg){: caption="VPC resiliency architecture design scope" caption-side="bottom"}
 
-The [Architecture Design Framework](https://cloud.ibm.com/docs/architecture-framework) provides a consistent approach to design cloud solutions by addressing requirements across a set of aspects and domains, which are technology-agnostic architectural areas that need to be considered for any enterprise solution.
+The [Architecture Design Framework](/docs/architecture-framework) provides a consistent approach to design cloud solutions by addressing requirements across a set of aspects and domains, which are technology-agnostic architectural areas that need to be considered for any enterprise solution.

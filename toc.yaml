@@ -28,7 +28,7 @@ toc:
           label: Designing for high availability
           topics:
           - ha-appconfig.md
-          - ha-redundancy.md          
+          - ha-redundancy.md
       - topicgroup:
           label: Designing for disaster recovery
           topics:
@@ -65,9 +65,9 @@ toc:
       - link:
           label: Veeam on VMware resiliency
           href: https://cloud.ibm.com/docs/vmware-cross-region-dr?topic=vmware-cross-region-dr-deploy-veeam-arch
-      - link: 
+      - link:
           label: Oracle Database Disaster Recovery on IBM PowerVS
-          href: https://cloud.ibm.com/docs/pattern-oracle-disaster-recovery-on-powervs?topic=pattern-oracle-disaster-recovery-on-powervs-oracle-database-disaster-recovery-on-ibm-powervs-cross-region      
+          href: https://cloud.ibm.com/docs/pattern-oracle-disaster-recovery-on-powervs?topic=pattern-oracle-disaster-recovery-on-powervs-oracle-database-disaster-recovery-on-ibm-powervs-cross-region
   - navgroup:
       id: reference
       topics:
@@ -76,7 +76,7 @@ toc:
           href: https://www.ibm.com/architectures/well-architected/resiliency
       - link:
           label: IBM Cloud compliance programs
-          href: https://www.ibm.com/cloud/compliance      
+          href: https://www.ibm.com/cloud/compliance
       - topicgroup:
           label: Product availability and locations
           topics:
@@ -87,14 +87,6 @@ toc:
           - service-rollout.md
       - slo.md
       - services-ha-dr.md
-      - topicgroup:
-          label: Services
-          topics:
-          - services/secrets_manager.md
-          - services/postgresql.md
-          - services/template.md
-          - services/iam.md
-          - services/vpc.md
   - navgroup:
       id: help
       topics:
