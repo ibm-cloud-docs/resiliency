@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2024
-lastupdated: "2024-11-14"
+lastupdated: "2024-11-16"
 
 keywords: resiliency, DR, high availability, disaster recovery, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -21,7 +21,7 @@ This page provides some recommended best practices for resiliency for your {{sit
 ## Always have a plan
 {: #have-a-plan}
 
-Working through any crisis is stressful and disasters are no different. You are likely trying to bring business critical services up and may be under pressure to do so quickly, which could even lead to mistakes. In the unlikely event of a disaster, having a well defined, pre-determined plan will help you and your business recover in an orderly and predicatble way, which will help alleviate stress and execute your recovery without mistakes. You can read more about creating a disaster recovery plan in the [Planning for Disaster Recovery](bcdr-pitfalls.md) section of this guide.
+Working through any crisis is stressful and disasters are no different. You are likely trying to bring business critical services up and may be under pressure to do so quickly, which could even lead to mistakes. In the unlikely event of a disaster, having a well defined, pre-determined plan will help you and your business recover in an orderly and predicatble way, which will help alleviate stress and execute your recovery without mistakes. You can read more about creating a disaster recovery plan in the [Planning for disaster recovery](/docs/resiliency?topic=resiliency-PlanningforDR) section of this guide.
 
 ## Work with the business to determine priorites
 {: #work-with-business}

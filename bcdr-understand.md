@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-11-08"
+lastupdated: "2024-11-16"
 
 keywords: disaster recovery, DR, what is disaster recovery, DR strategy, disaster recovery options, disaster recovery strategy
 
@@ -80,4 +80,4 @@ Bear in mind that disasters have many forms and require different techniques to 
 
 Consider carefully what you need to recover if a disaster strikes. Do you need every workload or just a subset of core applications? Is there an order that they need to be restored in? Is data consistency across workloads important? Is it possible to work in a degraded state and if so, for how long?
 
-These questions are as much a business consideration as a technical one, and costs might be prohibitive in some situations. You must have a clear view of what the minimal acceptable recovery is that allows the business to function, accepting residual risks from understanding their consequences. Planning the technical solution must work hand-in-hand with business requirements and both must be captured in the disaster recovery plan. Disaster recovery plans are explored further in the [Planning for Disaster Recovery](/docs/resiliency?topic=resiliency-planning-for-disaster-recovery) topic.
+These questions are as much a business consideration as a technical one, and costs might be prohibitive in some situations. You must have a clear view of what the minimal acceptable recovery is that allows the business to function, accepting residual risks from understanding their consequences. Planning the technical solution must work hand-in-hand with business requirements and both must be captured in the disaster recovery plan. For more information, see [Planning for disaster recovery](/docs/resiliency?topic=resiliency-PlanningforDR).
