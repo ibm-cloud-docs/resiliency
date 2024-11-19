@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-11-16"
+lastupdated: "2024-11-19"
 
 keywords: DR for IBM Cloud, disaster recovery, common mistakes for disaster recovery, plan a disaster recovery strategy
 
@@ -25,33 +25,28 @@ A disaster recovery plan is a set of procedures and strategies that an organizat
 A disaster recovery plan includes the following elements:
 
 1. Risk assessment
-* Identify potential disasters and the likelihood of them occurring.
-* Evaluate the impact that each disaster might have on the organization.
-
+   * Identify potential disasters and the likelihood of them occurring.
+   * Evaluate the impact that each disaster might have on the organization.
 1. Emergency response
-* Designate a disaster management team.
-* Establish communication protocols.
-* Identify emergency response procedures.
-
+   * Designate a disaster management team.
+   * Establish communication protocols.
+   * Identify emergency response procedures.
 1. Business continuity
-* Develop a business continuity plan that includes procedures to maintain organizational operations during a disaster.
-* Identify key personnel and their role in the recovery process.
-* Establish procedures for communication with customers, vendors, and other stakeholders.
-
+   * Develop a business continuity plan that includes procedures to maintain organizational operations during a disaster.
+   * Identify key personnel and their role in the recovery process.
+   * Establish procedures for communication with customers, vendors, and other stakeholders.
 1. Cloud environment recovery
-* Establish procedures for the provision of replacement services.
-* Establish procedures for the provision of standby services.
-* Establish procedures for the scaling of standby services.
-
+   * Establish procedures for the provision of replacement services.
+   * Establish procedures for the provision of standby services.
+   * Establish procedures for the scaling of standby services.
 1. Data backup and recovery
-* Establish backup procedures for critical data and systems.
-* Validate that backup systems are regularly tested and updated.
-* Develop procedures for recovering lost data and systems.
-
+   * Establish backup procedures for critical data and systems.
+   * Validate that backup systems are regularly tested and updated.
+   * Develop procedures for recovering lost data and systems.
 1. Training and testing
-* Provide regular training for employees on disaster recovery procedures.
-* Conduct regular testing of the disaster recovery plan.
-* Add updates to the disaster recovery plan, based on testing and new risks identified.
+   * Provide regular training for employees on disaster recovery procedures.
+   * Conduct regular testing of the disaster recovery plan.
+   * Add updates to the disaster recovery plan, based on testing and new risks identified.
 
 Testing under a range of scenarios identifies common pitfalls that can render plans unusable under real conditions. By following these steps and regularly reviewing and updating the disaster recovery plan, your organization can better prepare to respond to and recover from disasters.
 
