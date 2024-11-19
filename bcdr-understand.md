@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-11-18"
+lastupdated: "2024-11-19"
 
 keywords: disaster recovery, DR, what is disaster recovery, DR strategy, disaster recovery options, disaster recovery strategy
 
@@ -19,8 +19,6 @@ subcollection: resiliency
 {: shortdesc}
 
 When you design and build IT workloads, focus is often placed on maintaining [high availability](#x2284708){: term} (HA). HA is the process of designing out single points of failure so that workloads can survive and avoid outages that are otherwise caused by failing infrastructure.
-
-{{site.data.keyword.cloud_notm}} supports high availability through its multizone region (MZR) architecture. HA is a design default in many {{site.data.keyword.cloud_notm}} services. This means that you can easily deploy workloads across multiple zones in a region. The multi-zone deployment model helps ensure that even the complete failure of a single zone doesn't affect workload availability, assuming that the workload is correctly deployed.
 
 Disasters are different. Disasters cause a workload to go down despite attempts to make it highly available. The worst disasters have widespread consequences, which means that affected workloads might require recovery in a different region altogether.
 

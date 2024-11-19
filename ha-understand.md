@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-11-15"
+lastupdated: "2024-11-19"
 
 keywords: high availability, ha, understanding ha
 
@@ -30,7 +30,7 @@ For HA in the cloud, it's important to understand the high-level concepts that y
 ## Formula for high availability
 {: #ha-formula}
 
-A useful formula for [high availability](#x2284708){: term} is MTBF/(MTBF+MTTR), where MTBF is Mean Time Between Failures and MTTR is Mean Time To Repair. Since MTBF is the time when the system is up, and MTTR is the time that the system is down, this formula can be summarized as Availability = (The time the system is up)/(The time the system is up + The time the system is down).
+A useful formula for high availability is MTBF/(MTBF+MTTR), where MTBF is Mean Time Between Failures and MTTR is Mean Time To Repair. Since MTBF is the time when the system is up, and MTTR is the time that the system is down, this formula can be summarized as Availability = (The time the system is up)/(The time the system is up + The time the system is down).
 
 The formula is useful because it shows you how to improve availability. You can increase MTBF, decrease MTTR, or both. This means that availability can be improved by increasing reliability or fixing issues when they break more efficiently. Both approaches have been used with computer systems over the years. The mainframe, which uses high reliability parts, redundant parts, and modularity to allow quicker repairs, shows that significant levels of availability are possible with this approach.
 
