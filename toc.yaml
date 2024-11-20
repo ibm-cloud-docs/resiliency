@@ -14,6 +14,9 @@ toc:
       id: overview
       topics:
       - resiliency-overview.md
+      - link:
+          label: How IBM Cloud ensures high availability and disaster recovery
+          href: /docs/overview?topic=overview-zero-downtime 
       - ha-understand.md
       - bcdr-understand.md
       - cyberresiliency-overview.md
