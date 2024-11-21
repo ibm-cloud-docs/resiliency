@@ -26,4 +26,4 @@ If you still can't resolve the problem, you can open a support case. For more in
 ## DORA
 {: #dora-help}
 
-To get help and support for meeting Digital Operational Resilience Act (DORA) requirements, enable the DORA setting in your {{site.data.keyword.cloud_notm}} account to access resources. For more information, see [Enabling your account for DORA compliance](/docs/account?topic=account-enabling-dora).
+To get help and support for meeting Digital Operational Resilience Act (DORA) requirements, enable the DORA setting in your {{site.data.keyword.cloud_notm}} account. For more information, see [Enabling your account for DORA compliance](/docs/account?topic=account-enabling-dora).
