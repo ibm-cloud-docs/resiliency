@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-11-19"
+lastupdated: "2024-11-21"
 
 keywords: disaster recovery, DR, what is disaster recovery, DR strategy, disaster recovery options, disaster recovery strategy
 
@@ -34,7 +34,9 @@ However, there's a chance that a disaster can take out the region where your cri
 ## RTO and RPO
 {: #RTO-RPO}
 
-[Recovery Time Objective](#x3167918){: term} (RTO) and [Recovery Point Objective](#x3429911){: term} (RPO) are often the two starting points for a disaster recovery plan.
+[Recovery Time Objective](#x3167918){: term} (RTO) and [Recovery Point Objective](#x3429911){: term} (RPO) are often the two starting points for a disaster recovery plan. The following diagram describes how RTO and RPO fit into an outage timeline.
+
+![Diagram depicting how RTO/RPO fit into an outage timeline](images/outages-diagram.png "Diagram depicting how RTO/RPO fit into an outage timeline"){: caption="Diagram depicting how RTO/RPO fit into an outage timeline" caption-side="bottom"}
 
 When a disaster is called and the disaster recovery plan is put into action, the clock starts on RTO. RTO refers to the time that it takes to restore services to a usable state. A plan can have an overarching RTO, which covers many workloads, and individual RTOs for each workload it covers. RTO is expressed as units of time, for example minutes, hours, or days.
 
@@ -44,7 +46,7 @@ Many environments have a mix of workload types, some that are fundamentally crit
 
 Typically, costs rise as RTO and RPO targets reduce toward zero. Workloads that have the most stringent RTO and RPO targets are the most business critical. This ratio is depicted in the following diagram.
 
-![Diagram depicting RTO/RPO to Cost ratio](images/rto-rpo-cost-curve.png "Diagram depicting RTO/RPO to Cost ratio"){: caption="Diagram depicting RTO/RPO to Cost ratio" caption-side="bottom"}
+![Diagram depicting RTO/RPO to Cost ratio](images/RTO-to-cost-curve.png "Diagram depicting RTO/RPO to Cost ratio"){: caption="Diagram depicting RTO/RPO to Cost ratio" caption-side="bottom"}
 
 ## Planning for a disaster
 {: #bcdr-general-strategy}
