@@ -53,7 +53,7 @@ An alternative method is to deploy and configure a [Veeam](https://cloud.ibm.com
 
 For VSIs running Linux operating systems, the bucket can be mounted directly by using [`s3fs`](https://github.com/s3fs-fuse/s3fs-fuse), based on FUSE. For VSIs running Microsoft Windows, [Rclone](https://rclone.org) is the preferred tool for direct mounting.  Rclone is an open-source command-line tool that is used to manage files in cloud storage, including object storage. In each case, the bucket is mounted as a network drive and operates in a similar way to a Common Internet File System (CIFS) or Network File System (NFS) shared drive. The installation of the Veeam agent and the bucket mount can be scripted and automated at the VSI provision time, by using the user-data settings. Be sure to use the appropriate endpoint for the bucket.
 
-If you are using IBM Cloud Databases for MySQL, IBM Cloud Databases for PostgreSQL, or IBM Cloud Databases for MongoDB, point-in-time recovery from backups is available. Point-in-time recovery works by automatically recording all transactional changes that occur after a full backup in transaction log files or similar. The process starts again when the next full backup is taken. When the database is recovered, the database administrator defines a restore point within the past 7 days. Next, the nearest full backup before that time is restored into a new instance. Finally, the recorded transactional changes are replayed, up to the defined point in time. The last point in time for the recovery is that when the last transactional change was recorded and is available from the source database. Restores of this kind are always rolled forward, not backwards. You cannot restore a backup and roll backwards by undoing transactions. Databases that do not offer point-in-time recovery can be recovered to the point of last backup. Transactional changes are not applied to them, so transactions that take place after the backup are lost on recovery. Backups are automatically taken every 24 hours and backup files are placed in a cross-regional object storage bucket for resiliency. Recovery is possible to any other multi-zone region, except across compliance zone boundaries.
+If you are using {{site.data.keyword.databases-for-mysql}}, {{site.data.keyword.databases-for-postgresql_full_notm}}, or {{site.data.keyword.databases-for-mongodb_full_notm}}, point-in-time recovery from backups is available. Point-in-time recovery works by automatically recording all transactional changes that occur after a full backup in transaction log files or similar. The process starts again when the next full backup is taken. When the database is recovered, the database administrator defines a restore point within the past 7 days. Next, the nearest full backup before that time is restored into a new instance. Finally, the recorded transactional changes are replayed, up to the defined point in time. The last point in time for the recovery is that when the last transactional change was recorded and is available from the source database. Restores of this kind are always rolled forward, not backwards. You cannot restore a backup and roll backwards by undoing transactions. Databases that do not offer point-in-time recovery can be recovered to the point of last backup. Transactional changes are not applied to them, so transactions that take place after the backup are lost on recovery. Backups are automatically taken every 24 hours and backup files are placed in a cross-regional object storage bucket for resiliency. Recovery is possible to any other multi-zone region, except across compliance zone boundaries.
 
 Database restores can take several hours to complete.
 
@@ -98,18 +98,18 @@ In each of these cases, data loss depends on the time of the last available data
 ## Approach 3: Minimal operation
 {: #Approach3-MinimalOperation}
 
-The minimal operation approach differs from Approach 2 because a minimal service is maintained and running on the DR site, reducing RTO. Included is networking fabric, such as Direct Link, VPNs, and global load balancers, which might otherwise have lead times of several days.
+The minimal operation approach differs from Approach 2 because a minimal service is maintained and running on the DR site, reducing RTO. Included is networking fabric, such as {{site.data.keyword.dl_short}}, VPNs, and global load balancers, which might otherwise have lead times of several days.
 
 Summary of the minimal operation approach:
 
 * Minimal infrastructure is provisioned, configured and active in a second region.
 * Autoscaling is used to quickly provision capacity.
-* Networking infrastructure such as Direct Link, VPN, and global load balancers are in place.
+* Networking infrastructure such as {{site.data.keyword.dl_short}}, {{site.data.keyword.vpn_vpc_short}}, and global load balancers are in place.
 * Data is frequently restored in the DR region.
 * Database read replicas are in-place, where available.
 * Minimal operation provides a faster RTO, since services are running and data is at least partially restored.
 
-Data backups are applied to the active DR services at a frequency that supports a more aggressive RTO. Backups can be automated through jobs run by IBM Cloud Code Engine.
+Data backups are applied to the active DR services at a frequency that supports a more aggressive RTO. Backups can be automated through jobs run by {{site.data.keyword.codeenginefull_notm}}.
 
 If a disaster is called, the recovery of outstanding, unapplied backups is carried out and services are scaled to an appropriate level. If a read replica IBM Cloud Database is used, the read replica is transformed into a stand-alone copy.
 
