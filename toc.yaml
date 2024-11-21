@@ -20,10 +20,7 @@ toc:
       - ha-understand.md
       - bcdr-understand.md
       - cyberresiliency-overview.md
-      - topicgroup:
-          label: Best practices
-          topics:
-          - dr-bp.md
+      - dr-bp.md
   - navgroup:
       id: plan
       topics:
