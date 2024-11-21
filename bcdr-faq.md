@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021, 2024
-lastupdated: "[{2024-11-06}]"
+  years: 2024
+lastupdated: "2024-11-21"
 
 keywords: disaster recovery, DR, what is disaster recovery, DR strategy, disaster recovery options, disaster recovery strategy
 
@@ -12,7 +12,7 @@ subcollection: resiliency
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Disaster recovery FAQ
+# FAQs for disaster recovery
 {: #dr-faq}
 
 This page discusses some common frequently asked questions about disaster recovery.
