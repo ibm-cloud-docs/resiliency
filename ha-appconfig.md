@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2024
-lastupdated: "2024-11-19"
+lastupdated: "2024-11-21"
 
 keywords: high availability, regions, zones, resiliency
 
@@ -21,7 +21,7 @@ The following table shows application deployment options based on failure domain
 
 
 
-| HA deployment model           | Availability | Failure domain                | Cost and complexity |
+| Deployment          | Availability | Failure domain                | Cost and complexity |
 |-------------------------------|--------------|-------------------------------|---------------------|
 | Single-zone, \n single-region | Low/Med      | Virtual Server / Physical Host| Low                 |
 | Multi-zone, \n single-region  | High         | Zone                          | Medium              |
