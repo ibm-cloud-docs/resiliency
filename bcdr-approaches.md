@@ -30,13 +30,20 @@ Waiting for {{site.data.keyword.Bluemix_notm}} to recover an affected region or 
 | Active/active     | Critical systems   | Zero downtime           | High                |
 {: caption="Disaster recovery approaches and possible workload types, downtime tolerence, and cost and complexity to maintain." caption-side="bottom"}
 
-Approach 1 is only suitable for systems that tolerate extended downtime, like noncritical development and test environments. It is a cost-effective option that relies on cloud computing's ability to quickly scale up resources when needed rather than maintain standby systems. Approach 2 builds on the first approach by building out some components, which can take time to deliver. Approach 3 is appropriate for workloads where a few hours of downtime can be tolerated, reducing the overall cost. Crucial systems, which tolerate zero downtime, run in an active-active cross-regional configuration, as detailed in Approach 4. Maintaining systems in an active/active configuration involves the most cost and effort. For your DR plan, you can mix and match approaches, especially where budget is a constraint.
+Zero footprint is only suitable for systems that tolerate extended downtime, like noncritical development and test environments. It is a cost-effective option that relies on cloud computing's ability to quickly scale up resources when needed rather than maintain standby systems. Basic standby builds on zero footprint by pre-creating some components which otherwise can take time to provision. Minimal operation is appropriate for workloads where a few hours of downtime can be tolerated, reducing the overall cost. Crucial systems, which tolerate zero downtime, run in an active-active cross-regional active/acitive configuration. Maintaining systems in an active/active configuration involves the most cost and effort. For your DR plan, you can mix and match approaches to suit differnt workloads, especially where budget is a constraint.
 
 To choose an approach, it’s important to understand if the service automatically takes backups of your data and how backups are taken within the service. Review each service's documentation to understand where the backups are stored, how to restore the backups, and where you can recover them.
 
 If the service automatically takes backups of your data, including snapshots, check that they are stored cross-regionally or in buckets that are replicated to another region. If a service doesn't automatically take backups, you need to configure such backup storage or replication.
 
-Consider the scope of the recovery that you might need for each specific disaster. A disaster might disable an entire region or it might disable a single service instance. Adapt your approach to the scenarios that you plan for. Does your plan allow for the recovery of one or more cloud services in isolation? Does it demand that all services are recovered elsewhere, regardless of services that are running normally? If you do recover a single service, what is the impact on your workloads? What configuration changes might be needed and how simple are they to complete? Working through different disaster scenarios enriches your planning.
+Consider the scope of the recovery that you might need for each specific disaster. A disaster might disable an entire region or it might disable a single service instance. Adapt your approach to the scenarios that you plan for and ask yourself the following questions:
+
+* Does my plan allow for the recovery of one or more cloud services in isolation?
+* How flexible is my workload to having services running in different regions?
+* If I recover a single service, what is the impact on my workloads, do I need to recover anything else?
+* What configuration changes might be needed within my applications to point at different service instances and how simple are is it to make such changes?
+
+Working through different disaster scenarios enriches your planning.
 
 The following DR approaches focus on VPC and database services as examples. The same general principles apply to other {{site.data.keyword.cloud_notm}} services.
 
