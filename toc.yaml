@@ -22,40 +22,8 @@ toc:
       - cyberresiliency-overview.md
       - dr-bp.md
   - navgroup:
-      id: plan
-      topics:
-      - topicgroup:
-          label: Designing for high availability
-          topics:
-          - ha-appconfig.md
-          - ha-redundancy.md
-      - topicgroup:
-          label: Designing for disaster recovery
-          topics:
-          - bcdr-pitfalls.md
-          - bcdr-approaches.md
-      - topicgroup:
-          label: Designing for cyber resiliency
-          topics:
-          - cyberresiliency-plan.md
-      - data-resiliency.md
-  - navgroup:
-      id: howto
-      topics:
-      - topicgroup:
-          label: Create highly available applications in VPC
-          topics:
-          - ha-3-tier.md
-          - ha-pools-origins-1zone.md
-      - topicgroup:
-          label: Testing your resiliency
-          topics:
-            - bcdr-testing.md
-            - chaos-engineering.md
-  - navgroup:
       id: architecture
       topics:
-      - reference-arch.md
       - topicgroup:
           label: High availability
           topics:
@@ -86,6 +54,37 @@ toc:
             - link:
                 label: Veeam on VMware resiliency
                 href: https://cloud.ibm.com/docs/vmware-cross-region-dr?topic=vmware-cross-region-dr-deploy-veeam-arch
+  - navgroup:
+      id: plan
+      topics:
+      - topicgroup:
+          label: Designing for high availability
+          topics:
+          - ha-appconfig.md
+          - ha-redundancy.md
+      - topicgroup:
+          label: Designing for disaster recovery
+          topics:
+          - bcdr-pitfalls.md
+          - bcdr-approaches.md
+      - topicgroup:
+          label: Designing for cyber resiliency
+          topics:
+          - cyberresiliency-plan.md
+      - data-resiliency.md
+  - navgroup:
+      id: howto
+      topics:
+      - topicgroup:
+          label: Create highly available applications in VPC
+          topics:
+          - ha-3-tier.md
+          - ha-pools-origins-1zone.md
+      - topicgroup:
+          label: Testing your resiliency
+          topics:
+            - bcdr-testing.md
+            - chaos-engineering.md
   - navgroup:
       id: reference
       topics:

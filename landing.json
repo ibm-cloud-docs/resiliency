@@ -32,14 +32,5 @@
       "href": "https://cloud.ibm.com/docs/vpc-resiliency",
       "type": "white-paper"
     }
-  ],
-  "section_updates": {
-    "view_more": "/docs/overview?topic=overview-whatsnew",
-    "tiles": [
-      {
-        "date": "07 August 2024",
-        "title": "Experimental: Access resources from the Resources tab"
-      }
-    ]
-  }
+  ]
 }
