@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024, 2024
-lastupdated: "2024-11-21"
+  years: 2024
+lastupdated: "2024-11-22"
 
 keywords: high availability, regions, zones, resiliency
 
@@ -10,7 +10,7 @@ subcollection: ha-infrastructure
 
 ---
 
-# High availability design for applications
+# High availability design for your applications
 {: #high-availability-design}
 
 {{site.data.keyword.cloud_notm}} supports high availability application deployments within a single zone, across multiple zones in a multi-zone region, and across multiple regions.

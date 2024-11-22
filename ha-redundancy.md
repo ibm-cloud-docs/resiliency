@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2024
-lastupdated: "2024-11-15"
+lastupdated: "2024-11-22"
 
 keywords: load balancing, global load balancing, HA, DR, high availability, disaster recovery, HA for the platform, high availability for platform, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -12,13 +12,13 @@ subcollection: design
 
 {{site.data.keyword.attribute-definition-list}}
 
-# High availability and redundancy design on {{site.data.keyword.cloud_notm}}
+# How {{site.data.keyword.cloud_notm}} ensures high availability and redundancy
 {: #ha-redundancy}
 
 {{site.data.keyword.cloud}} provides you with a global infrastructure and portfolio of cloud services to deploy workloads and applications according to your global strategy, availability, and business continuity needs.
 {: shortdesc}
 
-## How {{site.data.keyword.cloud_notm}} helps ensure high availability through redundancy
+## High availability through redundancy
 {: #zero-downtime}
 
 {{site.data.keyword.cloud_notm}} services are designed with different redundant deployments and fault isolation patterns depending on their location and availability scopes across the different {{site.data.keyword.cloud_notm}} regions and data centers.
