@@ -2,9 +2,9 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-11-21"
+lastupdated: "2024-11-22"
 
-keywords: disaster recovery, dr
+keywords: disaster recovery, dr, disaster recovery strategy
 
 subcollection: resiliency
 
@@ -12,24 +12,35 @@ subcollection: resiliency
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Disaster recovery approaches within {{site.data.keyword.cloud_notm}}
+# Disaster recovery approaches
 {: #dr-approaches}
 
-Several approaches or strategies to disaster recovery (DR) can support a disaster recovery plan and four are outlined here. Depending on your use case, you can mix and match these approaches based on the workloads, environments, and Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO) values that the business assigns.
+Several approaches or strategies to disaster recovery (DR) can support a disaster recovery plan. Depending on your use case, you can mix and match these approaches based on the workloads, environments, Recovery Time Objectives (RTO), and Recovery Point Objectives (RPO) that your organization defines.
+{: shortdesc}
 
-Backup and restore is pivotal to any approach. As an absolute minimum, you must be sure you are backing up your workload data. Verify that backups are stored so they are available to restore if a disaster strikes. Also, be sure you understand how to access backup files and how to restore them.
+Backup and restore are pivotal to any disaster recovery approach. Make sure that you are at least backing up your workload data. In accordance with the {{site.data.keyword.Bluemix_notm}} shared responsibility model, you must have recoverable backups of your data that are available to restore if a disaster occurs. For more information, see [Shared responsibilities for using IBM Cloud products](/docs/overview?topic=overview-shared-responsibilities). To make sure that you understand how to access and restore backup files, review each service's documentation.
 
-The four DR approaches presented here focus on VPC and database services in particular. Many other services are available from {{site.data.keyword.cloud_notm}}, but the same general principles apply. To choose an approach, it’s important to understand if and how backups of your data - the data you are responsible for restoring - are taken within the service. Check that you understand where the backups are stored, how they can be recovered, and where there can be recovered.
+Waiting for {{site.data.keyword.Bluemix_notm}} to recover an affected region or service is a valid path, but remember it can take many hours or longer. Review the Table 1. to understand DR approaches that offer varying levels of recovery speed, complexity, and cost.
 
-As an example, crucial systems, which tolerate zero downtime, run in an active-active cross-regional configuration, as detailed in Approach 4. Maintaining systems in such a configuration involves most cost and effort. Approach 3 is appropriate for workloads where a few hours downtime can be tolerated, reducing the overall cost. Approach 1 is only suitable for systems that tolerate extended downtime. That includes noncritical development and test environments – but again, it’s a means to reduce DR costs by using the rapid scaling features of cloud computing. Approach 2 builds on the first approach but has some components that are built out, particularly those components that can take time to deliver. So, for your DR plan and strategy, consider a mix and match approach, especially where budget is a constraint.
+| Approach          | Workload type      | Downtime tolerance      | Cost and complexity |
+|-------------------|--------------------|-------------------------|---------------------|
+| Zero footprint    | Noncritical        | Extended downtime       | Low                 |
+| Basic standby     | Semi-critical      | Several hours           | Medium              |
+| Minimal operation | Semi-critical      | A few hours             | Medium              |
+| Active/active     | Critical systems   | Zero downtime           | High                |
+{: caption="Disaster recovery approaches and possible workload types, downtime tolerence, and cost and complexity to maintain." caption-side="bottom"}
 
-If the service automatically takes backups of your data, including snapshots, check that they are placed in cross-region or buckets that are replicated to another region. If not, you need to configure such replication. If the service does not automatically take backups of your data, be sure to understand how backups can be taken and stored. Remember, the {{site.data.keyword.Bluemix_notm}} shared responsibility model states that it is the customer's responsibility to verify that they have backups of their data, and it is recoverable. Review the {{site.data.keyword.Bluemix_notm}} docs for more service-by-service information.
+Approach 1 is only suitable for systems that tolerate extended downtime, like noncritical development and test environments. It is a cost-effective option that relies on cloud computing's ability to quickly scale up resources when needed rather than maintain standby systems. Approach 2 builds on the first approach by building out some components, which can take time to deliver. Approach 3 is appropriate for workloads where a few hours of downtime can be tolerated, reducing the overall cost. Crucial systems, which tolerate zero downtime, run in an active-active cross-regional configuration, as detailed in Approach 4. Maintaining systems in an active/active configuration involves the most cost and effort. For your DR plan, you can mix and match approaches, especially where budget is a constraint.
 
-Another consideration to note is the scope of the recovery that you attempt for any specific disaster. A disaster might disable an entire region or it might disable a single service instance. In these cases, consider your approach and the scenarios that you planned for. Does your plan allow for the recovery of one or more cloud services in isolation? Does it demand that all services are recovered elsewhere, regardless of services that are running normally? If you do recover a single service, what is the impact on your workloads? What configuration changes might be needed and how simple are they to complete? Working through different disaster scenarios enriches your planning.
+To choose an approach, it’s important to understand if the service automatically takes backups of your data and how backups are taken within the service. Review each service's documentation to understand where the backups are stored, how to restore the backups, and where you can recover them.
 
-A silent fifth approach exists: wait for the affected region or service to be recovered by {{site.data.keyword.cloud_notm}}. Waiting for IBM Cloud to complete their recovery is a valid path but remember it can take many hours or longer. In addition, you need to expend further time to restore your data and configuration, in accordance with the [shared responsibility model](https://cloud.ibm.com/docs/overview?topic=overview-shared-responsibilities).
+If the service automatically takes backups of your data, including snapshots, check that they are stored cross-regionally or in buckets that are replicated to another region. If a service doesn't automatically take backups, you need to configure such backup storage or replication.
 
-## Approach 1: Zero Footprint
+Consider the scope of the recovery that you might need each specific disaster. A disaster might disable an entire region or it might disable a single service instance. Adapt your approach to the scenarios that you plan for. Does your plan allow for the recovery of one or more cloud services in isolation? Does it demand that all services are recovered elsewhere, regardless of services that are running normally? If you do recover a single service, what is the impact on your workloads? What configuration changes might be needed and how simple are they to complete? Working through different disaster scenarios enriches your planning.
+
+The following DR approaches focus on VPC and database services as examples. The same general principles apply to other {{site.data.keyword.cloud_notm}} services.
+
+## Approach 1: Zero footprint
 {: #Approach1-ZeroFootprint}
 
 A zero DR footprint has the longest overall recovery time and the lowest cost profile. For many organizations, zero footprint is not acceptable for production workloads but a good choice for development, system test, or other workloads that are low on the list of recovery priority.
@@ -63,7 +74,7 @@ If you are using another, bring your own database, refer to product documentatio
 
 ![Diagram depicting an example architecture for a zero footprint DR solution](images/DRApproach1.png "Diagram depicting an example architecture for a zero footprint DR solution"){: caption="Diagram depiting an example architecture for a zero footpring DR solution" caption-side="bottom"}
 
-## Approach 2: Basic Standby
+## Approach 2: Basic standby
 {: #DRApproach2-BasicStandby}
 
 The basic standby approach differs from Approach 1 because some elements of the DR environment are built out, particularly networking services that have a longer lead time. The built out elements reduce the overall RTO if DR is called but they attract an ongoing financial cost. The cost of basic standby is reduced compared to maintaining a 'minimal operation' DR environment.
@@ -115,7 +126,7 @@ If a disaster is called, the recovery of outstanding, unapplied backups is carri
 
 ![Diagram depicting an example architecture for a minimal operation DR solution](images/DRApproach3.png "Diagram depicting an example architecture for a minimal operation DR solution"){: caption="Diagram depicting an example architecture for a minimal operation DR solution" caption-side="bottom"}
 
-## Approach 4:  Active/active
+## Approach 4: Active/active
 {: #Approach4-ActiveActive}
 
 The active/active approach basically means running two deployments, each of which is used in day-to-day operations. Having two production regions eradicates recovery time, other than scaling up resources at the surviving site but is more complex from a data point of view.
