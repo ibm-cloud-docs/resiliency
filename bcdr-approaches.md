@@ -79,7 +79,7 @@ In addition to automatic database backups, customers can take on-demand backups.
 
 If you are using another, bring your own database, refer to product documentation on the most suitable backup method. Generally, back up the data to a cross-region object storage bucket, including any logs that provide point in time recovery.
 
-![Diagram depicting an example architecture for a zero footprint DR solution](images/DRApproach1.png "Diagram depicting an example architecture for a zero footprint DR solution"){: caption="Diagram depiting an example architecture for a zero footpring DR solution" caption-side="bottom"}
+![Diagram depicting an example architecture for a zero footprint DR solution](images/DRApproach1.svg "Diagram depicting an example architecture for a zero footprint DR solution"){: caption="Diagram depiting an example architecture for a zero footpring DR solution" caption-side="bottom"}
 
 ## Approach 2: Basic standby
 {: #DRApproach2-BasicStandby}
@@ -111,7 +111,7 @@ For other IBM Cloud Database services, the last backup must be restored to a new
 
 In each of these cases, data loss depends on the time of the last available database backup, which might be up to 24 hours ago.
 
-![Diagram depicting an example architecture for a basic standby DR solution](images/DRApproach2.png "Diagram depicting an example architecture for a basic standby DR solution"){: caption="Diagram depiting an example architecture for a basic standby DR solution" caption-side="bottom"}
+![Diagram depicting an example architecture for a basic standby DR solution](images/DRApproach2.svg "Diagram depicting an example architecture for a basic standby DR solution"){: caption="Diagram depiting an example architecture for a basic standby DR solution" caption-side="bottom"}
 
 ## Approach 3: Minimal operation
 {: #Approach3-MinimalOperation}
@@ -131,7 +131,7 @@ Data backups are applied to the active DR services at a frequency that supports 
 
 If a disaster is called, the recovery of outstanding, unapplied backups is carried out and services are scaled to an appropriate level. If a read replica IBM Cloud Database is used, the read replica is transformed into a stand-alone copy.
 
-![Diagram depicting an example architecture for a minimal operation DR solution](images/DRApproach3.png "Diagram depicting an example architecture for a minimal operation DR solution"){: caption="Diagram depicting an example architecture for a minimal operation DR solution" caption-side="bottom"}
+![Diagram depicting an example architecture for a minimal operation DR solution](images/DRApproach3.svg "Diagram depicting an example architecture for a minimal operation DR solution"){: caption="Diagram depicting an example architecture for a minimal operation DR solution" caption-side="bottom"}
 
 ## Approach 4: Active/active
 {: #Approach4-ActiveActive}
@@ -149,4 +149,4 @@ Managing changing application data is the most complex consideration with this a
 
 Strictly speaking, active/active isn't really an approach to disaster recovery. Instead, it's an approach to help ensure high availability where an IBM Cloud region is removed as a possible single point of failure. If a failure is detected, measures are needed to scale services quickly and for all connection requests to be resolved to the surviving region.
 
-![Diagram depicting an example architecture for an Active/Active solution](images/DRApproach4.png "Diagram depicting an example architecture for an Active/Active solution"){: caption="Diagram depicting an example architecture for an Active/Active solution" caption-side="bottom"}
+![Diagram depicting an example architecture for an Active/Active solution](images/DRApproach4.svg "Diagram depicting an example architecture for an Active/Active solution"){: caption="Diagram depicting an example architecture for an Active/Active solution" caption-side="bottom"}
