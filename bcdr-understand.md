@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-11-21"
+lastupdated: "2024-11-25"
 
 keywords: disaster recovery, DR, what is disaster recovery, DR strategy, disaster recovery options, disaster recovery strategy
 
@@ -34,19 +34,21 @@ However, there's a chance that a disaster can take out the region where your cri
 ## RTO and RPO
 {: #RTO-RPO}
 
-[Recovery Time Objective](#x3167918){: term} (RTO) and [Recovery Point Objective](#x3429911){: term} (RPO) are often the two starting points for a disaster recovery plan. The following diagram describes how RTO and RPO fit into an outage timeline.
+[Recovery Time Objective](#x3167918){: term} (RTO) and [Recovery Point Objective](#x3429911){: term} (RPO) are often the two starting points for a disaster recovery plan. The following diagram describes how RTO and RPO fit into a simplified outage timeline.
 
-![Diagram depicting how RTO/RPO fit into an outage timeline](images/outages-diagram.png "Diagram depicting how RTO/RPO fit into an outage timeline"){: caption="Diagram depicting how RTO/RPO fit into an outage timeline" caption-side="bottom"}
+![Diagram depicting how RTO/RPO fit into an outage timeline](images/OutageTimeline.svg "Diagram depicting how RTO/RPO fit into an outage timeline"){: caption="Diagram depicting how RTO/RPO fit into an outage timeline" caption-side="bottom"}
 
-When a disaster is called and the disaster recovery plan is put into action, the clock starts on RTO. RTO refers to the time that it takes to restore services to a usable state. A plan can have an overarching RTO, which covers many workloads, and individual RTOs for each workload it covers. RTO is expressed as units of time, for example minutes, hours, or days.
+When an outage occurs, the business must decide whether and when to declare a disaster and put the disaster recovery plan into action.At this point, the clock starts on RTO. RTO refers to the time that it takes to restore services to a usable state. A plan can have an overarching RTO, which covers many workloads, and individual RTOs for each workload it covers. RTO is expressed as units of time, for example minutes, hours, or days.
 
-RPO refers to the point in time to which services are restored. Often, it's desirable to recover to the point of failure to minimize data loss. When recovering from a data corruption, an earlier RPO to a point in time before the corruption was introduced is desirable. Where multiple workloads are interconnected, it's important that each system is bought back to the same point in time. RPO is expressed as to the point of failure or zero data loss, to the point of last backup, or somewhere in between. Constraints on RPO include technical feasibility and the cost of implementation.
+RPO refers to the point in time to which services are restored, which is usually the point of last backup. When recovering from a data corruption, an earlier RPO to a point in time before the corruption was introduced is desirable. Where multiple workloads are interconnected, it's important that each system is bought back to the same point in time. RPO is expressed as to the point of failure or zero data loss, to the point of last backup, or somewhere in between. Constraints on RPO include technical feasibility and the cost of implementation.
+
+The outage lasts until service is restored to the end-user.
 
 Many environments have a mix of workload types, some that are fundamentally critical and some that are less critical. Some complex environments might also have many dependencies on other workloads, where one workload needs another to operate. These aspects contribute to setting RTO and RPO targets for individual workloads. Create a recovery plan timeline that considers the order in which workloads need to be recovered. The timeline must account for a workload's importance to the business, its resource requirements, complexity, and dependencies.
 
-Typically, costs rise as RTO and RPO targets reduce toward zero. Workloads that have the most stringent RTO and RPO targets are the most business critical. This ratio is depicted in the following diagram.
+The folowing diagram shows a typical DR cost curve. The nearer to zero the RTO and RPO target, the greater the cost of the solution that is needed. As RTO and RPO moves outwards towards hours and even days, associated costs reduce. Workloads that have the most stringent RTO and RPO targets will cost the most to protect and be the most business critical.
 
-![Diagram depicting RTO/RPO to Cost ratio](images/RTO-to-cost-curve.png "Diagram depicting RTO/RPO to Cost ratio"){: caption="Diagram depicting RTO/RPO to Cost ratio" caption-side="bottom"}
+![Diagram depicting RTO/RPO to Cost ratio](images/rto-cost-curve.svg "Diagram depicting RTO/RPO to Cost ratio"){: caption="Diagram depicting RTO/RPO to Cost ratio" caption-side="bottom"}
 
 ## Planning for a disaster
 {: #bcdr-general-strategy}
