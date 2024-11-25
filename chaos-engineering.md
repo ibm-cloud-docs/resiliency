@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-11-14"
+lastupdated: "2024-11-25"
 
 
 keywords: chaos testing, resilient app, client testing
@@ -40,3 +40,18 @@ Given the complexity of applications and its dependencies, the experiment space 
 
 ## Running within your CI/CD pipeline
 {: #chaos-ci-cd}
+
+It is recommended to run chaos testing as part of a regular CI/CD workflow. For tools such as [IBM Cloud DevSecOps](https://cloud.ibm.com/docs/devsecops), chaos engineering could be undertaken early in the process - for example, running in the CI pipeline after a development environment deploy usually used for dynamic UI/API scans. Alternatively, if a development environment differs greatly from the expected production environment with regard to infrastructure, consider moving the chaos tests to the continuous deployment pipeline. Here, the application could be deployed into a pre-production or staging environment whose infrastructure ideally mirrors the production environment exactly.
+
+Chaos tools differ in their implementation, with regard to pipelines. Litmus and ChaosMesh both require a management cluster to run the chaos test suites from, and the pipeline can communicate with these through an API (for Litmus) or through Github workflows (ChaosMesh). Krkn can be installed on the management plane, but it may be easier to run the required images locally within the pipeline to keep a more lightweight profile.
+
+Regardless of which tool is chosen to perform chaos testing, it is recommended to try the chaos-recommender tool mentioned previously in order to determine which tests/experiments should be prioritized. 
+
+If using Litmus, [litmusctl](https://docs.litmuschaos.io/docs/litmusctl/installation) should be used to automate the creation and running of chaos experiments.
+
+Be wary of chaos experiments exiting early, as they could leave the target application in a bad state. For example, a network deny policy could remain in the event of the corresponding chaos experiment failing and not recovering the correct infrastructure configuration. 
+
+
+Recoverability from testing
+replicas of mubench on every zone
+permissions
