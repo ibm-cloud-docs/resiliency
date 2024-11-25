@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-11-22"
+lastupdated: "2024-11-25"
 
 keywords: disaster recovery, dr, disaster recovery strategy
 
@@ -50,7 +50,7 @@ The following DR approaches focus on VPC and database services as examples. The 
 ## Approach 1: Zero footprint
 {: #Approach1-ZeroFootprint}
 
-A zero DR footprint has the longest overall recovery time and the lowest cost profile. For many organizations, zero footprint is not acceptable for production workloads but a good choice for development, system test, or other workloads that are low on the list of recovery priority.
+A zero footprint approach has the longest overall recovery time and the lowest cost profile. For many organizations, zero footprint is not acceptable for production workloads but a good choice for development, system test, or other workloads that are low on the list of recovery priority.
 
 Summary of the zero footprint approach:
 
