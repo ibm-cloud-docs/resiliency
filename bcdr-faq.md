@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-11-21"
+lastupdated: "2024-11-25"
 
 keywords: disaster recovery, DR, what is disaster recovery, DR strategy, disaster recovery options, disaster recovery strategy
 
@@ -53,3 +53,9 @@ In {{site.data.keyword.cloud_notm}}, if there is an outage where {{site.data.key
 {: #dr-second-region}
 
 Not all disasters require recovery at a second region. A database administrator might accidentally drop a database table, an automated release might go catastrophically wrong, or an essential managed cloud service can stop functioning correctly. In these cases, data recovery is key. Depending on how widespread the issue is, how prepared the organization is, and how quickly recovery needs to be achieved, such a disaster might not force failover to another region. Depending on the scenario, recovery can be achieved in the same region. For this reason, it's important to consider multiple disaster scenarios, and to plan accordingly.
+
+## How can I prevent accidental deletion of services?
+{: #prevent-accidental-deletion}
+
+Many {{site.data.keyword.cloud_notm}} services have in-built safegards against accidental deletion, but additional protections can easily be made by using accounts that have appropriate access rights. Use {{site.data.keyword.iamshort}} (IAM) to create accounts with different levels of access and permissions. Then use an appropriate account for the operations task in hand and ensure that other users, such as developers, only have the access and permissions they need.
+If using terraform, use service ids which have update access but do not have delete access.
