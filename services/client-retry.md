@@ -15,7 +15,7 @@ subcollection: content-kit
 # Client retry logic for highly available applications
 {: #client-retry-logic-for-ha}
 
-It is up to application clients to recover from transient network errors as well as transient errors introduced by a service's High Availability implementation. See [Services specific high availability and disaster recovery](/docs/resiliency?topic=resiliency-service-ha-dr).
+It is up to application clients written in programming languages to recover from transient network errors as well as transient errors introduced by a service's High Availability implementation. See [Services specific high availability and disaster recovery](/docs/resiliency?topic=resiliency-service-ha-dr). Retrying connections with exponential backups for a fixed amount of time is good programming practice.
 
 The IBM SDK [automatic retry](https://github.com/IBM/ibm-cloud-sdk-common?tab=readme-ov-file#automatic-retries) describes the recommended retry mechanism and even implements it specifically for HTTP 429 and 503 errors. Note that configuration is required by the client to take advantage of the IBM SDK provided retry logic. The failures from other status codes need to be evaluated to determine how to recover. It can be appropriate to use an open source SDKs for accessing {{site.data.keyword.cloud_notm}} services. Carefully examine the specifications to determine if they are useful for your application.
 
