@@ -49,6 +49,9 @@ toc:
                 label: IBM® Power® Virtual Server resiliency on AIX
                 href: https://cloud.ibm.com/docs/pattern-pvs-aix-resiliency?topic=pattern-pvs-aix-resiliency-power-virtual-server-on-AIX
             - link:
+                label: IBM® Power® Virtual Server resiliency on IBM i
+                href: https://cloud.ibm.com/docs/pattern-pvs-ibmi-resiliency?topic=pattern-pvs-ibmi-resiliency-power-virtual-server-on-ibmi
+            - link:
                 label: Veeam on VMware resiliency
                 href: https://cloud.ibm.com/docs/vmware-cross-region-dr?topic=vmware-cross-region-dr-deploy-veeam-arch
   - navgroup:
