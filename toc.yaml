@@ -95,14 +95,6 @@ toc:
       - link:
           label: IBM Cloud compliance programs
           href: https://www.ibm.com/cloud/compliance
-      - topicgroup:
-          label: Product availability and locations
-          topics:
-          - services_region.md
-          - services_coming.md
-          - topic: locations.md
-            navtitle: Locations for resource deployment
-          - service-rollout.md
       - slo.md
       - services-ha-dr.md
   - navgroup:
