@@ -47,16 +47,10 @@ Multi-zone deployments rely on application-aware data replication across availab
 
 | Deployment    | Availability | Description   | Recommended use   |
 |------------------|------------------|------------------|------------------|
-| Single-zone                | 99.9% [^footnote1]           | - Multiple compute instances in one zone \n - Protection from infrastructure failures \n - Low/Medium cost \n | - Low to medium priority applications \n - Non-critical production workloads |
-| Multi-zone, single-region | 99.99% [^footnote2]          | - Multiple compute instances across 2 or more availability zones \n - Synchronous data replication across zones \n - Protection from zone outages \n - Medium/high cost | - Core business applications \n - Production level workloads with stringent resiliency requirements \n - Business continuity policies with country boundaries or geographic data residence constraints |
-| Multi-zone, multi-region  | &amp;gt;99.99% [^footnote3]        | - Multiple compute instances across multiple availability zones in 2 or more regions \n - Asynchronous data replication between regions \n - Protection from region outages \n - High cost | - Mission-critical applications with continuous or near continuous availability requirements \n - Business continuity policies with cross geography or specific separation distance requirements \n - Disaster recovery |
+| Single-zone                | 99.9%         | - Multiple compute instances in one zone \n - Protection from infrastructure failures \n - Low/Medium cost \n | - Low to medium priority applications \n - Non-critical production workloads |
+| Multi-zone, single-region | 99.99%        | - Multiple compute instances across 2 or more availability zones \n - Synchronous data replication across zones \n - Protection from zone outages \n - Medium/high cost | - Core business applications \n - Production level workloads with stringent resiliency requirements \n - Business continuity policies with country boundaries or geographic data residence constraints |
+| Multi-zone, multi-region  | &amp;gt;99.99%     | - Multiple compute instances across multiple availability zones in 2 or more regions \n - Asynchronous data replication between regions \n - Protection from region outages \n - High cost | - Mission-critical applications with continuous or near continuous availability requirements \n - Business continuity policies with cross geography or specific separation distance requirements \n - Disaster recovery |
 {: caption="High availability deployment recommendations" caption-side="bottom"}
-
-[^footnote1]: Todo text.
-
-[^footnote2]: Todo text.
-
-[^footnote3]: Todo text.
 
 The following Architecture Framework provides design considerations and architecture decisions for deploying resilient applications on IBM Cloud Virtual Private Cloud (VPC) infrastructure. It covers the following solution aspects and domains:
 
@@ -69,7 +63,7 @@ The following Architecture Framework provides design considerations and architec
 
 The [Architecture Design Framework](/docs/architecture-framework) provides a consistent approach to design cloud solutions by addressing requirements across a set of aspects and domains, which are technology-agnostic architectural areas that need to be considered for any enterprise solution.
 
-# Client retry logic for highly available applications
+## Client retry logic for highly available applications
 {: #client-retry-logic-for-ha}
 
 It is up to application clients written in programming languages to recover from transient network errors as well as transient errors introduced by a service's High Availability implementation. See [Services specific high availability and disaster recovery](/docs/resiliency?topic=resiliency-service-ha-dr). Retrying connections with exponential backups for a fixed amount of time is good programming practice.
