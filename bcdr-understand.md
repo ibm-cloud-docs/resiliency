@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-11-25"
+lastupdated: "2024-11-26"
 
 keywords: disaster recovery, DR, what is disaster recovery, DR strategy, disaster recovery options, disaster recovery strategy
 
@@ -46,7 +46,17 @@ The outage lasts until service is restored to the end-user.
 
 Many environments have a mix of workload types, some that are fundamentally critical and some that are less critical. Some complex environments might also have many dependencies on other workloads, where one workload needs another to operate. These aspects contribute to setting RTO and RPO targets for individual workloads. Create a recovery plan timeline that considers the order in which workloads need to be recovered. The timeline must account for a workload's importance to the business, its resource requirements, complexity, and dependencies.
 
-The folowing diagram shows a typical DR cost curve. The nearer to zero the RTO and RPO target, the greater the cost of the solution that is needed. As RTO and RPO moves outwards towards hours and even days, associated costs reduce. Workloads that have the most stringent RTO and RPO targets will cost the most to protect and be the most business critical.
+The following table provides an example RPO/RTO per example application classifications as a reference. Actual RPO/RTO and business classification depends on each organization.
+
+| Business application class | RPO     | RTO      |
+|--------------------------------|-------------|--------------|
+| Platinum (Always on)           | Zero        | Near zero    |
+| Gold (Almost Always On)        | \<= 15 mins | \<= 1 hour   |
+| Silver (High availability)     | \<= 1 hour  | 4 - 8 hours  |
+| Bronze (Moderate availability) | \<= 8 hours | \<= 24 hours |
+{: caption="Example RTO/RPO values based on business application class" caption-side="bottom"}
+
+Maintaining a DR provision has associated costs. The folowing diagram shows a typical DR cost curve. The nearer to zero the RTO and RPO target, the greater the cost of the solution that is needed. As RTO and RPO moves outwards towards hours and even days, associated costs reduce. Workloads that have the most stringent RTO and RPO targets will cost the most to protect and be the most business critical.
 
 ![Diagram depicting RTO/RPO to Cost ratio](images/rto-cost-curve.svg "Diagram depicting RTO/RPO to Cost ratio"){: caption="Diagram depicting RTO/RPO to Cost ratio" caption-side="bottom"}
 

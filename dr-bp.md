@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2024
-lastupdated: "2024-11-20"
+lastupdated: "2024-11-26"
 
 keywords: resiliency, DR, high availability, disaster recovery, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -101,7 +101,9 @@ Versioning is a requirement for bucket replication so that buckets that are conf
 
 Use automation to deploy or recover an environment quickly and accurately. Automating deployments with IaC, Configuration as Code, and toolchains helps you recover workloads faster and more accurately by re-creating lost environments more precisely than manual methods. Using automation also helps you react faster to unexpected scenarios, especially if you need to create and configure services on-demand in a different recovery region than you first planned.
 
-{{site.data.keyword.bpshort}} is a service that can play an important part in any disaster recovery strategy. With {{site.data.keyword.bpshort}}, you can deploy infrastructure and services quickly and consistently though Infrastructure as Code (IaC), Terraform, Ansible, Helm, and Red Hat OpenShift Operators.
+{{site.data.keyword.bpshort}} is a service that can play an important part in any disaster recovery strategy. Use [IBM Cloud Schematics](https://cloud.ibm.com/schematics/overview) to implement runbooks for recovery processes. Schematics workspaces provide Terraform-as-a-Service and Schematics Actions provides Ansible-as-a-Service. [Schematics workspaces](/docs/schematics?topic=schematics-sc-workspaces) automates the deployment and management of IBM Cloud infrastructure and services. Schematics Actions automates configuration management and runs scripted day-2 operations. See [Schematics Use Cases](/docs/schematics?topic=schematics-how-it-works) for more details.
+
+In short, with {{site.data.keyword.bpshort}}, you can deploy infrastructure and services quickly and consistently though Infrastructure as Code (IaC), Terraform, Ansible, Helm, and Red Hat OpenShift Operators.
 
 Codifying the workload environment means defining and automating the setup of your workload by using code. This way, the right services can be quickly provisioned and configured in any {{site.data.keyword.cloud_notm}} region. You can use Terraform and Ansible to provision services, including servers, storage, networking, and databases. They can also be used to configure the services, as can Helm and Operators.
 
@@ -127,3 +129,42 @@ When using a deployable architecture, you are responsible for the following disa
 {: #KeyServicesCodeEngine}
 
 You can use {{site.data.keyword.codeengineshort}} to deploy containerized workloads quickly by recovering certain containerized applications without the need to rebuild an entire Red Hat OpenShift or {{site.data.keyword.cloud_notm}} Kubernetes cluster. You can also use it to configure and run jobs, such as triggering database or server backups.
+
+### Backup and restore options
+{: #backup-and-restore-options}
+
+[IBM Cloud Backup for VPC](/docs/vpc?topic=vpc-backup-service-about&interface=ui) is a cloud service that supports the creation and management of boot and data storage volume snapshots. Use IBM Cloud Backup for VPC to schedule regular backups and restore applications deployed in Virtual Servers for VPC (VSIs) when application-consistent backups are not required.
+
+- Boot Volume backup: Create snapshots of the boot volume for the Virtual Servers for VPC hosting the application. [Restore the bootable snapshots](/docs/vpc?topic=vpc-baas-vpc-restore&interface=ui#baas-restore-concept-boot) and use them to re-create the application virtual server instances. Bootable snapshots are not fully hydrated and impact initial performance. Use the fast restore feature to cache snapshots in a different zone for quick restore of individual volumes.
+
+- Data Volume backup: Create snapshots of the data volumes that are attached to the application. The snapshots replicate the data to other availability zones and regions to support the recovery of configuration or any other critical files. See [Creating Snapshots](/docs/vpc?topic=vpc-snapshots-vpc-create&interface=ui) for details.
+
+[IBM Storage Protect](https://cloud.ibm.com/catalog/content/SPonIBMCloud-20c54034-d319-48c0-beb6-0b4adc54265c-global){: external} is an enterprise-level backup solution for virtual, physical, cloud, software-defined environments, and core applications. Use IBM Storage Protect to create application-consistent backups for database applications that are deployed on Virtual Servers for VPC and to create file or folder level backups.
+
+| Backup feature            | IBM Storage Protect                      | IBM Cloud Backup for VPC                              |
+|-------------------------------|--------------------------------|--------------------------------|
+| Backup capabilities       | - Agent-based \n - Scheduled backups \n - Backups Management      | - Scheduled backups \n - Backups Management \n - Fast restore clone \n - Cross-regional copies                |
+| Backup scope            | Selected VSIs, selected volumes or files in VSIs                        | Selected volumes (boot or data) attached to any VSIs                                         |
+| File or folder level support | Yes                                                                     | No                                                                                           |
+| Backup storage           | Block Storage for VPC or IBM Cloud Object Storage                                            | IBM Cloud Object Storage                                                                                      |
+| Database protection      | Application-consistent backups (Oracle, IBM Db2, MongoDB, MS SQL Server) | Not supported                                                                                |
+| Encryption          | In-transit and at rest                                                  | In-transit and at rest                                                                       |
+| Recommendation          | Database or folder level backup for multiple virtual servers                             | Complex backup operations for multiple virtual servers that do not require application data consistency |
+{: caption="Table 1. Comparison of backup options for Virtual Servers for VPC" caption-side="bottom"}
+
+### Create Custom Images
+{: #create-customer-images}
+
+ Create a [custom image from a boot volume](/docs/vpc?topic=vpc-image-from-volume-vpc&interface=ui) and use it as the golden image, with preinstalled applications and configurations, to reduce the provisioning time for VPC virtualserver instances in the DR site. The boot volume must be attached to a stopped Virtual Server Instance (VSI) to create the custom image.
+
+ ### Use hostnames for subnets
+ {: #use-hostnames-for-subnets}
+
+ Use hostnames and DNS instead of IP addresses to minimize the number of changes that are required to redeploy an application in the DR site, particulary with VPC instances, including virtual server instances. Subnets are zone-specific and do not extend across zones. New IP addresses are assigned to new service instances, which can break any existing configurations such as security rules, application configuration files.
+
+ ### Configure key management services for disaster recovery
+ {: configure-key-management-services-for-dr}
+
+ For Key Protect, configure the service in the primary site with failover in the DR region to enable automatic rerouting of Key Protect requests if a regional service outage occurs. Create scripts to update the Virtual Private Endpoint (VPE) settings to access the Key Protect Service, specifically the Internet Protocol (IP) address, as part of disaster recovery procedures.
+
+ For HPCS, configure a failover crypto unit in the DR region. Initialize and configure failover crypto units the same as the operational crypto units before the disaster happens, so they are available if a regional outage occurs
