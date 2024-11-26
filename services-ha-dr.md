@@ -13,10 +13,10 @@ subcollection: resiliency
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Services specific high availability and disaster recovery
+# Service documentation for high availability and disaster recovery
 {: #service-ha-dr}
 
-The services in the IBM cloud use the global, highly available, foundation as described in [IBM Cloud region and data center locations for resource deployment](/docs/overview?topic=overview-locations). They share similar structure but there are unique characteristics that need to be understood when they are used for assembling a highly available workload and considered for disaster recovery.
+{{site.data.keyword.cloud_notm}} has a resilient global network of locations to host your highly available cloud workload, as described in [IBM Cloud region and data center locations for resource deployment](/docs/overview?topic=overview-locations). While services share a similar structure, each has unique characteristics to consider when you're building highly available solutions or planning for disaster recovery.
 
 - [Understanding high availability for NPSaaS](/docs/netezza?topic=netezza-ha)
 - [Understanding high availability for projects](/docs/secure-enterprise?topic=secure-enterprise-ha-dr)

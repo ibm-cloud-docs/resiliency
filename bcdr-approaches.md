@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-11-25"
+lastupdated: "2024-11-26"
 
 keywords: disaster recovery, dr, disaster recovery strategy
 
@@ -18,7 +18,7 @@ subcollection: resiliency
 Several approaches or strategies to disaster recovery (DR) can support a disaster recovery plan. Depending on your use case, you can mix and match these approaches based on the workloads, environments, Recovery Time Objectives (RTO), and Recovery Point Objectives (RPO) that your organization defines.
 {: shortdesc}
 
-Backup and restore are pivotal to any disaster recovery approach. Make sure that you are at least backing up your workload data. In accordance with the {{site.data.keyword.Bluemix_notm}} shared responsibility model, you must have recoverable backups of your data that are available to restore if a disaster occurs. For more information, see [Shared responsibilities for using IBM Cloud products](/docs/overview?topic=overview-shared-responsibilities). To make sure that you understand how to access and restore backup files, review each service's documentation.
+Backup and restore are pivotal to any disaster recovery approach. Make sure that you are at least backing up your workload data. In accordance with the {{site.data.keyword.Bluemix_notm}} shared responsibility model, you must have recoverable backups of your data that are available to restore if a disaster occurs. For more information, see [Shared responsibilities for using {{site.data.keyword.cloud_notm}} products](/docs/overview?topic=overview-shared-responsibilities). To make sure that you understand how to access and restore backup files, review each service's documentation.
 
 Waiting for {{site.data.keyword.Bluemix_notm}} to recover an affected region or service is a valid path, but remember it can take many hours or longer. Review the Table 1. to understand DR approaches that offer varying levels of recovery speed, complexity, and cost.
 
