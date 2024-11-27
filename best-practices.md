@@ -188,13 +188,13 @@ You can use {{site.data.keyword.codeengineshort}} to deploy containerized worklo
 
  Create a [custom image from a boot volume](/docs/vpc?topic=vpc-image-from-volume-vpc&interface=ui) and use it as the golden image, with preinstalled applications and configurations, to reduce the provisioning time for VPC virtualserver instances in the DR site. The boot volume must be attached to a stopped Virtual Server Instance (VSI) to create the custom image.
 
- ### Use hostnames for subnets
- {: #use-hostnames-for-subnets}
+### Use hostnames for subnets
+{: #use-hostnames-for-subnets}
 
  Use hostnames and DNS instead of IP addresses to minimize the number of changes that are required to redeploy an application in the DR site, particulary with VPC instances, including virtual server instances. Subnets are zone-specific and do not extend across zones. New IP addresses are assigned to new service instances, which can break any existing configurations such as security rules, application configuration files.
 
- ### Configure key management services for disaster recovery
- {: configure-key-management-services-for-dr}
+### Configure key management services for disaster recovery
+{: #configure-key-management-services-for-dr}
 
  For Key Protect, configure the service in the primary site with failover in the DR region to enable automatic rerouting of Key Protect requests if a regional service outage occurs. Create scripts to update the Virtual Private Endpoint (VPE) settings to access the Key Protect Service, specifically the Internet Protocol (IP) address, as part of disaster recovery procedures.
 
