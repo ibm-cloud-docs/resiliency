@@ -9,20 +9,20 @@ _Take note: For usage of Resiliency glossary terms, see [here](https://ibm.ent.b
 
 ## Team 
 
-**Authors**: James Belton, Powell Quiring, Balaji Viswanathan, Pradeep Kadiyala, Jennifer Glover, Ana Biazetti
+**Authors**: James Belton, Powell Quiring, Balaji Viswanathan, Pradeep Kadiyala, Jennifer Glover, Brendan Kelly, Ana Biazetti
 
 **Reviewers**: John Easton, Jenifer Schlotfeldt, Haley Anderson, Addison Martin, Daisy Aye. (Also, authors should review each other's sections)
 
 **Approvers**:  Ana Biazetti, Fabio Benedetti
 
-**Stakeholders**:  Andrew Hately, Krishna Ratakonda, Rebecca Buisan, Fiona Feehan, Maureen Stanton, Rahul Sharma,Muhammad Ali, Uto Ifudu, Anne Leslie, Tina Belani, Dhruv Rajput, Uto Ifudu.
+**Stakeholders**:  Andrew Hately, Krishna Ratakonda, Rebecca Buisan, Fiona Feehan, Maureen Stanton, Rahul Sharma, Muhammad Ali, Uto Ifudu, Anne Leslie, Tina Belani, Dhruv Rajput.
 
 ## Scope
 
 - Reviewing a list of existing documentation links to merge and/or enhance
 - Identifying gaps where new content is required to be added
 - Organizing consolidated content per proposed solution guide outline
-- Target date to deliver an initial solution guide: December 2024
+- Target date to deliver an initial solution guide: December 12, 2024
 
 _Team working box note: [here](https://ibm.ent.box.com/file/1644965930257?s=48bp2gwgt4gxg8dkaf3ldgrkh6cwc0ds)_
 
@@ -49,7 +49,7 @@ As of 2024-10-29:
 | 4.3 Reference Architectures   |  ➡️ Responsible: @pkadiya  | Accountable | Consulted | Informed | 
 | 4.4 How to   |  ➡️ Responsible: @bviswana  | Accountable | Consulted | Informed | 
 | 4.5 Reference   |  ➡️ Responsible: @pquiring  | Accountable | Consulted | Informed | 
-| 4.6 Help   |  ➡️ Responsible: Git issue owner  | Accountable | Consulted | Informed | 
+| 4.6 Help   |  ➡️ Responsible: @Addison-Martin  | Accountable | Consulted | Informed | 
 | 5. Review PRs  | Accountable: Git issue owner |  ➡️ Responsible: Tagged Reviewer(s)  | Consulted | Informed | 
 | **Solution Guide Docs Publishing** |---|---|---|---|---|
 | 6. Approve PRs | Accountable: Git issue owner | Consulted |  ➡️ Responsible: Tagged Approver | Informed  |  

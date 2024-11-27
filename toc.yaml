@@ -74,12 +74,7 @@ toc:
       - data-resiliency.md
   - navgroup:
       id: howto
-      topics:
-      - topicgroup:
-          label: Create highly available applications in VPC
-          topics:
-          - ha-3-tier.md
-          - ha-pools-origins-1zone.md      
+      topics:     
       - topicgroup:
           label: Testing your resiliency
           topics:
