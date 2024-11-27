@@ -32,16 +32,16 @@ toc:
               href: https://cloud.ibm.com/docs/deployable-reference-architectures?topic=deployable-reference-architectures-ocp-ra
       - topicgroup:
           label: Disaster recovery
-          topics:
-            - link:
-                label: Cyber resiliency pattern on VPC
-                href: https://cloud.ibm.com/docs/pattern-cyber-resiliency-vpc?topic=pattern-cyber-resiliency-vpc-cyber-resiliency
+          topics:            
             - link:
                 label: Oracle Database Disaster Recovery on IBM PowerVS
                 href: https://cloud.ibm.com/docs/pattern-oracle-disaster-recovery-on-powervs?topic=pattern-oracle-disaster-recovery-on-powervs-oracle-database-disaster-recovery-on-ibm-powervs-cross-region
       - topicgroup:
-          label: High availability and disaster recovery
+          label: Resiliency
           topics:
+            - link:
+                label: Cyber resiliency pattern on VPC
+                href: https://cloud.ibm.com/docs/pattern-cyber-resiliency-vpc?topic=pattern-cyber-resiliency-vpc-cyber-resiliency
             - link:
                 label: Web app cross-region resiliency
                 href: https://cloud.ibm.com/docs/pattern-vpc-vsi-cross-region-resiliency?topic=pattern-vpc-vsi-cross-region-resiliency-web-app-cross-region
