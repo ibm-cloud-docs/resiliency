@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-11-21"
+lastupdated: "2024-11-27"
 
 
 keywords: cyber resiliency overview, resilient app, cyber recovery
@@ -32,8 +32,8 @@ While both cyber resiliency and disaster recovery deal with recovering from back
 Nature
 :   Unlike disasters, which are typically random natural events, cyberattacks are targeted, well-planned, and engineered for maximum impact.
 
-[Recovery Point Objective](#x3429911){: term} (RPO) considerations
-:   Disaster recovery aims to reduce RPO and return services with minimum data loss, but cyberattacks can have latent effects, which make the recovery point unclear. The goal of cyber resiliency is to restore to a clean state even if tha means a greater RPO and data loss.
+Recovery Point Objective considerations
+:   Disaster recovery aims to reduce the [Recovery Point Objective](#x3429911){: term} (RPO) and return services with minimum data loss, but cyberattacks can have latent effects, which make the recovery point unclear. The goal of cyber resiliency is to restore to a clean state even if tha means a greater RPO and data loss.
 
 Backup copies
 :   Ransomware attacks are known to target backup copies, either destroying or corrupting them. Unlike disaster recovery, the latest backup copy might be inappropriate for cyber resiliency. Follow an enhanced version of the 3-2-1 backup rule, called 3-2-1-1-0. This means that you maintain three copies of data, with two stored on different types of media, one in a separate location, and another kept offline to provide a physical air-gap. At least one backup is verified to be error-free, helping ensure a reliable recovery point. The offline copy helps protect against cyberthreats, while the error-free backup helps ensure successful data recovery when needed.
