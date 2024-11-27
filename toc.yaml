@@ -17,7 +17,7 @@ toc:
       - ha-understand.md
       - bcdr-understand.md
       - cyberresiliency-overview.md
-      - dr-bp.md
+      - best-practices.md
   - navgroup:
       id: architecture
       topics:
@@ -71,7 +71,6 @@ toc:
           label: Designing for cyber resiliency
           topics:
           - cyberresiliency-plan.md
-      - data-resiliency.md
   - navgroup:
       id: howto
       topics:     
