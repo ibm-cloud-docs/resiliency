@@ -32,7 +32,7 @@ toc:
               href: https://cloud.ibm.com/docs/deployable-reference-architectures?topic=deployable-reference-architectures-ocp-ra
       - topicgroup:
           label: Disaster recovery
-          topics:            
+          topics:
             - link:
                 label: Oracle Database Disaster Recovery on IBM PowerVS
                 href: https://cloud.ibm.com/docs/pattern-oracle-disaster-recovery-on-powervs?topic=pattern-oracle-disaster-recovery-on-powervs-oracle-database-disaster-recovery-on-ibm-powervs-cross-region
@@ -67,13 +67,14 @@ toc:
           topics:
           - bcdr-pitfalls.md
           - bcdr-approaches.md
+          - bcdr-services-that-help.md
       - topicgroup:
           label: Designing for cyber resiliency
           topics:
           - cyberresiliency-plan.md
   - navgroup:
       id: howto
-      topics:     
+      topics:
       - topicgroup:
           label: Testing your resiliency
           topics:
