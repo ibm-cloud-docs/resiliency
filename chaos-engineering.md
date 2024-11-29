@@ -48,13 +48,14 @@ Chaos tools differ in their implementation, with regard to pipelines. Litmus and
 ## Running Chaos tests on IBM Cloud
 {: #chaos-ibmcloud} 
 
-In this section, we touch upon how you can setup one such exemplary framework, LitmusChaos and run a couple of sample scenarios on Red Hat OpenShift on {{site.data.keyword.cloud_notm}}. As discussed in  [Target environments](#chaos-target-environments), try these in a testing or staging environment and get familiar with it.
+In this section, we touch upon how you can setup one such framework, LitmusChaos and run a couple of sample scenarios on Red Hat OpenShift on {{site.data.keyword.cloud_notm}}. As discussed in  [Target environments](#chaos-target-environments), try these in a testing or staging environment and get familiar with it.
 
 ### Architecture
 {: #litmus-arch}
-We build upon the secure and compliant deployable reference architecture, [Red Hat OpenShift Container Platform on VPC landing zone]{docs/deployable-reference-architectures?topic=deployable-reference-architectures-ocp-ra}. A management cluster hosts the management plane components of LitmusChaos, while the workload cluster hosts the application under test and is the target environment where chaos experiments are run by injecting faults.
+We build upon the secure and compliant deployable reference architecture, [Red Hat OpenShift Container Platform on VPC landing zone](docs/deployable-reference-architectures?topic=deployable-reference-architectures-ocp-ra). The management cluster hosts the management plane components of LitmusChaos, while the workload cluster hosts the application under test and is the target environment where chaos experiments are run by injecting faults.
 
-[Reference architecture showing components of LitmusChaos](images/chaos-roks-arch.drawio.svg)
+![Exemplary architecture](images/chaos-roks-arch.drawio.svg "Chaos framework exemplary architecture showing LitmusChaos components"){: caption="Chaos framework exemplary architecture showing LitmusChaos components" caption-side="bottom"}
+
 
 ### Considerations
 * VPC connectivity
