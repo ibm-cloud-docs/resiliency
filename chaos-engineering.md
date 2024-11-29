@@ -34,10 +34,6 @@ Chaos experiments should mirror real world incidents as closely as possible inst
 Given the complexity of applications and its dependencies, the experiment space can explode quickly if one considers all combinations of components and single or multiple concurrent failures. It is important hence to model the experiments based on application characteristics. This comes primarily with knowledge of the system under test and the cloud environment its running it, but can be augmented by profiling tools like [chaos-recommender](https://github.com/redhat-chaos/krkn/tree/main/utils/chaos_recommender)
 
 
-## Observability
-{: #chaos-observability}
-
-
 ## Running within your CI/CD pipeline
 {: #chaos-ci-cd}
 
@@ -58,14 +54,14 @@ In this section, we touch upon how you can setup one such exemplary framework, L
 {: #litmus-arch}
 We build upon the secure and compliant deployable reference architecture, [Red Hat OpenShift Container Platform on VPC landing zone]{docs/deployable-reference-architectures?topic=deployable-reference-architectures-ocp-ra}. A management cluster hosts the management plane components of LitmusChaos, while the workload cluster hosts the application under test and is the target environment where chaos experiments are run by injecting faults.
 
-[Reference architecture showing components of LitmusChaos]{images/chaos-roks-arch.drawio.svg}
+[Reference architecture showing components of LitmusChaos](images/chaos-roks-arch.drawio.svg)
 
 ### Considerations
 * VPC connectivity
 * Access Control
 
 ### Management plane setup
-Review the [ChaosCenter installation]{https://docs.litmuschaos.io/docs/getting-started/installation/} steps listed at product site to deploy Litmus ChaosCenter on the management cluster. If using the basic setup, you can use IBM-provided [ingress](docs/containers?topic=containers-managed-ingress-about) to setup TLS termination and secure your endpoints. The deployments pull images from public container registries like quay.io and docker.io. 
+Review the [ChaosCenter installation](https://docs.litmuschaos.io/docs/getting-started/installation/) steps listed at product site to deploy Litmus ChaosCenter on the management cluster. If using the basic setup, you can use IBM-provided [ingress](docs/containers?topic=containers-managed-ingress-about) to setup TLS termination and secure your endpoints. The deployments pull images from public container registries like quay.io and docker.io. 
 
 
 ### Execution plane setup
