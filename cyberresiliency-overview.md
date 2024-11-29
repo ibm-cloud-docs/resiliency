@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-11-27"
+lastupdated: "2024-11-29"
 
 
 keywords: cyber resiliency overview, resilient app, cyber recovery
@@ -20,7 +20,7 @@ Cyber resiliency is part of an organization's ability to prevent, withstand and 
 
 Protect against such threats by using a 2-pronged approach: Cybersecurity focuses on preventing attacks in the first place, while cyber resiliency focuses on recovery and continuity after a breach. In an environment where threats and threat actors are continuously evolving, adopting a secure-by-design approach is essential to prepare for the inevitability of an attack. In business continuity planning, prioritize the safe and secure restoration of critical applications and infrastructure to maintain operational stability.
 
-![Diagram depicting the scope of cybersecurity and cyber resiliency](images/cyber-resiliency-vs-security.png "Diagram depicting the scope of cybersecurity and cyber resiliency"){: caption="Diagram depicting scope of cyber security vs cyber resiliency" caption-side="bottom"}
+![Diagram depicting the scope of cybersecurity and cyber resiliency](images/cyber-resiliency-vs-security.svg "Diagram depicting the scope of cybersecurity and cyber resiliency"){: caption="Diagram depicting scope of cyber security vs cyber resiliency" caption-side="bottom"}
 
 {{site.data.keyword.cloud_notm}} can host both your production and recovery environments. Host the recovery environment for an on-premises or remote production environment or use {{site.data.keyword.cloud_notm}} as a vault to securely store and verify your backup copies of golden images, configuration, and data for recovery.
 

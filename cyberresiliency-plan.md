@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-11-15"
+lastupdated: "2024-11-29"
 
 
 keywords: cyber resiliency plan, resilient app, cyber recovery
@@ -35,7 +35,7 @@ An important consideration to address as you identify critical applications is h
 ## Architectural Concepts
 {: #architectural-concepts}
 
-![Diagram depicting cyber resiliency architectural components](images/cyber-resiliency-arch.png "Diagram depicting cyber resiliency architectural components"){: caption="Diagram depicting cyber resiliency architectural components" caption-side="bottom"}
+![Diagram depicting cyber resiliency architectural components](images/cyber-resiliency-arch.svg "Diagram depicting cyber resiliency architectural components"){: caption="Diagram depicting cyber resiliency architectural components" caption-side="bottom"}
 
 The critical workloads running in the production environment should be securely backed up into a cyber vault. The backup copies in the cyber vault then become a trusted source from which recovery can be orchestrated later. Some of the main architectural aspects of an effective cyber resiliency solution are: 
 

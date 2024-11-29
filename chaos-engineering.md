@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-11-25"
+lastupdated: "2024-11-29"
 
 
 keywords: chaos testing, resilient app, client testing
@@ -19,7 +19,7 @@ Now that you have designed and deployed resilient applications which can withsta
 
 One approach to address this, is chaos engineering. Chaos engineering is the intentional and controlled injection of failures in production and pre-production environments to understand their impact and verify your preparedness. It is not a random process where dependencies are turned off or instances or services shutdown. The process begins with identifying potential future issues and creating hypothesis about how your system will behave and verifying that by running an experiment and observing the results. Did your hypothesis hold true or do you need to handle them differently?
 
-## Where should you run chaos tests?
+## Target environments
 {: #chaos-target-environments}
 
 Chaos experiments are ideally conducted in a production environment, yet the risks associated with intentionally disrupting live operations—and potentially impacting customer experience—make this approach challenging to many. While pre-production environment might mimic production, the differences in configuration and load characteristics from production make running chaos tests and observing its impact on live production environment more beneficial. Hence, pre-production environments are a good starting point as one gets familiar with the process and builds a level of confidence in running these tests and handling issues that arise. 
@@ -41,17 +41,39 @@ Given the complexity of applications and its dependencies, the experiment space 
 ## Running within your CI/CD pipeline
 {: #chaos-ci-cd}
 
-It is recommended to run chaos testing as part of a regular CI/CD workflow. For tools such as [IBM Cloud DevSecOps](https://cloud.ibm.com/docs/devsecops), chaos engineering could be undertaken early in the process - for example, running in the CI pipeline after a development environment deploy usually used for dynamic UI/API scans. Alternatively, if a development environment differs greatly from the expected production environment with regard to infrastructure, consider moving the chaos tests to the continuous deployment pipeline. Here, the application could be deployed into a pre-production or staging environment whose infrastructure ideally mirrors the production environment exactly.
+It is recommended to run chaos testing as part of a regular CI/CD workflow. For tools such as [{{site.data.keyword.cloud_notm}} DevSecOps](https://cloud.ibm.com/docs/devsecops), chaos engineering could be undertaken early in the process - for example, running in the CI pipeline after a development environment deploy usually used for dynamic UI/API scans. Alternatively, if a development environment differs greatly from the expected production environment with regard to infrastructure, consider moving the chaos tests to the continuous deployment pipeline. Here, the application could be deployed into a pre-production or staging environment whose infrastructure ideally mirrors the production environment exactly.
 
 Chaos tools differ in their implementation, with regard to pipelines. Litmus and ChaosMesh both require a management cluster to run the chaos test suites from, and the pipeline can communicate with these through an API (for Litmus) or through Github workflows (ChaosMesh). Krkn can be installed on the management plane, but it may be easier to run the required images locally within the pipeline to keep a more lightweight profile.
 
-Regardless of which tool is chosen to perform chaos testing, it is recommended to try the chaos-recommender tool mentioned previously in order to determine which tests/experiments should be prioritized. 
+[//]: # "Regardless of which tool is chosen to perform chaos testing, it is recommended to try the chaos-recommender tool mentioned previously in order to determine which tests/experiments should be prioritized. "
+[//]: # "If using Litmus, [litmusctl](https://docs.litmuschaos.io/docs/litmusctl/installation) should be used to automate the creation and running of chaos experiments."
+[//]: # "Be wary of chaos experiments exiting early, as they could leave the target application in a bad state. For example, a network deny policy could remain in the event of the corresponding chaos experiment failing and not recovering the correct infrastructure configuration. "
 
-If using Litmus, [litmusctl](https://docs.litmuschaos.io/docs/litmusctl/installation) should be used to automate the creation and running of chaos experiments.
+## Running Chaos tests on IBM Cloud
+{: #chaos-ibmcloud} 
 
-Be wary of chaos experiments exiting early, as they could leave the target application in a bad state. For example, a network deny policy could remain in the event of the corresponding chaos experiment failing and not recovering the correct infrastructure configuration. 
+In this section, we touch upon how you can setup one such exemplary framework, LitmusChaos and run a couple of sample scenarios on Red Hat OpenShift on {{site.data.keyword.cloud_notm}}. As discussed in  [Target environments](#chaos-target-environments), try these in a testing or staging environment and get familiar with it.
+
+### Architecture
+{: #litmus-arch}
+We build upon the secure and compliant deployable reference architecture, [Red Hat OpenShift Container Platform on VPC landing zone]{docs/deployable-reference-architectures?topic=deployable-reference-architectures-ocp-ra}. A management cluster hosts the management plane components of LitmusChaos, while the workload cluster hosts the application under test and is the target environment where chaos experiments are run by injecting faults.
+
+[Reference architecture showing components of LitmusChaos]{images/chaos-roks-arch.drawio.svg}
+
+### Considerations
+* VPC connectivity
+* Access Control
+
+### Management plane setup
+Review the [ChaosCenter installation]{https://docs.litmuschaos.io/docs/getting-started/installation/} steps listed at product site to deploy Litmus ChaosCenter on the management cluster. If using the basic setup, you can use IBM-provided [ingress](docs/containers?topic=containers-managed-ingress-about) to setup TLS termination and secure your endpoints. The deployments pull images from public container registries like quay.io and docker.io. 
 
 
-Recoverability from testing
-replicas of mubench on every zone
-permissions
+### Execution plane setup
+
+### Example Test Scenarios
+
+### Resiliency Probes  
+
+### Running experiments
+
+### Next steps
