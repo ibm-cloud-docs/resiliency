@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-11-29"
+lastupdated: "2024-12-02"
 
 
 keywords: chaos testing, resilient app, client testing
@@ -22,16 +22,16 @@ One approach to address this, is chaos engineering. Chaos engineering is the int
 ## Target environments
 {: #chaos-target-environments}
 
-Chaos experiments are ideally conducted in a production environment, yet the risks associated with intentionally disrupting live operations—and potentially impacting customer experience—make this approach challenging to many. While pre-production environment might mimic production, the differences in configuration and load characteristics from production make running chaos tests and observing its impact on live production environment more beneficial. Hence, pre-production environments are a good starting point as one gets familiar with the process and builds a level of confidence in running these tests and handling issues that arise. 
+Chaos experiments are ideally conducted in a production environment as they should closely mimic the real-world issues one is likely to face. However, intentionally disrupting live environments, getting into lengthy and complex recovery processes and affecting customer experience are valid deterents. Pre-production environments are a good starting point as one gets familiar with the process and builds a level of confidence in running these tests and handling issues that arise. Other strategies could be to run these during non-peak hours or when other maintenance activities is not scheduled. It is beneficial to start small, in a staging or testing environment which resembles the production deployment, stay targetted to specific scenarios and build confidence in tools and processes before expanding the scope.
 
 ## Fault space
 {: #chaos-fault-types}
 
 Chaos experiments should mirror real world incidents as closely as possible instead of complex and unlikely scenarios. In any cloud environment, infrastructure can fail and instances of replicated components can fail. Dependencies can fail and connectivity to dependent services can also be interrupted intermittently or for longer durations.
 
-{{site.data.keyword.cloud_notm}} [public APIs](/docs?tab=api-docs) allow actions (like start/stop instance) to be performed on few infrastructure services which can help recreate some of these scenarios. For containerized applications running on [{{site.data.keyword.cloud_notm}} Kubernetes Service](/docs/containers) or on [Red Hat OpenShift on {{site.data.keyword.cloud_notm}}](/docs/openshift), there are many chaos engineering frameworks like [ChaosMesh](https://chaos-mesh.org), [LitmusChaos](https://litmuschaos.io) and Red Hat [KrKn](https://krkn-chaos.github.io/krkn/) which run within the cluster and allow faults like pod deletion, container kills to be injected with a small blast radius.
+{{site.data.keyword.cloud_notm}} [public APIs](/docs?tab=api-docs) allow actions (like start/stop virtual server instance) to be performed on many infrastructure services which can help recreate some of these scenarios. For containerized applications running on [{{site.data.keyword.cloud_notm}} Kubernetes Service](/docs/containers) or on [Red Hat OpenShift on {{site.data.keyword.cloud_notm}}](/docs/openshift), there are many chaos engineering frameworks like [ChaosMesh](https://chaos-mesh.org), [LitmusChaos](https://litmuschaos.io) and Red Hat [KrKn](https://krkn-chaos.github.io/krkn/) which run within the cluster and allow faults to be injected with a small blast radius, often within the scope of the namespace.
 
-Given the complexity of applications and its dependencies, the experiment space can explode quickly if one considers all combinations of components and single or multiple concurrent failures. It is important hence to model the experiments based on application characteristics. This comes primarily with knowledge of the system under test and the cloud environment its running it, but can be augmented by profiling tools like [chaos-recommender](https://github.com/redhat-chaos/krkn/tree/main/utils/chaos_recommender)
+Given the complexity of applications and its dependencies, the experiment space can explode quickly if one considers all combinations of components and single or multiple concurrent failures. It is important hence to model the experiments based on application characteristics. This comes primarily with knowledge of the system under test and the cloud environment its running on, but can be augmented by profiling tools like [chaos-recommender](https://github.com/redhat-chaos/krkn/tree/main/utils/chaos_recommender).
 
 
 ## Running within your CI/CD pipeline
@@ -48,29 +48,55 @@ Chaos tools differ in their implementation, with regard to pipelines. Litmus and
 ## Running Chaos tests on IBM Cloud
 {: #chaos-ibmcloud} 
 
-In this section, we touch upon how you can setup one such framework, LitmusChaos and run a couple of sample scenarios on Red Hat OpenShift on {{site.data.keyword.cloud_notm}}. As discussed in  [Target environments](#chaos-target-environments), try these in a testing or staging environment and get familiar with it.
+In this section, we touch upon how you can setup one such framework, LitmusChaos and run a few scenarios on Red Hat OpenShift on {{site.data.keyword.cloud_notm}}. The system under test is a sample, stateless web application made up of multiple microservices. As discussed in [Target environments](#chaos-target-environments), these are intended to be attempted only in a testing or staging environment initially.
 
 ### Architecture
 {: #litmus-arch}
-We build upon the secure and compliant deployable reference architecture, [Red Hat OpenShift Container Platform on VPC landing zone](docs/deployable-reference-architectures?topic=deployable-reference-architectures-ocp-ra). The management cluster hosts the management plane components of LitmusChaos, while the workload cluster hosts the application under test and is the target environment where chaos experiments are run by injecting faults.
+We build upon the secure and compliant deployable reference architecture, [Red Hat OpenShift Container Platform on VPC landing zone](docs/deployable-reference-architectures?topic=deployable-reference-architectures-ocp-ra). The management cluster hosts the management plane components of LitmusChaos, while the workload cluster hosts the application under test and is the target environment where chaos experiments are run by injecting faults. 
 
 ![Exemplary architecture](images/chaos-roks-arch.drawio.svg "Chaos framework exemplary architecture showing LitmusChaos components"){: caption="Chaos framework exemplary architecture showing LitmusChaos components" caption-side="bottom"}
 
 
 ### Considerations
-* VPC connectivity
-* Access Control
+{: #considerations}
+
+Network traffic rules:
+
+The deployments in both clusters pull images from public container registries like quay.io and docker.io. Hence, external access to registries' secure https port needs to be allowed. The subscriber component deployed in workload cluster fetches scheduled workflow runs from backend server and pushes logs and data back to it. Allow inter-vpc traffic over secure https port in VPC security groups and access control lists.
+
+Security:
+
+Most kubernetes experiments leverage only the kubernetes APIs within namespace scope and so does not need escalated privileges. However, some like pod-network-corruption and node-kill or stressers required privileged mode as well as higher cluster level permissions and are not suitable for all environments. On {{site.data.keyword.cloud_notm}} Red Hat OpenShift, a cluster admin controls what actions and access pods can perform by using [security context constraints](docs/openshift?topic=openshift-openshift_scc) by default. We will use only [pod-delete](https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-delete/) and [pod-network-partition](https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-network-partition/) experiments which are namespace scoped and do not require additional privileges. 
+
+By default, the litmus-sa-admin service account is used by the experiment which has broader permissions, however as part of hardening the environment, we will install a restricted service account and use that instead.
 
 ### Management plane setup
-Review the [ChaosCenter installation](https://docs.litmuschaos.io/docs/getting-started/installation/) steps listed at product site to deploy Litmus ChaosCenter on the management cluster. If using the basic setup, you can use IBM-provided [ingress](docs/containers?topic=containers-managed-ingress-about) to setup TLS termination and secure your endpoints. The deployments pull images from public container registries like quay.io and docker.io. 
+{: #mgmt-plane}
 
+
+Review the [ChaosCenter installation](https://docs.litmuschaos.io/docs/getting-started/installation/) steps listed at product site to deploy Litmus ChaosCenter on the management cluster. If using the basic setup, you can use IBM-provided [ingress](docs/containers?topic=containers-managed-ingress-about) to setup TLS termination and secure your endpoints. A mongodb replicaset is used as database and is installed by the helm chart. It should only have a ClusterIP service with connectivity limited to within your cluster. 
 
 ### Execution plane setup
+{: #exec-plane}
 
-### Example Test Scenarios
 
-### Resiliency Probes  
+The resources for the execution plane should be installed in the same namespace as your application in the workload cluster. Verify that the chaos operator is running and the component pods startup and are healthy, before defining the chaos environment from the ChaosCenter UI.
 
-### Running experiments
+Verify that the Chaos Experiment resources are installed in the namespace or install them from the experiment specific links. In lieu of the pre-installed `litmus-admin` service account, create service accounts with just enough permissions to run the identified experiments. For instance, [pod-delete](https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-delete/#minimal-rbac-configuration-example-optional) service account does not require node level priviliges.
+
+### Test scenarios
+{: #test-scenarios}
+
+We start with a hypothesis and craft a multi-step experiment to verify it. A workflow in LitmusChaos can have multiple serial and parallel steps. In the simplest case it has a pre-setup, inject fault step and post-clean step. We tailor the inject fault step as per each scenario. You can toggle between visual and yaml editor to incorporate security hardening requirements into `securityContext` section and switch the `chaosServiceAccount` from `litmus-admin` to one created for each experiment.
+
+Hypthosesis 1: Multiple replicas of a pod ensure resiliency from intermittent failures.
+We target 50% of the pods for deletion to simulate a pod crash and continue deleting new pods every chaos interval (2s) to simulate a long duration of chaos. During this time, no new pods start up to ready state. Resiliency probes in LitmusChaos allow us to verify our hypothesis and resiliency of the application, we use a continuous httpProbe that performs a HTTP Get or Post against a specified URL and compare against a specific response code.
+
+When the application has just 1 replica, the experiment completes but with a resiliency scope of 0/100 as the application is not continuously available. Scaling up the deployment to 2+ replicas ensures that the experiment succeeds, thus proving our hypothesis.
+
+Hypthesis 2: Multiple replicas need to be spread across availability zones for zone level failures.
+
+
 
 ### Next steps
+{: #next-steps}
