@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-11-26"
+lastupdated: "2024-12-02"
 
 keywords: high availability, regions, zones, resiliency
 
@@ -66,12 +66,14 @@ The [Architecture Design Framework](/docs/architecture-framework) provides a con
 ## Client retry logic for highly available applications
 {: #client-retry-logic-for-ha}
 
-It is up to application clients written in programming languages to recover from transient network errors as well as transient errors introduced by a service's High Availability implementation. See [Services specific high availability and disaster recovery](/docs/resiliency?topic=resiliency-service-ha-dr). Retrying connections with exponential backups for a fixed amount of time is good programming practice.
+It is up to application clients written in programming languages to recover from transient errors. These include network errors and temporary failures introduced by a service's High Availability implementation, like when a regional service recovers from a zonal failure. Check [Services specific high availability and disaster recovery](/docs/resiliency?topic=resiliency-service-ha-dr) for more information on specific {{site.data.keyword.cloud_notm}} services.
 
-The IBM SDK [automatic retry](https://github.com/IBM/ibm-cloud-sdk-common?tab=readme-ov-file#automatic-retries) describes the recommended retry mechanism and even implements it specifically for HTTP 429 and 503 errors. Note that configuration is required by the client to take advantage of the IBM SDK provided retry logic. The failures from other status codes need to be evaluated to determine how to recover. It can be appropriate to use an open source SDKs for accessing {{site.data.keyword.cloud_notm}} services. Carefully examine the specifications to determine if they are useful for your application.
+Many of the {{site.data.keyword.cloud_notm}} SDKs are built on the {{site.data.keyword.cloud_notm}} SDK Common that supports [automatic retries](https://github.com/IBM/ibm-cloud-sdk-common?tab=readme-ov-file#automatic-retries) designed to handle specific HTTP errors, like 429 and 503 errors. Not all errors are automatically handled by the SDK. Note that configuration is required by the client to take advantage of the retry logic.
 
-Failed read and HTTP GET operations with retry friendly HTTP status codes can generally be retried using exponential back off with a fixed time period.
+Some {{site.data.keyword.cloud_notm}} services support open source protocols, and it can be appropriate to use open source SDKs. Examine these SDKs to determine if they are useful for your application and offer suitable retry functionality.
 
-Failed write, HTTP PUT, POST, DELETE, ... operations are likely not recoverable using a simple retry mechanism, unless it is clear that the operation did not complete and client logic indicates a retry is appropriate. Idempotent operations can be retried.  However, the result of the failed state changing operation can be unknown and more advanced service specific recovery mechanism will be required.
+Retry logic varies depending on the type of {{site.data.keyword.cloud_notm}} service and the type of operation. Failed read and HTTP GET operations can generally be retried using exponential backoff with a fixed time period. The failures that should be retried will depend on the type of failure and the specific {{site.data.keyword.cloud_notm}} service. Check the {{site.data.keyword.cloud_notm}} service and SDK documentation for details.
 
-Logging failures and accumulating metrics using [cloud-{{site.data.keyword.logs_full_notm}}](/docs/cloud-logs?topic=cloud-logs-getting-started) an aggregating into metrics with alert notifications will provide observability into failures.
+Failed write, HTTP PUT, POST, DELETE, and other operations are likely not recoverable using a simple retry mechanism, unless it is clear that the operation did not complete and the documented client logic indicates a retry is appropriate. The result of a failed state changing operation in general is unknown and more advanced {{site.data.keyword.cloud_notm}} service specific recovery mechanism will be required. Check the {{site.data.keyword.cloud_notm}} service and SDK documentation for details.
+
+Client retry will improve the availability of a single client. Workloads can be composed of many clients. Logging client failures to a centralized logging service like [{{site.data.keyword.logs_full_notm}}](/docs/cloud-logs?topic=cloud-logs-getting-started) allows failure and availability analysis of the entire workload.
