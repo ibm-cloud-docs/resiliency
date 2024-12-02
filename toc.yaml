@@ -69,10 +69,7 @@ toc:
           - bcdr-approaches.md
           - bcdr-services-that-help.md
           - bcdr-how-ibm-cloud-drs.md
-      - topicgroup:
-          label: Designing for cyber resiliency
-          topics:
-          - cyberresiliency-plan.md
+      - cyberresiliency-plan.md
   - navgroup:
       id: howto
       topics:
