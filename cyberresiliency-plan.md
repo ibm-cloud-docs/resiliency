@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-12-02"
+lastupdated: "2024-12-03"
 
 
 keywords: cyber resiliency plan, resilient app, cyber recovery
@@ -26,7 +26,7 @@ This document provides guidance for situations where a cyber incident affects on
 ## Data consistency
 {: #data-consistency}
 
-An important consideration to address as you identify critical applications is how their data backup and recovery needs to be performed. The type of data backup you take will influences whether further steps are needed post restoration. A consistent backup of live data typically means that a copy of the data can be captured without the need for stopping the application writing to it. Modern systems offer different types of backups that include the following examples.
+An important consideration to address as you identify critical applications is how their data backup and recovery needs to be performed. The type of data backup you take will influences whether further steps are needed post restoration. A consistent backup of live data typically means that a copy of the data can be captured without the need for stopping the application writing to it. Modern systems offer different types of backups that include the following ones.
 
 Crash-consistent
 :   Records all the data written to persistent store but not those in memory or pending I/O. Such types of backups are fast as no special application quiescing or memory flush operation is needed, but applications should be able to recover from a crash-consistent backup. For instance, many databases use a special log-based recovery approach to recover the database to a consistent state. A copy of transaction logs and data volumes is sufficient to bring the database back to consistent state.
