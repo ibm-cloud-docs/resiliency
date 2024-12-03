@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2024
-lastupdated: "2024-11-28"
+lastupdated: "2024-12-03"
 
 keywords: resiliency, DR, high availability, disaster recovery, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -15,7 +15,7 @@ subcollection: resiliency
 # Using {{site.data.keyword.cloud_notm}} services in your disaster recovery
 {: #KeyServicesTitle}
 
-{{site.data.keyword.cloud_notm}} has a number of services that help facilitate a disaster recovery provision. It's important that you understand the capabilities of the {{site.data.keyword.cloud_notm}} services highlighted below. This page should be treated as an overview - refer to each service's documentation set for more information.
+Several {{site.data.keyword.cloud_notm}} services help facilitate a disaster recovery (DR) plan. Review the following overview of the {{site.data.keyword.cloud_notm}} services DR capabilities. For more information, see each service's documentation.
 
 ## {{site.data.keyword.cos_full_notm}}
 {: #KeyServicesCOS}
@@ -30,9 +30,9 @@ Cross-region buckets offer the simplest choice for disaster recovery and are ava
 * `us-geo` – North America (US, Canada)
 * `eu-geo` – Europe (UK, Germany, Spain)
 
-For a cross-region bucket, a tethered endpoint keeps all data ingress and egress within a specified region while still distributing the data. However, this mechanism does not provide an automated failover if the tethered region fails. Therefore, it’s important to connect services to your buckets by using an endpoint that is available in the region where it’s needed.
+For a cross-region bucket, a tethered endpoint keeps all data ingress and egress within a specified region while still distributing the data. However, this mechanism does not provide an automated failover if the tethered region fails. Therefore, it’s important to connect services to your buckets by using an endpoint that is available in the region where you need it.
 
-Cross-region buckets might not be suitable for users with regulatory compliance concerns. For example, a US-based organization might not be able to store data in Canada. Or, a European Union-based company might not be able to store data outside of the European Union, such as the UK.
+Cross-region buckets might not be suitable for users with regulatory compliance concerns. For example, a US-based organization might not be able to store data in Canada. Or, a European Union-based company might not be able to store data outside of the European Union, such as in the UK.
 
 In these cases, bucket replication offers a solution. With bucket replication, objects written to a source bucket are asynchronously copied to a target bucket, helping ensure redundancy with eventual consistency. You must set up and manage replication. By using this method, you can control the locations of the data and its sovereignty.
 
@@ -41,11 +41,11 @@ Versioning is a requirement for bucket replication so that buckets that are conf
 ## {{site.data.keyword.bplong_notm}}
 {: #KeyServicesSchematics}
 
-Use automation to deploy or recover an environment quickly and accurately. Automating deployments with IaC, Configuration as Code, and toolchains helps you recover workloads faster and more accurately by re-creating lost environments more precisely than manual methods. Using automation also helps you react faster to unexpected scenarios, especially if you need to create and configure services on-demand in a different recovery region than you first planned.
+Use automation to deploy or recover an environment quickly and accurately. Automating deployments with Infrastructure as Code (IaC), Configuration as Code, and toolchains helps you recover workloads faster and more accurately by re-creating lost environments more precisely than manual methods. Using automation also helps you react faster to unexpected scenarios, especially if you need to create and configure services on-demand in a different recovery region than you first planned.
 
-{{site.data.keyword.bpshort}} is a service that can play an important part in any disaster recovery strategy. Use [IBM Cloud Schematics](https://cloud.ibm.com/schematics/overview) to implement runbooks for recovery processes. Schematics workspaces provide Terraform-as-a-Service and Schematics Actions provides Ansible-as-a-Service. [Schematics workspaces](/docs/schematics?topic=schematics-sc-workspaces) automates the deployment and management of IBM Cloud infrastructure and services. Schematics Actions automates configuration management and runs scripted day-2 operations. See [Schematics Use Cases](/docs/schematics?topic=schematics-how-it-works) for more details.
+{{site.data.keyword.bpshort}} is a service that can play an important part in any disaster recovery strategy. Use [{{site.data.keyword.bplong_notm}}](/schematics/overview) to implement runbooks for recovery processes. [Schematics workspaces](/docs/schematics?topic=schematics-sc-workspaces) provide Terraform-as-a-Service and automates the deployment and management of {{site.data.keyword.cloud_notm}} infrastructure and services. [{{site.data.keyword.bpshort}} actions](/docs/schematics?topic=schematics-sc-actions) provide Ansible-as-a-Service, automate configuration management, and run scripted day-2 operations. For more information, see [Understanding Schematics use cases](/docs/schematics?topic=schematics-how-it-works).
 
-In short, with {{site.data.keyword.bpshort}}, you can deploy infrastructure and services quickly and consistently though Infrastructure as Code (IaC), Terraform, Ansible, Helm, and Red Hat OpenShift Operators.
+In short, with {{site.data.keyword.bpshort}}, you can deploy infrastructure and services quickly and consistently though IaC, Terraform, Ansible, Helm, and Red Hat OpenShift Operators.
 
 Codifying the workload environment means defining and automating the setup of your workload by using code. This way, the right services can be quickly provisioned and configured in any {{site.data.keyword.cloud_notm}} region. You can use Terraform and Ansible to provision services, including servers, storage, networking, and databases. They can also be used to configure the services, as can Helm and Operators.
 
@@ -60,7 +60,7 @@ Employing DevOps toolchains can automate much of the environment build, includin
 
 A deployable architecture is a preconfigured set of IaC assets that are based on the {{site.data.keyword.cloud_notm}} for Financial Services reference architecture. These deployable architectures enable you to meet {{site.data.keyword.cloud_notm}} Framework for Financial Services best practices. With a deployable architecture, you can accurately deploy the same architecture into different regions. These preconfigured architectures also provide a starting point for customization. Make sure that you maintain any customizations throughout each deployment.
 
-When using a deployable architecture, you are responsible for the following disaster recovery actions:
+When you use a deployable architecture, you are responsible for the following disaster recovery actions:
 
 * Provisioning disaster recovery environments, including any dependencies
 * Data and configuration backup
@@ -75,21 +75,21 @@ You can use {{site.data.keyword.codeengineshort}} to deploy containerized worklo
 ## Backup and restore options
 {: #backup-and-restore-options}
 
-[IBM Cloud Backup for VPC](/docs/vpc?topic=vpc-backup-service-about&interface=ui) is a cloud service that supports the creation and management of boot and data storage volume snapshots. Use IBM Cloud Backup for VPC to schedule regular backups and restore applications deployed in Virtual Servers for VPC (VSIs) when application-consistent backups are not required.
+[{{site.data.keyword.cloud}} Backup for VPC](/docs/vpc?topic=vpc-backup-service-about&interface=ui) is a cloud service that supports creating and managing boot and data storage volume snapshots. Use {{site.data.keyword.cloud}} Backup for VPC to schedule regular backups and restore applications deployed in {{site.data.keyword.vsi_is_short}} VSIs when application-consistent backups are not required.
 
-- Boot Volume backup: Create snapshots of the boot volume for the Virtual Servers for VPC hosting the application. [Restore the bootable snapshots](/docs/vpc?topic=vpc-baas-vpc-restore&interface=ui#baas-restore-concept-boot) and use them to re-create the application virtual server instances. Bootable snapshots are not fully hydrated and impact initial performance. Use the fast restore feature to cache snapshots in a different zone for quick restore of individual volumes.
+- Boot volume backup: Create snapshots of the boot volume for the {{site.data.keyword.vsi_is_short}} hosting the application. [Restore the bootable snapshots](/docs/vpc?topic=vpc-baas-vpc-restore&interface=ui#baas-restore-concept-boot) and use them to re-create the application virtual server instances. Bootable snapshots don’t immediately load or "hydrate" all of their data when they’re created. Performance degradation occurs during the restoration because your data is copied from {{site.data.keyword.cos_full}} to {{site.data.keyword.block_storage_is_short}} in the background. Use the fast restore feature to cache snapshots in a different zone for quick restore of individual volumes.
 
-- Data Volume backup: Create snapshots of the data volumes that are attached to the application. The snapshots replicate the data to other availability zones and regions to support the recovery of configuration or any other critical files. See [Creating Snapshots](/docs/vpc?topic=vpc-snapshots-vpc-create&interface=ui) for details.
+- Data volume backup: Create snapshots of the data volumes that are attached to the application. The snapshots replicate the data to other availability zones and regions to support the recovery of configuration or any other critical files. For more information, see [Creating {{site.data.keyword.block_storage_is_short}} snapshots](/docs/vpc?topic=vpc-snapshots-vpc-create&interface=ui).
 
-[IBM Storage Protect](https://cloud.ibm.com/catalog/content/SPonIBMCloud-20c54034-d319-48c0-beb6-0b4adc54265c-global){: external} is an enterprise-level backup solution for virtual, physical, cloud, software-defined environments, and core applications. Use IBM Storage Protect to create application-consistent backups for database applications that are deployed on Virtual Servers for VPC and to create file or folder level backups.
+[{{site.data.keyword.IBM}} Storage Protect](/catalog/content/SPonIBMCloud-20c54034-d319-48c0-beb6-0b4adc54265c-global){: external} is an enterprise-level backup solution for virtual, physical, cloud, software-defined environments, and core applications. Use {{site.data.keyword.IBM}} Storage Protect to create application-consistent backups for database applications that are deployed on {{site.data.keyword.vsi_is_short}} and to create file or folder level backups.
 
 | Backup feature            | IBM Storage Protect                      | IBM Cloud Backup for VPC                              |
 |-------------------------------|--------------------------------|--------------------------------|
-| Backup capabilities       | - Agent-based \n - Scheduled backups \n - Backups Management      | - Scheduled backups \n - Backups Management \n - Fast restore clone \n - Cross-regional copies                |
-| Backup scope            | Selected VSIs, selected volumes or files in VSIs                        | Selected volumes (boot or data) attached to any VSIs                                         |
+| Backup capabilities       | - Agent-based \n - Scheduled backups \n - Backups management      | - Scheduled backups \n - Backups management \n - Fast restore clone \n - Cross-regional copies                |
+| Backup scope            | Selected VSIs, selected volumes, or files in VSIs                        | Selected volumes (boot or data) attached to any VSIs                                         |
 | File or folder level support | Yes                                                                     | No                                                                                           |
-| Backup storage           | Block Storage for VPC or IBM Cloud Object Storage                                            | IBM Cloud Object Storage                                                                                      |
-| Database protection      | Application-consistent backups (Oracle, IBM Db2, MongoDB, MS SQL Server) | Not supported                                                                                |
+| Backup storage           | {{site.data.keyword.block_storage_is_short}} or {{site.data.keyword.cos_full_notm}}                                            | {{site.data.keyword.cos_full_notm}}                                                                                      |
+| Database protection      | Application-consistent backups (Oracle, {{site.data.keyword.Db2_on_Cloud_long_notm}}, {{site.data.keyword.mongodb}}, MS SQL Server) | Not supported                                                                                |
 | Encryption          | In-transit and at rest                                                  | In-transit and at rest                                                                       |
 | Recommendation          | Database or folder level backup for multiple virtual servers                             | Complex backup operations for multiple virtual servers that do not require application data consistency |
-{: caption="Table 1. Comparison of backup options for Virtual Servers for VPC" caption-side="bottom"}
+{: caption="Comparison of backup options for {{site.data.keyword.vsi_is_short}}" caption-side="bottom"}
