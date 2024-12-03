@@ -15,7 +15,7 @@ subcollection: resiliency
 # Disaster recovery testing
 {: #dr-testing}
 
-Once you have a disaster recovery plan (see [Planning for disaster recovery](/docs/resiliency?topic=resiliency-PlanningforDR)), you don't want to find out whether it works or not when facing an actual disaster, so it is good practice to regularly test the plan. Testing will ensure that the plan works with the desired result and if it doesn't, changes can be made accordingly. Regular testing helps ensure that any changes in the workload environment are captured and adjustments made if necessary.
+Once you have a [disaster recovery (DR) plan](/docs/resiliency?topic=resiliency-PlanningforDR), regularly test the plan. You can avoid finding flaws when you face an actual disaster. Testing helps ensure that the plan works with the desired result. If the plan doesn't work during testing, you can make changes accordingly. Regular testing helps ensure that any changes in the workload environment are captured and adjustments made if necessary.
 
 There are different types of disaster recovery testing that you can do to verify your plan:
 
@@ -23,55 +23,52 @@ There are different types of disaster recovery testing that you can do to verify
 - DR simulation
 - Switch-over
 
-## Disaster recovery dry test
+## DR dry test
 {: #dr-dry-test}
 
-A DR dry test is performed by checking all of the resource availability and runbooks on paper, without running a real DR simulation or switch-over.
+Perform a DR dry test by checking all of the resource availability and runbooks on paper, without running a real DR simulation or switch-over.
 
-This type of testing is normally run with higher frequency compared to the other testing flavors as no real activities are performed, but it does require the same effort in terms of skills and people.
+This type of testing is normally run with higher frequency compared to the other testing types, as no real activities are performed. However, a DR dry test does require the same effort in terms of skills and people.
 
-
-## Disaster recovery simulation
+## DR simulation
 {: #dr-simulation}
 
-DR simulation is a way to verify or audit the emergency runbooks and check the [recovery time objectives](#x3167918){: term} (RTO) and [recovery point objectives](#x3429911){: term} (RPO) provided by the solution by simulating as much as possible in the same conditions as a real emergency.
+DR simulation is a way to verify or audit the emergency runbooks and check the [recovery time objectives](#x3167918){: term} (RTO) and [recovery point objectives](#x3429911){: term} (RPO) provided by the solution by simulating the  conditions of a real emergency.
 
-This needs to be carefully planned as it potentially means introducing disruptions to the replication of data from the primary region, hence simulating its sudden loss, while of course not providing impact on production workloads. There may be some additional risk to the business at this point too, since the disaster recovery provision may effectively be disconnected and in use for the druation of the test, though the extent of this is dependent on the cloud services used and how they are deployed.
+A DR simulation needs careful planning since you are introducing potential disruptions to data replication from the primary region, while of course avoiding impact on production workloads. While you are testing the DR environment, it might temporarily be unavailable for actual disaster recovery purposes. This risk depends on the specific cloud services and how they are deployed. Some services might allow for simultaneous testing and availability, while others might not.
 
-DR simulation deploys a duplicate of your production environment at your chosen DR region that you can use to perform validation and checking. This environment is cleaned or perhaps undeployed at the end of the simulation and updates that happened to the DR test environment are discarded, as the real production has continued on the primary region.
+A DR simulation creates a temporary copy of your production environment in the designated DR region for testing and validation. After the simulation ends, the test environment is deleted, and any changes made during the test are discarded, as the primary production environment continues to operate normally.
 
 ## Switch-over
 {: #switch-over}
 
-In some ways, the switch-over test isn't really a test at all, since it involves switching production running from one region to another to verify and audit the ability to run and sustain production operations for a long period in an alternate region. Here, production operations are gracefully brought to a stop in the first region, switched to the second region, and restarted, after any data restoration that might be required.
+Switch-over involves switching your production environment from one region to another. This method helps verify and audit the ability to run and sustain production operations for a long period in an alternate region. Production operations are gracefully brought to a stop in the first region, switched to the second region, and restarted after any data restoration that might be required.
 
-After a period of verification, which ensure that the second region is working as expected, production activities can be resumed and data replication is configured so that the original region effectively becomes the new secondary region.
+After you verify that the second region works as expected, you can resume production activities and configure data replication to make the original region the new secondary region. Your production environment continues to run from this site until you decide to switch back again.
 
-Production continues to run from this site until you decide to switch back again.
-
-## Disaster recovery test frequency
+## DR testing frequency
 {: #dr-test-frequency}
 
-The frequency at which you test your DR plan depends on many factors, including what may be mandated by regulatory compliance standards. In the absence of needing to meet regulatory compliance standards,  plan a full DR test at least once per year and document results that can be accepted by auditors to prove your ability to recover. It is also good practice to conduct smaller scale tests throughout the year.
+How often you test your DR plan depends on many factors, including what is mandated by regulatory compliance standards. If compliance isn’t a concern, aim to conduct a full DR test at least once a year and document the results for auditor review. It’s a good practice to run smaller-scale tests throughout the year to help ensure readiness.
 
 Always consider the following question and adjust your test frequency accordingly:
 
 How dynamic is my workload?
-:   The more your workload changes, the more often you need to carry out some form of DR test to verify that the changes introduced don't affect your ability to recover it. This can include new dependencies, additional cloud services, infrastructure changes and so forth. Remember that growing data sets will take longer to recover too, and that may affect your ability to meet a specific recovery time objective.
+:   The more your workload changes, the more often you need to carry out some form of DR test. This way, you can verify that the changes don't affect your ability to recover. Changes might include new dependencies, additional cloud services, infrastructure changes and more. Growing data sets take longer to recover, which might affect your ability to meet a specific RTO.
 
 ## What else should my tests focus on?
 {: #test-focus}
 
-The primary objective of any disaster recovery test is to ensure that following it means that workloads are successfully recovered. However, ensure that the following work well too:
+The primary objective of any disaster recovery test is to confirm that workloads can be successfully recovered. However, ensure that the following work well too:
 
-* Key personnel - the DR plan should outline the personnel that are needed for a succcessful recovery and what their roles are. Consider whether addtional people / roles were needed during tests (or whether some were surplus to requirements) as well as how well people were able to perform their role.
-* Communication - the DR plan must be clear on how communication works in the event of a disaster, so consider how well communication between participants, including the comminication channels used, worked during tests.
-* Documented dependencies - the plan will likely outline dependencies. Check that these are valid and don't unnecessarily hinder the recovery process. At the same time, ensure that any new dependencies are recorded.
-* Other documentation - runbooks may be used to implement the recovery, so it is important to understand how accuruate and how effective they were. Under-documenting steps can lead to delays, while over-documenting (providing too much detail or detail that is not relevant) may have the same effect. If possible, have people that did not write the steps implement the steps in at least one test to ensure they are clear and can be followed, just in case the author isn't available when disaster strikes.
+* Key personnel: The DR plan should outline the personnel that are needed for a succcessful recovery and what their roles are. Consider whether you need addtional people or roles during tests, or whether some were surplus to requirements, as well as how well people were able to perform their role.
+* Communication: The DR plan must clearly outline how to communicate in the event of a disaster. Consider how well communication between participants, including the comminication channels used, work during tests.
+* Documented dependencies: Your DR plan likely outlines dependencies. Check that these are valid and don't unnecessarily hinder the recovery process. At the same time, ensure that any new dependencies are recorded.
+* Other documentation: Runbooks might be used to implement the recovery, so it is important to understand how accuruate and how effective they are. Under-documenting steps can lead to delays, while providing too much detail or detail that is not relevant might have the same effect. If possible, have people that did not write the steps test them in at least one test to make sure they are clear, just in case the author isn't available when a disaster occurs.
 
-## Post test
+## After testing
 {: #post-test}
 
-Once any test is completed, it's important to record the results as a benchmark for the next test. If changes are later made to the test procedure, it is then easy to compare results.
+After any test is complete, record the results as a benchmark for the next test. If you make changes to the test procedure later, it is then easy to compare results.
 
- Following a test, also ensure that any adjustments that are needed to the plan or related documentation are made. Remember that the disaster recovery plan is a living document that should be kept up-to-date to ensure that it can be executed with the desired outcomes. This may involve making small tweaks or large changes, depending on how testing went. All those that participated in a test should be encouraged to provide feedback on what went well, and what didn't go well and to document in an appropriate place anything they had to do differently, which can be incorporated into the next test. Think too about any additional training people may need, be that in understanding the plan and their role in it, through to communication or technical skills.
+After each disaster recovery test, update the plan and related documentation based on the results. A DR plan is a living document that needs regular adjustments to remain effective. Use feedback from participants to identify what worked well and what didn’t, and incorporate those insights into future tests. Also, consider providing additional training if needed, whether it’s to clarify roles, improve communication, or enhance technical skills.
