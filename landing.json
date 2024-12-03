@@ -24,12 +24,12 @@
       "title": "Resiliency IBM Well-Architected Framework",
       "description": "Resiliency is the capacity for your service or application to recover from different types of failures.",
       "href": "https://www.ibm.com/architectures/well-architected/resiliency",
-      "type": "training"
+      "type": "white-paper"
     },
     {
-      "title": "IBM Cloud VPC resiliency",
-      "description": "High availability and disaster recovery are important considerations to meet continuous business operations and resiliency requirements for enterprise workloads.",
-      "href": "https://cloud.ibm.com/docs/vpc-resiliency",
+      "title": "IBM Cloud compliance programs",
+      "description": "Manage regulatory compliance and internal governance requirements with IBM Cloud services.",
+      "href": "https://www.ibm.com/cloud/compliance",
       "type": "white-paper"
     }
   ]
