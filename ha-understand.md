@@ -42,7 +42,7 @@ MTTR = total down time / number of failures = 1 hr / 1 = 1 hr
 
 Availability = ( MTBF / ( MTBF+MTTR ) ) x 100 = ( 720 / 721 ) x 100 = 99.86%
 
-You can increase MTBF, decrease MTTR, or both. This means that availability can be improved by increasing reliability or fixing issues when they break more efficiently. Both approaches have been used with computer systems over the years. The mainframe, which uses high reliability parts, redundant parts, and modularity to allow quicker repairs, shows that significant levels of availability are possible with this approach. A detailed comprehensive service level agreements on Availability for IBM Cloud services is provided [here](www.ibm.com/terms/?id=i126-9268)
+You can increase MTBF, decrease MTTR, or both. This means that availability can be improved by increasing reliability or fixing issues when they break more efficiently. Both approaches have been used with computer systems over the years. The mainframe, which uses high reliability parts, redundant parts, and modularity to allow quicker repairs, shows that significant levels of availability are possible with this approach. A detailed comprehensive service level agreements on Availability for IBM Cloud services is provided [here](https://www.ibm.com/terms/?id=i126-9268)
 
 ![Availability formula.](images/availability-formula.svg "Availability formula"){: caption="Summarized availability formula" caption-side="bottom"}
 
