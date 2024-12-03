@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-11-16"
+lastupdated: "2024-12-03"
 
 keywords: DR testing, disaster recovery test, testing for a disaster scenario, dry test, switch over, DR simulation
 
@@ -52,9 +52,9 @@ Production continues to run from this site until you decide to switch back again
 ## Disaster recovery test frequency
 {: #dr-test-frequency}
 
-The frequency at which you shoud test your DR plan depends on many factors, but in general you should have a DR test at least once per year, with this often being the bare minimum frequency that is accepted by auditors to prove your ability to recover.
+The frequency at which you test your DR plan depends on many factors, including what may be mandated by regulatory compliance standards. In the absence of needing to meet regulatory compliance standards,  plan a full DR test at least once per year and document results that can be accepted by auditors to prove your ability to recover. It is also good practice to conduct smaller scale tests throughout the year.
 
-However, always consider the following question and adjust your test frequency accordingly:
+Always consider the following question and adjust your test frequency accordingly:
 
 How dynamic is my workload?
 :   The more your workload changes, the more often you need to carry out some form of DR test to verify that the changes introduced don't affect your ability to recover it. This can include new dependcies, additional cloud services, infrastructure changes and so forth. Remember that growing data sets will take longer to recover too, and that may affect yoor ability to meet a specific recovery time objective.
