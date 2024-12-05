@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-12-04"
+lastupdated: "2024-12-05"
 
 
 keywords: chaos testing, resilient app, client testing
@@ -89,14 +89,17 @@ Verify that the Chaos Experiment resources are installed in the namespace or ins
 In this approach to chaos testing, we start with a hypothesis and craft a multi-step experiment to verify it. A workflow in LitmusChaos can have multiple serial and parallel steps. In the simplest case it has a pre-setup, inject fault step and post-clean step. We tailor the inject fault step as per each scenario. You can toggle between visual and yaml editor to incorporate security hardening requirements into `securityContext` section and switch the `chaosServiceAccount` from `litmus-admin` to one created for each experiment.
 
 Hypothesis 1: Multiple replicas of a pod ensure resiliency from intermittent failures.
-To simulate a pod crash, we target 50% of the pods of a specific microservice for deletion and continue deleting new pods every chaos interval (2s) for the duration of chaos. During this time, affected pods do not start up to ready state. Resiliency probes in LitmusChaos allow us to verify our hypothesis and resiliency of the application, we use a continuous httpProbe that performs a HTTP Get or Post against the application service URL and expects a 200 response code.
+:To simulate a pod crash, we target 50% of the pods of a specific microservice for deletion and continue deleting new pods every chaos interval (2s) for the duration of chaos. During this time, affected pods do not start up to ready state. Resiliency probes in LitmusChaos allow us to verify our hypothesis and resiliency of the application, we use a continuous `httpProbe` that performs a HTTP Get or Post against the application service URL and expects a 200 response code. 
 
-When the application has just 1 replica, the experiment completes but with a resiliency score of 0 as the application is not continuously available. Scaling up the deployment to 2+ replicas ensures that the experiment succeeds, thus proving our hypothesis.
+When the application has just 1 replica, the experiment completes but with a resiliency score of 0 as the application is not continuously available. Scaling up the deployment to 2 or more replicas ensures that the experiment succeeds, thus proving our hypothesis.
 
-Hypothesis 2: Multiple replicas need to be spread across availability zones for zone level failures.
+Hypothesis 2: Multiple replicas need to be spread across availability zones for zone failures.
+:In this experiment, we simulate a limited version of zone failure by making all the pods of an application running in a specific availability zone as unreachable. We leverage the pod-network-partition fault targetting specific pods scheduled on worker nodes in a single availability zone. The fault creates a network policy which denies both ingress and egress traffic from those pods. 
+
+By leveraging [anti-affinity](docs/containers?topic=containers-app#affinity) rules, when pods are scheduled among multiple nodes across availability zones, the experiment succeeds with a full resiliency score. However, when there are fewer replicas all running on worker nodes in a single availability zone, their failure causes the application to fail, confirming our premise.
 
 
 ### Next steps
 {: #next-steps}
 
-It is recommended to gradually build upon your initial experiments by varying conditions, for instance, running them under different conditions, different scenarios and fault types and expanding to other applications. Stateful applications might have additional considerations and behave differently under graceful or force shutdown scenarios. Observability dashboards which monitor resource and application metrics and automated health checks routines can verify system health post chaos experiment runs.
+It is recommended to gradually build upon your initial experiments by varying parameters, for instance, running them under different load conditions, different scenarios and fault types and expanding to other applications. Stateful applications might have additional considerations and behave differently under graceful or force shutdown scenarios. Observability dashboards which monitor resource and application metrics and automated health checks routines can verify system health post chaos experiment runs.
