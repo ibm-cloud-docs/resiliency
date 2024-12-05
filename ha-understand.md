@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-12-03"
+lastupdated: "2024-12-05"
 
 keywords: high availability, ha, understanding ha
 
@@ -30,23 +30,20 @@ For HA in the cloud, it's important to understand the high-level concepts that y
 ## Formula for high availability
 {: #ha-formula}
 
-A general standard formula used for high availability is MTBF/(MTBF+MTTR), where MTBF is Mean Time Between Failures and MTTR is Mean Time To Repair. Since MTBF is the time when the system is up, and MTTR is the time that the system is down, this formula can be summarized as Availability = (The time the system is up)/(The time the system is up + The time the system is down).
+A standard formula for high availability is `MTBF/(MTBF+MTTR)`, where `MTBF` is "mean time between failures" and `MTTR` is "mean time to repair". Since `MTBF` is the time when the system is up, and `MTTR` is the time that the system is down, this formula can be summarized as follows:
 
-The formula is useful because it shows you how to improve availability. Consider a scenario where you require the server to run 24/7 for a month of 30 days. In that month say the server went down once for approximately a total of 1hr 
+> Availability = (The time the system is up)/(The time the system is up + The time the system is down).
 
-The total time is 30 days x 24hrs/day = 720 hours
+The formula is useful because it shows you how to improve availability. Consider a scenario where you require the server to run 24/7 for a month of 30 days. In that month, let's say the server went down once for a total of 1hr.
 
-MTBF = total operating time / number of failure = 720 hrs / 1 = 720 hrs
+> To get the total time in the month, multiply 30 days x 24hrs/day = 720 hours
+> MTBF = Total operating time / Number of failure = 720 hrs / 1 = 720 hrs
+> MTTR = Total down time / Number of failures = 1 hr / 1 = 1 hr
+> Availability = (MTBF / (MTBF + MTTR)) x 100 = (720 / 721) x 100 = 99.86%
 
-MTTR = total down time / number of failures = 1 hr / 1 = 1 hr
-
-Availability = ( MTBF / ( MTBF+MTTR ) ) x 100 = ( 720 / 721 ) x 100 = 99.86%
-
-You can increase MTBF, decrease MTTR, or both. This means that availability can be improved by increasing reliability or fixing issues when they break more efficiently. Both approaches have been used with computer systems over the years. The mainframe, which uses high reliability parts, redundant parts, and modularity to allow quicker repairs, shows that significant levels of availability are possible with this approach. A detailed comprehensive service level agreements on Availability for IBM Cloud services is provided [here](https://www.ibm.com/terms/?id=i126-9268)
+You can increase MTBF, decrease MTTR, or both. This means that availability can be improved by increasing reliability or fixing issues when they break more efficiently. Both approaches are common in computer systems. The mainframe, which uses high reliability parts, redundant parts, and modularity to allow quicker repairs, shows that significant levels of availability are possible with this approach. For more information about the availability of specific {{site.data.keyword.cloud_notm}} services, see [Service Level Agreements (SLAs)](https://www.ibm.com/terms/?id=i126-9268).
 
 ![Availability formula.](images/availability-formula.svg "Availability formula"){: caption="Summarized availability formula" caption-side="bottom"}
-
-
 
 ## Why do you need high availability?
 {: #why-ha}
