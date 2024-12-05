@@ -96,7 +96,7 @@ When the application has just 1 replica, the experiment completes but with a res
 Hypothesis 2: Multiple replicas need to be spread across availability zones for zone failures.
 :   In this experiment, we simulate a limited version of zone failure by making all the pods of an application running in a specific availability zone as unreachable. We leverage the pod-network-partition fault targetting specific pods scheduled on worker nodes in a single availability zone. The fault creates a network policy which denies both ingress and egress traffic from those pods. 
 
-By leveraging [anti-affinity](docs/containers?topic=containers-app#affinity) rules, when pods are scheduled among multiple nodes across availability zones, the experiment succeeds with a full resiliency score. However, when there are fewer replicas all running on worker nodes in a single availability zone, their failure causes the application to fail, confirming our premise.
+We start with 5 replicas of pods. By leveraging [anti-affinity](docs/containers?topic=containers-app#affinity) rules, when pods are scheduled among multiple nodes across availability zones, the experiment succeeds with a full resiliency score. However, when we apply affinity rules to ensure all pods are located on the same availability zone, the experiment fails with a 0% resiliency score. Thus, it is proven that when an availability zone becomes tainted for whatever reason (node failure/restart for example), the application is resilient if anti-affinity rules are applied properly. 
 
 
 ### Next steps
