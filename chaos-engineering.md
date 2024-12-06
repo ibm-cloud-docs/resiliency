@@ -63,13 +63,13 @@ Typically, an administrator would setup the clusters, configure the environment,
 
 Network traffic rules:
 
-The deployments in both clusters pull images from public container registries like quay.io and docker.io. Hence, external access to registries' secure https port needs to be allowed. Additionally, the subscriber component deployed in workload cluster fetches scheduled workflow runs from backend server and pushes logs and data back to it. Allow inter-vpc traffic over secure https port in VPC security groups and access control lists.
+:   The deployments in both clusters pull images from public container registries like quay.io and docker.io. Hence, external access to registries' secure https port needs to be allowed. Additionally, the subscriber component deployed in workload cluster fetches scheduled workflow runs from backend server and pushes logs and data back to it. Allow inter-vpc traffic over secure https port in VPC security groups and access control lists.
 
 Security:
 
-Most kubernetes experiments leverage only the kubernetes APIs within namespace scope and so does not need escalated privileges. However, some like pod-network-corruption and node-kill or stressers require privileged mode as well as greater cluster level permissions and are not suitable for all environments. On {{site.data.keyword.cloud_notm}} Red Hat OpenShift, a cluster administrator controls what actions and access pods can perform by using [security context constraints(SCC)](docs/openshift?topic=openshift-openshift_scc) by default. We will use only [pod-delete](https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-delete/) and [pod-network-partition](https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-network-partition/) experiments which are namespace scoped and do not require additional privileges. 
+:   Most kubernetes experiments leverage only the kubernetes APIs within namespace scope and so does not need escalated privileges. However, some like pod-network-corruption and node-kill or stressers require privileged mode as well as greater cluster level permissions and are not suitable for all environments. On {{site.data.keyword.cloud_notm}} Red Hat OpenShift, a cluster administrator controls what actions and access pods can perform by using [security context constraints(SCC)](docs/openshift?topic=openshift-openshift_scc) by default. We will use only [pod-delete](https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-delete/) and [pod-network-partition](https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-network-partition/) experiments which are namespace scoped and do not require additional privileges. 
 
-By default, the `litmus-admin` service account is used by the experiment which has broader permissions, however as part of hardening we will instead use a restricted service account which can run with the default `restricted-v2` SCC.
+:   By default, the `litmus-admin` service account is used by the experiment which has broader permissions, however as part of hardening we will instead use a restricted service account which can run with the default `restricted-v2` SCC.
 
 ### Management plane setup
 {: #mgmt-plane}
@@ -94,7 +94,7 @@ Hypothesis 1: Multiple replicas of a pod ensure resiliency from intermittent fai
 :   When the application has just 1 replica, the experiment completes but with a resiliency score of 0 as the application is not continuously available. Scaling up the deployment to 2 or more replicas ensures that the experiment succeeds, thus proving our hypothesis.
 
 Hypothesis 2: Multiple replicas need to be spread across availability zones for zone failures.
-:   In this experiment, we simulate a limited version of zone failure by making all the pods of an application running in a specific availability zone as unreachable. We leverage the pod-network-partition fault targetting specific pods scheduled on worker nodes in a single availability zone. The fault creates a network policy which denies both ingress and egress traffic from those pods. 
+:   In this experiment, we simulate a limited version of zone failure by making all the pods of an application running in a specific availability zone as unreachable. We leverage the pod-network-partition fault targetting specific pods scheduled on worker nodes in a single availability zone. The fault creates a network policy which denies both ingress and egress traffic for those pods. 
 
 :   We begin with five replicas of pods distributed across three worker nodes. Each node is located in a different availability zone. By applying [anti-affinity](docs/containers?topic=containers-app#affinity) rules, the pods are scheduled among multiple nodes. This ensures that requests are handled by pods running in other availability zones. As a result, the experiment achieves a full resiliency score. However, when we apply affinity rules to ensure all pods are located on the same availability zone, the experiment fails resiliency test.
 
