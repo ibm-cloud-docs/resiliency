@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-12-05"
+lastupdated: "2024-12-06"
 
 
 keywords: chaos testing, resilient app, client testing
@@ -17,7 +17,7 @@ subcollection: resiliency
 
 Now that you have designed and deployed resilient applications which can withstand simple and complex failures, you need to ensure that they work as planned. Waiting for a failure to occur in your production to verify your preparedness could prove to be costly mistake as solutions might be needed on-the-fly. Failures are inevitable and could be due to several issues, including security breaches, misconfigurations or service disruptions. As your workload footprint deployed on cloud increases, so does the chances that they will fail in multitude of ways. 
 
-One approach to address this, is chaos engineering. Chaos engineering is the intentional and controlled injection of failures in pre-production and production environments to understand their impact and verify your preparedness. It is not a random process where dependencies are turned off or instances or services shutdown. The process begins with identifying potential future issues and creating hypothesis about how your system will behave and verifying that by running an experiment and observing the results. Did your hypothesis hold true or do you need to handle them differently?
+One approach to address this, is chaos engineering. [Chaos engineering](https://www.ibm.com/topics/chaos-engineering) is the intentional and controlled injection of failures in pre-production and production environments to understand their impact and verify your preparedness. It is not a random process where dependencies are turned off or instances or services shutdown. The process begins with identifying potential future issues and creating hypothesis about how your system will behave and verifying that by running an experiment and observing the results. Did your hypothesis hold true or do you need to handle them differently?
 
 ## Target environments
 {: #chaos-target-environments}
@@ -91,13 +91,12 @@ In this approach to chaos testing, we start with a hypothesis and craft a multi-
 Hypothesis 1: Multiple replicas of a pod ensure resiliency from intermittent failures.
 :   To simulate a pod crash, we target 50% of the pods of a specific microservice for deletion and continue deleting new pods every chaos interval (2s) for the duration of chaos. During this time, affected pods do not start up to ready state. Resiliency probes in LitmusChaos allow us to verify our hypothesis and resiliency of the application, we use a continuous `httpProbe` that performs a HTTP Get or Post against the application service URL and expects a 200 response code. 
 
-When the application has just 1 replica, the experiment completes but with a resiliency score of 0 as the application is not continuously available. Scaling up the deployment to 2 or more replicas ensures that the experiment succeeds, thus proving our hypothesis.
+:   When the application has just 1 replica, the experiment completes but with a resiliency score of 0 as the application is not continuously available. Scaling up the deployment to 2 or more replicas ensures that the experiment succeeds, thus proving our hypothesis.
 
 Hypothesis 2: Multiple replicas need to be spread across availability zones for zone failures.
 :   In this experiment, we simulate a limited version of zone failure by making all the pods of an application running in a specific availability zone as unreachable. We leverage the pod-network-partition fault targetting specific pods scheduled on worker nodes in a single availability zone. The fault creates a network policy which denies both ingress and egress traffic from those pods. 
 
-We start with 5 replicas of pods. By leveraging [anti-affinity](docs/containers?topic=containers-app#affinity) rules, when pods are scheduled among multiple nodes across availability zones, the experiment succeeds with a full resiliency score. However, when we apply affinity rules to ensure all pods are located on the same availability zone, the experiment fails with a 0% resiliency score. Thus, it is proven that when an availability zone becomes tainted for whatever reason (node failure/restart for example), the application is resilient if anti-affinity rules are applied properly. 
-
+:   We begin with five replicas of pods distributed across three worker nodes. Each node is located in a different availability zone. By applying [anti-affinity](docs/containers?topic=containers-app#affinity) rules, the pods are scheduled among multiple nodes. This ensures that requests are handled by pods running in other availability zones. As a result, the experiment achieves a full resiliency score.. However, when we apply affinity rules to ensure all pods are located on the same availability zone, the experiment fails resiliency test.
 
 ### Next steps
 {: #next-steps}
