@@ -42,9 +42,9 @@ You can use {{site.data.keyword.cloud_notm}} [public APIs](/docs?tab=api-docs) t
 ## Running within your CI/CD pipeline
 {: #chaos-ci-cd}
 
-Run chaos testing as part of a regular CI/CD workflow. Use tools like [{{site.data.keyword.cloud_notm}} DevSecOps](https://cloud.ibm.com/docs/devsecops) to start chaos engineering early in the process. For example, you might run the continuous integration (CI) pipeline after a development environment deployment if it closely resembles the production environment. Alternatively, if a development environment infrastructure differs greatly from the production environment, consider moving the chaos tests to the continuous deployment (CD) pipeline. 
+Run chaos testing as part of a regular CI/CD workflow to catch change induced failures early on. Use tools like [{{site.data.keyword.cloud_notm}} DevSecOps](https://cloud.ibm.com/docs/devsecops) to start chaos engineering early in the process. For example, you might run the continuous integration (CI) pipeline after a development environment deployment if it closely resembles the production environment. Alternatively, if a development environment infrastructure differs greatly from the production environment, consider moving the chaos tests to the continuous deployment (CD) pipeline.
 
-Chaos tools vary in how they integrate with pipelines. Litmus and ChaosMesh both require a management cluster to run the chaos test suites from. The pipeline can communicate with test suites through an API for Litmus or through GitHub workflows for ChaosMesh. Krkn can be installed on the management plane, but it might be easier to run the required images locally within the pipeline to keep a more lightweight profile.
+Chaos tools vary in how they integrate with pipelines. Litmus and ChaosMesh both require a management cluster to run the chaos test suites from. The pipeline can communicate with test suites through an API for Litmus or through GitHub workflows for ChaosMesh. Krkn can be installed on the management plane, but it might be less resource intensive to run the required images locally within the pipeline to keep a more lightweight profile.
 
 ## Running chaos tests on {{site.data.keyword.cloud_notm}}
 {: #chaos-ibmcloud}
