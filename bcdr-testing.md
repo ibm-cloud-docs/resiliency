@@ -57,12 +57,13 @@ After you verify that the second region works as expected, you can resume produc
 
 How often you test your DR plan depends on many factors, including what is mandated by regulatory compliance standards. If compliance isn’t a concern, aim to conduct a full DR test at least once a year and document the results for auditor review. It’s a good practice to run smaller-scale tests throughout the year to help ensure readiness.
 
-Always consider the following question and adjust your test frequency accordingly:
+In addition, consider the following questions and adjust your test frequency accordingly:
 
 How dynamic is my workload?
 :   The more your workload changes, the more often you need to carry out some form of DR test. This way, you can verify that the changes don't affect your ability to recover. Changes might include new dependencies, additional cloud services, infrastructure changes and more. Growing data sets take longer to recover, which might affect your ability to meet a specific RTO.
 
-You may also need to consider staff turnover in your testing frequency too. If the staff who are performing the recovery change, ensure that new members of the team understand how DR works and their role in the DR plan. If there are a number of new team members who are unsure or who have not been through DR testing of some kind, this adds risk to your recovery plan.
+How dynamic is my staffing?
+:   You may also need to consider staff turnover in your testing frequency too. If the staff who are performing the recovery change, ensure that new members of the team understand how DR works and their role in the DR plan. If there are a number of new team members who are unsure or who have not been through DR testing of some kind, this adds risk to your recovery plan.
 
 ## What else should my tests focus on?
 {: #test-focus}
