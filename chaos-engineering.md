@@ -81,14 +81,14 @@ Review [ChaosCenter installation](https://docs.litmuschaos.io/docs/getting-start
 ### Execution plane setup
 {: #exec-plane}
 
-The install the resources for the execution plane in the same namespace as your application in the workload cluster. Verify that the chaos operator is running, the component pods start, and that they are working correctly before you define the chaos environment from the ChaosCenter UI.
+Install the resources for the execution plane in the same namespace as your application in the workload cluster. Verify that the chaos operator is running, the component pods start, and that they are working correctly before you define the chaos environment from the ChaosCenter UI.
 
 Verify that the Chaos Experiment resources are installed in the namespace or install them from the experiment-specific links. Instead of the preinstalled `litmus-admin` service account, create service accounts with only enough permissions to run the identified experiments. For instance, a [pod-delete](https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-delete/#minimal-rbac-configuration-example-optional) service account does not require node level privileges.
 
 ### Test scenarios
 {: #test-scenarios}
 
-In this approach to chaos testing, you start with a hypothesis and craft a multi-step experiment to verify it. A workflow in LitmusChaos can have multiple serial and parallel steps. In the simplest case, it has a pre-setup, inject fault step and post-clean step. We tailor the injected fault step according to each scenario. You can toggle between visual and yaml editor to incorporate security hardening requirements int the `securityContext` section and switch the `chaosServiceAccount` from `litmus-admin` to one that you create for each experiment.
+In this approach to chaos testing, you start with a hypothesis and craft a multi-step experiment to verify it. A workflow in LitmusChaos can have multiple serial and parallel steps. In the simplest case, it has a pre-setup, inject fault step and post-clean step. We tailor the injected fault step according to each scenario. You can toggle between visual and yaml editor to incorporate security hardening requirements in the `securityContext` section and switch the `chaosServiceAccount` from `litmus-admin` to one that you create for each experiment.
 
 Hypothesis 1: Multiple replicas of a pod ensure resiliency from intermittent failures
 :   To simulate a pod crash, target for deletion 50% of the pods of a specific microservice and continue deleting new pods every chaos interval (2s) during chaos. During this time, affected pods do not start to ready state. Resiliency probes in LitmusChaos allow you to verify your hypothesis and resiliency of the application by using a continuous `httpProbe` that performs an HTTP Get or Post against the application service URL and expects a 200 response code.
@@ -103,4 +103,4 @@ Hypothesis 2: Multiple replicas need to be spread across availability zones for 
 ### Next steps
 {: #next-steps}
 
-Gradually build on your initial experiments by varying parameters. For example, run tests under different load conditions, different scenarios, fault types, and expand to other applications. Stateful applications might have other considerations and behave differently under graceful or forced shutdown scenarios. Observability dashboards that monitor resource and application metrics and automated health checks can verify system health after you run a chaos experiment.
+Gradually build on your initial experiments by varying parameters. For example, run tests under different load conditions, scenarios, fault types, and expand to other applications. Stateful applications might have other considerations and behave differently under graceful or forced shutdown scenarios. Observability dashboards that monitor resource and application metrics and automated health checks can verify system health after you run a chaos experiment.
