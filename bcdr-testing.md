@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-12-03"
+lastupdated: "2024-12-10"
 
 keywords: DR testing, disaster recovery test, testing for a disaster scenario, dry test, switch over, DR simulation
 
@@ -26,18 +26,24 @@ There are different types of disaster recovery testing that you can do to verify
 ## DR dry test
 {: #dr-dry-test}
 
-Perform a DR dry test by checking all of the resource availability and runbooks on paper, without running a real DR simulation or switch-over.
+A dry test is a paper-based practice run of your DR plan. When running a dry test, you don't actually perform any recovery at all, but you are ensuring that there are no obvious holes in your plan. For example, the dry test wil ensure that:
 
-This type of testing is normally run with higher frequency compared to the other testing types, as no real activities are performed. However, a DR dry test does require the same effort in terms of skills and people.
+ - you have the right personnel involved
+ - backups are present and available
+ - communication channels between personnel are working
+ - there are no missing steps in the DR runbooks
+ - handoffs between teams work efficiently
+
+A DR dry test requires the same effort in terms of skills and people as any other test. Since no actual recovery actions are performed, this type of testing is faster, so is normally run with higher frequency compared to the other testing types. You can choose whether to run through the plan in its entirety or to test individual parts / services within it.
 
 ## DR simulation
 {: #dr-simulation}
 
-DR simulation is a way to verify or audit the emergency runbooks and check the [recovery time objectives](#x3167918){: term} (RTO) and [recovery point objectives](#x3429911){: term} (RPO) provided by the solution by simulating the  conditions of a real emergency.
+DR simulation is a way to verify or audit the emergency runbooks and check the [recovery time objectives](#x3167918){: term} (RTO) and [recovery point objectives](#x3429911){: term} (RPO) provided by the solution by simulating the conditions of a real emergency and restoring data.
 
 A DR simulation needs careful planning since you are introducing potential disruptions to data replication from the primary region, while of course avoiding impact on production workloads. While you are testing the DR environment, it might temporarily be unavailable for actual disaster recovery purposes. This risk depends on the specific cloud services and how they are deployed. Some services might allow for simultaneous testing and availability, while others might not.
 
-A DR simulation creates a temporary copy of your production environment in the designated DR region for testing and validation. After the simulation ends, the test environment is deleted, and any changes made during the test are discarded, as the primary production environment continues to operate normally.
+A DR simulation creates a temporary copy of your production environment in the designated DR region for testing and validation. After the simulation ends, the test environment is deleted or reset, and any changes made during the test are discarded, as the primary production environment continues to operate normally.
 
 ## Switch-over
 {: #switch-over}
