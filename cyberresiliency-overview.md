@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-11-29"
+lastupdated: "2024-12-10"
 
 
 keywords: cyber resiliency overview, resilient app, cyber recovery
@@ -22,7 +22,7 @@ Protect against such threats by using a 2-pronged approach: Cybersecurity focuse
 
 ![Diagram depicting the scope of cybersecurity and cyber resiliency](images/cyber-resiliency-vs-security.svg "Diagram depicting the scope of cybersecurity and cyber resiliency"){: caption="Diagram depicting scope of cyber security vs cyber resiliency" caption-side="bottom"}
 
-{{site.data.keyword.cloud_notm}} can host both your production and recovery environments. Host the recovery environment for an on-premises or remote production environment or use {{site.data.keyword.cloud_notm}} as a vault to securely store and verify your backup copies of golden images, configuration, and data for recovery.
+{{site.data.keyword.cloud_notm}} can host both your production and recovery environments. Host the recovery environment for an [on-premises](#x4561212){: term}  or remote production environment or use {{site.data.keyword.cloud_notm}} as a vault to securely store and verify your backup copies of golden images, configuration, and data for recovery.
 
 ## What's the difference between cyber resiliency and disaster recovery?
 {: #cyber-dr-difference}
