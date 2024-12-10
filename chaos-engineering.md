@@ -48,7 +48,7 @@ Chaos tools vary in how they integrate with pipelines. Litmus and ChaosMesh both
 
 
 
-## Running chaos tests on {{site.data.keyword.IBM}}
+## Running chaos tests on {{site.data.keyword.cloud_notm}}
 {: #chaos-ibmcloud}
 
 Learn how to set up a chaos engineering framework, LitmusChaos, and run scenarios on Red Hat OpenShift on {{site.data.keyword.cloud_notm}}. The example application is a stateless web application that is made up of multiple microservices. As discussed in [Target environments](#chaos-target-environments), test in a testing or staging environment first.
