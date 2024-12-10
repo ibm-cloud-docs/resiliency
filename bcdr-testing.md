@@ -62,6 +62,8 @@ Always consider the following question and adjust your test frequency accordingl
 How dynamic is my workload?
 :   The more your workload changes, the more often you need to carry out some form of DR test. This way, you can verify that the changes don't affect your ability to recover. Changes might include new dependencies, additional cloud services, infrastructure changes and more. Growing data sets take longer to recover, which might affect your ability to meet a specific RTO.
 
+You may also need to consider staff turnover in your testing frequency too. If the staff who are performing the recovery change, ensure that new members of the team understand how DR works and their role in the DR plan. If there are a number of new team members who are unsure or who have not been through DR testing of some kind, this adds risk to your recovery plan.
+
 ## What else should my tests focus on?
 {: #test-focus}
 
