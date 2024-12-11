@@ -1,0 +1,93 @@
+toc:
+  properties:
+    subcollection: resiliency
+    category: solution_docs
+    audience: solution
+    content-type: solution
+    industry: FinancialSector, Government, Insurance, Banking, Healthcare
+    href: /docs/resiliency
+    path: resiliency
+    description: Reliability is the ability of your service or application to be available for your users as intended, while resiliency is the capacity for your service or application to recover from different types of failures.
+    label: IBM Cloud Resiliency
+  entries:
+  - navgroup:
+      id: overview
+      topics:
+      - resiliency-overview.md
+      - ha-understand.md
+      - bcdr-understand.md
+      - cyberresiliency-overview.md
+      - best-practices.md
+  - navgroup:
+      id: architecture
+      topics:
+      - topicgroup:
+          label: High availability
+          topics:
+          - link:
+              label: IBM Cloud VSI on VPC landing Zone
+              href: https://cloud.ibm.com/docs/deployable-reference-architectures?topic=deployable-reference-architectures-vsi-ra
+          - link:
+              label: Red Hat OpenShift Container Platform on VPC landing zone
+              href: https://cloud.ibm.com/docs/deployable-reference-architectures?topic=deployable-reference-architectures-ocp-ra
+      - topicgroup:
+          label: Disaster recovery
+          topics:
+            - link:
+                label: Oracle Database Disaster Recovery on IBM PowerVS
+                href: https://cloud.ibm.com/docs/pattern-oracle-disaster-recovery-on-powervs?topic=pattern-oracle-disaster-recovery-on-powervs-oracle-database-disaster-recovery-on-ibm-powervs-cross-region
+      - topicgroup:
+          label: Resiliency
+          topics:
+            - link:
+                label: Cyber resiliency pattern on VPC
+                href: https://cloud.ibm.com/docs/pattern-cyber-resiliency-vpc?topic=pattern-cyber-resiliency-vpc-cyber-resiliency
+            - link:
+                label: Web app cross-region resiliency
+                href: https://cloud.ibm.com/docs/pattern-vpc-vsi-cross-region-resiliency?topic=pattern-vpc-vsi-cross-region-resiliency-web-app-cross-region
+            - link:
+                label: IBM® Power® Virtual Server resiliency on AIX
+                href: https://cloud.ibm.com/docs/pattern-pvs-aix-resiliency?topic=pattern-pvs-aix-resiliency-power-virtual-server-on-AIX
+            - link:
+                label: IBM® Power® Virtual Server resiliency on IBM i
+                href: https://cloud.ibm.com/docs/pattern-pvs-ibmi-resiliency?topic=pattern-pvs-ibmi-resiliency-power-virtual-server-on-ibmi
+            - link:
+                label: Veeam on VMware resiliency
+                href: https://cloud.ibm.com/docs/vmware-cross-region-dr?topic=vmware-cross-region-dr-deploy-veeam-arch
+  - navgroup:
+      id: plan
+      topics:
+      - topicgroup:
+          label: Designing for high availability
+          topics:
+          - ha-appconfig.md
+          - ha-redundancy.md
+      - topicgroup:
+          label: Designing for disaster recovery
+          topics:
+          - bcdr-pitfalls.md
+          - bcdr-approaches.md
+          - bcdr-services-that-help.md
+          - bcdr-how-ibm-cloud-drs.md
+      - cyberresiliency-plan.md
+  - navgroup:
+      id: howto
+      topics:
+      - bcdr-testing.md
+      - chaos-engineering.md
+  - navgroup:
+      id: reference
+      topics:
+      - link:
+          label: IBM Well-Architected Framework Resiliency
+          href: https://www.ibm.com/architectures/well-architected/resiliency
+      - link:
+          label: IBM Cloud compliance programs
+          href: https://www.ibm.com/cloud/compliance
+      - slo.md
+      - services-ha-dr.md
+  - navgroup:
+      id: help
+      topics:
+      - get-help.md
+      - bcdr-faq.md

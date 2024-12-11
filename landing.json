@@ -1,0 +1,36 @@
+{
+  "version": 2,
+  "title": "Resiliency",
+  "introduction": "Discover resiliency from the perspective of our IBM Cloud clients, their solution planners, architects and builders and the resilient solutions they create on our platform.",
+  "product_page": "https://ibm.com/cloud",
+  "section_topics": {
+    "links": [
+      {
+        "title": "Understanding high availability",
+        "href": "/docs/resiliency?topic=resiliency-understanding-ha"
+      },
+      {
+        "title": "Understanding disaster recovery",
+        "href": "/docs/resiliency?topic=resiliency-understanding-dr"
+      },
+      {
+        "title": "Understanding cyber resiliency",
+        "href": "/docs/resiliency?topic=resiliency-cyber-resiliency-overview"
+      }
+    ]
+  },
+  "section_highlights": [
+    {
+      "title": "Resiliency IBM Well-Architected Framework",
+      "description": "Resiliency is the capacity for your service or application to recover from different types of failures.",
+      "href": "https://www.ibm.com/architectures/well-architected/resiliency",
+      "type": "white-paper"
+    },
+    {
+      "title": "IBM Cloud compliance programs",
+      "description": "Manage regulatory compliance and internal governance requirements with IBM Cloud services.",
+      "href": "https://www.ibm.com/cloud/compliance",
+      "type": "white-paper"
+    }
+  ]
+}
