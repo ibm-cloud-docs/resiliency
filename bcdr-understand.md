@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-11-26"
+lastupdated: "2024-12-11"
 
 keywords: disaster recovery, DR, what is disaster recovery, DR strategy, disaster recovery options, disaster recovery strategy
 
@@ -15,7 +15,7 @@ subcollection: resiliency
 # Understanding disaster recovery
 {: #understanding-dr}
 
-[Disaster recovery](#x2113280){: term} (DR) the process of recovering one or more workloads to a working state in a second {{site.data.keyword.cloud_notm}} region following an unplanned outage. High availability is not the same as disaster recovery.
+[Disaster recovery](#x2113280){: term} (DR) the process of recovering one or more workloads to a working state in a second {{site.data.keyword.cloud_notm}} region after an unplanned outage. High availability is not the same as disaster recovery.
 {: shortdesc}
 
 When you design and build IT workloads, focus is often placed on maintaining [high availability](#x2284708){: term} (HA). HA is the process of designing out single points of failure so that workloads can survive and avoid outages that are otherwise caused by failing infrastructure.
@@ -29,7 +29,7 @@ To illustrate recovery to a second region, consider a scenario. Under normal cir
 
 Such circumstances typically result from a widespread issue that affects a large geographical area, including natural disasters and regional or national emergencies. These types of disasters are unlikely to occur. Usually, {{site.data.keyword.cloud_notm}}’s MZR architecture provides adequate protection against zonal failure, and the failure of a whole region is unlikely. {{site.data.keyword.cloud_notm}}’s Service Level Agreements (SLA) for services that are deployed over an MZR is typically 99.99%, which equates to just over 52.5 minutes of unplanned downtime per year. For more information, see [{{site.data.keyword.cloud_notm}} Service Level Agreements](/docs/overview?topic=overview-slas).
 
-However, there's a chance that a disaster can take out the region where your critical workloads are running. Be prepared with a disaster recovery plan if you want to avoid extended periods of downtime caused by disasters.
+However, the chance remains that a disaster can take out the region where your critical workloads are running. Be prepared with a disaster recovery plan if you want to avoid extended periods of downtime caused by disasters.
 
 ## RTO and RPO
 {: #RTO-RPO}
@@ -38,11 +38,9 @@ However, there's a chance that a disaster can take out the region where your cri
 
 ![Diagram depicting how RTO/RPO fit into an outage timeline](images/OutageTimeline.svg "Diagram depicting how RTO/RPO fit into an outage timeline"){: caption="Diagram depicting how RTO/RPO fit into an outage timeline" caption-side="bottom"}
 
-When an outage occurs, the business must decide whether and when to declare a disaster and put the disaster recovery plan into action.At this point, the clock starts on RTO. RTO refers to the time that it takes to restore services to a usable state. A plan can have an overarching RTO, which covers many workloads, and individual RTOs for each workload it covers. RTO is expressed as units of time, for example minutes, hours, or days.
+When an outage occurs, the business must decide whether and when to declare a disaster and put the disaster recovery plan into action. After you declare a disaster, the clock starts on RTO. RTO refers to the time that it takes to restore services to a usable state. A plan can have an overarching RTO, which covers many workloads, and individual RTOs for each workload it covers. RTO is expressed as units of time, for example minutes, hours, or days.
 
-RPO refers to the point in time to which services are restored, which is usually the point of last backup. When recovering from a data corruption, an earlier RPO to a point in time before the corruption was introduced is desirable. Where multiple workloads are interconnected, it's important that each system is bought back to the same point in time. RPO is expressed as to the point of failure or zero data loss, to the point of last backup, or somewhere in between. Constraints on RPO include technical feasibility and the cost of implementation.
-
-The outage lasts until service is restored to the end-user.
+RPO refers to the point in time to which services are restored, which is usually the point of the last backup. When you recover from a data corruption, an earlier RPO to a point in time before the corruption was introduced is desirable. Where multiple workloads are interconnected, it's important that each system is bought back to the same point in time. RPO is expressed as to the point of failure or zero data loss, to the point of last backup, or somewhere in between. Constraints on RPO include technical feasibility and the cost of implementation. The outage lasts until service is restored to the end user.
 
 Many environments have a mix of workload types, some that are fundamentally critical and some that are less critical. Some complex environments might also have many dependencies on other workloads, where one workload needs another to operate. These aspects contribute to setting RTO and RPO targets for individual workloads. Create a recovery plan timeline that considers the order in which workloads need to be recovered. The timeline must account for a workload's importance to the business, its resource requirements, complexity, and dependencies.
 
@@ -56,7 +54,7 @@ The following table provides an example RPO/RTO per example application classifi
 | Bronze (Moderate availability) | \<= 8 hours | \<= 24 hours |
 {: caption="Example RTO/RPO values based on business application class" caption-side="bottom"}
 
-Maintaining a DR provision has associated costs. The folowing diagram shows a typical DR cost curve. The nearer to zero the RTO and RPO target, the greater the cost of the solution that is needed. As RTO and RPO moves outwards towards hours and even days, associated costs reduce. Workloads that have the most stringent RTO and RPO targets will cost the most to protect and be the most business critical.
+Maintaining a DR provision has associated costs. The following diagram shows a typical DR cost curve. The nearer to zero the RTO and RPO target, the greater the cost of the solution that is needed. As RTO and RPO moves toward hours and even days, associated costs reduce. Workloads that have the most stringent RTO and RPO targets cost the most to protect and be the most business critical.
 
 ![Diagram depicting RTO/RPO to Cost ratio](images/rto-cost-curve.svg "Diagram depicting RTO/RPO to Cost ratio"){: caption="Diagram depicting RTO/RPO to Cost ratio" caption-side="bottom"}
 

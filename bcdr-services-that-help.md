@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2024
-lastupdated: "2024-12-03"
+lastupdated: "2024-12-11"
 
 keywords: resiliency, DR, high availability, disaster recovery, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -43,7 +43,7 @@ Versioning is a requirement for bucket replication so that buckets that are conf
 
 Use automation to deploy or recover an environment quickly and accurately. Automating deployments with Infrastructure as Code (IaC), Configuration as Code, and toolchains helps you recover workloads faster and more accurately by re-creating lost environments more precisely than manual methods. Using automation also helps you react faster to unexpected scenarios, especially if you need to create and configure services on-demand in a different recovery region than you first planned.
 
-{{site.data.keyword.bpshort}} is a service that can play an important part in any disaster recovery strategy. Use [{{site.data.keyword.bplong_notm}}](/schematics/overview) to implement runbooks for recovery processes. [Schematics workspaces](/docs/schematics?topic=schematics-sc-workspaces) provide Terraform-as-a-Service and automates the deployment and management of {{site.data.keyword.cloud_notm}} infrastructure and services. [{{site.data.keyword.bpshort}} actions](/docs/schematics?topic=schematics-sc-actions) provide Ansible-as-a-Service, automate configuration management, and run scripted day-2 operations. For more information, see [Understanding Schematics use cases](/docs/schematics?topic=schematics-how-it-works).
+{{site.data.keyword.bpshort}} is a service that can play an important part in any disaster recovery strategy. Use [{{site.data.keyword.bplong_notm}}](/schematics/overview) to implement runbooks for recovery processes. [Schematics workspaces provide Terraform-as-a-Service and automate the deployment and management of {{site.data.keyword.cloud_notm}} infrastructure and services. [{{site.data.keyword.bpshort}} actions](/docs/schematics?topic=schematics-sc-actions) provide Ansible-as-a-Service, automate configuration management, and run scripted day-2 operations. For more information, see [Understanding Schematics use cases](/docs/schematics?topic=schematics-how-it-works).
 
 In short, with {{site.data.keyword.bpshort}}, you can deploy infrastructure and services quickly and consistently though IaC, Terraform, Ansible, Helm, and Red Hat OpenShift Operators.
 

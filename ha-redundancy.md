@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2024
-lastupdated: "2024-11-22"
+lastupdated: "2024-12-11"
 
 keywords: load balancing, global load balancing, HA, DR, high availability, disaster recovery, HA for the platform, high availability for platform, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -134,7 +134,7 @@ The following table lists global platform services, their control plane location
 
 | Service | Management function | Location | High availability |
 | -------------- | -------------- | -------------- | -------------- |
-| Console  \n [Navigating the {{site.data.keyword.cloud_notm}} console](/docs/overview?topic=overview-ui) | The {{site.data.keyword.cloud_notm}} console provides the user interface that enables administrators to manage all {{site.data.keyword.cloud_notm}} resources and accounts, order new services instances, view pricing and billing information, get support, or check the status  | * us-south \n * us-east \n * eu-gb \n * eu-de \n * jp-tok \n * au-syd | Active/Active |
+| Console  \n [Navigating the {{site.data.keyword.cloud_notm}} console](/docs/overview?topic=overview-ui) | The {{site.data.keyword.cloud_notm}} console provides the user interface that enables administrators to manage all {{site.data.keyword.cloud_notm}} resources and accounts, order new services instances, view pricing and billing information, get support, or check the status resources and services. | * us-south \n * us-east \n * eu-gb \n * eu-de \n * jp-tok \n * au-syd | Active/Active |
 | Catalogs  \n [Catalog Management API](/apidocs/resource-catalog/private-catalog) | The Catalog Management service enables interaction with the {{site.data.keyword.cloud_notm}} catalog to order and provision {{site.data.keyword.cloud_notm}} service instances. You can also manage the visibility of the {{site.data.keyword.cloud_notm}} catalog and control access to products in the public catalog and private catalogs for users in your account. | * us-south \n * eu-de \n * au-syd | Active/Active |
 | Global search and tagging  \n [Global Search API](/apidocs/search), [Global Tagging API](/apidocs/tagging) | The search and tagging service enables the following:  \n * Search cloud resources based on their attributes. \n * Create, delete, search, attach, or detach tags to resources. | * us-south \n * eu-gb \n * eu-de \n * au-syd | Active/Active |
 | Identity and Access management  \n [IAM Identity Services API](/apidocs/iam-identity-token-api) | The IAM control plane enables the following:  \n * Authenticate and authorize the users log on and other action requests. \n * Manage service identifiers, trusted profiles, and API key identities. \n * Create, update, view, and delete IAM policies. An IAM policy enables a subject to access a resource. \n * Create, update, view, and delete access groups \n * Assign policies to users, service IDs and trusted profiles  | * us-south \n * eu-gb \n * eu-de \n * jp-tok \n * au-syd | Active/Active |

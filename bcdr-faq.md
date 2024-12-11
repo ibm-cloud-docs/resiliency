@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-12-03"
+lastupdated: "2024-12-11"
 
 keywords: disaster recovery, DR, what is disaster recovery, DR strategy, disaster recovery options, disaster recovery strategy
 
@@ -48,7 +48,7 @@ In each event, it’s essential to have a recovery plan that restores services w
 
 Yes, DR can take place in the same region, and it might be faster due to lower latency and no need for cross-region data replication. However, using a separate region is recommended for better resilience. If the primary region is severely impacted, recovery in the same region might not be possible.
 
-{{site.data.keyword.cloud_notm}} seeks to recover services within the region, in line with any published [Service Level Objectives (SLOs)](/docs/resiliency?topic=resiliency-slo). Recovery might take minutes or hours but in the worst-case scenarios, perhaps where there has been physical destruction of property, it can take days, weeks, or months to achieve.
+{{site.data.keyword.cloud_notm}} seeks to recover services within the region, in line with any published [service level objectives (SLOs)](/docs/resiliency?topic=resiliency-slo). Recovery might take minutes or hours but in the worst-case scenarios, perhaps where there has been physical destruction of property, it can take days, weeks, or months to achieve.
 
 In {{site.data.keyword.cloud_notm}}, if there is an outage where {{site.data.keyword.cloud_notm}} calls a disaster, {{site.data.keyword.cloud_notm}} might have to recover services before you can recover your workloads. If so, you need to add the time it takes for {{site.data.keyword.cloud_notm}} to complete its recovery to the time it takes to do yours. Keep this in mind when you decide whether to rely on just a single region.
 

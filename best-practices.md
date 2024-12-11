@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2024
-lastupdated: "2024-11-28"
+lastupdated: "2024-12-11"
 
 keywords: resiliency, DR, high availability, disaster recovery, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -21,7 +21,7 @@ Follow best practices for resiliency on {{site.data.keyword.cloud_notm}} to help
 ## Have a plan
 {: #have-a-plan}
 
-Working through any crisis is stressful and disasters are no different. During a disaster, you are likely trying to bring up business-critical services and might be under pressure to do so quickly, which might lead to mistakes. In the unlikely event of a disaster, having a clearly defined plan helps your business recover in a predictable way, which helps alleviate stress and reduces mistakes. For more information about creating a disaster recovery plan, see [Planning for disaster recovery](/docs/resiliency?topic=resiliency-PlanningforDR).
+Working through any crisis is stressful and disasters are no different. During a disaster, you are likely trying to restart business-critical services and might be under pressure to do so quickly, which might lead to mistakes. In the unlikely event of a disaster, having a clearly defined plan helps your business recover in a predictable way, which helps alleviate stress and reduces mistakes. For more information about creating a disaster recovery plan, see [Planning for disaster recovery](/docs/resiliency?topic=resiliency-PlanningforDR).
 
 ## Determine priorities
 {: #work-with-business}
@@ -46,38 +46,36 @@ Reacting to a real disaster isn't the ideal time to test your plan for the first
 ## Understand your responsibilities
 {: #understand-responsibilites}
 
-Each {{site.data.keyword.cloud_notm}} service has a roles and responsibilities matrix that defines {{site.data.keyword.IBM}}'s responsibilities, customer responsibilities, and shared responsibilities, including responsibilities related to backup, recovery, and disasters. Make sure that you fully understand the ownership of responsibilities for each of the services that you use, since they determine the actions to successfully recover your service instances and help you plan accordingly.
+Each {{site.data.keyword.cloud_notm}} service has a roles and responsibilities matrix that defines {{site.data.keyword.IBM}}'s responsibilities, customer responsibilities, and shared responsibilities, including responsibilities related to backup, recovery, and disasters. Make sure that you fully understand the ownership of responsibilities for each of the services that you use, since they determine the actions to successfully recover your service instances and help you plan.
 
 ## Consider data resiliency and data residency requirements
 {: #data-resiliency-and-residency}
 
-Data resiliency refers to the ability to access, maintain or quickly recover data in the event of failures or disasters. It is related to the previous discussed concepts of High Availability, Disaster Recovery and Cyber Resiliency.
-For more general info on Data Resiliency, see [IBM Well-Architected Framework](https://www.ibm.com/architectures/well-architected/resiliency#Practices){: external}.
+Data resiliency refers to the ability to access, maintain or quickly recover data if failures or disasters occur. It is related to the concepts of high availability, disaster recovery, and cyber resiliency. For more information about data resiliency, see the [{{site.data.keyword.IBM_notm}} Well-Architected Framework](https://www.ibm.com/architectures/well-architected/resiliency#Practices){: external}.
 
-Another aspect that needs to be considered is data residency, that is, where the data will be located (not only for your main production environment, but also for backup or recovery) and any restrictions or requirements on its placement. The next section explains {{site.data.keyword.cloud_notm}} capabilities and provides considerations on this topic.
+Another aspect to consider is data residency, which is where the data is located not only for your production environment, but also for backup or recovery. Also consider any restrictions or requirements on your data's placement.
 
 ### Understanding data residency in {{site.data.keyword.cloud_notm}}
 {: #data-residency}
 
 {{site.data.keyword.cloud_notm}}'s global network of locations provides you with the flexibility of choosing where you want to run your workloads.
 
-For regional and zonal services, you request instances of the service to be deployed in a specific region in accordance with your specific geographic requirements. {{site.data.keyword.cloud_notm}} ensures that content that is provided by you and your workload (as defined in the [{{site.data.keyword.cloud_notm}} Service Agreement](https://www.ibm.com/support/customer/csol/terms/?id=Z126-6304&cc=us&lc=en){: external}) is stored and processes locally in the selected region location. For a complete list of the locations where {{site.data.keyword.cloud_notm}} services are available see [Service and infrastructure availability by location](/docs/overview?topic=overview-services_region).
+For regional and zonal services, you request instances of the service to be deployed in a specific region in accordance with your specific geographic requirements. {{site.data.keyword.cloud_notm}} helps ensures that content that is provided by you and your workload, as defined in the [Cloud Services Agreement](https://www.ibm.com/support/customer/csol/terms/?id=Z126-6304&cc=us&lc=en){: external}, is stored and processed locally in the selected region location. For a complete list of the locations where {{site.data.keyword.cloud_notm}} services are available see [Service and infrastructure availability by location](/docs/overview?topic=overview-services_region).
 
-{{site.data.keyword.cloud_notm}} services provide support for saving encrypted backups of the customer content within the location where the regional or zonal service is located for recovery in case of data corruption or a major data center disaster.
+{{site.data.keyword.cloud_notm}} services support saving encrypted backups of the customer content within the location where the regional or zonal service is located for recovery if data corruption or a major data center disaster occurs.
 
-For client's metatada, including client business contact and account usage information (as defined in the [{{site.data.keyword.cloud_notm}} Service Agreement](https://www.ibm.com/support/customer/csol/terms/?id=Z126-6304&cc=us&lc=en){: external}), {{site.data.keyword.cloud_notm}} stores and processes them where the control planes of the regional and global services are located.
+For client's metadata, including client business contact and account usage information (as defined in the [{{site.data.keyword.cloud_notm}} Service Agreement](https://www.ibm.com/support/customer/csol/terms/?id=Z126-6304&cc=us&lc=en){: external}), {{site.data.keyword.cloud_notm}} stores and processes them where the control planes of the regional and global services are located.
 
 - Regional services typically have control planes that are located in the same region where you selected for the service except for the services indicated in [Services with global control planes](/docs/overview?topic=overview-zero-downtime#service-global-control-plane).
 - Global services control planes locations are indicated in [Global platform services](/docs/overview?topic=overview-zero-downtime#global-platform).
 
-For a complete list of data attributes that are stored and processed by each single {{site.data.keyword.cloud_notm}} service you can refer to the documentation of the API of each service in the [API and SDK reference library](https://cloud.ibm.com/docs?tab=api-docs).
+For a complete list of data attributes that each single {{site.data.keyword.cloud_notm}} service processes and stores, see the [API and SDK reference library](https://cloud.ibm.com/docs?tab=api-docs).
 
-All data in transit is encrypted. Only TLS 1.2 and 1.3 are supported in {{site.data.keyword.cloud_notm}} with TLS 1.1 and below explicitly disabled to prevent downgrading to a vulnerable version of the protocol.
+All data in transit is encrypted. Only TLS 1.2 and 1.3 are supported in {{site.data.keyword.cloud_notm}} with TLS 1.1 and lower explicitly disabled to prevent rollback to a vulnerable version of the protocol.
 
-{{site.data.keyword.cloud_notm}} data privacy processing processes and procedures are documented within the {{site.data.keyword.cloud_notm}} DPA. This Data Processing Addendum (DPA) and its applicable DPA Exhibits apply to the Processing of Personal Data by {{site.data.keyword.cloud_notm}} on behalf of Client (Client Personal Data). The processing of Personal Data is subject to the General Data Protection Regulation 2016/679 (GDPR). It is also subject to any other data protection laws that are identified at [Data Protection Laws](https://www.ibm.com/support/customer/csol/terms/?id=DPA-DPL&lc=en){: external} in order to provide services (Services) according to the Agreement between Client and {{site.data.keyword.cloud_notm}}. The {{site.data.keyword.cloud_notm}} DPA can be found at [Data Processing Addendum](https://www.ibm.com/support/customer/csol/terms/?id=Z126-7870&lc=en){: external}.
+Processes and procedures for {{site.data.keyword.cloud_notm}} data privacy processing are documented within the {{site.data.keyword.cloud_notm}} Data Processing Addendum (DPA). This DPA and its applicable DPA Exhibits apply to the Processing of Personal Data by {{site.data.keyword.cloud_notm}} on behalf of Client (Client Personal Data). The processing of Personal Data is subject to the General Data Protection Regulation 2016/679 (GDPR). It is also subject to any other data protection laws that are identified at [Data Protection Laws](https://www.ibm.com/support/customer/csol/terms/?id=DPA-DPL&lc=en){: external} in order to provide services (Services) according to the Agreement between Client and {{site.data.keyword.cloud_notm}}. The {{site.data.keyword.cloud_notm}} DPA can be found at [Data Processing Addendum](https://www.ibm.com/support/customer/csol/terms/?id=Z126-7870&lc=en){: external}.
 
 In addition to the DPA, the cloud services provide DPA exhibits that can be found on the [{{site.data.keyword.cloud_notm}} Terms site](https://www.ibm.com/support/customer/csol/terms/){: external}.
-
 
 ## Design HA and DR into your workloads
 {: #design-in-dr}
@@ -99,12 +97,12 @@ Running IT systems is never risk-free, and introducing change into your workload
 ## Create Custom Images
 {: #create-customer-images}
 
- Create a [custom image from a boot volume](/docs/vpc?topic=vpc-image-from-volume-vpc&interface=ui) and use it as the golden image, with preinstalled applications and configurations, to reduce the provisioning time for VPC virtualserver instances in the DR site. The boot volume must be attached to a stopped Virtual Server Instance (VSI) to create the custom image.
+Create a [custom image from a boot volume](/docs/vpc?topic=vpc-image-from-volume-vpc&interface=ui) and use it as the golden image, with preinstalled applications and configurations, to reduce the provisioning time for {{site.data.keyword.vsi_is_full}} instances in the DR site. The boot volume must be attached to a stopped virtual server instance (VSI) to create the custom image.
 
 ## Use hostnames for subnets
 {: #use-hostnames-for-subnets}
 
- Use hostnames and DNS instead of IP addresses to minimize the number of changes that are required to redeploy an application in the DR site, particulary with VPC instances, including virtual server instances. Subnets are zone-specific and do not extend across zones. New IP addresses are assigned to new service instances, which can break any existing configurations such as security rules, application configuration files.
+Use hostnames and DNS instead of IP addresses to minimize the changes that are required to redeploy an application in the DR site, particularly with VPC instances, including VSIs. Subnets are zone-specific and do not extend across zones. New IP addresses are assigned to new service instances, which can break any existing configurations such as security rules, application configuration files.
 
 ## Configure key management services for disaster recovery
 {: #configure-key-management-services-for-dr}
