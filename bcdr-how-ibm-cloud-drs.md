@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2024
-lastupdated: "2024-11-28"
+lastupdated: "2024-12-11"
 
 keywords: load balancing, global load balancing, HA, DR, high availability, disaster recovery, HA for the platform, high availability for platform, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -26,7 +26,7 @@ The following list includes the requirements that {{site.data.keyword.IBM_notm}}
 - The disaster recovery plan specifies the security controls for running in Disaster mode, if they are different from what's running in production.
 - The plan must be stored on the Disaster Recovery Plan database.
 
-### Management of {{site.data.keyword.cloud_notm}}'s disaster recovery plan
+## Management of {{site.data.keyword.cloud_notm}}'s disaster recovery plan
 {: #dr-plan-mgmt}
 
 The requirements that {{site.data.keyword.cloud_notm}} follows are:
