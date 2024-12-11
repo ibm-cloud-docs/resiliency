@@ -73,11 +73,8 @@ toc:
   - navgroup:
       id: howto
       topics:
-      - topicgroup:
-          label: Testing your resiliency
-          topics:
-            - bcdr-testing.md
-            - chaos-engineering.md
+      - bcdr-testing.md
+      - chaos-engineering.md
   - navgroup:
       id: reference
       topics:
@@ -92,5 +89,5 @@ toc:
   - navgroup:
       id: help
       topics:
-      - bcdr-faq.md
       - get-help.md
+      - bcdr-faq.md
