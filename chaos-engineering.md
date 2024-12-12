@@ -97,7 +97,7 @@ Hypothesis 1: Multiple replicas of a pod ensure resiliency from intermittent fai
 Hypothesis 2: Multiple replicas need to be spread across availability zones to handle zone failures
 :   In this experiment, you simulate a limited version of zone failure by making all the pods of an application that run in a specific availability zone unreachable. Use the pod-network-partition fault to target specific pods that are scheduled on worker nodes in a single availability zone. The fault creates a network policy that denies both ingress and egress traffic for those pods.
 
-:   Begin with five replicas of pods distributed across three worker nodes. Each node is located in a different availability zone. By applying [anti-affinity](containers?topic=containers-app#affinity) rules, the pods are scheduled among multiple nodes. This placement helps ensure that requests are handled by pods that run in other availability zones. As a result, the experiment achieves a full resiliency score. However, when we apply affinity rules to ensure that all pods are on the same availability zone, the experiment fails the resiliency test.
+:   Begin with five replicas of pods distributed across three worker nodes. Each node is located in a different availability zone. By applying [anti-affinity](/docs/containers?topic=containers-app#affinity) rules, the pods are scheduled among multiple nodes. This placement helps ensure that requests are handled by pods that run in other availability zones. As a result, the experiment achieves a full resiliency score. However, when we apply affinity rules to ensure that all pods are on the same availability zone, the experiment fails the resiliency test.
 
 ### Next steps
 {: #next-steps}
