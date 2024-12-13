@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-11-21"
+lastupdated: "2024-12-13"
 
 keywords: DR, high availability, disaster recovery, help, get support, dr support, dr help, ha help, ha suppprt
 
@@ -22,8 +22,3 @@ If you experience an issue or have questions, you can use the following resource
 * Review [Stack Overflow](https://stackoverflow.com/questions/tagged/ibm-cloud){: external} to see whether other users experienced the same problem. When you ask a question, tag the question with `ibm-cloud` so that it's seen by the {{site.data.keyword.cloud_notm}} development teams.
 
 If you still can't resolve the problem, you can open a support case. For more information, see [Creating support cases](/docs/get-support?topic=get-support-open-case). And, if you're looking to provide feedback, see [Submitting feedback](/docs/overview?topic=overview-feedback).
-
-## DORA
-{: #dora-help}
-
-To get help and support for meeting Digital Operational Resilience Act (DORA) requirements, enable the DORA setting in your {{site.data.keyword.cloud_notm}} account. For more information, see [Enabling your account for DORA compliance](/docs/account?topic=account-enabling-dora).
