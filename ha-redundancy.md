@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-01-15"
+lastupdated: "2025-01-24"
 
 keywords: load balancing, global load balancing, HA, DR, high availability, disaster recovery, HA for the platform, high availability for platform, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -28,7 +28,7 @@ Understanding how {{site.data.keyword.cloud_notm}} cloud services are designed a
 ## What levels of resiliency do the different zones and regions provide?
 {: #landing-levels-of-resiliency}
 
-![Levels of Resiliency](images/ha-resiliency-infographic.png){: caption="Levels of Resiliency" caption-side="bottom"}
+![Levels of Resiliency](images/ha-resiliency-infographic.svg){: caption="Levels of Resiliency" caption-side="bottom"}
 
 Both single-zone or multi-zone data centers avoid a single-point-of-failure (SPOF) between zones and regions by providing the following:
 
