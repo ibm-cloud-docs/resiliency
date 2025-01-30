@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-12-11"
+lastupdated: "2025-01-30"
 
 
 keywords: disaster recovery plan, DR, resilient app, plan for DR, DR objectives
@@ -25,6 +25,7 @@ subcollection: resiliency
 - [Understanding high availability and disaster recovery for Cloud Functions](/docs/openwhisk?topic=openwhisk-ha_dr)
 - [Understanding high availability and disaster recovery for Cloud Logs](/docs/cloud-logs?topic=cloud-logs-cloud-logs-ha-dr)
 - [Understanding high availability and disaster recovery for Cloud Shell](/docs/cloud-shell?topic=cloud-shell-ha-dr)
+- [Understanding high availability and disaster recovery for IBM Cloud Object Storage](/docs/cloud-object-storage?topic=cloud-object-storage-cos-ha-dr)
 - [Understanding high availability and disaster recovery for Code Engine](/docs/codeengine?topic=codeengine-ha-dr)
 - [Understanding high availability and disaster recovery for IBM Cloud HPC](/docs/hpc-cluster?topic=hpc-cluster-ha-dr)
 - [Understanding high availability and disaster recovery for Logs Routing](/docs/logs-router?topic=logs-router-logs-router-ha-dr)
