@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-01-24"
+lastupdated: "2025-02-04"
 
 keywords: load balancing, global load balancing, HA, DR, high availability, disaster recovery, HA for the platform, high availability for platform, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -130,7 +130,7 @@ The global platform services use global load-balancing strategies to help ensure
 
 If there is an event that impacts availability in the regions that the components of a global platform service are located, the management functions provided by the service can be degraded or not available.
 
-The following table lists global platform services, their control plane location in {{site.data.keyword.cloud_notm}} regions, and the functions that they provide, which are not impacted unless there is an an event that impacts availability in all of the listed regions.
+The following table lists global platform services and the functions that they provide, which are not impacted unless there is an an event that impacts availability in all of the regions listed for the service. For more information, see [Services and infrastructure availability by location](/docs/overview?topic=overview-services_region).
 
 | Service | Management function | High availability |
 | -------------- | -------------- | -------------- |
