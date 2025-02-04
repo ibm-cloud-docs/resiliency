@@ -58,7 +58,7 @@ Another important aspect to consider is data residency and any restrictions or r
 ### Understanding data residency in {{site.data.keyword.cloud_notm}}
 {: #data-residency}
 
-{{site.data.keyword.cloud_notm}}'s global network of locations provides you with the flexibility of choosing where you want to run your workloads. Review {{site.data.keyword.cloud_notm}}'s [Service rollout policy](/docs/overview?topic=overview-service-rollout) for guidelines on when to expect or how to request that a service is available in a particular region.
+{{site.data.keyword.cloud_notm}}'s global network of locations provides you with the flexibility of choosing where you want to run your workloads. Review {{site.data.keyword.cloud_notm}}'s [Service rollout policy](/docs/overview?topic=overview-service-rollout) for guidelines on when to expect and how to request that a service is available in a particular region.
 
 When you provision an instance of a regional and zonal service, you select a region to deploy the instance in accordance with your geographic requirements. {{site.data.keyword.cloud_notm}} helps ensures that content that is provided by you and your workload, as defined in the [Cloud Services Agreement](https://www.ibm.com/support/customer/csol/terms/?id=Z126-6304&cc=us&lc=en){: external}, is stored and processed locally in the selected region location. For a complete list of the locations where {{site.data.keyword.cloud_notm}} services are available see [Service and infrastructure availability by location](/docs/overview?topic=overview-services_region).
 
