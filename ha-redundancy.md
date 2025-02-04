@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024, 2024
-lastupdated: "2024-12-11"
+  years: 2024, 2025
+lastupdated: "2025-02-04"
 
 keywords: load balancing, global load balancing, HA, DR, high availability, disaster recovery, HA for the platform, high availability for platform, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -28,7 +28,7 @@ Understanding how {{site.data.keyword.cloud_notm}} cloud services are designed a
 ## What levels of resiliency do the different zones and regions provide?
 {: #landing-levels-of-resiliency}
 
-![Levels of Resiliency](images/ha-resiliency-infographic.png){: caption="Levels of Resiliency" caption-side="bottom"}
+![Levels of Resiliency](images/ha-resiliency-infographic.svg){: caption="Levels of Resiliency" caption-side="bottom"}
 
 Both single-zone or multi-zone data centers avoid a single-point-of-failure (SPOF) between zones and regions by providing the following:
 
@@ -130,16 +130,17 @@ The global platform services use global load-balancing strategies to help ensure
 
 If there is an event that impacts availability in the regions that the components of a global platform service are located, the management functions provided by the service can be degraded or not available.
 
-The following table lists global platform services, their control plane location in {{site.data.keyword.cloud_notm}} regions, and the functions that they provide, which are not impacted unless there is an an event that impacts availability in all of the listed regions.
+The following table lists global platform services and the functions that they provide, which are not impacted unless there is an an event that impacts availability in all of the regions listed for the service. For more information, see [Services and infrastructure availability by location](/docs/overview?topic=overview-services_region).
 
-| Service | Management function | Location | High availability |
-| -------------- | -------------- | -------------- | -------------- |
-| Console  \n [Navigating the {{site.data.keyword.cloud_notm}} console](/docs/overview?topic=overview-ui) | The {{site.data.keyword.cloud_notm}} console provides the user interface that enables administrators to manage all {{site.data.keyword.cloud_notm}} resources and accounts, order new services instances, view pricing and billing information, get support, or check the status resources and services. | * us-south \n * us-east \n * eu-gb \n * eu-de \n * jp-tok \n * au-syd | Active/Active |
-| Catalogs  \n [Catalog Management API](/apidocs/resource-catalog/private-catalog) | The Catalog Management service enables interaction with the {{site.data.keyword.cloud_notm}} catalog to order and provision {{site.data.keyword.cloud_notm}} service instances. You can also manage the visibility of the {{site.data.keyword.cloud_notm}} catalog and control access to products in the public catalog and private catalogs for users in your account. | * us-south \n * eu-de \n * au-syd | Active/Active |
-| Global search and tagging  \n [Global Search API](/apidocs/search), [Global Tagging API](/apidocs/tagging) | The search and tagging service enables the following:  \n * Search cloud resources based on their attributes. \n * Create, delete, search, attach, or detach tags to resources. | * us-south \n * eu-gb \n * eu-de \n * au-syd | Active/Active |
-| Identity and Access management  \n [IAM Identity Services API](/apidocs/iam-identity-token-api) | The IAM control plane enables the following:  \n * Authenticate and authorize the users log on and other action requests. \n * Manage service identifiers, trusted profiles, and API key identities. \n * Create, update, view, and delete IAM policies. An IAM policy enables a subject to access a resource. \n * Create, update, view, and delete access groups \n * Assign policies to users, service IDs and trusted profiles  | * us-south \n * eu-gb \n * eu-de \n * jp-tok \n * au-syd | Active/Active |
-| Business Support Services   \n [User Management API](/apidocs/user-management)   \n [Usage Metering API](/apidocs/usage-metering)   \n [Usage Reports API](/apidocs/metering-reporting) | The Business Support Services enables the following:  \n * Manage accounts, enterprises, and users. \n * Manage the users in an account, such as inviting, retrieving, updating, or removing users. \n * Update user profiles and settings. \n * Collect services usage metrics and generate billing reports  | * us-south \n * us-east \n * eu-gb \n * eu-de \n * jp-tok \n * au-syd | Active/Active |
-| {{site.data.keyword.cloud_notm}} Projects  \n [Projects API](/apidocs/projects) | The Project service enables the following:  \n * Create, update, view, and delete projects. \n * Deployment by using projects  | * us-south \n * us-east \n * eu-gb \n * eu-de  | Active/Active |
+| Service | Management function | High availability |
+| -------------- | -------------- | -------------- |
+| Console  \n [Navigating the {{site.data.keyword.cloud_notm}} console](/docs/overview?topic=overview-ui) | The {{site.data.keyword.cloud_notm}} console provides the user interface that enables administrators to manage all {{site.data.keyword.cloud_notm}} resources and accounts, order new services instances, view pricing and billing information, get support, or check the status  | Active/Active |
+| Catalogs  \n [Catalog Management API](/apidocs/resource-catalog/private-catalog) | The Catalog Management service enables interaction with the {{site.data.keyword.cloud_notm}} catalog to order and provision {{site.data.keyword.cloud_notm}} service instances. You can also manage the visibility of the {{site.data.keyword.cloud_notm}} catalog and control access to products in the public catalog and private catalogs for users in your account. | Active/Active |
+| Global search and tagging  \n [Global Search API](/apidocs/search), [Global Tagging API](/apidocs/tagging) | The search and tagging service enables the following:  \n * Search cloud resources based on their attributes. \n * Create, delete, search, attach, or detach tags to resources. | Active/Active |
+| Identity and Access management  \n [IAM Identity Services API](/apidocs/iam-identity-token-api) | The IAM control plane enables the following:  \n * Authenticate and authorize the users log on and other action requests. \n * Manage service identifiers, trusted profiles, and API key identities. \n * Create, update, view, and delete IAM policies. An IAM policy enables a subject to access a resource. \n * Create, update, view, and delete access groups \n * Assign policies to users, service IDs and trusted profiles  | Active/Active |
+| Business Support Services   \n [User Management API](/apidocs/user-management)   \n [Usage Metering API](/apidocs/usage-metering)   \n [Usage Reports API](/apidocs/metering-reporting) | The Business Support Services enables the following:  \n * Manage accounts, enterprises, and users. \n * Manage the users in an account, such as inviting, retrieving, updating, or removing users. \n * Update user profiles and settings. \n * Collect services usage metrics and generate billing reports  | Active/Active |
+| {{site.data.keyword.cloud_notm}} Projects  \n [Projects API](/apidocs/projects) | The Project service enables the following:  \n * Create, update, view, and delete projects. \n * Deployment by using projects  | Active/Active |
+
 {: caption="Global platform services" caption-side="bottom"}
 
 #### Services with global control planes
@@ -149,15 +150,15 @@ Global control plane components within a service provide functions with global s
 
 If there is an event that impacts availability in the regions that the components of a global platform service are located, the management operations provided by the service can be degraded or not available.
 
-| Service | Control plane management functions | Location | High availability |
-| -------------- | -------------- | -------------- | -------------- |
-| Classic infrastructure resource management | The infrastructure resource management service control plane enables the following:  \n * Create, update, view, and delete Classic virtual and bare metal servers resources on Classic networks/VLANs \n * Create, update, and delete Classic networks/VLANs and Classic network routes or spans between those networks  | * us-south \n * us-east | Primary/Secondary |
-| Public IP address management | Assign new public IP addresses or subnets for Internet/public load balancers, elastic IPs or virtual and bare metal servers resources with public addresses.  | * us-south \n * us-east | Primary/Secondary |
-| IBMid  \n [My IBM](https://www.ibm.com/account/ca/en/){: external} | IBMid service control plane enables the following: \n * Authenticate and authorize IBMid users to log on and other action requests. \n * Create, update, view, and delete IBMid user identities.  | * us-south \n * us-east | Primary/Secondary |
-| {{site.data.keyword.dns_short}}  \n [{{site.data.keyword.dns_short}} API](/apidocs/dns-svcs#introduction-to-dns-services-api) | {{site.data.keyword.dns_short}} enable the following:  \n * Create, update, view, and delete e zones that are collections for holding domain names. \n * Create, update, view, and delete DNS resource records under these zones \n * Create, update, view, and delete global load balancers to resolve hostnames to different IP addresses based on location policies.  | * us-south \n * us-east | Primary/Secondary |
-| Transit Gateway  \n [Transit Gateway API](/apidocs/transit-gateway) | The Transit Gateway service control plane enables the following:  \n * Create, update, view, and delete transit gateways to connect VPCs together or with classic infrastructure networks.  \n * Attach, detach connections to VPCs or classic infrastructure networks to multiple local gateways and a single global gateway. | * us-south  \n * us-east | Primary/Secondary |
-| Direct Link  \n [Direct Link API](/apidocs/direct_link) | Direct Link service control plane enables the following:  \n * Create, update, view, and delete direct links to connect VPCs or classic infrastructure networks with on-premises networks.  \n * Attach, detach connections to on-premises networks to direct links. \n * Configure import and export filters for a direct link. | * us-south  \n * us-east | Primary/Secondary |
-| {{site.data.keyword.cos_short}} Provisioning | {{site.data.keyword.cos_short}} service control plane enables the following:  \n * Create or delete a new {{site.data.keyword.cos_short}} bucket with a unique global name in a region.  \n * All other control plane APIs on {{site.data.keyword.cos_short}} buckets are hosted in the same region or geography as the chosen region or geography for each {{site.data.keyword.cos_short}} bucket. | * us-south  \n * us-east | Primary/Secondary |
+| Service | Control plane management functions | High availability |
+| -------------- | -------------- | -------------- |
+| Classic infrastructure resource management | The infrastructure resource management service control plane enables the following:  \n * Create, update, view, and delete Classic virtual and bare metal servers resources on Classic networks/VLANs \n * Create, update, and delete Classic networks/VLANs and Classic network routes or spans between those networks  | Primary/Secondary |
+| Public IP address management | Assign new public IP addresses or subnets for Internet/public load balancers, elastic IPs or virtual and bare metal servers resources with public addresses.  | Primary/Secondary |
+| IBMid  \n [My IBM](https://www.ibm.com/account/ca/en/){: external} | IBMid service control plane enables the following: \n * Authenticate and authorize IBMid users to log on and other action requests. \n * Create, update, view, and delete IBMid user identities.  | Primary/Secondary |
+| {{site.data.keyword.dns_short}}  \n [{{site.data.keyword.dns_short}} API](/apidocs/dns-svcs#introduction-to-dns-services-api) | {{site.data.keyword.dns_short}} enable the following:  \n * Create, update, view, and delete e zones that are collections for holding domain names. \n * Create, update, view, and delete DNS resource records under these zones \n * Create, update, view, and delete global load balancers to resolve hostnames to different IP addresses based on location policies.  | Primary/Secondary |
+| Transit Gateway  \n [Transit Gateway API](/apidocs/transit-gateway) | The Transit Gateway service control plane enables the following:  \n * Create, update, view, and delete transit gateways to connect VPCs together or with classic infrastructure networks.  \n * Attach, detach connections to VPCs or classic infrastructure networks to multiple local gateways and a single global gateway. | Primary/Secondary |
+| Direct Link  \n [Direct Link API](/apidocs/direct_link) | Direct Link service control plane enables the following:  \n * Create, update, view, and delete direct links to connect VPCs or classic infrastructure networks with on-premises networks.  \n * Attach, detach connections to on-premises networks to direct links. \n * Configure import and export filters for a direct link. | Primary/Secondary |
+| {{site.data.keyword.cos_short}} Provisioning | {{site.data.keyword.cos_short}} service control plane enables the following:  \n * Create or delete a new {{site.data.keyword.cos_short}} bucket with a unique global name in a region.  \n * All other control plane APIs on {{site.data.keyword.cos_short}} buckets are hosted in the same region or geography as the chosen region or geography for each {{site.data.keyword.cos_short}} bucket. | Primary/Secondary |
  {: caption="Services with global control planes" caption-side="bottom"}
 
 For more information about best practices when you use platform services for high availability, see the following table.

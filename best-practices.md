@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2024
-lastupdated: "2024-12-11"
+  years: 2018, 2025
+lastupdated: "2025-02-04"
 
 keywords: resiliency, DR, high availability, disaster recovery, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -53,14 +53,14 @@ Each {{site.data.keyword.cloud_notm}} service has a roles and responsibilities m
 
 Data resiliency refers to the ability to access, maintain or quickly recover data if failures or disasters occur. It is related to the concepts of high availability, disaster recovery, and cyber resiliency. For more information about data resiliency, see the [{{site.data.keyword.IBM_notm}} Well-Architected Framework](https://www.ibm.com/architectures/well-architected/resiliency#Practices){: external}.
 
-Another aspect to consider is data residency, which is where the data is located not only for your production environment, but also for backup or recovery. Also consider any restrictions or requirements on your data's placement.
+Another important aspect to consider is data residency and any restrictions or requirements on your data's physical location, not just for production environments but also for backup and recovery.
 
 ### Understanding data residency in {{site.data.keyword.cloud_notm}}
 {: #data-residency}
 
-{{site.data.keyword.cloud_notm}}'s global network of locations provides you with the flexibility of choosing where you want to run your workloads.
+{{site.data.keyword.cloud_notm}}'s global network of locations provides you with the flexibility of choosing where you want to run your workloads. Review {{site.data.keyword.cloud_notm}}'s [Service rollout policy](/docs/overview?topic=overview-service-rollout) for guidelines on when to expect and how to request that a service is available in a particular region.
 
-For regional and zonal services, you request instances of the service to be deployed in a specific region in accordance with your specific geographic requirements. {{site.data.keyword.cloud_notm}} helps ensures that content that is provided by you and your workload, as defined in the [Cloud Services Agreement](https://www.ibm.com/support/customer/csol/terms/?id=Z126-6304&cc=us&lc=en){: external}, is stored and processed locally in the selected region location. For a complete list of the locations where {{site.data.keyword.cloud_notm}} services are available see [Service and infrastructure availability by location](/docs/overview?topic=overview-services_region).
+When you provision an instance of a regional and zonal service, you select a region to deploy the instance in accordance with your geographic requirements. {{site.data.keyword.cloud_notm}} helps ensures that content that is provided by you and your workload, as defined in the [Cloud Services Agreement](https://www.ibm.com/support/customer/csol/terms/?id=Z126-6304&cc=us&lc=en){: external}, is stored and processed locally in the selected region location. For a complete list of the locations where {{site.data.keyword.cloud_notm}} services are available see [Service and infrastructure availability by location](/docs/overview?topic=overview-services_region).
 
 {{site.data.keyword.cloud_notm}} services support saving encrypted backups of the customer content within the location where the regional or zonal service is located for recovery if data corruption or a major data center disaster occurs.
 

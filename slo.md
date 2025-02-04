@@ -4,7 +4,7 @@ copyright:
 
   years: 2021, 2024
 
-lastupdated: "2024-10-09"
+lastupdated: "2025-02-03"
 
 keywords: SLO, service level objectives
 
@@ -212,16 +212,20 @@ The following table describes the service level objectives (SLOs) for the high i
 | {{site.data.keyword.en_full_notm}}  | 99.99% | [Understanding high availability for Event Notifications](/docs/event-notifications?topic=event-notifications-en-high-availability) |
 {: caption="Service level objectives (SLOs) for the {{site.data.keyword.cloud_notm}} developer tools services" caption-side="bottom"}
 
-### Logging and monitoring services
+### Observability services
 {: #slo-high-log-services}
 
-The following table describes the service level objectives (SLOs) for the high impact {{site.data.keyword.cloud_notm}} logging and monitoring services in a high availability configuration.
+The following table describes the service level objectives (SLOs) for the high impact {{site.data.keyword.cloud_notm}} observability services in a high availability configuration.
 
 | Logging and monitoring service | Availability target  | High availability guidance |
 |----------|---------|---------|
-| {{site.data.keyword.monitoringlong_notm}} | 99.999% |  [High availability and disaster recovery](/docs/monitoring?topic=monitoring-ha-dr) |
-| {{site.data.keyword.at_full_notm}} | 99.999% | [Incident and operations management](/docs/activity-tracker?topic=activity-tracker-shared-responsibilities#incident-and-ops) |
-| {{site.data.keyword.la_full_notm}} | 99.999% | [Adoption guidelines for regulated and highly available workloads](/docs/log-analysis?topic=log-analysis-adoption) |
+| {{site.data.keyword.logs_full_notm}} | 99.99% |  [High availability and disaster recovery](/docs/cloud-logs?topic=cloud-logs-cloud-logs-ha-dr) |
+| {{site.data.keyword.mon_full_notm}} | 99.999% |  [High availability and disaster recovery](/docs/monitoring?topic=monitoring-ha-dr) |
+| {{site.data.keyword.atracker_full_notm}} | 99.999% |  [High availability and disaster recovery](/docs/atracker?topic=atracker-atracker-ha-dr) |
+| {{site.data.keyword.logs_routing_full_notm}} | 99.999% |  [High availability and disaster recovery](/docs/logs-router?topic=logs-router-logs-router-ha-dr) |
+| {{site.data.keyword.metrics_router_full_notm}} | 99.999% |  [High availability and disaster recovery](/docs/metrics-router?topic=metrics-router-metrics-router-ha-dr) |
+| {{site.data.keyword.at_full_notm}} [Deprecated]{: tag-deprecated} | 99.99% | [Incident and operations management](/docs/activity-tracker?topic=activity-tracker-shared-responsibilities#incident-and-ops) |
+| {{site.data.keyword.la_full_notm}} [Deprecated]{: tag-deprecated} | 99.99% | [Adoption guidelines for regulated and highly available workloads](/docs/log-analysis?topic=log-analysis-adoption) |
 {: caption="Service level objectives (SLOs) for the {{site.data.keyword.cloud_notm}} logging and monitoring services" caption-side="bottom"}
 
 ### Integration services
