@@ -53,7 +53,7 @@ Each {{site.data.keyword.cloud_notm}} service has a roles and responsibilities m
 
 Data resiliency refers to the ability to access, maintain or quickly recover data if failures or disasters occur. It is related to the concepts of high availability, disaster recovery, and cyber resiliency. For more information about data resiliency, see the [{{site.data.keyword.IBM_notm}} Well-Architected Framework](https://www.ibm.com/architectures/well-architected/resiliency#Practices){: external}.
 
-Another important aspect to consider is data residency and any restrictions or requirements on your data's physical location. This relates not only for your production environment, but also for backup or recovery.
+Another important aspect to consider is data residency and any restrictions or requirements on your data's physical location, not just for production environments but also for backup and recovery.
 
 ### Understanding data residency in {{site.data.keyword.cloud_notm}}
 {: #data-residency}
