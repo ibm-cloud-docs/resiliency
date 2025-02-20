@@ -20,11 +20,12 @@ completion-time: 60m # Estimated time to complete the steps in this tutorial. Mi
 # Install LitmusChaos and run a chaos experiment simulating an availability zone outage
 {: #tutorial-litmuschaos}
 {: toc-content-type="tutorial"} 
+{: toc-services="resiliency, containers"}
 {: toc-completion-time="60m"} 
 
 In this tutorial, you will learn how to set up LitmusChaos on a Red Hat OpenShift management cluster, configure a chaos experiment on a workload cluster to simulate an availability zone outage, and observe the resiliency of an application running in such a situation. This application has multiple microservices, each running multiple replicas. The chaos fault will consist of the pods being partitioned from the network, therefore blocking ingress and egress traffic. The main aim of the tutorial is to show how to make an application resilient to such faults, along with providing a framework to conduct further chaos testing.
 
-See the [chaos testing section/page/](/docs/resiliency?topic=resiliency-chaos-testing#litmus-arch) for the recommended LitmusChaos reference architecture. Note also that it is not advised to run chaos testing in production environments, at least until you are completely confident in your testing capabilities. Otherwise, you run the risk of disabling critical production infrastructure. To start with, perform chaos testing in staging or pre-production environments.
+See the [chaos testing How To page](/docs/resiliency?topic=resiliency-chaos-testing#litmus-arch) for the recommended LitmusChaos reference architecture. Note also that it is not advised to run chaos testing in production environments, at least until you are completely confident in your testing capabilities. Otherwise, you run the risk of disabling critical production infrastructure. To start with, perform chaos testing in staging or pre-production environments.
 {: shortdesc}
 
 ## Objectives
@@ -73,6 +74,8 @@ There is a choice here - you can select standard OpenShift, a [Secure Landing Zo
 5. Validate, approve and deploy the secure landing zone infrastructure.
 6. You will need to deploy a [client-to-site VPN](https://cloud.ibm.com/catalog/7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3/architecture/deploy-arch-ibm-client-to-site-vpn-1b824983-263f-4191-bfcd-c1d1b2220aa3-global) to access both clusters.
 
+![Exemplary architecture](images/chaos-roks-arch.drawio.svg "Chaos framework exemplary architecture that shows LitmusChaos components. This example is a Secure Landing Zone, but cluster setup is recommended for all supported cluster types"){: caption="Chaos framework exemplary architecture showing LitmusChaos components" caption-side="bottom"}
+
 ### Networking
 {: #networking-step}
 
@@ -88,9 +91,7 @@ For SLZ, a JSON file can be provided to the DA to override defaults including cl
 
 Read the [network traffic guide](/docs/openshift?topic=openshift-vpc-security-group-reference) to understand more about OpenShift networking, security groups, and more.
 
-![Exemplary architecture](images/chaos-roks-arch.drawio.svg "Chaos framework exemplary architecture that shows LitmusChaos components"){: caption="Chaos framework exemplary architecture showing LitmusChaos components" caption-side="bottom"}
-
-## Step 2: Install LitmusChaos ControlCenter on the management cluster
+## Install LitmusChaos ControlCenter on the management cluster
 {: #tutorial-litmuschaos-install}
 {: step}
 
@@ -109,7 +110,7 @@ Read the [network traffic guide](/docs/openshift?topic=openshift-vpc-security-gr
 4. Ensure that you can access the control plane of LitmusChaos. The best practice for OpenShift is to use an [ingress](/docs/openshift?topic=openshift-ingress-about-roks4) with [TLS certificates](/docs/openshift?topic=openshift-secrets) that are stored within [Secrets Manager](/docs/openshift?topic=openshift-secrets-mgr).
 5. Verify that the ChaosHub integration is correct. You can view this from the home page of the control plane. If it is configured incorrectly (typically, this will show the error message `error in syncing`), add the correct one - the URL should be https://github.com/litmuschaos/chaos-charts, and you should select the latest stable branch. For more information, see the [LitmusChaosHub](https://hub.litmuschaos.io/) marketplace.
 
-## Step 3: Create an environment and chaos infrastructure in LitmusChaos and deploy on the workload cluster
+## Create an environment and chaos infrastructure in LitmusChaos and deploy on the workload cluster
 {: #tutorial-litmuschaos-environment}
 {: step}
 
@@ -130,7 +131,7 @@ Read the [network traffic guide](/docs/openshift?topic=openshift-vpc-security-gr
    It can also be useful to review the RBAC (role-based access controls) in the experiment file, to ensure that unnecessarily broad access is not granted. Pay special attention to the permission verbs and what access is granted to the service account running the chaos experiment.
 6. Deploy the yaml configuration file to your workload cluster. Once complete, your chaos infrastructure should be shown on the Chaos Infrastuctures page of your created environment. If it still displays "pending", there is an issue with your installation - verify that the instructions have been followed correctly, and check the logs of the "subscriber" pod in the application namespace for other issues. Otherwise, it should display as "connected".
 
-## Step 4: Configure a workload application to run in multiple availability zones
+## Configure a workload application to run in multiple availability zones
 {: #tutorial-litmuschaos-workload}
 {: step}
 
@@ -164,7 +165,7 @@ Remember from the previous steps that application pods will also need to run as 
 
 If you wish to test the validity of this chaos experiment, you can apply *affinity* rules instead of anti-affinity rules, to ensure all pods are scheduled on one node and therefore one zone - in this case, the chaos experiment should show that your application is not resilient.
 
-## Step 5: Create a probe to monitor the health of your application
+## Create a probe to monitor the health of your application
 {: #tutorial-litmuschaos-probe}
 {: step}
 
@@ -207,7 +208,7 @@ If you wish to test the validity of this chaos experiment, you can apply *affini
 7. In "Probes", select the probe created in Step 6. "Continous" mode should be used here.
 8. Click on "Apply Changes" to save your experiment.
 
-## Step 7: Run the chaos experiment and observe the results
+## Run the chaos experiment and observe the results
 {: #tutorial-litmuschaos-run}
 {: step}
 
