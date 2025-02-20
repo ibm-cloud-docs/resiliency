@@ -46,7 +46,7 @@ This tutorial requires:
 * [oc](https://docs.openshift.com/container-platform/4.17/cli_reference/openshift_cli/getting-started-cli.html) for interacting with OpenShift
 * [helm](https://helm.sh/docs/intro/install/) for installing LitmusChaos
 
-## Step 1: Set up Red Hat OpenShift with a management and workload cluster
+## Set up Red Hat OpenShift with a management and workload cluster
 {: #tutorial-litmuschaos-cluster}
 {: step}
 
