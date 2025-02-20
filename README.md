@@ -4,8 +4,6 @@
 
 As part of a broader goal to deliver resiliency as a key capability of IBM Cloud, the objective of this documentation workstream is to consolidate, update and enhance existing content into a new solution guide publication. 
 
-_Take note: For usage of Resiliency glossary terms, see [here](https://ibm.ent.box.com/notes/1667651992654?s=nwfybs96ktxilmfvqbfk2oolvxhje4he). Target date to update these in [Glossary Terms for IBM Cloud](https://cloud.ibm.com/docs/overview?topic=overview-glossary) is mid-Nov 2024._
-
 
 ## Team 
 
@@ -17,14 +15,13 @@ _Take note: For usage of Resiliency glossary terms, see [here](https://ibm.ent.b
 
 **Stakeholders**:  Andrew Hately, Krishna Ratakonda, Rebecca Buisan, Fiona Feehan, Maureen Stanton, Rahul Sharma, Muhammad Ali, Uto Ifudu, Anne Leslie, Tina Belani, Dhruv Rajput.
 
-## Scope
+## Initial Scope
 
-- Reviewing a list of existing documentation links to merge and/or enhance
-- Identifying gaps where new content is required to be added
-- Organizing consolidated content per proposed solution guide outline
-- Target date to deliver an initial solution guide: December 12, 2024
-
-_Team working box note: [here](https://ibm.ent.box.com/file/1644965930257?s=48bp2gwgt4gxg8dkaf3ldgrkh6cwc0ds)_
+- Reviewed a list of existing documentation links to merge and/or enhance. _Team working box note: [here](https://ibm.ent.box.com/file/1644965930257?s=48bp2gwgt4gxg8dkaf3ldgrkh6cwc0ds)_
+- Identified gaps where new content is to be added
+- Organized consolidated content per proposed solution guide outline
+- Updated Resiliency glossary terms for IBM Cloud. _Team working box note: [here](https://ibm.ent.box.com/notes/1667651992654?s=nwfybs96ktxilmfvqbfk2oolvxhje4he)_
+- Initial solution guide published on December 13, 2024
 
 ## RACI
 
