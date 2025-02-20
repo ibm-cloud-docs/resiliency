@@ -11,7 +11,7 @@ subcollection: resiliency
 content-type: tutorial
 account-plan: paid # Set `lite` if tutorial can be completed by using only Lite plan services; Set `paid` if the tutorial requires a pay-go or subscription versions of plans for the service
 services: resiliency, containers
-completion-time: 60m # Estimated time to complete the steps in this tutorial. Minute values are supported up to 90 minutes. Whole hours are also supported; for example: 2h
+completion-time: 1h # Estimated time to complete the steps in this tutorial. Minute values are supported up to 90 minutes. Whole hours are also supported; for example: 2h
 
 ---
 
@@ -19,9 +19,9 @@ completion-time: 60m # Estimated time to complete the steps in this tutorial. Mi
 
 # Install LitmusChaos and run a chaos experiment simulating an availability zone outage
 {: #tutorial-litmuschaos}
-{: toc-content-type="tutorial"} 
+{: toc-content-type="tutorial"}
 {: toc-services="resiliency, containers"}
-{: toc-completion-time="60m"} 
+{: toc-completion-time="1h"}
 
 In this tutorial, you will learn how to set up LitmusChaos on a Red Hat OpenShift management cluster, configure a chaos experiment on a workload cluster to simulate an availability zone outage, and observe the resiliency of an application running in such a situation. This application has multiple microservices, each running multiple replicas. The chaos fault will consist of the pods being partitioned from the network, therefore blocking ingress and egress traffic. The main aim of the tutorial is to show how to make an application resilient to such faults, along with providing a framework to conduct further chaos testing.
 
@@ -67,7 +67,7 @@ There is a choice here - you can select standard OpenShift, a [Secure Landing Zo
 ### Red Hat OpenShift (Secure Landing Zone)
 {: #rhos-landing}
 
-1. In the IBM Cloud catalog, go to the [Red Hat OpenShift Container Platform on VPC landing zone](https://cloud.ibm.com/catalog/architecture/deploy-arch-ibm-slz-ocp-95fccffc-ae3b-42df-b6d9-80be5914d852-global?catalog_query=aHR0cHM6Ly9jbG91ZC5pYm0uY29tL2NhdGFsb2cjZGVwbG95YWJsZV9hcmNoaXRlY3R1cmU%3D) page.
+1. In the IBM Cloud catalog, go to the [Red Hat OpenShift Container Platform on VPC landing zone](https://cloud.ibm.com/catalog/architecture/deploy-arch-ibm-slz-ocp-95fccffc-ae3b-42df-b6d9-80be5914d852-global) page.
 2. Select **Standard** as the cluster type - this is necessary as it is not recommended to run the chaos management plane on the same cluster as your workload.
 3. Click on "Add to project" and fill in the details for a new or existing IBM Cloud project.
 4. Configure the deployable architecture to your specifications. Aside from the required variables, this can be mostly left default if you wish. However, to achieve proper resilience, you should choose to deploy the worker nodes in at least two availability zones.
@@ -85,7 +85,7 @@ Your workload application endpoint should be accessible at least to the manageme
 
 Outbound access will be required for docker image pulls and Litmus ChaosHub integration over port 443.
 
-If your clusters are in different VPCs, you will need to modify the security groups to allow for communication. Ensure that cluster security groups (identified by `kube-<cluster id>`) have outbound access, and that load balancer security groups (identified by `kube-lbaas-<cluster-id>`) have inbound access, from the relevant subnets each cluster is associated with.
+If your clusters are in different VPCs, you will need to modify the security groups to allow for communication. Ensure that cluster [security groups](https://cloud.ibm.com/infrastructure/network/securityGroups) (identified by `kube-<cluster id>`) have outbound access, and that load balancer security groups (identified by `kube-lbaas-<cluster-id>`) have inbound access, from the relevant subnets each cluster is associated with.
 
 For SLZ, a JSON file can be provided to the DA to override defaults including clusters, zones, and more. An example is provided [here](https://cloud.ibm.com/media/docs/downloads/resiliency/slz-override.json). Note that you will have to update resource prefixes to your own, along with values such as KeyProtect instance names.
 
@@ -104,9 +104,7 @@ Read the [network traffic guide](/docs/openshift?topic=openshift-vpc-security-gr
       runAsUser: 1000700001
       allowPrivilegeEscalation: false
    ```
-   Ensure that this is applied to all pods and deployments. For more information on security contexts and constraints, see the relevant OpenShift [page](/docs/openshift?topic=openshift-openshift_scc).
-
-   For more information on the security context constraints (SCCs), consult the relevant [OpenShift documentation](https://docs.openshift.com/container-platform/4.11/authentication/managing-security-context-constraints.html). In IBM Cloud, OpenShift by default runs under the restricted-v2 SCC.
+   Ensure that this is applied to all pods and deployments. For more information on security contexts and constraints, see the relevant OpenShift [page](/docs/openshift?topic=openshift-openshift_scc). In IBM Cloud, OpenShift by default runs under the `restricted-v2` SCC.
 4. Ensure that you can access the control plane of LitmusChaos. The best practice for OpenShift is to use an [ingress](/docs/openshift?topic=openshift-ingress-about-roks4) with [TLS certificates](/docs/openshift?topic=openshift-secrets) that are stored within [Secrets Manager](/docs/openshift?topic=openshift-secrets-mgr).
 5. Verify that the ChaosHub integration is correct. You can view this from the home page of the control plane. If it is configured incorrectly (typically, this will show the error message `error in syncing`), add the correct one - the URL should be https://github.com/litmuschaos/chaos-charts, and you should select the latest stable branch. For more information, see the [LitmusChaosHub](https://hub.litmuschaos.io/) marketplace.
 
