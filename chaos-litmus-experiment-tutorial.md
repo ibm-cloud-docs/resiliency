@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2024
-lastupdated: "2025-02-19"
+lastupdated: "2025-02-20"
 
 keywords: chaos testing, resiliency, client testing
 
@@ -198,7 +198,7 @@ If you wish to test the validity of this chaos experiment, you can apply *affini
 4. Click on "Add", and from the given ChaosHub, select **pod-network-partition** from the Kubernetes section.
 5. For "Target Application", fill in the fields with relevant data. Ensure that your application deployment type matches your sample application. Select the correct namespace, and target the application by label using the dropdown. Ensure that your application labels are unique to application pods, or your chaos experiment may not target the correct pods.
 
-![Targeting an application with labels](litmus-experiment-app.png "Targeting an application with labels"){: caption="Targeting an application with labels" caption-side="bottom"}
+![Targeting an application with labels](images/litmus-experiment-app.png "Targeting an application with labels"){: caption="Targeting an application with labels" caption-side="bottom"}
 
 6. In "Tune Fault", expand the default properties. In "Pod Selector", enter `ibm-cloud.kubernetes.io/zone=us-south-1`, swapping the zone for the zone you wish to simulate a fault for.
 
