@@ -23,7 +23,7 @@ completion-time: 1h # Estimated time to complete the steps in this tutorial. Min
 {: toc-services="resiliency, containers"}
 {: toc-completion-time="1h"}
 
-In this tutorial, you will learn how to set up LitmusChaos on a Red Hat OpenShift management cluster, configure a chaos experiment on a workload cluster to simulate an availability zone outage, and observe the resiliency of an application running in such a situation. This application has multiple microservices, each running multiple replicas. The chaos fault will consist of the pods being partitioned from the network, therefore blocking ingress and egress traffic. The main aim of the tutorial is to show how to make an application resilient to such faults, along with providing a framework to conduct further chaos testing.
+In this tutorial, you will learn how to set up LitmusChaos on a Red Hat OpenShift management cluster, configure a chaos experiment on a workload cluster to simulate an availability zone (AZ) outage, and observe the resiliency of an application running in such a situation. This application has multiple microservices, each running multiple replicas. The chaos fault will consist of the pods being partitioned from the network, therefore blocking ingress and egress traffic. The main aim of the tutorial is to show how to make an application resilient to such faults, along with providing a framework to conduct further chaos testing.
 
 See the [chaos testing How To page](/docs/resiliency?topic=resiliency-chaos-testing#litmus-arch) for the recommended LitmusChaos reference architecture. Note also that it is not advised to run chaos testing in production environments, at least until you are completely confident in your testing capabilities. Otherwise, you run the risk of disabling critical production infrastructure. To start with, perform chaos testing in staging or pre-production environments.
 {: shortdesc}
@@ -129,7 +129,7 @@ Read the [network traffic guide](/docs/openshift?topic=openshift-vpc-security-gr
    It can also be useful to review the RBAC (role-based access controls) in the experiment file, to ensure that unnecessarily broad access is not granted. Pay special attention to the permission verbs and what access is granted to the service account running the chaos experiment.
 6. Deploy the yaml configuration file to your workload cluster. Once complete, your chaos infrastructure should be shown on the Chaos Infrastuctures page of your created environment. If it still displays "pending", there is an issue with your installation - verify that the instructions have been followed correctly, and check the logs of the "subscriber" pod in the application namespace for other issues. Otherwise, it should display as "connected".
 
-## Configure a workload application to run in multiple availability zones
+## Configure a workload application to run in multiple AZs
 {: #tutorial-litmuschaos-workload}
 {: step}
 
@@ -163,7 +163,7 @@ Remember from the previous steps that application pods will also need to run as 
 
 If you wish to test the validity of this chaos experiment, you can apply *affinity* rules instead of anti-affinity rules, to ensure all pods are scheduled on one node and therefore one zone - in this case, the chaos experiment should show that your application is not resilient.
 
-## Create a probe to monitor the health of your application
+## Create a monitoring probe
 {: #tutorial-litmuschaos-probe}
 {: step}
 
@@ -187,7 +187,7 @@ If you wish to test the validity of this chaos experiment, you can apply *affini
 
 ![Default configuration for the resilience probe](images/litmus-probe.png "Default configuration for the resilience probe"){: caption="Default configuration for the resilience probe" caption-side="bottom"}
 
-## Create a chaos experiment that simulates an availability zone becoming unavailable
+## Create a chaos experiment
 {: #tutorial-litmuschaos-experiment}
 {: step}
 
