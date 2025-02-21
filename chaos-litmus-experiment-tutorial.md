@@ -31,7 +31,7 @@ See the [chaos testing How To page](/docs/resiliency?topic=resiliency-chaos-test
 ## Objectives
 {: #litmus-chaos-objectives}
 
-- Set up Red Hat OpenShift with a management and workload cluster
+- Set up a management and workload cluster
 - Install LitmusChaos on the management cluster
 - Create an environment and chaos infrastructure in LitmusChaos
 - Configure a workload application to run in multiple availability zones
@@ -47,7 +47,7 @@ This tutorial requires:
 * [oc](https://docs.openshift.com/container-platform/4.17/cli_reference/openshift_cli/getting-started-cli.html) for interacting with OpenShift
 * [helm](https://helm.sh/docs/intro/install/) for installing LitmusChaos
 
-## Set up Red Hat OpenShift with a management and workload cluster
+## Set up a management and workload cluster
 {: #tutorial-litmuschaos-cluster}
 {: step}
 
@@ -91,7 +91,7 @@ For SLZ, a JSON file can be provided to the DA to override defaults including cl
 
 Read the [network traffic guide](/docs/openshift?topic=openshift-vpc-security-group-reference) to understand more about OpenShift networking, security groups, and more.
 
-## Install LitmusChaos ControlCenter on the management cluster
+## Install LitmusChaos ControlCenter
 {: #tutorial-litmuschaos-install}
 {: step}
 
@@ -108,7 +108,7 @@ Read the [network traffic guide](/docs/openshift?topic=openshift-vpc-security-gr
 4. Ensure that you can access the control plane of LitmusChaos. The best practice for OpenShift is to use an [ingress](/docs/openshift?topic=openshift-ingress-about-roks4) with [TLS certificates](/docs/openshift?topic=openshift-secrets) that are stored within [Secrets Manager](/docs/openshift?topic=openshift-secrets-mgr).
 5. Verify that the ChaosHub integration is correct. You can view this from the home page of the control plane. If it is configured incorrectly (typically, this will show the error message `error in syncing`), add the correct one - the URL should be https://github.com/litmuschaos/chaos-charts, and you should select the latest stable branch. For more information, see the [LitmusChaosHub](https://hub.litmuschaos.io/) marketplace.
 
-## Create an environment and chaos infrastructure in LitmusChaos and deploy on the workload cluster
+## Create an environment and chaos infrastructure
 {: #tutorial-litmuschaos-environment}
 {: step}
 
@@ -187,7 +187,7 @@ If you wish to test the validity of this chaos experiment, you can apply *affini
 
 ![Default configuration for the resilience probe](images/litmus-probe.png "Default configuration for the resilience probe"){: caption="Default configuration for the resilience probe" caption-side="bottom"}
 
-## Step 6: Create a chaos experiment that simulates an availability zone becoming unavailable
+## Create a chaos experiment that simulates an availability zone becoming unavailable
 {: #tutorial-litmuschaos-experiment}
 {: step}
 
