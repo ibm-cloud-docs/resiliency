@@ -17,7 +17,7 @@ completion-time: 1h # Estimated time to complete the steps in this tutorial. Min
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Install LitmusChaos and run a chaos experiment simulating an availability zone outage
+# Running a zone failure chaos experiment
 {: #tutorial-litmuschaos}
 {: toc-content-type="tutorial"}
 {: toc-services="resiliency, containers"}
@@ -96,7 +96,7 @@ Read the [network traffic guide](/docs/openshift?topic=openshift-vpc-security-gr
 {: step}
 
 1. Connect to the management cluster. See the[ cluster access instructions](/docs/containers?topic=containers-access_cluster) for more details.
-2. Follow the LitmusChaos installation [instructions](https://docs.litmuschaos.io/docs/getting-started/installation) to install LitmusChaos.
+2. Follow the LitmusChaos installation [instructions](https://docs.litmuschaos.io/docs/getting-started/installation) to install LitmusChaos. Follow the instructions for the **Self-hosted service**. It is also recommended to use the helm chart, as some changes may have to be made - these are detailed in the next steps.
 3. Due to strict security rules in OpenShift, you will have to modify the helm chart so that pods run as a user with a UID between 1000710000 and 1000719999. For every `containers:` section, ensure that the following spec is included:
 
    ```
@@ -115,7 +115,7 @@ Read the [network traffic guide](/docs/openshift?topic=openshift-vpc-security-gr
 1. Log into the LitmusChaos control center. If this is your first time logging in, you will be prompted to change the default password.
 2. You can either use the default project, or create your own project by clicking on your username on the bottom left of the screen.
 3. Add a remote environment by following the LitmusChaos [environment instructions](https://docs.litmuschaos.io/docs/user-guides/create-environment). Choose "pre-production" for the environment, as this tutorial is not designed for use in production environments.
-4. Add a chaos infrastructure by following the LitmusChaos [infrastructure instructions](https://docs.litmuschaos.io/docs/user-guides/create-infrastructure). The namespace should be the same namespace you intend to host the application on. This chaos experiment will only run against that namespace, so it is advised to remove the `litmus-admin` service account and replace it with one more restrictively scoped. Before running step 5 of the infrastructure instructions, consult the next step in this section of the tutorial.
+4. Add a chaos infrastructure by following the LitmusChaos [infrastructure instructions](https://docs.litmuschaos.io/docs/user-guides/create-infrastructure). Choose "Namespace mode", as we don't want to give unnecessarily broad access to the cluster. The namespace should be the same namespace you intend to host the application on. This chaos experiment will only run against that namespace, so it is advised to remove the `litmus-admin` service account and replace it with one more restrictively scoped. Before running step 5 of the infrastructure instructions, consult the next step in this section of the tutorial.
 5. As shown in the above instructions, download the resulting `.yml` file. If you are deploying to an SLZ cluster, you will need to modify the containers in the file. If running an SLZ, modify the `containers:` section to ensure that the following spec is included:
 
    ```
