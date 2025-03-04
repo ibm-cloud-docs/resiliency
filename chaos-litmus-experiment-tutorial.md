@@ -97,6 +97,10 @@ Read the [network traffic guide](/docs/openshift?topic=openshift-vpc-security-gr
 
 1. Connect to the management cluster. See the[ cluster access instructions](/docs/containers?topic=containers-access_cluster) for more details.
 2. Follow the LitmusChaos installation [instructions](https://docs.litmuschaos.io/docs/getting-started/installation) to install LitmusChaos. Follow the instructions for the **Self-hosted service**. It is also recommended to use the helm chart, as some changes may have to be made - these are detailed in the next steps.
+
+   Take note of step 3 of **Install Litmus using Helm** in the instructions - for a non-local cluster, it is advised to use a ClusterIP so the `--set portal.frontend.service.type=NodePort` parameter should be excluded.
+   {: note}
+
 3. Due to strict security rules in OpenShift, you will have to modify the helm chart so that pods run as a user with a UID between 1000710000 and 1000719999. For every `containers:` section, ensure that the following spec is included:
 
    ```
@@ -105,7 +109,46 @@ Read the [network traffic guide](/docs/openshift?topic=openshift-vpc-security-gr
       allowPrivilegeEscalation: false
    ```
    Ensure that this is applied to all pods and deployments. For more information on security contexts and constraints, see the relevant OpenShift [page](/docs/openshift?topic=openshift-openshift_scc). In IBM Cloud, OpenShift by default runs under the `restricted-v2` SCC.
-4. Ensure that you can access the control plane of LitmusChaos. The best practice for OpenShift is to use an [ingress](/docs/openshift?topic=openshift-ingress-about-roks4) with [TLS certificates](/docs/openshift?topic=openshift-secrets) that are stored within [Secrets Manager](/docs/openshift?topic=openshift-secrets-mgr).
+4. Ensure that you can access the control plane of LitmusChaos. The best practice for OpenShift is to use an [ingress](/docs/openshift?topic=openshift-ingress-about-roks4) with [TLS certificates](/docs/openshift?topic=openshift-secrets) that are stored within [Secrets Manager](/docs/openshift?topic=openshift-secrets-mgr). An example ingress is included below - you will need to update the placeholders for `host`, `namespace`, `hosts` and `secretName` to match your cluster configuration and secret names. Under this configuration, TLS termination happens at the ingress level, which secures the LitmusChaos control plane and simplifies certificate management.
+
+   ```
+      apiVersion: networking.k8s.io/v1
+      kind: Ingress
+      metadata:
+      name: litmusportal-ingress
+      namespace: <placeholder-namespace>
+      spec:
+      rules:
+      - host: <placeholder-host>
+         http:
+            paths:
+            - backend:
+               service:
+                  name: litmusportal-auth-server-service
+                  port:
+                  number: 9005
+            path: /auth/
+            pathType: Prefix
+            - backend:
+               service:
+                  name: litmusportal-server-service
+                  port:
+                  number: 9004
+            path: /api/
+            pathType: Prefix
+            - backend:
+               service:
+                  name: litmusportal-frontend-service
+                  port:
+                  number: 9091
+            path: /
+            pathType: Prefix
+      tls:
+      - hosts:
+         - <placeholder-host>
+         secretName: <placeholder-secret-name>
+   ```
+
 5. Verify that the ChaosHub integration is correct. You can view this from the home page of the control plane. If it is configured incorrectly (typically, this will show the error message `error in syncing`), add the correct one - the URL should be https://github.com/litmuschaos/chaos-charts, and you should select the latest stable branch. For more information, see the [LitmusChaosHub](https://hub.litmuschaos.io/) marketplace.
 
 ## Create an environment and chaos infrastructure
