@@ -79,10 +79,6 @@ toc:
       - bcdr-testing.md
       - chaos-engineering.md
   - navgroup:
-      id: tutorial
-      topics:
-      - chaos-litmus-experiment-tutorial.md
-  - navgroup:
       id: reference
       topics:
       - link:
