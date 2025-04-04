@@ -2,9 +2,9 @@
 
 copyright:
 
-  years: 2021, 2025
+  years: 2021, 2024
 
-lastupdated: "2025-03-26"
+lastupdated: "2025-04-04"
 
 keywords: SLO, service level objectives
 
@@ -224,8 +224,6 @@ The following table describes the service level objectives (SLOs) for the high i
 | {{site.data.keyword.atracker_full_notm}} | 99.999% |  [High availability and disaster recovery](/docs/atracker?topic=atracker-atracker-ha-dr) |
 | {{site.data.keyword.logs_routing_full_notm}} | 99.999% |  [High availability and disaster recovery](/docs/logs-router?topic=logs-router-logs-router-ha-dr) |
 | {{site.data.keyword.metrics_router_full_notm}} | 99.999% |  [High availability and disaster recovery](/docs/metrics-router?topic=metrics-router-metrics-router-ha-dr) |
-| {{site.data.keyword.at_full_notm}} [Deprecated]{: tag-deprecated} | 99.99% | [Incident and operations management](/docs/activity-tracker?topic=activity-tracker-shared-responsibilities#incident-and-ops) |
-| {{site.data.keyword.la_full_notm}} [Deprecated]{: tag-deprecated} | 99.99% | [Adoption guidelines for regulated and highly available workloads](/docs/log-analysis?topic=log-analysis-adoption) |
 {: caption="Service level objectives (SLOs) for the {{site.data.keyword.cloud_notm}} logging and monitoring services" caption-side="bottom"}
 
 ### Integration services

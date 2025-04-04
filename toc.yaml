@@ -34,8 +34,8 @@ toc:
           label: Disaster recovery
           topics:
             - link:
-                label: Oracle Database Disaster Recovery on IBM PowerVS
-                href: https://cloud.ibm.com/docs/pattern-oracle-disaster-recovery-on-powervs?topic=pattern-oracle-disaster-recovery-on-powervs-oracle-database-disaster-recovery-on-ibm-powervs-cross-region
+                label: Oracle Database Disaster Recovery on IBM PowerVS Cross Region
+                href: https://cloud.ibm.com/docs/pattern-oracle-disaster-recovery-on-powervs?topic=pattern-oracle-disaster-recovery-on-powervs-Oracle-dr-ibm-pvs
             - link:
                 label: Red Hat OpenShift on VPC multiregion DR
                 href: https://cloud.ibm.com/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Solution-Architecture
