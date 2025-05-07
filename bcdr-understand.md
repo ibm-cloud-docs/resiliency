@@ -94,4 +94,4 @@ These questions are as much business considerations as technical ones, as costs 
 ### Read service specific documentation
 {: #read-the-docs}
 
-Each IBM Cloud service has its own documentation set. This includes a section on BCDR that is specific to that service. Ensure that you review and follow the guidance provided on those pages for each service that you use. For convenience, see [Service documentation for high availability and disaster recovery] (/docs/resiliency?topic=service-ha-dr) for specific service-by-service links.
+Each IBM Cloud service has its own documentation set. This includes a section on BCDR that is specific to that service. Ensure that you review and follow the guidance provided on those pages for each service that you use. For convenience, see [Service documentation for high availability and disaster recovery](/docs/resiliency?topic=service-ha-dr) for specific service-by-service links.
