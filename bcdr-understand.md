@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-12-11"
+lastupdated: "2025-05-07"
 
 keywords: disaster recovery, DR, what is disaster recovery, DR strategy, disaster recovery options, disaster recovery strategy
 
@@ -90,3 +90,8 @@ Disasters have many forms and require different techniques to counter them. The 
 Consider carefully what you need to recover if a disaster occurs. Do you need every workload or just a subset of core applications? Is there an order in which they need to be restored? Is data consistency across workloads important? Is it possible to work in a degraded state and if so, for how long?
 
 These questions are as much business considerations as technical ones, as costs might be prohibitive in some situations. You must have a clear view of what the minimal acceptable recovery is that allows the business to function, accepting residual risks from understanding their consequences. Planning the technical solution must work hand-in-hand with business requirements and both must be captured in the disaster recovery plan. For more information, see [Planning for disaster recovery](/docs/resiliency?topic=resiliency-PlanningforDR).
+
+### Read service specific documentation
+{: #read-the-docs}
+
+Each IBM Cloud service has its own documentation set. This includes a section on BCDR that is specific to that service. Ensure that you review and follow the guidance provided on those pages for each service that you use. For convenience, see [Service documentation for high availability and disaster recovery] (/docs/resiliency?topic=service-ha-dr) for specific service-by-service links.
