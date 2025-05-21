@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2025-01-30"
+lastupdated: "2025-05-21"
 
 
 keywords: disaster recovery plan, DR, resilient app, plan for DR, DR objectives
@@ -23,6 +23,8 @@ subcollection: resiliency
 - [Understanding high availability and disaster recovery for API Connect](/docs/apiconnect?topic=apiconnect-ha-dr)
 - [Understanding high availability and disaster recovery for App ID](/docs/appid?topic=appid-ha-dr)
 - [Understanding high availability and disaster recovery for Cloud Functions](/docs/openwhisk?topic=openwhisk-ha_dr)
+- [Understanding high availability and disaster recovery for Cloud Kubernetes Service](/docs/containers?topic=containers-iks-ha-dr)
+- [Understanding high availability and disaster recovery for Red Hat OpenShift on IBM Cloud](/docs/openshift?topic=openshift-iks-ha-dr)
 - [Understanding high availability and disaster recovery for Cloud Logs](/docs/cloud-logs?topic=cloud-logs-cloud-logs-ha-dr)
 - [Understanding high availability and disaster recovery for Cloud Shell](/docs/cloud-shell?topic=cloud-shell-ha-dr)
 - [Understanding high availability and disaster recovery for IBM Cloud Object Storage](/docs/cloud-object-storage?topic=cloud-object-storage-cos-ha-dr)
@@ -38,13 +40,13 @@ subcollection: resiliency
 - [Understanding high availability for App Configuration](/docs/app-configuration?topic=app-configuration-ac-ha)
 - [Understanding high availability for CIS](/docs/cis?topic=cis-ha)
 - [Understanding high availability for Cloud Databases for ETCD](/docs/databases-for-etcd?topic=databases-for-etcd-ha-dr)
-- [Understanding high availability for Cloud Databases for Elasticsearch](/docs/databases-for-elasticsearch?topic=databases-for-elasticsearch-ha-dr)
+- [Understanding high availability for Cloud Databases for Elasticsearch](/docs/databases-for-elasticsearch?topic=databases-for-elasticsearch-elasticsearch-ha-dr)
 - [Understanding high availability for Cloud Databases for EnterpriseDB](/docs/databases-for-enterprisedb?topic=databases-for-enterprisedb-ha-dr)
-- [Understanding high availability for Cloud Databases for MongoDB](/docs/databases-for-mongodb?topic=databases-for-mongodb-ha-dr)
-- [Understanding high availability for Cloud Databases for MySQL](/docs/databases-for-mysql?topic=databases-for-mysql-ha-dr)
-- [Understanding high availability for Cloud Databases for Postgresql](/docs/databases-for-postgresql?topic=databases-for-postgresql-ha-dr)
-- [Understanding high availability for Cloud Databases for Rabbitmq](/docs/messages-for-rabbitmq?topic=messages-for-rabbitmq-ha-dr)
-- [Understanding high availability for Cloud Databases for Redis](/docs/databases-for-redis?topic=databases-for-redis-ha-dr)
+- [Understanding high availability for Cloud Databases for MongoDB](/docs/databases-for-mongodb?topic=databases-for-mongodb-mongodb-ha-dr)
+- [Understanding high availability for Cloud Databases for MySQL](/docs/databases-for-mysql?topic=databases-for-mysql-mysql-ha-dr)
+- [Understanding high availability for Cloud Databases for Postgresql](databases-for-postgresql?topic=databases-for-postgresql-postgresql-ha-dr)
+- [Understanding high availability for Cloud Databases for Rabbitmq](/docs/messages-for-rabbitmq?topic=messages-for-rabbitmq-rabbitmq-ha-dr)
+- [Understanding high availability for Cloud Databases for Redis](/docs/databases-for-redis?topic=databases-for-redis-redis-ha-dr)
 - [Understanding high availability for Cloud Databases](/docs/cloud-databases?topic=cloud-databases-ha-dr)
 - [Understanding high availability for Direct Link](/docs/dl?topic=dl-ha)
 - [Understanding high availability for IBM Cloudant](/docs/Cloudant?topic=Cloudant-ha)
