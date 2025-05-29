@@ -17,6 +17,7 @@ toc:
       - ha-understand.md
       - bcdr-understand.md
       - cyberresiliency-overview.md
+      - shared-responsibilities.md
       - best-practices.md
   - navgroup:
       id: architecture
