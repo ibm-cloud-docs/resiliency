@@ -4,7 +4,7 @@ copyright:
 
   years: 2021, 2024
 
-lastupdated: "2025-04-04"
+lastupdated: "2025-05-30"
 
 keywords: SLO, service level objectives
 
@@ -64,7 +64,7 @@ The following table describes the service level objectives (SLOs) for the vital 
 
 | Networking service | Availability target | High availability guidance |
 |----------|---------|---------|
-| {{site.data.keyword.vpc_short}} (Gen 2) | 99.999% | [Understanding high availability and disaster recovery](/docs/vpc?topic=vpc-ha-dr-vpc) |
+| {{site.data.keyword.vpc_short}} | 99.999% | [Understanding high availability and disaster recovery](/docs/vpc?topic=vpc-ha-dr-vpc) |
 | {{site.data.keyword.vpn_full}} | 99.999% | [Connecting to your on-premises network](/docs/vpc?topic=vpc-vpn-onprem-example) |
 | {{site.data.keyword.alb_full}} | 99.999% | [High Availability mode](/docs/vpc?topic=vpc-nlb-vs-elb#nlb-ha-mode) |
 | {{site.data.keyword.nlb_full}} | 99.999% | [High Availability mode](/docs/vpc?topic=vpc-nlb-vs-elb#nlb-ha-mode) |
