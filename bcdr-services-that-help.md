@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2025
-lastupdated: "2025-05-15"
+lastupdated: "2025-06-05"
 
 keywords: resiliency, DR, high availability, disaster recovery, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -12,10 +12,10 @@ subcollection: resiliency
 
 {{site.data.keyword.attribute-definition-list}}
 
-# {{site.data.keyword.cloud_notm}} services that can help you build a cross region DR solution
+# Building a cross region disaster recovery solution with {{site.data.keyword.cloud_notm}} services
 {: #KeyServicesTitle}
 
-When you deploy a solution on IBM Cloud, it will consist of one or more {{site.data.keyword.cloud_notm}} services. Correctly deployed, these services will provide a resilient environment for your workload. However, a number of services can also be used in your disaster recovery (DR) design, that may or may not feature in your workload's deployment architecture. This section highlights those services.
+When you deploy a solution on IBM Cloud, it generally consists of one or more {{site.data.keyword.cloud_notm}} services. When the solution is deployed correctly, the services provide a resilient environment for your workload. However, a number of services can also be used in your disaster recovery design, that might not be part of your workload's deployment architecture. Learn more about those services in the following section.
 
 ## {{site.data.keyword.cos_full_notm}}
 {: #KeyServicesCOS}
