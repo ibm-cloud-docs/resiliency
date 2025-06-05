@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-03-26"
+lastupdated: "2025-06-05"
 
 keywords: chaos testing, resiliency, client testing
 
@@ -145,6 +145,7 @@ This step describes how to install and access the LitmusChaos ChaosCenter, a web
          - <placeholder-host>
          secretName: <placeholder-secret-name>
    ```
+{: codeblock}
 
 5. Verify that the ChaosHub integration is correct by going to the home page of the control plane. If it is configured incorrectly, you might see the error message `error in syncing`. Add the correct URL: https://github.com/litmuschaos/chaos-charts and you select the latest stable branch. For more information, see the [LitmusChaosHub](https://hub.litmuschaos.io/) marketplace.
 
@@ -165,6 +166,7 @@ This step explains how to set up chaos infrastructure, which is a service that i
       runAsUser: 1000700001
       allowPrivilegeEscalation: false
    ```
+{: codeblock}
 
    Make sure that the `runAsUser` UID parameter is within the range of 1000710000 and 1000719999, or that container doesn't run correctly on an SLZ.
 
@@ -201,6 +203,7 @@ Remember from the previous steps that application pods also need to run as a use
                      - s3
                topologyKey: topology.kubernetes.io/zone
    ```
+{: codeblock}
 
    This example is targeting all microservices in [µBench](https://github.com/mSvcBench/muBench/tree/main). You might have to change the example to match the labels in your own application.
 
@@ -256,6 +259,7 @@ In this step, you learn how to create a chaos experiment that simulates an avail
       applabel: ibm-cloud.kubernetes.io/zone=us-south-3
       appkind: deployment
    ```
+{: codeblock}
 
 11. Save the chaos experiment.
 
@@ -331,6 +335,7 @@ This step describes how you run the chaos experiment, monitor the application he
                 ibm-cloud.kubernetes.io/zone: "{{ zoneLabel }}"
                 ibm-cloud.kubernetes.io/region: "{{ regionLabel }}"
    ```
+{: codeblock}
 
    In this kyverno example, the application targets any pods that begin with `s0-*`. This is because in certain network configurations, if no specific application is targeted along with the zone label, it might result in all pods in the namespace being affected. Henceforth, this results in only the targeted application being labeled with an availability zone.
    {: note}

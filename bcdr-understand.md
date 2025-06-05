@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2025-05-07"
+lastupdated: "2025-06-05"
 
 keywords: disaster recovery, DR, what is disaster recovery, DR strategy, disaster recovery options, disaster recovery strategy
 
@@ -94,4 +94,4 @@ These questions are as much business considerations as technical ones, as costs 
 ### Read service specific documentation
 {: #read-the-docs}
 
-Each IBM Cloud service has its own documentation set. This includes a section on BCDR that is specific to that service. Ensure that you review and follow the guidance provided on those pages for each service that you use. For convenience, see [Service documentation for high availability and disaster recovery](/docs/resiliency?topic=resiliency-service-ha-dr) for specific service-by-service links.
+Each {{site.data.keyword.cloud_notm}} service is documented separately and includes a section on BCDR requirements that are specific to that product. Ensure that you review and follow the guidance provided for each service that you use. For help finding specific links to topics, see [Service documentation for high availability and disaster recovery](/docs/resiliency?topic=resiliency-service-ha-dr).
