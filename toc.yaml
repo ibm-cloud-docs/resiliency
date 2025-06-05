@@ -17,6 +17,7 @@ toc:
       - ha-understand.md
       - bcdr-understand.md
       - cyberresiliency-overview.md
+      - shared-responsibilities.md
       - best-practices.md
   - navgroup:
       id: architecture
@@ -30,6 +31,9 @@ toc:
           - link:
               label: Red Hat OpenShift Container Platform on VPC landing zone
               href: https://cloud.ibm.com/docs/deployable-reference-architectures?topic=deployable-reference-architectures-ocp-ra
+          - link:
+              label: Highly available SAP with Db2 on IBM Cloud VPC
+              href: https://cloud.ibm.com/docs/pattern-db2-sap-vpc?topic=pattern-db2-sap-vpc-pattern-db2-sap-vpc
       - topicgroup:
           label: Disaster recovery
           topics:
@@ -91,6 +95,9 @@ toc:
       - link:
           label: IBM Cloud compliance programs
           href: https://www.ibm.com/cloud/compliance
+      - link:
+          label: Digital Operational Resilience Act (DORA)
+          href: https://www.ibm.com/cloud/compliance/dora-eu
       - slo.md
       - services-ha-dr.md
   - navgroup:

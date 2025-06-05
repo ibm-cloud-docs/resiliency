@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-11-19"
+lastupdated: "2025-06-05"
 
 keywords: DR for IBM Cloud, disaster recovery, common mistakes for disaster recovery, plan a disaster recovery strategy
 
@@ -103,11 +103,11 @@ Cross-regional {{site.data.keyword.cos_short}} buckets offer a way to replicate 
 ### Capacity in the disaster recovery region
 {: #CapacityinDRRegion}
 
-Disasters can affect many customers, who then enact their disaster recovery plans. The additional demand might put a severe strain on the capacity of one or more of the regions nearest to the region that failed. For example, if `us-south` fails, it’s likely many customers recover in the `us-east` region as a first choice. If `eu-gb` fails, then extra demand is expected to fall on `eu-de`.
+Disasters can affect many customers, who then enact their disaster recovery plans. The additional demand might put a severe strain on the capacity of one or more of the regions nearest to the region that failed. This could result in a shortage of resources that are available. For example, if `us-south` fails, it’s likely many customers will choose to recover in the `us-east` region first. If `eu-gb` fails, then extra demand is expected to fall on `eu-de`.
 
-This increase in local demand might hamper recovery efforts and increase recovery times for a period.
+In the event of high demand caused by a disaster, your first choice of infrastructure might not be available to provision in your recovery region. This includes popular VPC VSI profiles. Be sure to take into consideration various architectures for your application that can account for situations in which an alternate VSI profile is required. If you application can't tolerate the use of alternate infrastructure, consider building or reserving as much capacity as you need in your disaster recovery region of choice in anticipation of a disaster, or consider other locations that are further away to avoid capacity issues.
 
-To avoid capacity problems, consider building out as much capacity as you need in the DR region of choice or consider other locations that are further away. Verify that your backups can be restored in your chosen region. For example, databases cannot be restored in regions that cross compliance boundaries.
+Verify that your backups can be restored in your chosen region. For example, databases can't be restored in regions that cross compliance boundaries. As a best practice, be sure to test the timing of your data restoration and be sure to factor in that the time could be extended in the event of a major disaster that affects an entire region, as many customers will be attempting to restore data at once.
 
 ### Connectivity
 {: #ConnectivityConsiderations}

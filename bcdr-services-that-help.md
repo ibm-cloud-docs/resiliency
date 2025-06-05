@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2024
-lastupdated: "2024-12-11"
+  years: 2018, 2025
+lastupdated: "2025-06-05"
 
 keywords: resiliency, DR, high availability, disaster recovery, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -12,10 +12,10 @@ subcollection: resiliency
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Using {{site.data.keyword.cloud_notm}} services in your disaster recovery
+# Building a cross region disaster recovery solution with {{site.data.keyword.cloud_notm}} services
 {: #KeyServicesTitle}
 
-Several {{site.data.keyword.cloud_notm}} services help facilitate a disaster recovery (DR) plan. Review the following overview of the {{site.data.keyword.cloud_notm}} services DR capabilities. For more information, see each service's documentation.
+When you deploy a solution on IBM Cloud, it generally consists of one or more {{site.data.keyword.cloud_notm}} services. When the solution is deployed correctly, the services provide a resilient environment for your workload. However, a number of services can also be used in your disaster recovery design, that might not be part of your workload's deployment architecture. Learn more about those services in the following section.
 
 ## {{site.data.keyword.cos_full_notm}}
 {: #KeyServicesCOS}
@@ -58,7 +58,7 @@ Employing DevOps toolchains can automate much of the environment build, includin
 ## Deployable Architectures
 {: #KeyServicesDeployableArchitectures}
 
-A deployable architecture is a preconfigured set of IaC assets that are based on the {{site.data.keyword.cloud_notm}} for Financial Services reference architecture. These deployable architectures enable you to meet {{site.data.keyword.cloud_notm}} Framework for Financial Services best practices. With a deployable architecture, you can accurately deploy the same architecture into different regions. These preconfigured architectures also provide a starting point for customization. Make sure that you maintain any customizations throughout each deployment.
+A deployable architecture is a preconfigured set of IaC assets that are based on the {{site.data.keyword.cloud_notm}} for Financial Services reference architecture. These deployable architectures enable you to meet {{site.data.keyword.cloud_notm}} Framework for Financial Services best practices. With a deployable architecture, you can accurately deploy the same architecture into different regions, which is an important consideration for disaster recovery. Since these preconfigured architectures also provide a starting point for customization, ensure that you maintain any customizations throughout each deployment.
 
 When you use a deployable architecture, you are responsible for the following disaster recovery actions:
 
@@ -66,11 +66,6 @@ When you use a deployable architecture, you are responsible for the following di
 * Data and configuration backup
 * Replicating data and configuration to the disaster recovery environment
 * Managing failover operations
-
-## {{site.data.keyword.codeenginefull_notm}}
-{: #KeyServicesCodeEngine}
-
-You can use {{site.data.keyword.codeengineshort}} to deploy containerized workloads quickly by recovering certain containerized applications without the need to rebuild an entire Red Hat OpenShift or {{site.data.keyword.cloud_notm}} Kubernetes cluster. You can also use it to configure and run jobs, such as triggering database or server backups.
 
 ## Backup and restore options
 {: #backup-and-restore-options}
