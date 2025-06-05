@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: "2025", "2025"
-lastupdated: "2025-05-29"
+  years: 2025
+lastupdated: "2025-06-05"
 
 keywords: shared responsibility model, load balancing, global load balancing, HA, DR, high availability, disaster recovery, HA for the platform, high availability for platform, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -25,7 +25,7 @@ subcollection: resiliency
 
 Depending on the resource type, responsibility for each of the aspects listed above will fall to either the customer, IBM, or be shared. Where there are shared responsibiities, the customer is responsible for the configuration, and IBM is responsibe for the underlying management. For disaster recovery, the customer is responsible for creating resources in a secondary region and managing the application and data recovery.
 
-For example, IBM has responisibility for the recovery of {{site.data.keyword.cloud_notm}} services in the event of an incident or disaster. This means ensuring that the service is restored, available and working correctly. In many cases, this does not include the restoration of individual service insatances. To illustrate, if IBM Cloud Databases suffers a disaster which requires the restoration of the service in a region, {{site.data.keyword.cloud_notm}} will not recover customer instances (i.e. individual databases). This is a good example of shared responsibility - {{site.data.keyword.cloud_notm}} is responsible for recovering the service, whereas customers are responsible for recovering their instance of that service (including data). Remember, {{site.data.keyword.cloud_notm}} has no access to customer data, including backups.
+For example, IBM has responsibility for the recovery of {{site.data.keyword.cloud_notm}} services in the event of an incident or disaster. This means ensuring that the service is restored, available and working correctly. In many cases, this does not include the restoration of individual service insatances. To illustrate, if IBM Cloud Databases suffers a disaster which requires the restoration of the service in a region, {{site.data.keyword.cloud_notm}} will not recover customer instances (i.e. individual databases). This is a good example of shared responsibility - {{site.data.keyword.cloud_notm}} is responsible for recovering the service, whereas customers are responsible for recovering their instance of that service (including data). Remember, {{site.data.keyword.cloud_notm}} has no access to customer data, including backups.
 
 It's important to be familiar with and to understand your responsibilites when using {{site.data.keyword.cloud_notm}}.
 
