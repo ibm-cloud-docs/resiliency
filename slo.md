@@ -4,7 +4,7 @@ copyright:
 
   years: 2021, 2024
 
-lastupdated: "2025-05-30"
+lastupdated: "2025-06-10"
 
 keywords: SLO, service level objectives
 
@@ -79,7 +79,7 @@ The following table describes the service level objectives (SLOs) for the vital 
 
 | Storage service | Availability target | Performance target | Performance detail | Data durability target | High availability guidance |
 |----------|---------|---------|---------|---------|---------|
-| {{site.data.keyword.cos_full_notm}} | 99.999% |  |  | 99.999999999% | [Understanding high availability and disaster recovery for {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-cos-ha-dr) |
+| {{site.data.keyword.cos_full_notm}} | 99.999% |  |  | 99.999999999999% | [Understanding high availability and disaster recovery for {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-cos-ha-dr) |
 | {{site.data.keyword.block_storage_is_short}} | 99.999% | Disk Performance > 90% in 99.9% of the time | [Block storage capacity and performance](/docs/vpc?topic=vpc-capacity-performance#iops-profiles) | 99.999999999% | [Availability and Durability of VPC storage](/docs/vpc?topic=vpc-storageavailability) |
 | {{site.data.keyword.filestorage_vpc_short}} | 99.999% | Disk Performance > 90% in 99.9% of the time | [File Storage for VPC profiles](//docs/vpc?topic=vpc-file-storage-profiles) | 99.999999999% | [Availability and Durability of VPC storage](/docs/vpc?topic=vpc-storageavailability)
 {: caption="Service level objectives (SLOs) for the {{site.data.keyword.cloud_notm}} storage services" caption-side="bottom"}
