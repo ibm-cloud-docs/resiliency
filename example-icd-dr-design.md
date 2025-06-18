@@ -73,5 +73,5 @@ Recovery from a read-replica should also be practiced, but note, once a read-rep
 
 For additional information on backup, restore and DR for {{site.data.keyword.cloud_notm}} Databases, refer to the following documentation pages:
 
-[Managing Cloud Database backups](/docs/cloud-databases?topic=cloud-databases-dashboard-backups&interface=ui)
-[Understanding business continuity and disaster recovery for Cloud Databases](/docs/cloud-databases?topic=cloud-databases-bc-dr)
+* [Managing Cloud Database backups](/docs/cloud-databases?topic=cloud-databases-dashboard-backups&interface=ui)
+* [Understanding business continuity and disaster recovery for Cloud Databases](/docs/cloud-databases?topic=cloud-databases-bc-dr)
