@@ -44,6 +44,7 @@ toc:
                 label: Red Hat OpenShift on VPC multiregion DR
                 href: https://cloud.ibm.com/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Solution-Architecture
             - example-icd-dr-design.md
+            - example-kp-dr-design.md
       - topicgroup:
           label: Resiliency
           topics:
