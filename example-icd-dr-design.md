@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2025-06-18"
+lastupdated: "2025-06-19"
 
 keywords: DR testing, disaster recovery test, testing for a disaster scenario, dry test, switch over, DR simulation, databases
 
@@ -22,7 +22,7 @@ This page describes an example design that can be used as a low-cost, cross-regi
 
 The following diagram shows the basic architecture used in this design.
 
-![Diagram showing the basic ICD DR architecture](images/simple-icd-dr-arch.svg "Diagram depicting a basic view of IBM Cloud Database DR architecture"){: caption=" A basic view of IBM Cloud Database DR architecture" caption-side="bottom"}
+![Diagram showing the basic ICD DR architecture](images/simple-icd-dr-arch2.svg "Diagram depicting a basic view of IBM Cloud Database DR architecture"){: caption=" A basic view of IBM Cloud Database DR architecture" caption-side="bottom"}
 
 This basic design uses components that are a default parts of the {{site.data.keyword.cloud_notm}} Databases service, namely:
 
@@ -34,9 +34,11 @@ This basic design uses components that are a default parts of the {{site.data.ke
 
 The mechanics of this design is simple. {{site.data.keyword.cloud_notm}} Databases automatically takes a backup of your instances every day. These backups are placed into a cross-regional COS bucket, enabling the backup to be accessed in at least two other regions.
 
+To understand the location of stored backups that are created for instances in different regions, see [Managing Cloud Database backups - Backup Locations](/docs/cloud-databases?topic=cloud-databases-dashboard-backups&interface=ui#backup-locations).
+
 This provides a daily backup, which is restorable in a second region in the event of a disaster, providing a restore point to within 24 hours of the disaster. If a lower restore point is required, then optionally, you can take on demand backups of your instances.
 
-The following databases provide Point-In-Time Recovery, by having thier transaction logs continuously backed up:
+The following databases provide Point-In-Time Recovery, by having their transaction logs continuously backed up:
 
 * {{site.data.keyword.cloud_notm}} Databases for PostgreSQL
 * {{site.data.keyword.cloud_notm}} Databases for MongoDB
@@ -62,11 +64,26 @@ It is important that you regularly test your ability to recover your backups. Th
 ## Other considerations
 {: #icd-dr-other-considerations}
 
+These are other considerations when creating a simple DR strategy for {{site.data.keyword.cloud_notm}} Databases.
+
+### Read-replica databases
+{: #icd-dr-read-replicas}
+
 Where available, you may choose to deploy a read replica database. This is a copy of your database instance that can be deployed in a different region of choice. The read replica is asynchronously kept in step with the primary instance.
 
 Read replica databases can provide much faster recovery times in the event of a disaster, since no data recovery is required. However, if a disaster is caused by data corruption, remember that the read-replica is likely to be corrupted too, through synchronization from the primary instance.
 
 Recovery from a read-replica should also be practiced, but note, once a read-replica becomes a primary instance, it cannot transition back to a read-replica state. Instead, the read-replica must be recreated.
+
+### HPCS backup encryption
+{: #icd-dr-hpcs-encryption}
+
+In certain regions, it it possible to encrypt database backups using HPCS. When using HPCS encryption to protect database instance backups, it's important to remember that the HPCS instance must be available in order to decrypt the backup files and restore the database. If a disaster occurs that invokes recovery of the database and affects the availablity of your HPCS instance, then HPCS must be recovered too.
+
+For more information see:
+
+* [IBM Cloud Databases - Hyper Protect Crypto Services Integration](/docs/cloud-databases?topic=cloud-databases-hpcs#use-hpcs-backups).
+* [Hyper Protect Crypto Services - Restoring your data from another region](/docs/hs-crypto?topic=hs-crypto-restore-data).
 
 ## Further reading
 {: #icd-dr-further-reading}
