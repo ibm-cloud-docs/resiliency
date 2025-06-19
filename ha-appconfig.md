@@ -2,11 +2,11 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-12-11"
+lastupdated: "2025-06-19"
 
 keywords: high availability, regions, zones, resiliency
 
-subcollection: ha-infrastructure
+subcollection: resiliency
 
 ---
 

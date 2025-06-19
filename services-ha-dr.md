@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2025-06-05"
+  years: 2024, 2025
+lastupdated: "2025-06-19"
 
 
 keywords: disaster recovery plan, DR, resilient app, plan for DR, DR objectives
@@ -22,13 +22,12 @@ subcollection: resiliency
 - [Understanding high availability and disaster recovery for Activity Tracker Event Routing](/docs/atracker?topic=atracker-atracker-ha-dr)
 - [Understanding high availability and disaster recovery for API Connect](/docs/apiconnect?topic=apiconnect-ha-dr)
 - [Understanding high availability and disaster recovery for App ID](/docs/appid?topic=appid-ha-dr)
-- [Understanding high availability and disaster recovery for Cloud Functions](/docs/openwhisk?topic=openwhisk-ha_dr)
+- [Understanding high availability and disaster recovery for Code Engine](/docs/codeengine?topic=codeengine-ha-dr)
 - [Understanding high availability and disaster recovery for Kubernetes Service](/docs/containers?topic=containers-iks-ha-dr)
 - [Understanding high availability and disaster recovery for Red Hat OpenShift on IBM Cloud](/docs/openshift?topic=openshift-iks-ha-dr)
 - [Understanding high availability and disaster recovery for Cloud Logs](/docs/cloud-logs?topic=cloud-logs-cloud-logs-ha-dr)
 - [Understanding high availability and disaster recovery for Cloud Shell](/docs/cloud-shell?topic=cloud-shell-ha-dr)
 - [Understanding high availability and disaster recovery for IBM Cloud Object Storage](/docs/cloud-object-storage?topic=cloud-object-storage-cos-ha-dr)
-- [Understanding high availability and disaster recovery for Code Engine](/docs/codeengine?topic=codeengine-ha-dr)
 - [Understanding high availability and disaster recovery for IBM Cloud HPC](/docs/hpc-cluster?topic=hpc-cluster-ha-dr)
 - [Understanding high availability and disaster recovery for Logs Routing](/docs/logs-router?topic=logs-router-logs-router-ha-dr)
 - [Understanding high availability and disaster recovery for Metrics Routing](/docs/metrics-router?topic=metrics-router-metrics-router-ha-dr)
