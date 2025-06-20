@@ -33,7 +33,7 @@ The following diagram shows the basic architecture used in this design. It uses 
 
 The mechanics of this design is simple. {{site.data.keyword.cloud_notm}} Databases automatically takes a backup of your instances every day. These backups are placed into a cross-regional COS bucket, enabling the backup to be accessed in at least two other regions. You can choose the region that you wish to recover your database instance in (i.e. your recovery region), based on the locations that the backup is ultimately stored in.
 
-To understand the location of stored backups that are created for instances in different regions, see [Managing Cloud Database backups - Backup Locations](/docs/cloud-databases?topic=cloud-databases-dashboard-backups&interface=ui#backup-locations).
+To understand the location of stored backups that are created for instances in different regions, see [Managing Cloud Database backups - Backup Locations](/docs/cloud-databases?topic=cloud-databases-dashboard-backups#backup-locations).
 
 This provides a daily backup, which is restorable in a second region in the event of a disaster, providing a restore point to within 24 hours of the disaster. If a lower restore point is required, then optionally, you can take on demand backups of your instances.
 

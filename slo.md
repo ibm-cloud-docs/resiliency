@@ -39,11 +39,11 @@ The following table describes the service level objectives (SLOs) for the vital 
 
 | Platform service | Availability target | High availability guidance |
 |----------|---------|---------|
-| {{site.data.keyword.cloud_notm}} console | 99.999% | [High availability for the platform](/docs/overview?topic=overview-zero-downtime) |
+| {{site.data.keyword.cloud_notm}} console | 99.999% | [High availability for the platform](/docs/resiliency?topic=resiliency-ha-redundancy) |
 | {{site.data.keyword.cloud_notm}} CLI | 99.999% | [Understanding high availability and disaster recovery for the IBM Cloud CLI](/docs/cli?topic=cli-ha-dr) |
 | {{site.data.keyword.cloud_notm}} network | 99.9999% |[High availability for the network](/docs/resiliency?topic=resiliency-ha-redundancy#network-backbone) |
-| {{site.data.keyword.cloud_notm}} catalogs | 99.999% | [High availability for the platform](/docs/overview?topic=overview-zero-downtime) |
-| Identity and Access Management (IAM) | 99.999% | [High availability for the platform](/docs/overview?topic=overview-zero-downtime) |
+| {{site.data.keyword.cloud_notm}} catalogs | 99.999% | [High availability for the platform](/docs/resiliency?topic=resiliency-ha-redundancy) |
+| Identity and Access Management (IAM) | 99.999% | [High availability for the platform](/docs/resiliency?topic=resiliency-ha-redundancy) |
 {: caption="Service level objectives (SLOs) for the {{site.data.keyword.cloud_notm}} platform services" caption-side="bottom"}
 
 ### Compute services

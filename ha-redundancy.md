@@ -107,7 +107,7 @@ If there is failure of the control plane in one zone, or even complete loss, the
 
 Even in the exceptional cases that the control plane is globally deployed, it is still deployed across multiple regions to help ensure high availability and to guarantee that failures in one region do not impact service functions in other regions.
 
-For more information about the specific options for deploying your workloads that use a regional service, see [Locations for resource deployment](/docs/overview?topic=overview-locations) and [Considerations for high availability](/docs/overview?topic=overview-ha-considerations).
+For more information about the specific options for deploying your workloads that use a regional service, see [Locations for resource deployment](/docs/overview?topic=overview-locations) and [Considerations for high availability](/docs/resiliency?topic=resiliency-understanding-ha).
 
 
 ### Global service redundancy
