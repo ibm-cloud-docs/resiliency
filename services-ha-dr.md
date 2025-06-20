@@ -50,7 +50,6 @@ subcollection: resiliency
 - [Understanding high availability for IBM Cloudant](/docs/Cloudant?topic=Cloudant-ha)
 - [Understanding high availability for IBM OpenPages as a Service](/docs/openpages?topic=openpages-ha)
 - [Understanding high availability for NPSaaS](/docs/netezza?topic=netezza-ha)
-- [Understanding high availability for Planning Analytics as a Service](/docs/planning-analytics?topic=planning-analytics-ha)
 - [Understanding high availability for Security and Compliance Center](/docs/security-compliance?topic=security-compliance-ha)
 - [Understanding high availability for Transit Gateway](/docs/transit-gateway?topic=transit-gateway-ha)
 - [Understanding high availability for VCF as a Service](/docs/vmware-service?topic=vmware-service-ha)
