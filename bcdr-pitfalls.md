@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2025-06-05"
+lastupdated: "2025-06-20"
 
 keywords: DR for IBM Cloud, disaster recovery, common mistakes for disaster recovery, plan a disaster recovery strategy
 
@@ -65,7 +65,7 @@ As you plan and implement your disaster recovery environment, consider its own r
 ### Forgetting nontechnical single-points-of-failure
 {: #spof}
 
-Single-points-of-failure (SPOF) can be anywhere in a solution, not just in the technology. Your solution might depend on people, vendors, providers, and other external dependencies. Identify clearly your SPOFs and mitigate your dependencies. Be prepared to discover SPOFs during the first sessions of your [disaster recovery test](/docs/overview?topic=overview-dr-testing).
+Single-points-of-failure (SPOF) can be anywhere in a solution, not just in the technology. Your solution might depend on people, vendors, providers, and other external dependencies. Identify clearly your SPOFs and mitigate your dependencies. Be prepared to discover SPOFs during the first sessions of your [disaster recovery test](/docs/resiliency?topic=resiliency-dr-testing).
 
 Among SPOFs, provider risk is a condition to consider in your DR plan. When you have both production and DR on the same provider, your risk condition is increased and must be carefully considered.
 

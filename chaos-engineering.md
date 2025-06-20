@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2025-06-19"
+lastupdated: "2025-06-20"
 
 
 keywords: chaos testing, resilient app, client testing
@@ -18,7 +18,7 @@ subcollection: resiliency
 Now that you can design and deploy resilient applications, which can withstand both simple and complex failures, you must verify that your applications work as planned during a failure. Waiting for a failure in your production environment to test your preparedness might be a costly mistake, often requiring rushed solutions that you develop in real time. Failures are inevitable and can be the result of several issues, including security breaches, misconfigurations, or service disruptions. As your cloud workload footprint grows, the likelihood of encountering various types of failures increases.
 {: shortdesc}
 
-One approach to address potential failures is chaos engineering. [Chaos engineering](https://www.ibm.com/topics/chaos-engineering){: external} is the intentional and controlled injection of failures in pre-production and production environments to understand their impact and verify your preparedness. The process isn't random, where you turn off dependencies or instances or shutdown services. The process begins by identifying potential issues, forming a hypothesis about how the system might behave, and testing it through an experiment. Observe the results to determine whether your hypothesis holds, or if a different approach is needed.
+One approach to address potential failures is chaos engineering. [Chaos engineering](https://www.ibm.com/think/topics/chaos-engineering){: external} is the intentional and controlled injection of failures in pre-production and production environments to understand their impact and verify your preparedness. The process isn't random, where you turn off dependencies or instances or shutdown services. The process begins by identifying potential issues, forming a hypothesis about how the system might behave, and testing it through an experiment. Observe the results to determine whether your hypothesis holds, or if a different approach is needed.
 
 
 ## Target environments
@@ -35,7 +35,7 @@ Chaos experiments are meant to mirror real-world incidents as closely as possibl
 
 Given the complexity of applications and their dependencies, the experiment scope can increase quickly if you consider all combinations of components and single or multiple concurrent failures. To address this complexity, tailor your experiments to reflect the specific characteristics of your application. For example, run CPU stress tests only against CPU-intensive components.
 
-The process relies heavily on your knowledge of the system that you're testing and the cloud environment it's running on. You can also use profiling tools like [chaos-recommender](https://github.com/redhat-chaos/krkn/tree/main/utils/chaos_recommender){: external} to augment your understanding.
+The process relies heavily on your knowledge of the system that you're testing and the cloud environment it's running on. You can also use profiling tools like [chaos-recommender](https://github.com/krkn-chaos/krkn/tree/main/utils/chaos_recommender){: external} to augment your understanding.
 
 You can use {{site.data.keyword.cloud_notm}} [public APIs](/docs?tab=api-docs) to run update operations on infrastructure services, which help re-create failure scenarios. For containerized applications that run on [{{site.data.keyword.cloud_notm}} Kubernetes Service](/docs/containers) or on [Red Hat OpenShift on {{site.data.keyword.cloud_notm}}](/docs/openshift), there are many chaos engineering frameworks that help mimic failure scenarios, like [ChaosMesh](https://chaos-mesh.org){: external}, [LitmusChaos](https://litmuschaos.io){: external}, and Red Hat [KrKn](https://krkn-chaos.github.io/krkn/){: external}. These frameworks run within the cluster and inject faults with a small blast radius, often within the scope of the namespace.
 
@@ -68,7 +68,7 @@ Network traffic rules
 :   The deployments in both clusters pull images from public container registries like quay.io and docker.io. Hence, you must allow external access to the registries' secure HTTPS port. Also, the subscriber component that is deployed in the workload cluster fetches scheduled workflow runs from backend server and pushes logs and data back to it. Allow inter-VPC traffic over a secure HTTPS port in VPC security groups and access control lists.
 
 Security
-:   Most Kubernetes experiments use only the Kubernetes APIs within the namespace scope, so pods that you use for the experiment don't need escalated privileges. However, some like pod-network-corruption and node-kill or stressors require privileged mode as well as greater cluster level permissions and are not suitable for all environments. On {{site.data.keyword.cloud_notm}} Red Hat OpenShift, a cluster administrator controls what actions and access pods can run by using [security context constraints](docs/code-engine?topic=code-engine) by default. Use only [pod-delete](https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-delete/){: external} and [pod-network-partition](https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-network-partition/){: external} experiments, which are scoped to the namespace and don't require extra privileges.
+:   Most Kubernetes experiments use only the Kubernetes APIs within the namespace scope, so pods that you use for the experiment don't need escalated privileges. However, some like pod-network-corruption and node-kill or stressors require privileged mode as well as greater cluster level permissions and are not suitable for all environments. On {{site.data.keyword.cloud_notm}} Red Hat OpenShift, a cluster administrator controls what actions and access pods can run by using [security context constraints](/docs/codeengine?topic=codeengine) by default. Use only [pod-delete](https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-delete/){: external} and [pod-network-partition](https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-network-partition/){: external} experiments, which are scoped to the namespace and don't require extra privileges.
 
 :   By default, the `litmus-admin` service account is used by the experiments that have broader permissions, however, as part of hardening, use a restricted service account that can run with the default `restricted-v2` security context constraint.
 
