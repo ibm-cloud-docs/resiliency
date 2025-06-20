@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2025-06-19"
+lastupdated: "2025-06-20"
 
 keywords: DR testing, disaster recovery test, testing for a disaster scenario, dry test, switch over, DR simulation, databases
 
@@ -20,19 +20,18 @@ This page describes an example design that can be used as a low-cost, cross-regi
 ## Architecture
 {: #icd-dr-architecture}
 
-The following diagram shows the basic architecture used in this design.
-
-![Diagram showing the basic ICD DR architecture](images/simple-icd-dr-arch2.svg "Diagram depicting a basic view of IBM Cloud Database DR architecture"){: caption=" A basic view of IBM Cloud Database DR architecture" caption-side="bottom"}
-
-This basic design uses components that are a default parts of the {{site.data.keyword.cloud_notm}} Databases service, namely:
+The following diagram shows the basic architecture used in this design. It uses components that are a default parts of the {{site.data.keyword.cloud_notm}} Databases service, namely:
 
 * Automatically scheduled database backups
 * {{site.data.keyword.cloud_notm}} Object Storage (COS)
 
+![Diagram showing the basic ICD DR architecture](images/simple-icd-dr-arch2.svg "Diagram depicting a basic view of IBM Cloud Database DR architecture"){: caption=" A basic view of IBM Cloud Database DR architecture" caption-side="bottom"}
+
+
 ## How it works
 {: #icd-dr-how-it-works}
 
-The mechanics of this design is simple. {{site.data.keyword.cloud_notm}} Databases automatically takes a backup of your instances every day. These backups are placed into a cross-regional COS bucket, enabling the backup to be accessed in at least two other regions.
+The mechanics of this design is simple. {{site.data.keyword.cloud_notm}} Databases automatically takes a backup of your instances every day. These backups are placed into a cross-regional COS bucket, enabling the backup to be accessed in at least two other regions. You can choose the region that you wish to recover your database instance in (i.e. your recovery region), based on the locations that the backup is ultimately stored in.
 
 To understand the location of stored backups that are created for instances in different regions, see [Managing Cloud Database backups - Backup Locations](/docs/cloud-databases?topic=cloud-databases-dashboard-backups&interface=ui#backup-locations).
 
@@ -45,6 +44,8 @@ The following databases provide Point-In-Time Recovery, by having their transact
 * {{site.data.keyword.cloud_notm}} Databases for MySQL
 
 For these database types, it is possible to restore the last daily backup and then roll forward by applying transaction logs to a particular point in time.
+
+{{site.data.keyword.cloud_notm}} Databases for Elasticsearch does not feature point-in-time recovery.
 
 ## How to enact a recovery
 {: #icd-enact-recovery}
