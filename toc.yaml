@@ -45,6 +45,7 @@ toc:
                 href: https://cloud.ibm.com/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Solution-Architecture
             - example-icd-dr-design.md
             - example-kp-dr-design.md
+            - example-vpc-dr-design.md
       - topicgroup:
           label: Resiliency
           topics:
