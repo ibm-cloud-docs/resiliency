@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2025-06-20"
+   years: 2020, 2025
+lastupdated: "2025-07-28"
 
 keywords: high availability, ha, understanding ha
 

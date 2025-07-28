@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021, 2024
-lastupdated: "2025-06-20"
+   years: 2020, 2025
+lastupdated: "2025-07-28"
 
 keywords: DR testing, disaster recovery test, testing for a disaster scenario, dry test, switch over, DR simulation, databases
 

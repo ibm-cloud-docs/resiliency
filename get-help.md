@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2025
-lastupdated: "2025-06-19"
+   years: 2020, 2025
+lastupdated: "2025-07-28"
 
 keywords: DR, high availability, disaster recovery, help, get support, dr support, dr help, ha help, ha suppprt
 
