@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-07-28"
+lastupdated: "2025-08-04"
 
 keywords: DR testing, disaster recovery test, testing for a disaster scenario, dry test, switch over, DR simulation, key protect
 
@@ -12,14 +12,16 @@ subcollection: resiliency
 
 {{site.data.keyword.attribute-definition-list}}
 
-# DR design for Key Protect
-{: #example-kp-dr-design}
+# Basic DR design for Key Protect
+{: #basic-kp-dr-design}
+
+This page describes a basic design that can be used as a low-cost, cross-region, {{site.data.keyword.cloud_notm}} Key Protect disaster recovery solution. You can use this design as a starting point for protecting your {{site.data.keyword.cloud_notm}} Key Protect instances against a disaster.
 
 {{site.data.keyword.keymanagementservicefull}} is an important {{site.data.keyword.cloud_notm}} service. It helps you provision or import encrypted keys for applications for many IBM Cloud services that can be managed from a central location. Rather than traditional disaster recovery, Key Protect offers cross-regional resiliency.
 
 If you require a cross-region resiliency solution for Key Protect, you must provision your Key Protect instance in one of the regions where cross-region resilience is supported (`us-south`, `jp-tok` or `eu-de`). You must also select a pricing plan that includes cross-region resiliency.
 
-If you do not select these options, cross-region resilience is not available and your instance will default to in-region resilience. In such cases, in the event of a regional Key Protect outage, you will not be able to access your encryption keys until the region is restored.
+If you do not select these regions or options, automated cross-region resilience is not available and your instance will default to in-region resilience. In such cases, in the event of a regional Key Protect outage, you will not be able to access your encryption keys until the region is restored, unless you have created and self-maintain a fully independent Key Protect instance with duplicate keys in a second region.
 
 ## Architecture
 {: #kp-dr-architecture}
