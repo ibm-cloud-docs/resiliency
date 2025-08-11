@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-07-28"
+lastupdated: "2025-08-11"
 
 keywords: DR for IBM Cloud, disaster recovery, common mistakes for disaster recovery, plan a disaster recovery strategy
 
@@ -112,7 +112,17 @@ Verify that your backups can be restored in your chosen region. For example, dat
 ### Connectivity
 {: #ConnectivityConsiderations}
 
-Certain services, such as {{site.data.keyword.dl_short}} and VPNs, can take some time to provision as they can require third-party activity or further installation of physical infrastructure. As you create a DR plan, consider the lead times for such services. It's optimal to provision these services ahead of time.
+Networking  services can take some time to provision and configure, as they can require third-party activity or further installation of physical infrastructure. As you create a DR plan, consider the lead times for such services. It's optimal to provision these services ahead of time:
+* Direct Link, Transit Gateway Local and Transit Gateway Global
+* VPC Edge
+* VPN Gateway and connections
+* Private DNS with VPC setup of DNS Hub & Spoke
+* VPE for shared services
+* Context-Based Restriction rules
+* Global Load Balancer on Private DNS
+* CIS with Public LBaaS, VPE Private Path and PPNLB
+
+Leverage the [VPC landing zone](/docs/secure-infrastructure-vpc?topic=secure-infrastructure-vpc-overview#overview-vpc) deployable architecture and the [FS Cloud reference architecture]([/docs/secure-infrastructure-vpc?topic=secure-infrastructure-vpc-overview#overview-vpc](https://cloud.ibm.com/docs/framework-financial-services?topic=framework-financial-services-vpc-architecture-about#edge-vpc-architecture)) to prepare your connectivity in advance or during a disaster recovery.
 
 ### Partial or full failover
 {: #partial-full-failover}
