@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-07-28"
+lastupdated: "2025-08-12"
 
 keywords: SLO, service level objectives
 
@@ -62,7 +62,7 @@ The following table describes the service level objectives (SLOs) for the vital 
 
 | Networking service | Availability target | High availability guidance |
 |----------|---------|---------|
-| {{site.data.keyword.vpc_short}} | 99.999% | [Understanding high availability and disaster recovery](/docs/vpc?topic=vpc-ha-dr-vpc) |
+| {{site.data.keyword.vpc_short}} | 99.999% | [Understanding high availability and disaster recovery for IBM Cloud VPC](/docs/vpc?topic=vpc-ha-dr-vpc) |
 | {{site.data.keyword.vpn_full}} | 99.999% | [Connecting to your on-premises network](/docs/vpc?topic=vpc-vpn-onprem-example) |
 | {{site.data.keyword.alb_full}} | 99.999% | [High Availability mode](/docs/vpc?topic=vpc-nlb-vs-elb#nlb-ha-mode) |
 | {{site.data.keyword.nlb_full}} | 99.999% | [High Availability mode](/docs/vpc?topic=vpc-nlb-vs-elb#nlb-ha-mode) |
@@ -79,7 +79,7 @@ The following table describes the service level objectives (SLOs) for the vital 
 |----------|---------|---------|---------|---------|---------|
 | {{site.data.keyword.cos_full_notm}} | 99.999% |  |  | 99.999999999999% | [Understanding high availability and disaster recovery for {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-cos-ha-dr) |
 | {{site.data.keyword.block_storage_is_short}} | 99.999% | Disk Performance > 90% in 99.9% of the time | [Block storage capacity and performance](/docs/vpc?topic=vpc-capacity-performance#iops-profiles) | 99.999999999% | [Availability and Durability of VPC storage](/docs/vpc?topic=vpc-storageavailability) |
-| {{site.data.keyword.filestorage_vpc_short}} | 99.999% | Disk Performance > 90% in 99.9% of the time | [File Storage for VPC profiles](/docs/vpc?topic=vpc-file-storage-profiles) | 99.999999999% | [Availability and Durability of VPC storage](/docs/vpc?topic=vpc-storageavailability)
+| {{site.data.keyword.filestorage_vpc_short}} | 99.999% | Disk Performance > 90% in 99.9% of the time | [File Storage for VPC profiles](/docs/vpc?topic=vpc-file-storage-profiles) | 99.999999999% | [Availability and Durability of VPC storage](/docs/vpc?topic=vpc-storageavailability) |
 {: caption="Service level objectives (SLOs) for the {{site.data.keyword.cloud_notm}} storage services" caption-side="bottom"}
 
 ### Database services
@@ -89,7 +89,7 @@ The following table describes the service level objectives (SLOs) for the vital 
 
 | Databases service | Availability target | Performance detail | Storage back end used for data | Storage back end used for backups | High availability guidance |
 |----------|---------|---------|---------|---------|---------|
-| {{site.data.keyword.databases-for-postgresql_full_notm}} | 99.999% | [Performance](/docs/databases-for-postgresql?topic=databases-for-postgresql-performance) | Block Storage | Object Storage | [High-Availability](/docs/databases-for-postgresql?topic=databases-for-postgresql-ha-dr) |
+| {{site.data.keyword.databases-for-postgresql_full_notm}} | 99.999% | [Performance](/docs/databases-for-postgresql?topic=databases-for-postgresql-performance) | Block Storage | Object Storage | [Understanding high availability and disaster recovery for Databases for PostgreSQL](/docs/databases-for-postgresql?topic=databases-for-postgresql-postgresql-ha-dr) |
 {: caption="Service level objectives (SLOs) for the {{site.data.keyword.cloud_notm}} databases services" caption-side="bottom"}
 
 ### Security services
@@ -126,7 +126,7 @@ The following table describes the service level objectives (SLOs) for the high i
 
 | Compute service | Availability target | High availability guidance |
 |----------|---------|---------|
-| {{site.data.keyword.satellitelong_notm}} | 99.999% | [High availability and disaster recovery for Satellite](/docs/satellite?topic=satellite-ha) |
+| {{site.data.keyword.satellitelong_notm}} | 99.999% | [High availability and disaster recovery for Satellite](/docs/satellite?topic=satellite-sat-ha-dr)) |
 {: caption="Service level objectives (SLOs) for the {{site.data.keyword.cloud_notm}} compute services" caption-side="bottom"}
 
 ### Containers services
@@ -185,11 +185,11 @@ The following table describes the service level objectives (SLOs) for the high i
 
 | Databases service | Availability target | Performance detail | Storage back end used for data | Storage back end used for backups | High availability guidance |
 |----------|---------|---------|---------|---------|---------|
-| {{site.data.keyword.databases-for-mongodb_full_notm}} | 99.999% | [Performance](/docs/databases-for-mongodb?topic=databases-for-mongodb-performance) | Block Storage | Object Storage | [Understanding high availability and disaster recovery for Cloud Databases](/docs/databases-for-mongodb?topic=databases-for-mongodb-ha-dr) |
-| {{site.data.keyword.databases-for-redis_full_notm}} | 99.999% |[Performance](/docs/databases-for-redis?topic=databases-for-redis-performance) | Block Storage | [Object Storage](/docs/databases-for-redis?topic=databases-for-redis-security-compliance#data-resilience) | [High-Availability](/docs/databases-for-redis?topic=databases-for-redis-ha-dr) |
-| {{site.data.keyword.databases-for-elasticsearch_full_notm}} | 99.999% | [Performance](/docs/databases-for-elasticsearch?topic=databases-for-elasticsearch-performance) | Block Storage | Object Storage | [High-Availability](/docs/databases-for-elasticsearch?topic=databases-for-elasticsearch-ha-dr) |
-| {{site.data.keyword.messages-for-rabbitmq_full_notm}} | 99.999% |[Performance](/docs/messages-for-rabbitmq?topic=messages-for-rabbitmq-performance) | Block Storage | [Object Storage](/docs/messages-for-rabbitmq?topic=messages-for-rabbitmq-security-compliance#data-resilience) | [High-Availability](/docs/messages-for-rabbitmq?topic=messages-for-rabbitmq-ha-dr) |
-| {{site.data.keyword.cloudant_short_notm}} | 99.999% | [Provisioned Throughtput Capacity](/docs/Cloudant?topic=Cloudant-ibm-cloud-public#provisioned-throughput-capacity) | Local Storage: [Data is stored in triplicate across 3 servers for data durability](/docs/Cloudant?topic=Cloudant-disaster-recovery-and-backup#in-region-automatic-data-redundancy), in 3 availability zones where available |  | [High availability, disaster recovery, and backup in a data center](/docs/Cloudant?topic=Cloudant-ibm-cloud-public#high-availability-disaster-recovery-and-backup-in-a-data-center) |
+| {{site.data.keyword.databases-for-mongodb_full_notm}} | 99.999% | [Performance](/docs/databases-for-mongodb?topic=databases-for-mongodb-performance) | Block Storage | Object Storage | [Understanding high availability and disaster recovery for Databases for MongoDB](docs/databases-for-mongodb?topic=databases-for-mongodb-mongodb-ha-dr) |
+| {{site.data.keyword.databases-for-redis_full_notm}} | 99.999% |[Performance](/docs/databases-for-redis?topic=databases-for-redis-performance) | Block Storage | [Object Storage](/docs/databases-for-redis?topic=databases-for-redis-security-compliance#data-resilience) | [Understanding high availability and disaster recovery for Databases for Redis](/docs/databases-for-redis?topic=databases-for-redis-redis-ha-dr) |
+| {{site.data.keyword.databases-for-elasticsearch_full_notm}} | 99.999% | [Performance](/docs/databases-for-elasticsearch?topic=databases-for-elasticsearch-performance) | Block Storage | Object Storage | [Understanding high availability and disaster recovery for Databases for Elasticsearch](/docs/databases-for-elasticsearch?topic=databases-for-elasticsearch-elasticsearch-ha-dr) |
+| {{site.data.keyword.messages-for-rabbitmq_full_notm}} | 99.999% |[Performance](/docs/messages-for-rabbitmq?topic=messages-for-rabbitmq-performance) | Block Storage | [Object Storage](/docs/messages-for-rabbitmq?topic=messages-for-rabbitmq-security-compliance#data-resilience) | [Understanding high availability and disaster recovery for Messages for RabbitMQ](/docs/messages-for-rabbitmq?topic=messages-for-rabbitmq-rabbitmq-ha-dr) |
+| {{site.data.keyword.cloudant_short_notm}} | 99.999% | [Provisioned Throughtput Capacity](/docs/Cloudant?topic=Cloudant-ibm-cloud-public#provisioned-throughput-capacity) | Local Storage: [Data is stored in triplicate across 3 servers for data durability](/docs/Cloudant?topic=Cloudant-disaster-recovery-and-backup#in-region-automatic-data-redundancy), in 3 availability zones where available |  | [Understanding high availability and disaster recovery for IBM Cloudant](/docs/Cloudant?topic=Cloudant-service-name-ha-dr) |
 | {{site.data.keyword.databases-for-enterprisedb_full_notm}} | 99.999% | [Performance](/docs/databases-for-enterprisedb?topic=databases-for-enterprisedb-performance) | Block Storage | [Object Storage](/docs/databases-for-enterprisedb?topic=databases-for-enterprisedb-security-compliance#security-compliance-data-resilience)  | [High-Availability](/docs/databases-for-enterprisedb?topic=databases-for-enterprisedb-high-availability) |
 | {{site.data.keyword.Db2_on_Cloud_short}} | 99.999% |  | Block Storage | Object Storage  | [High availability (HA)](/docs/Db2onCloud?topic=Db2onCloud-high-availability-ha) |
 | {{site.data.keyword.dashdblong_notm}} | 99.999% |  | Block Storage | Object Storage  | [High availability (HA)](/docs/Db2whc?topic=Db2whc-ha) |
@@ -204,8 +204,8 @@ The following table describes the service level objectives (SLOs) for the high i
 | Developer tools service | Availability target  | High availability guidance |
 |----------|---------|---------|
 | {{site.data.keyword.contdelivery_short}} | 99.999% | [High availability and disaster recovery](/docs/ContinuousDelivery?topic=ContinuousDelivery-ha-dr) |
-| {{site.data.keyword.bpfull_notm}} | 99.999% | [High availability](/docs/schematics?topic=schematics-high-availability) |
-| {{site.data.keyword.en_full_notm}}  | 99.99% | [Understanding high availability for Event Notifications](/docs/event-notifications?topic=event-notifications-en-high-availability) |
+| {{site.data.keyword.bpfull_notm}} | 99.999% | [Understanding high availability and disaster recovery for Schematics](/docs/schematics?topic=schematics-high-availability) |
+| {{site.data.keyword.en_full_notm}}  | 99.99% | [High availability and disaster recovery](/docs/event-notifications?topic=event-notifications-en-high-availability) |
 {: caption="Service level objectives (SLOs) for the {{site.data.keyword.cloud_notm}} developer tools services" caption-side="bottom"}
 
 ### Observability services
@@ -215,11 +215,11 @@ The following table describes the service level objectives (SLOs) for the high i
 
 | Logging and monitoring service | Availability target  | High availability guidance |
 |----------|---------|---------|
-| {{site.data.keyword.logs_full_notm}} | 99.99% |  [High availability and disaster recovery](/docs/cloud-logs?topic=cloud-logs-cloud-logs-ha-dr) |
-| {{site.data.keyword.mon_full_notm}} | 99.999% |  [High availability and disaster recovery](/docs/monitoring?topic=monitoring-monitoring-ha-dr) |
-| {{site.data.keyword.atracker_full_notm}} | 99.999% |  [High availability and disaster recovery](/docs/atracker?topic=atracker-atracker-ha-dr) |
-| {{site.data.keyword.logs_routing_full_notm}} | 99.999% |  [High availability and disaster recovery](/docs/logs-router?topic=logs-router-logs-router-ha-dr) |
-| {{site.data.keyword.metrics_router_full_notm}} | 99.999% |  [High availability and disaster recovery](/docs/metrics-router?topic=metrics-router-metrics-router-ha-dr) |
+| {{site.data.keyword.logs_full_notm}} | 99.99% |  [Understanding high availability and disaster recovery for IBM Cloud Logs](/docs/cloud-logs?topic=cloud-logs-cloud-logs-ha-dr) |
+| {{site.data.keyword.mon_full_notm}} | 99.999% |  [Understanding high availability and disaster recovery for IBM Cloud Monitoring](/docs/monitoring?topic=monitoring-monitoring-ha-dr ) |
+| {{site.data.keyword.atracker_full_notm}} | 99.999% |  [Understanding high availability and disaster recovery for IBM Cloud Activity Tracker Event Routing](/docs/atracker?topic=atracker-atracker-ha-dr) |
+| {{site.data.keyword.logs_routing_full_notm}} | 99.999% |  [Understanding high availability and disaster recovery for IBM Cloud Logs Routing](/docs/logs-router?topic=logs-router-logs-router-ha-dr) |
+| {{site.data.keyword.metrics_router_full_notm}} | 99.999% |  [Understanding high availability and disaster recovery for IBM Cloud Metrics Routing](/docs/metrics-router?topic=metrics-router-metrics-router-ha-dr) |
 {: caption="Service level objectives (SLOs) for the {{site.data.keyword.cloud_notm}} logging and monitoring services" caption-side="bottom"}
 
 ### Integration services
@@ -229,7 +229,7 @@ The following table describes the service level objectives (SLOs) for the high i
 
 | Integration service | Availability target | High availability guidance |
 |----------|---------|---------|
-| {{site.data.keyword.messagehub}} | 99.999% |  [What do you need to consider to achieve this availability?](/docs/EventStreams?topic=EventStreams-sla#sla_availability) |
+| {{site.data.keyword.messagehub}} | 99.999% |  [Understanding high availability and disaster recovery for Event Streams](/docs/EventStreams?topic=EventStreams-eventstreams-ha-dr) |
 | {{site.data.keyword.apiconnect_short}} | 99.999% | [Understanding high availability and disaster recovery for API Connect](/docs/apiconnect?topic=apiconnect-ha-dr) |
 {: caption="Service level objectives (SLOs) for the {{site.data.keyword.cloud_notm}} integration services" caption-side="bottom"}
 
