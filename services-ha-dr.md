@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-08-11"
+lastupdated: "2025-08-13"
 
 
 keywords: disaster recovery plan, DR, resilient app, plan for DR, DR objectives
@@ -35,6 +35,7 @@ subcollection: resiliency
 - [Understanding high availability and disaster recovery for Logs Routing](/docs/logs-router?topic=logs-router-logs-router-ha-dr)
 - [Understanding high availability and disaster recovery for Metrics Routing](/docs/metrics-router?topic=metrics-router-metrics-router-ha-dr)
 - [Understanding high availability and disaster recovery for Monitoring](/docs/monitoring?topic=monitoring-monitoring-ha-dr)
+- [Understanding high availability and disaster recovery for Satellite](/docs/satellite?topic=satellite-sat-ha-dr)
 - [Understanding high availability and disaster recovery for Schematics](/docs/schematics?topic=schematics-high-availability)
 - [Understanding high availability and disaster recovery for Secrets Manager](/docs/secrets-manager?topic=secrets-manager-ha-dr)
 - [Understanding high availability and disaster recovery for Transit Gateway](/docs/transit-gateway?topic=transit-gateway-ha-dr-transit-gateway)
@@ -58,7 +59,6 @@ subcollection: resiliency
 - [Understanding high availability for projects](/docs/secure-enterprise?topic=secure-enterprise-ha-dr)
 - [Understanding high availability for the AI assistant](/docs/ai-assistant?topic=ai-assistant-ha)
 - [Availability and Durability of VPC storage](/docs/vpc?topic=vpc-storageavailability)
-- [High availability and recovery for Satellite](/docs/satellite?topic=satellite-ha)
 - [Understanding business continuity and disaster recovery for CIS](/docs/cis?topic=cis-bc-dr)
 - [Understanding business continuity and disaster recovery for Cloud Databases](/docs/cloud-databases?topic=cloud-databases-bc-dr)
 - [Understanding business continuity and disaster recovery for Direct Link](/docs/dl?topic=dl-ha-dr-dl)

@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-08-12"
+lastupdated: "2025-08-13"
 
 keywords: SLO, service level objectives
 
@@ -185,7 +185,7 @@ The following table describes the service level objectives (SLOs) for the high i
 
 | Databases service | Availability target | Performance detail | Storage back end used for data | Storage back end used for backups | High availability guidance |
 |----------|---------|---------|---------|---------|---------|
-| {{site.data.keyword.databases-for-mongodb_full_notm}} | 99.999% | [Performance](/docs/databases-for-mongodb?topic=databases-for-mongodb-performance) | Block Storage | Object Storage | [Understanding high availability and disaster recovery for Databases for MongoDB](docs/databases-for-mongodb?topic=databases-for-mongodb-mongodb-ha-dr) |
+| {{site.data.keyword.databases-for-mongodb_full_notm}} | 99.999% | [Performance](/docs/databases-for-mongodb?topic=databases-for-mongodb-performance) | Block Storage | Object Storage | [Understanding high availability and disaster recovery for Databases for MongoDB](/docs/databases-for-mongodb?topic=databases-for-mongodb-mongodb-ha-dr) |
 | {{site.data.keyword.databases-for-redis_full_notm}} | 99.999% |[Performance](/docs/databases-for-redis?topic=databases-for-redis-performance) | Block Storage | [Object Storage](/docs/databases-for-redis?topic=databases-for-redis-security-compliance#data-resilience) | [Understanding high availability and disaster recovery for Databases for Redis](/docs/databases-for-redis?topic=databases-for-redis-redis-ha-dr) |
 | {{site.data.keyword.databases-for-elasticsearch_full_notm}} | 99.999% | [Performance](/docs/databases-for-elasticsearch?topic=databases-for-elasticsearch-performance) | Block Storage | Object Storage | [Understanding high availability and disaster recovery for Databases for Elasticsearch](/docs/databases-for-elasticsearch?topic=databases-for-elasticsearch-elasticsearch-ha-dr) |
 | {{site.data.keyword.messages-for-rabbitmq_full_notm}} | 99.999% |[Performance](/docs/messages-for-rabbitmq?topic=messages-for-rabbitmq-performance) | Block Storage | [Object Storage](/docs/messages-for-rabbitmq?topic=messages-for-rabbitmq-security-compliance#data-resilience) | [Understanding high availability and disaster recovery for Messages for RabbitMQ](/docs/messages-for-rabbitmq?topic=messages-for-rabbitmq-rabbitmq-ha-dr) |
