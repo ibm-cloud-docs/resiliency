@@ -46,6 +46,7 @@ toc:
             - example-icd-dr-design.md
             - example-kp-dr-design.md
             - example-vpc-dr-design.md
+            - example-iks-dr-design.md
       - topicgroup:
           label: Resiliency
           topics:
