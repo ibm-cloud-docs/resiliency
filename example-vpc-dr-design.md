@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-08-14"
+lastupdated: "2025-08-26"
 
 keywords: DR testing, disaster recovery test, testing for a disaster scenario, dry test, switch over, DR simulation, vpc
 
@@ -61,7 +61,7 @@ Remember, file share replication between regions must occur within the same geog
 After you declare a disaster and decide to move operations to your target DR region, the first step is to re-create your VPC. If you chose to use IaC, then {{site.data.keyword.bplong_notm}} can be used to run your Terraform scripts and build out your VPC environment. On completion, make sure that you have all the infrastructure you need and that your network is correctly configured.
 
 Next, restore your block storage volumes from the backup snapshots made by Backup for VPC and attach them to your new virtual server instances. For more information, see [About restoring a volume from a backup snapshot](/docs/vpc?topic=vpc-baas-vpc-restore&interface=ui#baas-vpc-restore-concepts).
-Next, restore your block storage volumes from the backup snapshots that are made by Backup for VPC and attach them to your new virtual server instances. For more information, see [About restoring a volume from a backup snapshot](docs/vpc?topic=vpc-baas-vpc-restore&interface=ui#baas-vpc-restore-concepts).
+Next, restore your block storage volumes from the backup snapshots that are made by Backup for VPC and attach them to your new virtual server instances. For more information, see [About restoring a volume from a backup snapshot](/docs/vpc?topic=vpc-baas-vpc-restore&interface=ui#baas-vpc-restore-concepts).
 
 Finally, failover the replicated file share. See [Failover in a disaster recovery situation](/docs/vpc?topic=vpc-file-storage-failover&interface=ui#fs-failover-dr) for more details.
 
