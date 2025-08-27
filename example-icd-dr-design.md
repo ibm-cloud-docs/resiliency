@@ -19,6 +19,7 @@ Here are two disaster recovery design options that can be used for cross-region,
 
 ## Option One - Recovery from Backup
 {:icd-dr-option-one}
+
 This option can be used for all {{site.data.keyword.cloud_notm}} databases.
 
 ### Architecture
