@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-08-14"
+lastupdated: "2025-08-27"
 
 keywords: DR testing, disaster recovery test, testing for a disaster scenario, dry test, switch over, DR simulation, databases
 
@@ -15,9 +15,9 @@ subcollection: resiliency
 # Basic DR design for {{site.data.keyword.cloud_notm}} Databases
 {: #basic-icd-dr-design}
 
-Here are two basic design options that can be used for cross-region, {{site.data.keyword.cloud_notm}} Database disaster recovery solutions. You can use these options as a starting point for protecting your {{site.data.keyword.cloud_notm}} Databases against a disaster. Modify and test the options to meet your specific disaster recovery goals.
+Here are two disaster recovery design options that can be used for cross-region, {{site.data.keyword.cloud_notm}} Database disaster recovery solutions. You can use these options as a starting point for protecting your {{site.data.keyword.cloud_notm}} Databases against a disaster. Modify and test the options to meet your specific disaster recovery goals.
 
-## Option One
+## Option One - Recovery from Backup
 {:icd-dr-option-one}
 This option can be used for all {{site.data.keyword.cloud_notm}} databases.
 
@@ -67,7 +67,7 @@ After the region that suffered a disaster is declared fully operational, failing
 In certain regions, it is possible to encrypt database backups with HPCS. Here, it's important that the HPCS instance is available to decrypt the backup files and restore the database. If a disaster occurs that requires recovery of the database and affects the availability of your HPCS instance, then HPCS must be recovered too.
 
 
-## Option Two
+## Option Two - Read-replicas
 {:icd-dr-option-two}
 Option Two uses read-replica databases (also known as 'read-only replicas') to provide a recovery solution. This option can be used only where read-replica databases are supported, for example, with MySQL and PostgreSQL instances. Check the {{site.data.keyword.cloud_notm}} Database Service documentation for details.
 
@@ -94,7 +94,7 @@ The first is that they are a read-only copy of the primary database, so they can
 
 The second is that multiple read replicas can be created simultaneously, each fed by the primary instance. Multiple read-replicas provide the potential for multiple disaster recovery sites or to conduct recovery testing while still maintaining other standby instances.
 
-However, one major disadvantage with relying solely on read-replicas for your disaster recovery provision is that they replicate data - and that includes corrupted data. If the cause of your disaster is data corruption of any form, then the read-replica is corrupted too.
+However, one major disadvantage with relying solely on read-replicas for your disaster recovery provision is that they replicate data - and that includes corrupted data. If the cause of your disaster is data corruption of any form, then the read-replica is corrupted too and you will need to recover from backup, as per the procedure decribed in Option A.
 
 ### How to enact a recovery
 {: #icd-enact-recovery-option-two}

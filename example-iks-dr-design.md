@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2025-08-26"
+lastupdated: "2025-08-27"
 
 keywords: DR testing, disaster recovery test, testing for a disaster scenario, dry test, switch over, DR simulation, kubernetes, IKS
 
@@ -17,9 +17,9 @@ subcollection: resiliency
 
 Here are two designs that can be used as a cross-region disaster recovery solution for an {{site.data.keyword.cloud_notm}} Kubernetes Service (IBM Kubernetes Service) workload based on VPC infrastructure. You can use these designs as a starting point for protecting your IBM Kubernetes Service cluster against a disaster. Modify and test the design to meet your specific disaster recovery goals.
 
-## Option One - Active / Standby Clusters
+## Option One - Active / Cold Standby Clusters
 {: #iks-dr-option-one}
-Option One involves creating a second cluster in a DR region of choice, which operates as a passive standby. The key considerations are cluster scaling and data recovery in the DR region. You also need to consider how users connect to workloads that are deployed on IBM Kubernetes Service and how ad where persistent data is stored.
+Option One involves creating a second cluster in a DR region of choice, which operates as a cold standby. The key considerations are cluster scaling and data recovery in the DR region. You also need to consider how users connect to workloads that are deployed on IBM Kubernetes Service and how and where persistent data is stored.
 
 ### How it works
 {: #iks-dr-how-it-works-option-one}
@@ -33,6 +33,9 @@ Strong configuration management must be maintained in both instances. Care must 
 After the clusters are ready, workloads can be deployed. Use continuous delivery toolchains or similar to help ensure that applications and updates are deployed consistently to both the active and standby clusters.
 
 Each cluster has a unique cluster ID and the workloads that are deployed on them have unique network connection properties.
+
+Depending on your RTO, consider whether you need to maintain a permanent cold standby. Using IaC, it may be possible to build a new cluster on-demand and still meet your RTO.
+{: note}
 
 ### Storage Considerations
 {: #iks-dr-storage-considerations-option-one}
@@ -55,12 +58,15 @@ After the cause of the outage is resolved and the cluster is recovered in the pr
 
 ## Option Two - Active / Active deployment
 {: #iks-dr-option-two}
-An alternative option, which is in effect a high availability option, is to run two clusters, in two different regions, in an active-active deployment. Option two provides the lowest possible RTO / RPO, though can be complex to set up and manage.
+An alternative option, which is in effect a high availability option, is to run two clusters, in two different regions, in an active-active deployment. Option two provides the lowest possible RTO / RPO, but increases operational costs.
 
 ### How it works
 {: #iks-dr-how-it-works-option-two}
 
 Using this option, you deploy a second IBM Kubernetes Service cluster into the second region of your choice. The two clusters must be identical in terms of build and configuration. Users access the workloads on the clusters through a Global Load Balancer, which is provisioned with IBM Cloud Internet Services (CIS). From the outset, both clusters are serving user requests. Since load is spread across the two clusters, each cluster is configured to bear half the user load under normal circumstances. However, autoscaling must be configured to allow the clusters to grow to handle full capacity to cope with an outage on the other.
+
+An alternate deployment model under this option is Active / Hot Standby. Here, the active cluster handles all user requests. If a failure is detected in the active cluster, connections are directed to the hot standby.
+{: note}
 
 Care must be taken to help ensure that both clusters maintain the same configuration and workload versions (best configured through continuous delivery practices).
 
@@ -75,6 +81,13 @@ No customer recovery is required with this option. If one of the clusters stops 
 
 After the cause of the outage is resolved and the cluster is recovered, the global load balancer will detect it through successful health checks. If the cluster's network configuration changes as a result of recovery, then the global load balancer needs to be reconfigured too. The global load balancer then starts to send requests to both clusters, as before the outage. Autoscaling will rebalance the sizes of the clusters.
 
+## Other considerations
+{: #iks-dr-other-considerations}
+
+It is a recommended best practice to maintain container images in IBM Cloud Container Registry. Container Registry is a highly available, regional, service. Data that is written to Container Registry is replicated over the availability zones in the region where your instance resides. To prevent loss of access to your images in the event of a regional failure, you can choose to push your images to multiple registry regions. This is a key consideration in your overall IKS DR strategy.
+
+Also, coinsider using Continuous Integration / Continuous Deployment (CI-CD) pipelines to deploy your applications in an IKS environment. Test you CI/CD pipelines regularly to ensure they are operating correctly. Using CI/DC will automate the process of code integration and delivery for your clusters, which helps maintain standby clusters or quickly deploy workloads onto new ones. For standby clusters, consider adding a delay to automated deployment. This can prevent a 'bad' release being deployed to the standby too.
+
 ## Further reading
 {: #iks-dr-further-reading}
 
@@ -85,3 +98,4 @@ For additional information on DR for IBM Kubernetes Service, refer to the follow
 * [Continuous integration and delivery for app development and deployment](/docs/containers?topic=containers-cicd)
 * [Backing up and restoring storage data](/docs/containers?topic=containers-storage_br)
 * [Understanding high availability and disaster recovery for IBM Cloud Kubernetes Service](/docs/containers?topic=containers-iks-ha-dr&interface=terraform)
+* [High availability for Container Registry](/docs/Registry?topic=Registry-ha-dr)
