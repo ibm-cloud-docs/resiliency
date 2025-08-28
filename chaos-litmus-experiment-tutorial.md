@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-07-28"
+lastupdated: "2025-08-28"
 
 keywords: chaos testing, resiliency, client testing
 
@@ -32,7 +32,7 @@ LitmusChaos is a cloud-native, open source chaos engineering framework that is d
 
 This tutorial requires:
 
-* [{{site.data.keyword.cloud_notm}} CLI](https://cloud.ibm.com/docs/cli?topic=cli-getting-started)
+* [{{site.data.keyword.cloud_notm}} CLI](/docs/cli?topic=cli-getting-started)
 * [Red Hat OpenShift CLI](https://docs.openshift.com/container-platform/4.17/cli_reference/openshift_cli/getting-started-cli.html) for interacting with Red Hat OpenShift
 * [Helm](https://helm.sh/docs/intro/install/) for installing LitmusChaos
 

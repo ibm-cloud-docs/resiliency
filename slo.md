@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-08-13"
+lastupdated: "2025-08-28"
 
 keywords: SLO, service level objectives
 
@@ -149,7 +149,7 @@ The following table describes the service level objectives (SLOs) for the high i
 
 | Networking service | Availability target | High availability guidance |
 |----------|---------|---------|
-| {{site.data.keyword.dns_full_notm}} | 99.999% | [Understanding high availability for DNS Services](/docs/dns-svcs?topic=dns-svcs-ha) |
+| {{site.data.keyword.dns_full_notm}} | 99.999% | [Understanding high availability for DNS Services](/docs/dns-svcs?topic=dns-svcs-service-name-ha-dr) |
 | {{site.data.keyword.tg_full_notm}} | 99.999% | [High availability and disaster recovery](/docs/transit-gateway?topic=transit-gateway-ha-dr-transit-gateway) |
 | {{site.data.keyword.cis_full_notm}} | 99.999% | [Use Virtual Servers to build highly available and scalable web app](/docs/solution-tutorials?topic=solution-tutorials-vpc-multi-region) |
 | {{site.data.keyword.dl_full_notm}} | 99.999% | [High Availability and disaster recovery for Direct Link](/docs/dl?topic=dl-ha-dr-dl) |
@@ -189,7 +189,7 @@ The following table describes the service level objectives (SLOs) for the high i
 | {{site.data.keyword.databases-for-redis_full_notm}} | 99.999% |[Performance](/docs/databases-for-redis?topic=databases-for-redis-performance) | Block Storage | [Object Storage](/docs/databases-for-redis?topic=databases-for-redis-security-compliance#data-resilience) | [Understanding high availability and disaster recovery for Databases for Redis](/docs/databases-for-redis?topic=databases-for-redis-redis-ha-dr) |
 | {{site.data.keyword.databases-for-elasticsearch_full_notm}} | 99.999% | [Performance](/docs/databases-for-elasticsearch?topic=databases-for-elasticsearch-performance) | Block Storage | Object Storage | [Understanding high availability and disaster recovery for Databases for Elasticsearch](/docs/databases-for-elasticsearch?topic=databases-for-elasticsearch-elasticsearch-ha-dr) |
 | {{site.data.keyword.messages-for-rabbitmq_full_notm}} | 99.999% |[Performance](/docs/messages-for-rabbitmq?topic=messages-for-rabbitmq-performance) | Block Storage | [Object Storage](/docs/messages-for-rabbitmq?topic=messages-for-rabbitmq-security-compliance#data-resilience) | [Understanding high availability and disaster recovery for Messages for RabbitMQ](/docs/messages-for-rabbitmq?topic=messages-for-rabbitmq-rabbitmq-ha-dr) |
-| {{site.data.keyword.cloudant_short_notm}} | 99.999% | [Provisioned Throughtput Capacity](/docs/Cloudant?topic=Cloudant-ibm-cloud-public#provisioned-throughput-capacity) | Local Storage: [Data is stored in triplicate across 3 servers for data durability](/docs/Cloudant?topic=Cloudant-disaster-recovery-and-backup#in-region-automatic-data-redundancy), in 3 availability zones where available |  | [Understanding high availability and disaster recovery for IBM Cloudant](/docs/Cloudant?topic=Cloudant-service-name-ha-dr) |
+| {{site.data.keyword.cloudant_short_notm}} | 99.999% | [Provisioned Throughtput Capacity](/docs/Cloudant?topic=Cloudant-ibm-cloud-public#provisioned-throughput-capacity-units) | Local Storage: [Data is stored in triplicate across 3 servers for data durability](/docs/Cloudant?topic=Cloudant-disaster-recovery-and-backup#in-region-automatic-data-redundancy), in 3 availability zones where available |  | [Understanding high availability and disaster recovery for IBM Cloudant](/docs/Cloudant?topic=Cloudant-service-name-ha-dr) |
 | {{site.data.keyword.databases-for-enterprisedb_full_notm}} | 99.999% | [Performance](/docs/databases-for-enterprisedb?topic=databases-for-enterprisedb-performance) | Block Storage | [Object Storage](/docs/databases-for-enterprisedb?topic=databases-for-enterprisedb-security-compliance#security-compliance-data-resilience)  | [High-Availability](/docs/databases-for-enterprisedb?topic=databases-for-enterprisedb-high-availability) |
 | {{site.data.keyword.Db2_on_Cloud_short}} | 99.999% |  | Block Storage | Object Storage  | [High availability (HA)](/docs/Db2onCloud?topic=Db2onCloud-high-availability-ha) |
 | {{site.data.keyword.dashdblong_notm}} | 99.999% |  | Block Storage | Object Storage  | [High availability (HA)](/docs/Db2whc?topic=Db2whc-ha) |
