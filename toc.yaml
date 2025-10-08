@@ -37,34 +37,34 @@ toc:
       - topicgroup:
           label: Disaster recovery
           topics:
-            - link:
-                label: Oracle Database Disaster Recovery on IBM PowerVS Cross Region
-                href: https://cloud.ibm.com/docs/pattern-oracle-disaster-recovery-on-powervs?topic=pattern-oracle-disaster-recovery-on-powervs-Oracle-dr-ibm-pvs
-            - link:
-                label: Red Hat OpenShift on VPC multiregion DR
-                href: https://cloud.ibm.com/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Solution-Architecture
-            - example-icd-dr-design.md
-            - example-kp-dr-design.md
-            - example-vpc-dr-design.md
-            - example-iks-dr-design.md
+          - link:
+              label: Oracle Database Disaster Recovery on IBM PowerVS Cross Region
+              href: https://cloud.ibm.com/docs/pattern-oracle-disaster-recovery-on-powervs?topic=pattern-oracle-disaster-recovery-on-powervs-Oracle-dr-ibm-pvs
+          - link:
+              label: Red Hat OpenShift on VPC multiregion DR
+              href: https://cloud.ibm.com/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Solution-Architecture
+          - example-icd-dr-design.md
+          - example-kp-dr-design.md
+          - example-vpc-dr-design.md
+          - example-iks-dr-design.md
       - topicgroup:
           label: Resiliency
           topics:
-            - link:
-                label: Cyber resiliency pattern on VPC
-                href: https://cloud.ibm.com/docs/pattern-cyber-resiliency-vpc?topic=pattern-cyber-resiliency-vpc-cyber-resiliency
-            - link:
-                label: Web app cross-region resiliency
-                href: https://cloud.ibm.com/docs/pattern-vpc-vsi-cross-region-resiliency?topic=pattern-vpc-vsi-cross-region-resiliency-web-app-cross-region
-            - link:
-                label: IBM® Power® Virtual Server resiliency on AIX
-                href: https://cloud.ibm.com/docs/pattern-pvs-aix-resiliency?topic=pattern-pvs-aix-resiliency-power-virtual-server-on-AIX
-            - link:
-                label: IBM® Power® Virtual Server resiliency on IBM i
-                href: https://cloud.ibm.com/docs/pattern-pvs-ibmi-resiliency?topic=pattern-pvs-ibmi-resiliency-power-virtual-server-on-ibmi
-            - link:
-                label: Veeam on VMware resiliency
-                href: https://cloud.ibm.com/docs/vmware-cross-region-dr?topic=vmware-cross-region-dr-deploy-veeam-arch
+          - link:
+              label: Cyber resiliency pattern on VPC
+              href: https://cloud.ibm.com/docs/pattern-cyber-resiliency-vpc?topic=pattern-cyber-resiliency-vpc-cyber-resiliency
+          - link:
+              label: Web app cross-region resiliency
+              href: https://cloud.ibm.com/docs/pattern-vpc-vsi-cross-region-resiliency?topic=pattern-vpc-vsi-cross-region-resiliency-web-app-cross-region
+          - link:
+              label: "IBM\xAE Power\xAE Virtual Server resiliency on AIX"
+              href: https://cloud.ibm.com/docs/pattern-pvs-aix-resiliency?topic=pattern-pvs-aix-resiliency-power-virtual-server-on-AIX
+          - link:
+              label: "IBM\xAE Power\xAE Virtual Server resiliency on IBM i"
+              href: https://cloud.ibm.com/docs/pattern-pvs-ibmi-resiliency?topic=pattern-pvs-ibmi-resiliency-power-virtual-server-on-ibmi
+          - link:
+              label: Veeam on VMware resiliency
+              href: https://cloud.ibm.com/docs/vmware-cross-region-dr?topic=vmware-cross-region-dr-deploy-veeam-arch
   - navgroup:
       id: plan
       topics:
@@ -87,6 +87,7 @@ toc:
       - bcdr-testing.md
       - chaos-engineering.md
       - testing-workload-resilience.md
+      - chaos-litmus-self-service.md
   - navgroup:
       id: tutorial
       topics:

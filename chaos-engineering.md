@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-07-28"
+lastupdated: "2025-10-08"
 
 
 keywords: chaos testing, resilient app, client testing
@@ -61,6 +61,107 @@ This architecture builds on the secure and compliant deployable reference archit
 
 Typically, an administrator sets up the clusters, configures the environment, creates application namespaces, and assigns access for development and testing teams to deploy into their respective namespaces. LitmusChaos deploys as just another application alongside the application that is under test. When the environment is configured correctly, a nonadministrator role can complete the remaining steps.
 
+{:video: .video}
+![Demonstration of chaos architecture and scenarios](https://www.kaltura.com/p/1773841/sp/177384100/embedIframeJs/uiconf_id/27941801/partner_id/1773841?iframeembed=true&entry_id=1_at421tgv){: video output="iframe" data-script="#chaos-demo-transcript-ui" id="mediacenterplayer" frameborder="0" width="560" height="315" allowfullscreen webkitallowfullscreen mozAllowFullScreen}
+
+#### Video transcript
+{: #chaos-demo-transcript-ui}
+{: notoc}
+This video will provide a brief overview of a secure reference architecture for performing chaos testing on IBM Cloud.
+
+The architecture will allow for installing LitmusChaos on a management cluster, and running chaos experiments against applications on a workload cluster in a safe and secure manner, even when the cluster is hosting shared workloads.
+
+Chaos testing, by its very nature, can be disruptive and even destructive, so security is imperative when running these tests.
+ 
+The experiments will vary in scope and in required permissions.
+
+This can pose problems for shared clusters and indeed for security in general, so we need a design that can mitigate against the risks involved when running chaos tests.
+
+Hence, we will use the secure reference architecture to harden the chaos framework deployment and workloads under test.
+
+This demonstration will show the reference architecture overview, some of the security features it provides, and finally some experiments that leverage those features in order to introduce faults that require escalating levels of permission.
+
+The considerations when running workloads in a shared cluster for chaos testing are that you have to separate namespaces for workloads, then you need to isolate the number of nodes that can actually run powerful pods and in this sense, powerful pods may run under privileged mode and with higher RBAC permissions.
+
+We also use policies to restrict the use of these chaos experiments to certain privileged service accounts.
+
+Next, a quick overview of the reference architecture itself, before jumping into the experiments themselves. 
+
+What we have, is two clusters based on the IBM Cloud Secure Landing Zone, we have a workload cluster which hosts all of the shared workloads, and we have a management cluster which hosts LitmusChaos itself.
+
+For experiments that require these elevated privileges, we provide isolated, hardened, tainted nodes so that workloads can be scheduled on them when the time comes to perform chaos experiments and then we run the privileged chaos experiments on those nodes and on those nodes only.
+
+These isolated nodes are on a separate subnet with strict security groups and access control lists which serve to limit public access, reducing the exposure of any privileged or powerful chaos experiments.
+
+They can only communicate with the LitmusChaos Center, that is hosted on the management plane through a reverse proxy.
+
+The diagram shows the security features of the reference architecture from a Kubernetes resource perspective.
+
+Service accounts are limited to separate namespaces to reduce visibility for other workloads.
+
+Most chaos faults will use a restricted default cluster role with the least possible privileges for most faults, extra permissions are only granted for select experiments that require them.
+
+We limit the scope through namespace scoped role bindings.
+
+Security context constraints are used to allow privilege escalation when required. 
+
+As mentioned in the previous slide, tainted nodes, selective tolerations and affinity are only used for chaos runs when scheduled.
+
+Now, we will show some experiments that showcase the secure reference architecture. 
+
+To begin with, the workloads are placed in separate namespaces depending on the privileges required by chaos experiments run against them.
+
+Service accounts are limited to one of these namespaces. 
+
+For example, anything run in app-chaos-ns, will only require unprivileged access to run the chaos experiments targeting resources within its namespace.
+
+However, anything run in app-chaos-privileged, is for privileged chaos experiments, and hence will be scheduled on the tainted nodes described earlier.
+
+For the cluster role, the app-chaos cluster project here, they will be for cluster-wide chaos experiments that require cluster wide permissions and hence have a service account with the most privilege associated with them, and also are run on the tainted worker nodes.
+
+Next, we have the actual chaos experiments hosted within the Litmus Chaos Center.
+
+I will describe each as they get progressively more complex and disruptive.
+
+The pod-delete experiment tests the resiliency of application components. 
+
+Pods are deleted to a given level, and ideally the application should have enough replicas to remain resilient and accessible to resiliency probes that are part of the experiment. 
+
+This experiment does not require privileged access, so is hosted in the least privileged namespace, app-chaos-ns from the previous example, and can be run on any node without disruption to shared workloads.
+
+The second experiment is zone-kill - this tests an availability zone failure by applying network policies to deny all traffic to pods running on a node in a certain availability zone.
+
+To remain resilient, an application should be running replicas in multiple availability zones.
+
+Again, this experiment is non-privileged and can run in the app-chaos-ns namespace.
+
+Third, the network-loss fault is a network saturation scenario simulated using packet loss behaviour. 
+
+This can test the resiliency of an application to a flaky or lossy network.
+
+This experiment actually does require elevated privileges, so is placed into the privileged namespace, along with the application workload, where it has access to a service account which can actually run this chaos experiment.
+
+Finally, the node-drain scenario simulates a node failure by draining it prematurely.
+
+This can test an applications failover capacity when a node becomes unavailable.
+
+This, of course, can have cluster-wide effects, affecting anything running on a node, so to avoid disruption to shared workloads, different applications, different owners even, this is placed into the cluster-privileged namespace.
+
+The experiment should be run on those isolated tainted node pools to avoid disruption to other applications, and to also limit the exposure of this powerful chaos experiment to the outside world.
+
+Taking a closer look at one of the experiments, in this case a custom experiment that restarts an IBM Cloud worker node, we can see that we have assigned a trusted profile ID to it, along with defining a service account token, the cluster ID where the operations are to be performed, and the worker pool.
+
+This ensures that we do target the selected worker nodes and not other worker nodes where workloads may still be running, that we do not want to affect during the course of this chaos experiment.
+
+Looking at the trusted profile itself, it is assigned to a service ID, this is the service ID that we save the token for inside the cluster so that we can actually perform these operations.
+
+The trusted profile itself only allows access to operations within that workload cluster in order not to expose it to other resources. 
+
+To find out more about this secure reference architecture for chaos experiments, please visit the resiliency solution guide on IBM Cloud Docs at the link below, where we also have information on high availability, disaster recovery and general cyber resiliency aspects of IBM Cloud.
+
+For the secure reference architecture itself, we have a comprehensive end-to-end tutorial on how to install a Secure Landing Zone consisting of two clusters as mentioned before, install LitmusChaos, and you can also install your very first chaos experiments and run that against your workload cluster. 
+
+
 ### Considerations
 {: #considerations}
 
@@ -103,3 +204,5 @@ Hypothesis 2: Multiple replicas need to be spread across availability zones to h
 {: #next-steps}
 
 Gradually build on your initial experiments by varying parameters. For example, run tests under different load conditions, scenarios, fault types, and expand to other applications. Stateful applications might have other considerations and behave differently under graceful or forced shutdown scenarios. Observability dashboards that monitor resource and application metrics and automated health checks can verify system health after you run a chaos experiment.
+
+Begin using [existing APIs](docs/resiliency?topic=resiliency-chaos-experiments) to create your own tailored chaos experiments in IBM Cloud.
