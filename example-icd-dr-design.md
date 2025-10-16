@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020, 2025
-lastupdated: "2025-09-12"
+lastupdated: "2025-10-16"
 
 keywords: DR testing, disaster recovery test, testing for a disaster scenario, dry test, switch over, DR simulation, databases
 
@@ -22,7 +22,7 @@ Protecting your {{site.data.keyword.cloud_notm}} Databases via a disaster recove
 
 In the event of an outage, the recovery from backup option can be used for all {{site.data.keyword.cloud_notm}} Databases.
 
-{{site.data.keyword.cloud_notm}} Databases automatically back up your instances every day. The backups are placed in a cross-regional Cloud Object Storage bucket that enables the backup to be access in at least two other regions. However, if your solution requires a more aggressive recovery point objective than 24 hours, you can choose to back up your data more often. In the event of a disaster, you choose your recovery region based on the locations in which your backup is stored. To learn more about how backup locations are managed, see the [Cloud Databases docs](/docs/cloud-databases?topic=cloud-databases-dashboard-backups#backup-locations).
+{{site.data.keyword.cloud_notm}} Databases automatically back up your instances every day. The backups are placed in a cross-regional Cloud Object Storage bucket that enables the backup to be accessed in at least two other regions. However, if your solution requires a more aggressive recovery point objective than 24 hours, you can choose to back up your data more often. In the event of a disaster, you choose your recovery region based on the locations in which your backup is stored. To learn more about how backup locations are managed, see the [Cloud Databases docs](/docs/cloud-databases?topic=cloud-databases-dashboard-backups#backup-locations).
 
 {{site.data.keyword.cloud_notm}} Databases for PostgreSQL, MongoDB, and MySQL all provide Point-In-Time Recovery that works by having their transaction logs continuously backed-up. If you're working with these database types, it is possible to restore the last daily backup and then apply transaction logs to restore to a specific point in time. {{site.data.keyword.cloud_notm}} Databases for Elasticsearch does not feature point-in-time recovery.
 
@@ -57,7 +57,7 @@ In certain regions, it's possible to encrypt database backups with HPCS. Here, i
 
 An alternative to recovery from a backup is to use read-replica databases, also known as read-only replicas, to provide a recovery solution. This option can be used only where read-replica databases are supported such as MySQL and PostgreSQL Databases.
 
-While the configurations might differ slightly between database types the overall functionality is similar. When transactions are sent to the database to process, they are stored in a transactional log file in a sequential order before they are written to the database. Whether the change is committed and structional changes such as the creation or removal of objects are also logged. If a crash occurs, the database recovers itself and replays any committed transactions it finds in the transaction log up to the point of the crash. 
+While the configurations might differ slightly between database types the overall functionality is similar. When transactions are sent to the database to process, they are stored in a transactional log file in a sequential order before they are written to the database. Whether the change is committed and structional changes such as the creation or removal of objects are also logged. If a crash occurs, the database recovers itself and replays any committed transactions it finds in the transaction log up to the point of the crash.
 
 When a read-replica is created, it's a point-in-time copy of the originating database that is built on the transaction log functionality. The originating database is aware of its replicas and either whole or partial transaction logs are copied to the replicas. As a result, a remote copy of your database if maintained in close to real-time. How close depends on several factors, including network latency and the throughput of transactions on the primary. It's not unusual for a read-eplica to be several minutes behind the primary while it ingests the logs it receives.
 

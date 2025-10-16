@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2025
-lastupdated: "2025-09-12"
+lastupdated: "2025-10-16"
 
 keywords: DR testing, disaster recovery test, testing for a disaster scenario, dry test, switch over, DR simulation, kubernetes, IKS
 
@@ -25,7 +25,7 @@ In the event of a disaster, you could recover your workload from a standby clust
 
 Standby clusters work best when Infrastructure as Code (IaC) is used to build and maintain the cluster. Autoscaling is a key component too. The entire build must be scripted, or at least precisely documented, in such a way that the build can be replicated in another region. Then the cluster is built either from the script or the carefully documented configuration of the primary cluster in a secondary region. At first, it has a minimal configuration but scales when load increases.
 
-In either option, scripting or documentation, careful configuration management must be maintained in both primary and standby cluster as drift between them is a risk. It's recommended that you use continuous delivery toolchains or similar to help ensure that applicaitons and updates are deployed consistently to both the active and standby clusters. Each cluster has a unique ID and the workloads that are deployed on them have unique network connection properties.
+In either option, scripting or documentation, careful configuration management must be maintained in both the primary and standby clusters, as drift between them is a risk. It's recommended that you use continuous delivery toolchains or similar to help ensure that applications and updates are deployed consistently to both the active and standby clusters. Each cluster has a unique ID and the workloads that are deployed on them have unique network connection properties.
 
 Depending on your RTO, consider whether you need to maintain a permanent cold standby. Using IaC, it may be possible to build a new cluster on-demand and still meet your RTO.
 {: note}
@@ -56,7 +56,7 @@ After the cause of the outage is resolved and the cluster is recovered in the pr
 
 An alternative to a standby cluster is to simultaniously run two clusters in different regions, which is in effect a high availability option. While this option provides the lowest possible RTO / RPO, it does increase operational costs.
 
-For this option to work, the second cluster must be identitcal to the primary cluster in terms of build and configuration because users access your workload through a global load balancer, which is provisioned with IBM Cloud Internet Services (CIS). From the outset, both clusters are serving user requests. Since load is sprad across both clusters, each is configured to bear half of the user load in normal circumstances. However, autoscaling must be configured to allow the clusters to handle the full capacity of user requests in the event that one of the clusteres suffers an outage. It is vital that both clusters maintain the same configuration and workload versions which is possible to achieve through continuous delivery practices.
+For this option to work, the second cluster must be identitcal to the primary cluster in terms of build and configuration. From the outset, both clusters are serving user requests, via a global load balancer, provisioned through Cloud Internet Services. Since load is spread across both clusters, each is configured to bear half of the user load in normal circumstances. However, autoscaling must be configured to allow the clusters to handle the full capacity of user requests in the event that one of the clusteres suffers an outage. It is vital that both clusters maintain the same configuration and workload versions which is possible to achieve through continuous delivery practices.
 
 As an alternative deployment model, you can continue to have one cluster handle all user requests while having the second cluster ready and waiting in the event of an outage. If a failure is detected in the active cluster, connections can automatically be directed to the secondary cluster.
 {: note}
@@ -78,7 +78,7 @@ After the cause of the outage is resolved and the cluster is recovered, the glob
 
 It is a recommended best practice to maintain container images in IBM Cloud Container Registry. Container Registry is a highly available, regional, service. Data that is written to Container Registry is replicated over the availability zones in the region where your instance resides. To prevent loss of access to your images in the event of a regional failure, you can choose to push your images to multiple registry regions. This is a key consideration in your overall IKS DR strategy.
 
-Also, coinsider using Continuous Integration / Continuous Deployment (CI-CD) pipelines to deploy your applications in an IKS environment. Test you CI/CD pipelines regularly to ensure they are operating correctly. Using CI/DC will automate the process of code integration and delivery for your clusters, which helps maintain standby clusters or quickly deploy workloads onto new ones. For standby clusters, consider adding a delay to automated deployment. This can prevent a problamatic release from being deployed to the standby too.
+Also, consider using Continuous Integration / Continuous Deployment (CI-CD) pipelines to deploy your applications in an IKS environment. Test you CI/CD pipelines regularly to ensure they are operating correctly. Using CI/DC will automate the process of code integration and delivery for your clusters, which helps maintain standby clusters or quickly deploy workloads onto new ones. For standby clusters, consider adding a delay to automated deployment. This can prevent a problamatic release from being deployed to the standby too.
 
 ## Further reading
 {: #iks-dr-further-reading}
