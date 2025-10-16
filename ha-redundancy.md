@@ -1,12 +1,12 @@
 ---
 
 copyright:
-  years: 2024, 2025
-lastupdated: "2025-02-04"
+   years: 2020, 2025
+lastupdated: "2025-07-28"
 
 keywords: load balancing, global load balancing, HA, DR, high availability, disaster recovery, HA for the platform, high availability for platform, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
-subcollection: design
+subcollection: resiliency
 
 ---
 
@@ -88,7 +88,7 @@ If there is a failure of the control plane in one zone, or if a zone is unavaila
 
 In exceptional cases where the control plane is globally deployed, it is still deployed across multiple regions to help ensure high availability. Therefore, failures in one region would not impact service functions in the other regions.
 
-For more information about the specific options for deploying your workloads that use a zonal service, see [Locations for resource deployment](/docs/overview?topic=overview-locations) and [Considerations for high availability](/docs/overview?topic=overview-ha-considerations).
+For more information about the specific options for deploying your workloads that use a zonal service, see [Locations for resource deployment](/docs/overview?topic=overview-locations) and [Considerations for high availability](/docs/resiliency?topic=resiliency-understanding-ha).
 
 ### Regional service redundancy
 {: #regional-service}
@@ -107,7 +107,7 @@ If there is failure of the control plane in one zone, or even complete loss, the
 
 Even in the exceptional cases that the control plane is globally deployed, it is still deployed across multiple regions to help ensure high availability and to guarantee that failures in one region do not impact service functions in other regions.
 
-For more information about the specific options for deploying your workloads that use a regional service, see [Locations for resource deployment](/docs/overview?topic=overview-locations) and [Considerations for high availability](/docs/overview?topic=overview-ha-considerations).
+For more information about the specific options for deploying your workloads that use a regional service, see [Locations for resource deployment](/docs/overview?topic=overview-locations) and [Considerations for high availability](/docs/resiliency?topic=resiliency-understanding-ha).
 
 
 ### Global service redundancy
@@ -165,11 +165,11 @@ For more information about best practices when you use platform services for hig
 
 | Platform service | Details |
 |------------------|----------------|
-|  Account management  |    [Best practices for setting up your account](/docs/account?topic=account-account_setup) and [Best practices for billing and usage](/docs/billing-usage?topic=billing-usage-best-practices)     |
+|  Account management  |    [Best practices for setting up your account](/docs/account?topic=account-account_setup) and [Best practices for billing and usage](/docs/account?topic=account-billing-best-practices)     |
 | Catalogs    |    [Managing catalog settings](/docs/account?topic=account-filter-account)               |
 | {{site.data.keyword.cloud-shell_short}} | [Understanding high availability and disaster recovery for Cloud Shell](/docs/cloud-shell?topic=cloud-shell-ha-dr) |
 | Console | [Navigating the console](/docs/overview?topic=overview-ui) |
-|      Global search and tagging         |    [Searching for resources](/docs/account?topic=account-searching-for-resources) and [Working with tags](/docs/account?topic=account-tag)        |
+|      Global search and tagging         |    [Searching for resources](/docs/account?topic=account-manage_resource#searching-for-resources) and [Working with tags](/docs/account?topic=account-tag)        |
 | IAM       |      [What is IBM Cloud Identity and Access Management?](/docs/account?topic=account-iamoverview)  |
 | {{site.data.keyword.cloud_notm}} CLI | [Understanding high availability and disaster recovery for the {{site.data.keyword.cloud_notm}} CLI](/docs/cli?topic=cli-ha-dr) |
 | {{site.data.keyword.cloud_notm}} projects| [Understanding high availability and disaster recovery for projects](/docs/secure-enterprise?topic=secure-enterprise-ha-dr) |

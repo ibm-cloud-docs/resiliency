@@ -2,9 +2,7 @@
 
 copyright:
    years: 2020, 2025
-
-lastupdated: "2025-06-05"
-
+lastupdated: "2025-08-28"
 
 keywords: chaos testing, resiliency, client testing
 
@@ -34,7 +32,7 @@ LitmusChaos is a cloud-native, open source chaos engineering framework that is d
 
 This tutorial requires:
 
-* [{{site.data.keyword.cloud_notm}} CLI](https://cloud.ibm.com/docs/cli?topic=cli-getting-started)
+* [{{site.data.keyword.cloud_notm}} CLI](/docs/cli?topic=cli-getting-started)
 * [Red Hat OpenShift CLI](https://docs.openshift.com/container-platform/4.17/cli_reference/openshift_cli/getting-started-cli.html) for interacting with Red Hat OpenShift
 * [Helm](https://helm.sh/docs/intro/install/) for installing LitmusChaos
 
@@ -106,6 +104,8 @@ This step describes how to install and access the LitmusChaos ChaosCenter, a web
       runAsUser: 1000700001
       allowPrivilegeEscalation: false
    ```
+   {: codeblock}
+
    Ensure that the update in the helm chart is applied to all pods and deployments. For more information on security contexts and constraints, see the relevant Red Hat OpenShift [page](/docs/openshift?topic=openshift-openshift_scc). In {{site.data.keyword.cloud_notm}}, Red Hat OpenShift by default runs under the `restricted-v2` SCC.
 
 4. Ensure that you can access the control plane of LitmusChaos. The best practice for Red Hat OpenShift is to use an [ingress](/docs/openshift?topic=openshift-ingress-about-roks4) with [TLS certificates](/docs/openshift?topic=openshift-secrets) that are stored within [Secrets Manager](/docs/openshift?topic=openshift-secrets-mgr). Review the following example ingress and update the placeholders for `host`, `namespace`, `hosts` and `secretName` to match your cluster configuration and secret names. In this configuration, TLS termination happens at the ingress level, which secures the LitmusChaos control plane and simplifies certificate management.
@@ -149,8 +149,6 @@ This step describes how to install and access the LitmusChaos ChaosCenter, a web
    ```
    {: codeblock}
 
-
-
 5. Verify that the ChaosHub integration is correct by going to the home page of the control plane. If it is configured incorrectly, you might see the error message `error in syncing`. Add the correct URL: https://github.com/litmuschaos/chaos-charts and you select the latest stable branch. For more information, see the [LitmusChaosHub](https://hub.litmuschaos.io/) marketplace.
 
 ## Create an environment and chaos infrastructure
@@ -159,10 +157,10 @@ This step describes how to install and access the LitmusChaos ChaosCenter, a web
 
 This step explains how to set up chaos infrastructure, which is a service that is deployed in your workload cluster to inject chaos as requested by the control plane that you created in the previous step.
 
-1. Log in to the LitmusChaos control plane UI. The URL for this, with a default configuration, is located in the Routes section of your management cluster, and typically has a prefix of `litmus-frontend-ingress`. If this is the first time you log in, you are prompted to change the default password. The default credentials are on the [installation page](https://docs.litmuschaos.io/docs/getting-started/installation).
+1. Log in to the LitmusChaos control plane UI. The URL for this, with a default configuration, is located in the Routes section of your management cluster, and typically has a prefix of `litmus-frontend-ingress`. If this is the first time you log in, you are prompted to change the default password. The default credentials are on the [installation page](https://docs.litmuschaos.io/docs/getting-started/installation){: external}.
 2. Use the default project or create your own project by clicking your username (or Admin), selecting "Projects" and then create a project by clicking "+ Create Project".
-3. Add a remote environment by following the LitmusChaos [environment instructions](https://docs.litmuschaos.io/docs/user-guides/create-environment). Choose "pre-production" for the environment, as this tutorial is not designed for use in production environments.
-4. Add a chaos infrastructure by following the LitmusChaos [infrastructure instructions](https://docs.litmuschaos.io/docs/user-guides/create-infrastructure). Choose "Namespace mode" to avoid giving broad access to the cluster. Use the same namespace that you intend to host the application on. This chaos experiment runs only against that namespace, so remove the `litmus-admin` service account and replace it with one with a more restrictive scope.
+3. Add a remote environment by following the LitmusChaos [environment instructions](https://docs.litmuschaos.io/docs/user-guides/create-environment){: external}. Choose "pre-production" for the environment, as this tutorial is not designed for use in production environments.
+4. Add a chaos infrastructure by following the LitmusChaos [infrastructure instructions](https://docs.litmuschaos.io/docs/user-guides/create-infrastructure){: external}. Choose "Namespace mode" to avoid giving broad access to the cluster. Use the same namespace that you intend to host the application on. This chaos experiment runs only against that namespace, so remove the `litmus-admin` service account and replace it with one with a more restrictive scope.
 5. Download the resulting `.yml` file. If you are deploying to an SLZ cluster, modify the `containers:` section in the file to ensure that the following spec is included:
 
    ```yaml
@@ -171,7 +169,6 @@ This step explains how to set up chaos infrastructure, which is a service that i
       allowPrivilegeEscalation: false
    ```
    {: codeblock}
-
 
    Make sure that the `runAsUser` UID parameter is within the range of 1000710000 and 1000719999, or that container doesn't run correctly on an SLZ.
 
@@ -185,7 +182,7 @@ This step explains how to set up chaos infrastructure, which is a service that i
 
 In this section, you deploy a sample application, or use your own, and modify it so that it is suitable for a chaos experiment that simulates an availability zone failure.
 
-If you already have a suitable application to test, use that with your chaos experiment. Otherwise, use a sample application, like [µBench](https://github.com/mSvcBench/muBench/tree/main). This sample has at least one microservice and is exposed through a route so that a resilience probe can use that route to determine whether the application is functioning correctly.
+If you already have a suitable application to test, use that with your chaos experiment. Otherwise, use a sample application, like [µBench](https://github.com/mSvcBench/muBench/tree/main){: external}. This sample has at least one microservice and is exposed through a route so that a resilience probe can use that route to determine whether the application is functioning correctly.
 
 Remember from the previous steps that application pods also need to run as a user with a UID between 1000710000 and 1000719999.
 
@@ -210,7 +207,7 @@ Remember from the previous steps that application pods also need to run as a use
    ```
    {: codeblock}
 
-   This example is targeting all microservices in [µBench](https://github.com/mSvcBench/muBench/tree/main). You might have to change the example to match the labels in your own application.
+   This example is targeting all microservices in [µBench](https://github.com/mSvcBench/muBench/tree/main){: external}. You might have to change the example to match the labels in your own application.
 
 2. Apply the anti-affinity rules to the application under test, which places pods.
 
@@ -222,8 +219,8 @@ If you want to test the validity of this chaos experiment, you can apply *affini
 
 This step explains how to create a probe that monitors the health of your application while a chaos experiment is run against it.
 
-1. From the project page in LitmusChaos, click "Resilience Probes".
-2. Select "+ New Probe".
+1. From the project page in LitmusChaos, click **Resilience Probes**.
+2. Select **+ New Probe**.
 3. For this experiment, use an HTTP probe to monitor the applications endpoint since it is the simpler to configure. Alternative probes are available, such as Prometheus metric checks and command-line based probes.
 4. Give the probe a name, and configure the probe properties. The following defaults are a good starting point:
 
@@ -237,7 +234,7 @@ This step explains how to create a probe that monitors the health of your applic
    | Evaluation timeout       | 600 s         |
    {: caption="Probe defaults." caption-side="bottom"}
 
-5. Click "Probe Details", and configure the URL and HTTP method to match your application route. You can also include POST data, and match against a response code. For example, a probe checking port 200 with a criterion of "==" fails only when the application fails to return a 200 code.
+5. Click **Probe Details**, and configure the URL and HTTP method to match your application route. You can also include POST data, and match against a response code. For example, a probe checking port 200 with a criterion of "==" fails only when the application fails to return a 200 code.
 6. Save the probe.
 
 
@@ -247,16 +244,16 @@ This step explains how to create a probe that monitors the health of your applic
 
 In this step, you learn how to create a chaos experiment that simulates an availability zone failure in your application namespace.
 
-1. In the LitmusChaos Control Center, select your project and click the "+ New Experiment" button.
+1. In the LitmusChaos Control Center, select your project and click the **+ New Experiment** button.
 2. Give the experiment a name, for example "chaos-az-pod-partition", and select the relevant chaos infrastructure to perform the experiment against.
-3. Select "Blank Canvas" to build your experiment from scratch.
-4. Click "Add". From your ChaosHub, select **pod-network-partition** from the Kubernetes section.
-5. For "Target Application", complete the fields with relevant data. Ensure that your application deployment type matches your sample application, and select the correct namespace. Leave "App Label" blank for now.
-6. Leave "Tune Fault" blank. You modify this section in the YAML editor later.
-7. In "Probes", select the probe that is created in Step 6. Use "Continuous" mode.
-8. Click "Apply Changes" to save your experiment.
-9. Next, due to limitations in the LitmusChaos UI regarding applications with multiple pod types, you need to modify the experiment you created by using the YAML editor. Click the "VISUAL/YAML" slider in the experiment to change to the YAML editor.
-10. Search for "appinfo" in the YAML. In "applabel", add the {{site.data.keyword.cloud_notm}} zone that you want to disable for the experiment. Review the following example "appinfo" code block:
+3. Select **Blank Canvas** to build your experiment from scratch.
+4. Click **Add**. From your ChaosHub, select **pod-network-partition** from the Kubernetes section.
+5. For **Target Application**, complete the fields with relevant data. Ensure that your application deployment type matches your sample application, and select the correct namespace. Leave "App Label" blank for now.
+6. Leave **Tune Fault** blank. You modify this section in the YAML editor later.
+7. In **Probes**, select the probe that is created in Step 6. Use "Continuous" mode.
+8. Click **Apply Changes** to save your experiment.
+9. Next, due to limitations in the LitmusChaos UI regarding applications with multiple pod types, you need to modify the experiment you created by using the YAML editor. Click the **VISUAL/YAML** slider in the experiment to change to the YAML editor.
+10. Search for "appinfo" in the YAML. In **applabel**, add the {{site.data.keyword.cloud_notm}} zone that you want to disable for the experiment. Review the following example "appinfo" code block:
 
    ```yaml
    appinfo:
@@ -278,7 +275,7 @@ This step describes how you run the chaos experiment, monitor the application he
 
 1. Make sure that all applications pods that are in the scope of the chaos experiment are labeled with the correct node topology. This is not done by default in Kubernetes or Red Hat OpenShift, so you have a choice here:
    - Label the pods manually. Use the label `ibm-cloud.kubernetes.io/zone=us-south-1` to again swap the cloud availability zone for the one you want to simulate an outage on.
-   - Use a policy-as-code framework such as [kyverno](https://kyverno.io/) to mutate your pod specifications to include the cloud availability zone as labels. Consult the [installation](https://kyverno.io/docs/installation/) documentation on how to install Kyverno. The specific policy to use is ["Add scheduled Node's labels to a Pod"](https://kyverno.io/policies/other/add-node-labels-pod/add-node-labels-pod/). Modify the policy to apply {{site.data.keyword.cloud_notm}} labels as shown in the following example.
+   - Use a policy-as-code framework such as [kyverno](https://kyverno.io/){: external} to mutate your pod specifications to include the cloud availability zone as labels. Consult the [installation](https://kyverno.io/docs/installation/){: external} documentation on how to install Kyverno. The specific policy to use is ["Add scheduled Node's labels to a Pod"](https://kyverno.io/policies/other/add-node-labels-pod/add-node-labels-pod/){: external}. Modify the policy to apply {{site.data.keyword.cloud_notm}} labels as shown in the following example.
 
    ```yaml
    apiVersion: kyverno.io/v2beta1
@@ -342,7 +339,6 @@ This step describes how you run the chaos experiment, monitor the application he
    ```
    {: codeblock}
 
-
    In this kyverno example, the application targets any pods that begin with `s0-*`. This is because in certain network configurations, if no specific application is targeted along with the zone label, it might result in all pods in the namespace being affected. Henceforth, this results in only the targeted application being labeled with an availability zone.
    {: note}
 
@@ -368,4 +364,4 @@ If the experiment is complete but the resilience score is 0, the application was
 ## Next steps
 {: #chaos-litmus-next-steps}
 
-You have successfully installed LitmusChaos, created an experiment, and run it against an application, showing that applications resiliency to a specific chaos experiment. Now, you are ready to explore other types of chaos testing, such as [Container Kill](https://litmuschaos.github.io/litmus/experiments/categories/pods/container-kill/) or [Disk Fill](https://litmuschaos.github.io/litmus/experiments/categories/pods/disk-fill/#introduction). Apply these experiments along with the example from this tutorial to explore the true resiliency score of your application.
+You have successfully installed LitmusChaos, created an experiment, and run it against an application, showing that applications resiliency to a specific chaos experiment. Now, you are ready to explore other types of chaos testing, such as [Container Kill](https://litmuschaos.github.io/litmus/experiments/categories/pods/container-kill/){: external} or [Disk Fill](https://litmuschaos.github.io/litmus/experiments/categories/pods/disk-fill/#introduction){: external}. Apply these experiments along with the example from this tutorial to explore the true resiliency score of your application.

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2025
-lastupdated: "2025-02-04"
+   years: 2020, 2025
+lastupdated: "2025-10-14"
 
 keywords: resiliency, DR, high availability, disaster recovery, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -41,7 +41,7 @@ In a disaster situation, effective communication between teams is important. In 
 ## Test your plan
 {: #test-the-plan}
 
-Reacting to a real disaster isn't the ideal time to test your plan for the first time. Regularly test your plan to help ensure that it works and you understand how long it might take to enact the plan. Where other personnel are involved, testing your plan allows them to better understand their roles. Following the test, make sure that you incorporate any lessons that are learned into the plan. For more information about testing your disaster recovery plan, see [Disaster Recovery Testing](bcdr-testing.md).
+Reacting to a real disaster isn't the ideal time to test your plan for the first time. Regularly test your plan to help ensure that it works and you understand how long it might take to enact the plan. Where other personnel are involved, testing your plan allows them to better understand their roles. Following the test, make sure that you incorporate any lessons that are learned into the plan. For more information about testing your disaster recovery plan, see [Disaster Recovery Testing](/docs/resiliency?topic=resiliency-dr-testing).
 
 ## Understand your responsibilities
 {: #understand-responsibilites}
@@ -66,8 +66,8 @@ When you provision an instance of a regional and zonal service, you select a reg
 
 For client's metadata, including client business contact and account usage information (as defined in the [{{site.data.keyword.cloud_notm}} Service Agreement](https://www.ibm.com/support/customer/csol/terms/?id=Z126-6304&cc=us&lc=en){: external}), {{site.data.keyword.cloud_notm}} stores and processes them where the control planes of the regional and global services are located.
 
-- Regional services typically have control planes that are located in the same region where you selected for the service except for the services indicated in [Services with global control planes](/docs/overview?topic=overview-zero-downtime#service-global-control-plane).
-- Global services control planes locations are indicated in [Global platform services](/docs/overview?topic=overview-zero-downtime#global-platform).
+- Regional services typically have control planes that are located in the same region where you selected for the service except for the services indicated in [Services with global control planes](/docs/resiliency?topic=resiliency-ha-redundancy#service-global-control-plane).
+- Global services control planes locations are indicated in [Global platform services](/docs/resiliency?topic=resiliency-ha-redundancy#global-platform).
 
 For a complete list of data attributes that each single {{site.data.keyword.cloud_notm}} service processes and stores, see the [API and SDK reference library](https://cloud.ibm.com/docs?tab=api-docs).
 
@@ -94,6 +94,7 @@ Think of {{site.data.keyword.cloud_notm}} as a toolbox with a set of tools or se
 
 Running IT systems is never risk-free, and introducing change into your workload environment is a point when risk increases. Have a change release plan and a backout plan to manage changes that you make to your environment. As one of the first steps of any change release plan, include taking backups of data and configurations. If something goes wrong during or shortly after the release, you can recover from your backups.
 
+
 ## Create Custom Images
 {: #create-customer-images}
 
@@ -110,6 +111,16 @@ Use hostnames and DNS instead of IP addresses to minimize the changes that are r
  For Key Protect, configure the service in the primary site with failover in the DR region to enable automatic rerouting of Key Protect requests if a regional service outage occurs. Create scripts to update the Virtual Private Endpoint (VPE) settings to access the Key Protect Service, specifically the Internet Protocol (IP) address, as part of disaster recovery procedures.
 
  For HPCS, configure a failover crypto unit in the DR region. Initialize and configure failover crypto units the same as the operational crypto units before the disaster happens, so they are available if a regional outage occurs
+
+## Invest in Observability
+{: #invest-in-observability}
+
+Observability includes tools like [IBM Cloud Logs](/docs/cloud-logs?topic=cloud-logs-getting-started) and [IBM Cloud Monitoring](/docs/monitoring?topic=monitoring-getting-started) which allow you to learn what is happening in the system and, in the event of an outage or degradation of services, help to identify, mitigate and remediate the root cause quickly. This is especially needed for complex distributed systems where failures are unavoidable and it's very difficult to track or correlate dependencies between components. Additionally, [Activity Tracker Event Routing](/docs/atracker?topic=atracker-getting-started) service allows you to audit events and record and monitor changes to the system while [Flow Logs for VPC](/docs/vpc?topic=vpc-flow-logs) provides visibility into IP traffic going to and from network interfaces within VPC and allows you to troubleshoot networking and connectivity issues, which are otherwise difficult to observe.
+
+Resilient applications built for cloud and processes supporting them should leverage these capabilities effectively. For instance, applications should expose metrics for health of its components and their subsystems. All IBM Cloud services support collecting [platform metrics](/docs/monitoring?topic=monitoring-platform_metrics_enabling) and expose detailed metrics which are documented individually, like this for [loadbalancer](/docs/loadbalancer-service?topic=loadbalancer-service-monitoring-metrics). Applications and [dashboards](/docs/monitoring?topic=monitoring-dashboards) built to support them should leverage these metrics to improve operational efficiency. 
+
+IBM Cloud Logs provides advanced [features](/docs/cloud-logs?topic=cloud-logs-features) to enrich, query and alert on logs generated by applications while managing the volume of logs and its cost. Different alerting [types](/docs/cloud-logs?topic=cloud-logs-alerts#alert-types) enable more sophisticated capabilities to effectively monitor systems.
+
 
 ## Stay updated with {{site.data.keyword.cloud_notm}} notifications
 {: #IBM-cloud-notifications}

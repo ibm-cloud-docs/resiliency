@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2024-12-11"
+   years: 2020, 2025
+lastupdated: "2025-07-28"
 
 keywords: high availability, ha, understanding ha
 
@@ -15,7 +15,7 @@ subcollection: resiliency
 # Understanding high availability
 {: #understanding-ha}
 
-{{site.data.keyword.cloud_notm}} implements architecture patterns to design {{site.data.keyword.cloud_notm}} services for [high availability](#x2284708){: term} (HA), helping ensure resilience against different fault types that might impact the distributed {{site.data.keyword.cloud_notm}} infrastructure.
+{{site.data.keyword.cloud_notm}} implements architecture patterns to design {{site.data.keyword.cloud_notm}} services for high availability (HA), helping ensure resilience against different fault types that might impact the distributed {{site.data.keyword.cloud_notm}} infrastructure.
 
 ## What is high availability?
 {: #what-is-ha}
@@ -41,7 +41,7 @@ The formula is useful because it shows you how to improve availability. Consider
 > MTTR = Total downtime / Number of failures = 1 hr / 1 = 1 hr
 > Availability = (MTBF / (MTBF + MTTR)) x 100 = (720 / 721) x 100 = 99.86%
 
-You can increase MTBF, decrease MTTR, or both. This means that availability can be improved by increasing reliability or fixing issues when they break more efficiently. Both approaches are common in computer systems. The mainframe, which uses high reliability parts, redundant parts, and modularity to allow quicker repairs, shows that significant levels of availability are possible with this approach. For more information about the availability of specific {{site.data.keyword.cloud_notm}} services, see [Service Level Agreements (SLAs)](https://www.ibm.com/terms/?id=i126-9268).
+You can increase MTBF, decrease MTTR, or both. This means that availability can be improved by increasing reliability or fixing issues when they break more efficiently. Both approaches are common in computer systems. The mainframe, which uses high reliability parts, redundant parts, and modularity to allow quicker repairs, shows that significant levels of availability are possible with this approach. For more information about the availability of specific {{site.data.keyword.cloud_notm}} services, see [Service Level Agreements (SLAs)](https://www.ibm.com/support/customer/csol/terms/?id=i126-9268).
 
 ![Availability formula.](images/availability-formula.svg "Availability formula"){: caption="Summarized availability formula" caption-side="bottom"}
 

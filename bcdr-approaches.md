@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2024-12-11"
+   years: 2020, 2025
+lastupdated: "2025-08-28"
 
 keywords: disaster recovery, dr, disaster recovery strategy
 
@@ -65,9 +65,9 @@ Summary of the zero footprint approach:
 
 To enable an accurate and faster rebuild of the environment, create and use a toolchain that deploys infrastructure services by using {{site.data.keyword.bplong_notm}}. Then, deploy code to those services by using Git-based code repositories.
 
-To backup and replicate data that is written to block storage volumes or file storage, use [Backup for VPC](https://cloud.ibm.com/docs/vpc?topic=vpc-backups-vpc-best-practices&interface=ui). Verify that the backup is stored as cross-region backup snapshots and file storage replication is active.
+To backup and replicate data that is written to block storage volumes or file storage, use [Backup for VPC](/docs/vpc?topic=vpc-backups-vpc-best-practices&interface=ui). Verify that the backup is stored as cross-region backup snapshots and file storage replication is active.
 
-An alternative method is to deploy and configure a [Veeam](https://cloud.ibm.com/docs/vpc?topic=vpc-about-veeam) agent on each server or a central Veeam Backup and Replication server or similar ‘bring your own’ backup software. Depending on the chosen tool, devise a suitable backup or replication schedule. If you decide to use Veeam, write backup files to a {{site.data.keyword.cos_short}} bucket. The bucket must be cross-regional or, where compliance needs dictate, be configured for replication to another specified bucket hosted in a second region of choice.
+An alternative method is to deploy and configure a [Veeam](/docs/vpc?topic=vpc-about-veeam) agent on each server or a central Veeam Backup and Replication server or similar ‘bring your own’ backup software. Depending on the chosen tool, devise a suitable backup or replication schedule. If you decide to use Veeam, write backup files to a {{site.data.keyword.cos_short}} bucket. The bucket must be cross-regional or, where compliance needs dictate, be configured for replication to another specified bucket hosted in a second region of choice.
 
 For VSIs running Linux operating systems, the bucket can be mounted directly by using [`s3fs`](https://github.com/s3fs-fuse/s3fs-fuse), based on FUSE. For VSIs running Microsoft Windows, [Rclone](https://rclone.org) is the preferred tool for direct mounting. Rclone is an open source command prompt tool that is used to manage files in cloud storage, including {{site.data.keyword.cos_short}}. In each case, the bucket is mounted as a network drive and operates in a similar way to a Common Internet File System (CIFS) or Network File System (NFS) shared drive. The installation of the Veeam agent and the bucket mount can be scripted and automated at the VSI provision time, by using the user-data settings. Be sure to use the appropriate endpoint for the bucket.
 
@@ -103,7 +103,7 @@ To avoid delays associated with lead times, certain networking elements are prov
 
 As before, to backup and replicate data that is written to block storage volumes or file storage, use Backup for VPC. Verify that the backup is stored as cross-region backup snapshots and file storage replication is active.
 
-An alternative method is to deploy and configure a [Veeam](https://cloud.ibm.com/docs/vpc?topic=vpc-about-veeam) agent on each server or a central Veeam Backup and Replication server or similar ‘bring your own’ backup software. Depending on the chosen tool, devise a suitable backup or replication schedule. If you decide to use Veeam, write backup files to a {{site.data.keyword.cos_full_notm}} bucket. The bucket must be cross-regional or, where compliance needs dictate, be configured for replication to another specified bucket hosted in a second region of choice.
+An alternative method is to deploy and configure a [Veeam](/docs/vpc?topic=vpc-about-veeam) agent on each server or a central Veeam Backup and Replication server or similar ‘bring your own’ backup software. Depending on the chosen tool, devise a suitable backup or replication schedule. If you decide to use Veeam, write backup files to a {{site.data.keyword.cos_full_notm}} bucket. The bucket must be cross-regional or, where compliance needs dictate, be configured for replication to another specified bucket hosted in a second region of choice.
 
 It’s possible to create a read-replica database in the region chosen for DR for certain IBM Cloud databases. A copy of the database is maintained automatically in the second region, which can be turned into a stand-alone copy if disaster strikes. Read-replicas provide a more stringent RTO, while asynchronous replication from the production database aims to limit any transactional data loss to under 15 minutes.
 
