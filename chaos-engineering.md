@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-10-08"
+lastupdated: "2025-10-28"
 
 
 keywords: chaos testing, resilient app, client testing
@@ -205,4 +205,4 @@ Hypothesis 2: Multiple replicas need to be spread across availability zones to h
 
 Gradually build on your initial experiments by varying parameters. For example, run tests under different load conditions, scenarios, fault types, and expand to other applications. Stateful applications might have other considerations and behave differently under graceful or forced shutdown scenarios. Observability dashboards that monitor resource and application metrics and automated health checks can verify system health after you run a chaos experiment.
 
-Begin using [existing APIs](docs/resiliency?topic=resiliency-chaos-experiments) to create your own tailored chaos experiments in IBM Cloud.
+Begin using [existing APIs](/docs/resiliency?topic=resiliency-chaos-experiments) to create your own tailored chaos experiments in IBM Cloud.

@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-10-02"
+lastupdated: "2025-10-28"
 
 keywords: SLO, service level objectives
 
@@ -149,7 +149,7 @@ The following table describes the service level objectives (SLOs) for the high i
 
 | Networking service | Availability target | High availability guidance |
 |----------|---------|---------|
-| {{site.data.keyword.dns_full_notm}} | 99.999% | [Understanding high availability for DNS Services](/docs/dns-svcs?topic=dns-svcs-service-name-ha-dr) |
+| {{site.data.keyword.dns_full_notm}} | 99.999% | [Understanding high availability for DNS Services](/docs/dns-svcs?topic=dns-svcs-dns-svcs-ha-dr) |
 | {{site.data.keyword.tg_full_notm}} | 99.999% | [High availability and disaster recovery](/docs/transit-gateway?topic=transit-gateway-ha-dr-transit-gateway) |
 | {{site.data.keyword.cis_full_notm}} | 99.999% | [Use Virtual Servers to build highly available and scalable web app](/docs/solution-tutorials?topic=solution-tutorials-vpc-multi-region) |
 | {{site.data.keyword.dl_full_notm}} | 99.999% | [High Availability and disaster recovery for Direct Link](/docs/dl?topic=dl-ha-dr-dl) |
