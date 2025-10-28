@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-08-13"
+lastupdated: "2025-10-28"
 
 
 keywords: disaster recovery plan, DR, resilient app, plan for DR, DR objectives
@@ -45,7 +45,6 @@ subcollection: resiliency
 - [Understanding high availability for CIS](/docs/cis?topic=cis-ha)
 - [Understanding high availability for Cloud Databases for ETCD](/docs/databases-for-etcd?topic=databases-for-etcd-ha-dr)
 - [Understanding high availability for Cloud Databases for Elasticsearch](/docs/databases-for-elasticsearch?topic=databases-for-elasticsearch-elasticsearch-ha-dr)
-- [Understanding high availability for Cloud Databases for EnterpriseDB](/docs/databases-for-enterprisedb?topic=databases-for-enterprisedb-ha-dr)
 - [Understanding high availability for Cloud Databases for MongoDB](/docs/databases-for-mongodb?topic=databases-for-mongodb-mongodb-ha-dr)
 - [Understanding high availability for Cloud Databases for MySQL](/docs/databases-for-mysql?topic=databases-for-mysql-mysql-ha-dr)
 - [Understanding high availability for Cloud Databases for Postgresql](/docs/databases-for-postgresql?topic=databases-for-postgresql-postgresql-ha-dr)
