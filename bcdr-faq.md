@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-07-28"
+lastupdated: "2025-10-28"
 
 keywords: disaster recovery, DR, what is disaster recovery, DR strategy, disaster recovery options, disaster recovery strategy
 
@@ -46,7 +46,7 @@ In each event, it’s essential to have a recovery plan that restores services w
 ## Can DR take place in one region?
 {: #dr-same-region}
 
-Yes, DR can take place in the same region, and it might be faster due to lower latency and no need for cross-region data replication. However, using a separate region is recommended for better resilience. If the primary region is severely impacted, recovery in the same region might not be possible.
+Yes, DR can take place in the same region, and it might be faster due to less latency and no need for cross-region data replication. However, using a separate region is recommended for better resilience. If the primary region is severely impacted, recovery in the same region might not be possible.
 
 {{site.data.keyword.cloud_notm}} seeks to recover services within the region, in line with any published [service level objectives (SLOs)](/docs/resiliency?topic=resiliency-slo). Recovery might take minutes or hours but in the worst-case scenarios, perhaps where there has been physical destruction of property, it can take days, weeks, or months to achieve.
 
@@ -60,6 +60,6 @@ Not all disasters require recovery at a second region. A database administrator 
 ## How can I prevent accidental deletion of services?
 {: #prevent-accidental-deletion}
 
-Many {{site.data.keyword.cloud_notm}} services have in-built safeguards against accidental deletion, but you can implement extra protections by using accounts that have appropriate access rights. Use {{site.data.keyword.iamshort}} (IAM) to create accounts with different levels of access and permissions. Then use an appropriate account for the operations task at hand and make sure that other users, such as developers, have only the access and permissions they need.
+Many {{site.data.keyword.cloud_notm}} services have in-built safeguards against accidental deletion, but you can implement more protections by using accounts that have appropriate access rights. Use {{site.data.keyword.iamshort}} (IAM) to create accounts with different levels of access and permissions. Then use an appropriate account for the operations task at hand and make sure that other users, such as developers, have only the access and permissions they need.
 
 If you use Terraform, use service IDs that have update access but do not have delete access.

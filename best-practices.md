@@ -71,7 +71,7 @@ For client's metadata, including client business contact and account usage infor
 
 For a complete list of data attributes that each single {{site.data.keyword.cloud_notm}} service processes and stores, see the [API and SDK reference library](https://cloud.ibm.com/docs?tab=api-docs).
 
-All data in transit is encrypted. Only TLS 1.2 and 1.3 are supported in {{site.data.keyword.cloud_notm}} with TLS 1.1 and lower explicitly disabled to prevent rollback to a vulnerable version of the protocol.
+All data in transit is encrypted. Only TLS 1.2 and 1.3 are supported in {{site.data.keyword.cloud_notm}} to prevent rollback to a vulnerable version of the protocol. TLS 1.1 and less are explicitly disabled.
 
 Processes and procedures for {{site.data.keyword.cloud_notm}} data privacy processing are documented within the {{site.data.keyword.cloud_notm}} Data Processing Addendum (DPA). This DPA and its applicable DPA Exhibits apply to the Processing of Personal Data by {{site.data.keyword.cloud_notm}} on behalf of Client (Client Personal Data). The processing of Personal Data is subject to the General Data Protection Regulation 2016/679 (GDPR). It is also subject to any other data protection laws that are identified at [Data Protection Laws](https://www.ibm.com/support/customer/csol/terms/?id=DPA-DPL&lc=en){: external} in order to provide services (Services) according to the Agreement between Client and {{site.data.keyword.cloud_notm}}. The {{site.data.keyword.cloud_notm}} DPA can be found at [Data Processing Addendum](https://www.ibm.com/support/customer/csol/terms/?id=Z126-7870&lc=en){: external}.
 
@@ -84,10 +84,10 @@ When you design cloud-deployed workloads, think about high availability and disa
 
 Consider how you can develop application code to make a switching to a disaster recover site easier. For example, avoid hardcoding connection strings or other configurations that might change as a result of connecting to alternative resources.
 
-## Choose the right tools
+## Choose the proper tools
 {: #work-with-the-cloud}
 
-Think of {{site.data.keyword.cloud_notm}} as a toolbox with a set of tools or services that you can use to deploy and run workloads. To use any tool properly, you need to understand what it can and can't do, and choose the right one. If you try to use a tool for a job that it wasn't designed for, something can go wrong. When you design your resiliency plan, understand in as much detail as possible the services that your workload uses, what their capabilities are, and their limits. If a service makes can't meet your RTO or RPO objectives, consider other services or tools that might help close the gap. Also consider whether the objectives that you set are realistic, or whether you are introducing undue complexity and cost into your solution for little real gain.
+Think of {{site.data.keyword.cloud_notm}} as a toolbox with a set of tools or services that you can use to deploy and run workloads. To use any tool properly, you need to understand what it can and can't do, and choose the correct one. If you try to use a tool for a job that it wasn't designed for, something can go wrong. When you design your resiliency plan, understand in as much detail as possible the services that your workload uses, what their capabilities are, and their limits. If a service makes can't meet your RTO or RPO objectives, consider other services or tools that might help close the gap. Also consider whether the objectives that you set are realistic, or whether you are introducing undue complexity and cost into your solution for only minor gain.
 
 ## Take backups before you make changes
 {: #backup-before-changes}
