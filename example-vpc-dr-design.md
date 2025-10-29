@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-10-16"
+lastupdated: "2025-10-28"
 
 keywords: DR testing, disaster recovery test, testing for a disaster scenario, dry test, switch over, DR simulation, vpc
 
@@ -23,7 +23,7 @@ In this example, the VPC is configured with a total of three virtual server inst
 :   The first part of the design uses Infrastructure as Code (IaC) in the form of Terraform scripts to create, amend, and destroy infrastructure by using {{site.data.keyword.bplong_notm}}. This is optional, but is a best practice to help ensure the fast, accurate, and repeatable creation of your environments. Be sure to use appropriate parameters within your scripts so that they can be used across environments and be sure that your scripts are maintained in a source controlled manner. For more information, see [Getting started with Terraform on IBM Cloud](/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-getting-started).
 
 Backup for VPC
-:   The second part of the design is to use Backup for VPC to take snapshots of the block storage volumes in order to copy them to the DR region so that they can be recovered in the event of an outage. Snapshots are cumulative, meaning that the first snapshot contains all of the data while subsequent snapshots contain changes. Creating the initial snapshot copy in the remote region can take some time, especially if the volumes are large. The number of snapshots that are stored depends on your backup policy - which is subject to your data and recovery point objectives. Note that backup snapshots are stored within IBM-managed Cloud Object Storage buckets.
+:   The second part of the design is to use Backup for VPC to take snapshots of the block storage volumes in order to copy them to the DR region so that they can be recovered in the event of an outage. Snapshots are cumulative, meaning that the first snapshot contains all of the data while subsequent snapshots contain changes. Creating the initial snapshot copy in the remote region can take some time, especially if the volumes are substantial. The number of snapshots that are stored depends on your backup policy - which is subject to your data and recovery point objectives. Note that backup snapshots are stored within IBM-managed Cloud Object Storage buckets.
 
 File storage replication
 :   The third part of the design is to use cross-region file storage replication to create a read-only copy of the file storage in the recovery region. If disaster strikes, the read-only copy can be elevated to read / write and the new primary share. Replication is asynchronous and can be scheduled as often as every 15 minutes. Remember, file share replication must occur within the same geography meaning that shares located in the America's only replicate to other regions in the Americas, shares in Europe replicate only to other European regions and so on. See [About file share replication](/docs/vpc?topic=vpc-file-storage-replication) for more details.
@@ -76,7 +76,7 @@ The preceding example suggests the use of Terraform to rebuild a complete VPC en
 ### Reserving capacity
 {: #vpc-reserve-capacity}
 
-A regional disaster can cause many customers to activate their disaster recovery plans, which can temporarily create infrastructure shortages in neighboring regions. Consider reserving capacity in your DR region of choice, especially if you have large-scale capacity requirements.
+A regional disaster can cause many customers to activate their disaster recovery plans, which can temporarily create infrastructure shortages in neighboring regions. Consider reserving capacity in your DR region of choice, especially if you have increased capacity requirements.
 
 ### Using suitable tools
 {: vpc-tooling}

@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-07-28"
+lastupdated: "2025-10-28"
 
 keywords: resiliency, DR, high availability, disaster recovery, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -47,7 +47,7 @@ Use automation to deploy or recover an environment quickly and accurately. Autom
 
 In short, with {{site.data.keyword.bpshort}}, you can deploy infrastructure and services quickly and consistently though IaC, Terraform, Ansible, Helm, and Red Hat OpenShift Operators.
 
-Codifying the workload environment means defining and automating the setup of your workload by using code. This way, the right services can be quickly provisioned and configured in any {{site.data.keyword.cloud_notm}} region. You can use Terraform and Ansible to provision services, including servers, storage, networking, and databases. They can also be used to configure the services, as can Helm and Operators.
+Codifying the workload environment means defining and automating the setup of your workload by using code. This way, services can be quickly provisioned and configured in any {{site.data.keyword.cloud_notm}} region. You can use Terraform and Ansible to provision services, including servers, storage, networking, and databases. They can also be used to configure the services, as can Helm and Operators.
 
 IaC code should be maintained, version-controlled like application code, and stored for access across multiple regions. Using a Git-based repository is recommended.
 

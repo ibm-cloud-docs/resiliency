@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-08-28"
+lastupdated: "2025-10-28"
 
 keywords: chaos testing, resiliency, client testing
 
@@ -42,13 +42,13 @@ This tutorial requires:
 
 Deploy a Red Hat OpenShift or Kubernetes infrastructure that consists of a management cluster and a workload cluster. The management cluster contains the LitmusChaos control plane, and the workload cluster hosts the application that is targeted for chaos testing. If you have an existing infrastructure, skip this step. Otherwise, provision the workload cluster to have at least two availability zones for redundancy.
 
-In this tutorial, you focus on deploying the management and workload clusters within a [Secure Landing Zone (SLZ)](/docs/secure-infrastructure-vpc?topic=secure-infrastructure-vpc-ocp-ra), which requires extra configuration due to its enhanced security constraints. You can use either Red Hat OpenShift or Kubernetes for the management and workload clusters, depending on your infrastructure preferences. For more information on SLZ deployment, see the [deployment guide](/docs/secure-infrastructure-vpc?topic=secure-infrastructure-vpc-overview#overview-ocp).
+In this tutorial, you focus on deploying the management and workload clusters within a [Secure Landing Zone (SLZ)](/docs/secure-infrastructure-vpc?topic=secure-infrastructure-vpc-ocp-ra), which requires additional configuration due to its enhanced security constraints. You can use either Red Hat OpenShift or Kubernetes for the management and workload clusters, depending on your infrastructure preferences. For more information on SLZ deployment, see the [deployment guide](/docs/secure-infrastructure-vpc?topic=secure-infrastructure-vpc-overview#overview-ocp).
 
 1. In the {{site.data.keyword.cloud_notm}} catalog, go to the [Red Hat OpenShift Container Platform on VPC landing zone](/catalog/architecture/deploy-arch-ibm-slz-ocp-95fccffc-ae3b-42df-b6d9-80be5914d852-global) page.
 1. Select **Standard** as the cluster type. This creates Red Hat OpenShift workload clusters on a secure VPC network, which is necessary since it's not recommended to run the chaos management plane on the same cluster as your workload.
 1. Click **Add to project** and complete the details for a new or existing {{site.data.keyword.cloud_notm}} project.
 1. Configure the deployable architecture to your specifications. Aside from the required variables, you can leave most of the configuration as it is by default.
-1. Deploy the worker nodes in at least two availability zones by setting `cluster_zones` to 2 or 3 in the "Optional" tab to achieve proper resilience, or the chaos experiment doesn't function correctly.
+1. Deploy the worker nodes in at least two availability zones by setting `cluster_zones` to 2 or 3 in the **Optiona** tab to achieve proper resilience, or the chaos experiment doesn't function correctly.
 1. Validate, approve, and deploy the secure landing zone infrastructure.
 1. Deploy a [client-to-site VPN](/catalog/7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3/architecture/deploy-arch-ibm-client-to-site-vpn-1b824983-263f-4191-bfcd-c1d1b2220aa3-global) to access both clusters.
 
@@ -75,8 +75,8 @@ Complete the following steps for networking:
    1. Find the private IPs of the load balancer and add them, or a CIDR block that contains those IPs, as an outbound rule in the workload security group, communicating over port 443. This facilitates outbound access from the workload cluster to the management cluster's load balancer.
 1. Go to the management cluster to configure an inbound rule in the management security group and allow inbound traffic over port 443.
 
-    These inbound and outbound rules make the sample application available to the chaos probes in the management cluster.
-    {: note}
+   These inbound and outbound rules make the sample application available to the chaos probes in the management cluster.
+   {: note}
 
 1. (Optional) If you want your application to be exposed to the world, make sure that the destination for the outbound 443 rule is `0.0.0.0/0`.
 1. Make sure that both the management and workload clusters have outbound internet access to pull container images for the sample application or your own, and the LitmusChaos images. These can be restricted to specific docker or quay IPs, or if acceptable, broad access over port 443 can be granted.
@@ -158,9 +158,9 @@ This step describes how to install and access the LitmusChaos ChaosCenter, a web
 This step explains how to set up chaos infrastructure, which is a service that is deployed in your workload cluster to inject chaos as requested by the control plane that you created in the previous step.
 
 1. Log in to the LitmusChaos control plane UI. The URL for this, with a default configuration, is located in the Routes section of your management cluster, and typically has a prefix of `litmus-frontend-ingress`. If this is the first time you log in, you are prompted to change the default password. The default credentials are on the [installation page](https://docs.litmuschaos.io/docs/getting-started/installation){: external}.
-2. Use the default project or create your own project by clicking your username (or Admin), selecting "Projects" and then create a project by clicking "+ Create Project".
-3. Add a remote environment by following the LitmusChaos [environment instructions](https://docs.litmuschaos.io/docs/user-guides/create-environment){: external}. Choose "pre-production" for the environment, as this tutorial is not designed for use in production environments.
-4. Add a chaos infrastructure by following the LitmusChaos [infrastructure instructions](https://docs.litmuschaos.io/docs/user-guides/create-infrastructure){: external}. Choose "Namespace mode" to avoid giving broad access to the cluster. Use the same namespace that you intend to host the application on. This chaos experiment runs only against that namespace, so remove the `litmus-admin` service account and replace it with one with a more restrictive scope.
+2. Use the default project or create your own project by clicking your username (or Admin), selecting **Projects** and then create a project by clicking **+ Create Project***.
+3. Add a remote environment by following the LitmusChaos [environment instructions](https://docs.litmuschaos.io/docs/user-guides/create-environment){: external}. Choose **pre-production** for the environment, as this tutorial is not designed for use in production environments.
+4. Add a chaos infrastructure by following the LitmusChaos [infrastructure instructions](https://docs.litmuschaos.io/docs/user-guides/create-infrastructure){: external}. Choose **Namespace mode** to avoid giving broad access to the cluster. Use the same namespace that you intend to host the application on. This chaos experiment runs only against that namespace, so remove the `litmus-admin` service account and replace it with one with a more restrictive scope.
 5. Download the resulting `.yml` file. If you are deploying to an SLZ cluster, modify the `containers:` section in the file to ensure that the following spec is included:
 
    ```yaml
@@ -174,7 +174,7 @@ This step explains how to set up chaos infrastructure, which is a service that i
 
    It can also be useful to review the RBAC (role-based access controls) in the experiment file to ensure that broad access is not granted. Pay special attention to the permission verbs and what access is granted to the service account that runs the chaos experiment.
 
-6. Deploy the yaml configuration file to your workload cluster by clocking the "+" icon from your cluster UI, or through the `oc` or `kubectl` CLI. The CLI requires you to log in to the cluster. To do so, click your username from the cluster UI, and click "copy login command". Once complete, your chaos infrastructure is shown on the Chaos Infrastructure page of your created environment. If it still displays "pending", you might have an issue with your installation. Verify that you followed the instructions correctly, and check the logs of the "subscriber" pod in the application namespace for other issues. Otherwise, it displays as "connected".
+6. Deploy the yaml configuration file to your workload cluster by clicking the **+** icon from your cluster UI, or through the `oc` or `kubectl` CLI. The CLI requires you to log in to the cluster. To do so, click your username from the cluster UI, and click **copy login command**. Once complete, your chaos infrastructure is shown on the Chaos Infrastructure page of your created environment. If it still displays *pending*, you might have an issue with your installation. Verify that you followed the instructions correctly, and check the logs of the *subscriber* pod in the application namespace for other issues. Otherwise, it displays as *connected*.
 
 ## Configure a workload application to run in multiple AZs
 {: #tutorial-litmuschaos-workload}
@@ -234,7 +234,7 @@ This step explains how to create a probe that monitors the health of your applic
    | Evaluation timeout       | 600 s         |
    {: caption="Probe defaults." caption-side="bottom"}
 
-5. Click **Probe Details**, and configure the URL and HTTP method to match your application route. You can also include POST data, and match against a response code. For example, a probe checking port 200 with a criterion of "==" fails only when the application fails to return a 200 code.
+5. Click **Probe Details**, and configure the URL and HTTP method to match your application route. You can also include POST data, and match against a response code. For example, a probe checking port 200 with a criterion of `==` fails only when the application fails to return a 200 code.
 6. Save the probe.
 
 
@@ -245,15 +245,15 @@ This step explains how to create a probe that monitors the health of your applic
 In this step, you learn how to create a chaos experiment that simulates an availability zone failure in your application namespace.
 
 1. In the LitmusChaos Control Center, select your project and click the **+ New Experiment** button.
-2. Give the experiment a name, for example "chaos-az-pod-partition", and select the relevant chaos infrastructure to perform the experiment against.
+2. Give the experiment a name, for example *chaos-az-pod-partition*, and select the relevant chaos infrastructure to perform the experiment against.
 3. Select **Blank Canvas** to build your experiment from scratch.
 4. Click **Add**. From your ChaosHub, select **pod-network-partition** from the Kubernetes section.
-5. For **Target Application**, complete the fields with relevant data. Ensure that your application deployment type matches your sample application, and select the correct namespace. Leave "App Label" blank for now.
+5. For **Target Application**, complete the fields with relevant data. Ensure that your application deployment type matches your sample application, and select the correct namespace. Leave **App Label** blank for now.
 6. Leave **Tune Fault** blank. You modify this section in the YAML editor later.
-7. In **Probes**, select the probe that is created in Step 6. Use "Continuous" mode.
+7. In **Probes**, select the probe that is created in Step 6. Use **Continuous** mode.
 8. Click **Apply Changes** to save your experiment.
 9. Next, due to limitations in the LitmusChaos UI regarding applications with multiple pod types, you need to modify the experiment you created by using the YAML editor. Click the **VISUAL/YAML** slider in the experiment to change to the YAML editor.
-10. Search for "appinfo" in the YAML. In **applabel**, add the {{site.data.keyword.cloud_notm}} zone that you want to disable for the experiment. Review the following example "appinfo" code block:
+10. Search for `appinfo` in the YAML. In **applabel**, add the {{site.data.keyword.cloud_notm}} zone that you want to disable for the experiment. Review the following example `appinfo` code block:
 
    ```yaml
    appinfo:
@@ -275,7 +275,7 @@ This step describes how you run the chaos experiment, monitor the application he
 
 1. Make sure that all applications pods that are in the scope of the chaos experiment are labeled with the correct node topology. This is not done by default in Kubernetes or Red Hat OpenShift, so you have a choice here:
    - Label the pods manually. Use the label `ibm-cloud.kubernetes.io/zone=us-south-1` to again swap the cloud availability zone for the one you want to simulate an outage on.
-   - Use a policy-as-code framework such as [kyverno](https://kyverno.io/){: external} to mutate your pod specifications to include the cloud availability zone as labels. Consult the [installation](https://kyverno.io/docs/installation/){: external} documentation on how to install Kyverno. The specific policy to use is ["Add scheduled Node's labels to a Pod"](https://kyverno.io/policies/other/add-node-labels-pod/add-node-labels-pod/){: external}. Modify the policy to apply {{site.data.keyword.cloud_notm}} labels as shown in the following example.
+   - Use a policy-as-code framework such as [kyverno](https://kyverno.io/){: external} to mutate your pod specifications to include the cloud availability zone as labels. Consult the [installation](https://kyverno.io/docs/installation/){: external} documentation on how to install Kyverno. The specific policy to use is [Add scheduled Node's labels to a Pod](https://kyverno.io/policies/other/add-node-labels-pod/add-node-labels-pod/){: external}. Modify the policy to apply {{site.data.keyword.cloud_notm}} labels as shown in the following example.
 
    ```yaml
    apiVersion: kyverno.io/v2beta1
@@ -342,7 +342,7 @@ This step describes how you run the chaos experiment, monitor the application he
    In this kyverno example, the application targets any pods that begin with `s0-*`. This is because in certain network configurations, if no specific application is targeted along with the zone label, it might result in all pods in the namespace being affected. Henceforth, this results in only the targeted application being labeled with an availability zone.
    {: note}
 
-2. From the Chaos Experiments page, you can run the resulting experiment by either clicking the play button, or clicking into the experiment and selecting "Run".
+2. From the Chaos Experiments page, you can run the resulting experiment by either clicking the play button, or clicking into the experiment and selecting **Run**.
 3. As the experiment runs, you can follow the experiment progress through the UI. Once complete, a resilience score and status is shown.
 
 The final result is composed of a resilience score and a status. The score is 0 or 100. Other resilience scores are possible only when multiple chaos experiments are run as a test suite.

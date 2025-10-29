@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-08-11"
+lastupdated: "2025-10-28"
 
 keywords: DR for IBM Cloud, disaster recovery, common mistakes for disaster recovery, plan a disaster recovery strategy
 
@@ -58,7 +58,7 @@ To help ensure that your plans provide the results that you require if a disaste
 ### Planning and designing a plan that isn't production-ready
 {: #best-conditions}
 
-The DR infrastructure capacity must be able to manage production-size workloads, unless your plan dictates otherwise. Implementing DR with resources that don't match your production environment might seem attractive from a cost perspective, but it can make the effects of a disaster much more severe.
+The DR infrastructure capacity must be able to manage production workloads, unless your plan dictates otherwise. Implementing DR with resources that don't match your production environment might seem attractive from a cost perspective, but it can make the effects of a disaster much more severe.
 
 As you plan and implement your disaster recovery environment, consider its own resiliency requirements. Don't try to cut costs by reducing the high availability requirements of the DR implementation. If a disaster happens, production workloads need a resilient environment. Services in the cloud are scalable, so you can add capacity later, but the increased regional demand that the disaster causes can result in short-term capacity shortages.
 
@@ -103,7 +103,7 @@ Cross-regional {{site.data.keyword.cos_short}} buckets offer a way to replicate 
 ### Capacity in the disaster recovery region
 {: #CapacityinDRRegion}
 
-Disasters can affect many customers, who then enact their disaster recovery plans. The additional demand might put a severe strain on the capacity of one or more of the regions nearest to the region that failed. This could result in a shortage of resources that are available. For example, if `us-south` fails, it’s likely many customers will choose to recover in the `us-east` region first. If `eu-gb` fails, then extra demand is expected to fall on `eu-de`.
+Disasters can affect many customers, who then enact their disaster recovery plans. The additional demand might put a severe strain on the capacity of one or more of the regions nearest to the region that failed. This could result in a shortage of resources that are available. For example, if `us-south` fails, it’s likely many customers will choose to recover in the `us-east` region first. If `eu-gb` fails, then more demand is expected to fall on `eu-de`.
 
 In the event of high demand caused by a disaster, your first choice of infrastructure might not be available to provision in your recovery region. This includes popular VPC VSI profiles. Be sure to take into consideration various architectures for your application that can account for situations in which an alternate VSI profile is required. If you application can't tolerate the use of alternate infrastructure, consider building or reserving as much capacity as you need in your disaster recovery region of choice in anticipation of a disaster, or consider other locations that are further away to avoid capacity issues.
 
@@ -138,7 +138,7 @@ The ease of handling such scenarios depends on how your workload is designed and
 ### Failback
 {: #Failback}
 
-An extra consideration is the failback position after the dust settles on a disaster. The failback procedure is documented in the DR plan. Failback considerations include:
+Another consideration is the failback position after the dust settles on a disaster. The failback procedure is documented in the DR plan. Failback considerations include:
 
 * Do you fail back or continue to run as normal at the recovery location?
 * If failback is mandatory, when do you attempt it?

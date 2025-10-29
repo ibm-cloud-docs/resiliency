@@ -2,7 +2,7 @@
   "version": 2,
   "title": "Resiliency",
   "introduction": "Discover resiliency from the perspective of our IBM Cloud clients, their solution planners, architects and builders and the resilient solutions they create on our platform.",
-  "product_page": "https://ibm.com/cloud",
+  "product_page": "https://www.ibm.com/solutions/cloud",
   "section_topics": {
     "links": [
       {
@@ -29,7 +29,7 @@
     {
       "title": "IBM Cloud compliance programs",
       "description": "Manage regulatory compliance and internal governance requirements with IBM Cloud services.",
-      "href": "https://www.ibm.com/cloud/compliance",
+      "href": "https://www.ibm.com/products/cloud/compliance",
       "type": "white-paper"
     }
   ]

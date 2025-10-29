@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-09-12"
+lastupdated: "2025-10-28"
 
 keywords: DR testing, disaster recovery test, testing for a disaster scenario, dry test, switch over, DR simulation, key protect
 
@@ -47,7 +47,7 @@ With cross-region resiliency enabled a customer does not need to enact a recover
 
 
 ## Failing back
-{: #kp-failback-option-two}
+{: #kp-failback-option-one}
 
 If there is a regional outage, {{site.data.keyword.cloud_notm}} recovers your Key Protect instance, including its configuration and other data. Requests to Key Protect are routed to the recovered instance and replication to the standby instance resumes.
 

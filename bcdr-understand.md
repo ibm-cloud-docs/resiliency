@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-07-28"
+lastupdated: "2025-10-28"
 
 keywords: disaster recovery, DR, what is disaster recovery, DR strategy, disaster recovery options, disaster recovery strategy
 
@@ -25,9 +25,9 @@ Disasters are different. Disasters cause a workload to go down despite attempts 
 ## What does disaster recovery mean?
 {: #disaster-recovery-what-is}
 
-To illustrate recovery to a second region, consider a scenario. Under normal circumstances, a customer runs their workloads in the {{site.data.keyword.cloud_notm}} `us-south` multizone region. Then, a major disaster occurs which affects and causes a prolonged outage for the whole of the `us-south` region. In such cases, returning to normal operation at `us-south` might take hours, days, or even months, depending on the scale of the outage. If the affected cloud workloads are critical to business operations, lengthy periods of downtime leave you little option but to recover and run your workloads in a second {{site.data.keyword.cloud_notm}} region.
+To illustrate recovery to a second region, consider a scenario. Under normal circumstances, a customer runs their workloads in the {{site.data.keyword.cloud_notm}} `us-south` multizone region. Then, a major disaster occurs which affects and causes a prolonged outage for the whole of the `us-south` region. In such cases, returning to normal operation at `us-south` might take hours, days, or even months, depending on the scale of the outage. If the affected cloud workloads are critical to business operations, lengthy periods of downtime leave you with few options but to recover and run your workloads in a second {{site.data.keyword.cloud_notm}} region.
 
-Such circumstances typically result from a widespread issue that affects a large geographical area, including natural disasters and regional or national emergencies. These types of disasters are unlikely to occur. Usually, {{site.data.keyword.cloud_notm}}’s MZR architecture provides adequate protection against zonal failure, and the failure of a whole region is unlikely. {{site.data.keyword.cloud_notm}}’s Service Level Agreements (SLA) for services that are deployed over an MZR is typically 99.99%, which equates to just over 52.5 minutes of unplanned downtime per year. For more information, see [{{site.data.keyword.cloud_notm}} Service Level Agreements](/docs/overview?topic=overview-slas).
+Such circumstances typically result from a widespread issue that affects a particular geographical area, including natural disasters and regional or national emergencies. These types of disasters are unlikely to occur. Usually, {{site.data.keyword.cloud_notm}}’s MZR architecture provides adequate protection against zonal failure, and the failure of a whole region is unlikely. {{site.data.keyword.cloud_notm}}’s Service Level Agreements (SLA) for services that are deployed over an MZR is typically 99.99%, which equates to just over 52.5 minutes of unplanned downtime per year. For more information, see [{{site.data.keyword.cloud_notm}} Service Level Agreements](/docs/overview?topic=overview-slas).
 
 However, the chance remains that a disaster can take out the region where your critical workloads are running. Be prepared with a disaster recovery plan if you want to avoid extended periods of downtime caused by disasters.
 

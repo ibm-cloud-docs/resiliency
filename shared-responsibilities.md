@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-07-28"
+lastupdated: "2025-10-28"
 
 keywords: shared responsibility model, load balancing, global load balancing, HA, DR, high availability, disaster recovery, HA for the platform, high availability for platform, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -23,7 +23,7 @@ subcollection: resiliency
 * Security and Regulation Compliance
 * Disaster Recovery
 
-Depending on the resource type, responsibility for each of the aspects listed above will fall to either the customer, IBM, or be shared. Where there are shared responsibiities, the customer is responsible for the configuration, and IBM is responsibe for the underlying management. For disaster recovery, the customer is responsible for creating resources in a secondary region and managing the application and data recovery.
+Depending on the resource type, responsibility for each of the aspects previously listed falls to either the customer, IBM, or be shared. Where there are shared responsibiities, the customer is responsible for the configuration, and IBM is responsibe for the underlying management. For disaster recovery, the customer is responsible for creating resources in a secondary region and managing the application and data recovery.
 
 For example, IBM has responsibility for the recovery of {{site.data.keyword.cloud_notm}} services in the event of an incident or disaster. This means ensuring that the service is restored, available and working correctly. In many cases, this does not include the restoration of individual service insatances. To illustrate, if IBM Cloud Databases suffers a disaster which requires the restoration of the service in a region, {{site.data.keyword.cloud_notm}} will not recover customer instances (i.e. individual databases). This is a good example of shared responsibility - {{site.data.keyword.cloud_notm}} is responsible for recovering the service, whereas customers are responsible for recovering their instance of that service (including data). Remember, {{site.data.keyword.cloud_notm}} has no access to customer data, including backups.
 
@@ -59,7 +59,7 @@ The following table provides some examples of the responibilities that customers
 | Workload resilience and recovery testing | Ensuring that you have a tested plan for the recovery of workloads in the event of an outage or disaster. This includes aspects such as data recovery, service deployment and configuration and internal communications |
 {: caption="Examples of customer resiliency and disaster recovery responsibilities when using {{site.data.keyword.cloud_notm}}" caption-side="top"}
 
-The most important aspects to note from the above table are that:
+The most important aspects to note from the previous table are that:
 
 * Customers are responsible for their own data. At an absolute minimum, regularly ensure that your data is backed up and you know how to restore it, especially in the event of a disaster.
 * Customers are responsible for ensuring that thier workloads are resilient to failures. Make sure you review and understand the {{site.data.keyword.cloud_notm}} [Service Level Agreements (SLAs)](/docs/overview?topic=overview-slas) and deploy your workloads using an architecture (zonal, multi-zone, cross region) that meets your resilience targets.

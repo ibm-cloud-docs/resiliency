@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-07-28"
+lastupdated: "2025-10-28"
 
 keywords: high availability, ha, understanding ha
 
@@ -30,16 +30,16 @@ For HA in the cloud, it's important to understand the high-level concepts that y
 ## Formula for high availability
 {: #ha-formula}
 
-A standard formula for high availability is `MTBF/(MTBF+MTTR)`, where `MTBF` is "mean time between failures" and `MTTR` is "mean time to repair". Since `MTBF` is the time when the system is up, and `MTTR` is the time that the system is down, this formula can be summarized as follows:
+A standard formula for high availability is `MTBF/(MTBF+MTTR)`, where `MTBF` is *mean time between failures* and `MTTR` is *mean time to repair*. Since `MTBF` is the time when the system is up, and `MTTR` is the time that the system is down, this formula can be summarized as follows:
 
-> Availability = (The time the system is up)/(The time the system is up + The time the system is down).
+* Availability = (The time the system is up)/(The time the system is up + The time the system is down).
 
 The formula is useful because it shows you how to improve availability. Consider a scenario where you require that the server is always available for a month of 30 days. In that month, let's say the server went down once for a total of 1 hr.
 
-> To get the total time in the month, multiply 30 days x 24 hrs/day = 720 hours
-> MTBF = Total operating time / Number of failures = 720 hrs / 1 = 720 hrs
-> MTTR = Total downtime / Number of failures = 1 hr / 1 = 1 hr
-> Availability = (MTBF / (MTBF + MTTR)) x 100 = (720 / 721) x 100 = 99.86%
+* To get the total time in the month, multiply 30 days x 24 hrs/day = 720 hours
+* MTBF = Total operating time / Number of failures = 720 hrs / 1 = 720 hrs
+* MTTR = Total downtime / Number of failures = 1 hr / 1 = 1 hr
+* Availability = (MTBF / (MTBF + MTTR)) x 100 = (720 / 721) x 100 = 99.86%
 
 You can increase MTBF, decrease MTTR, or both. This means that availability can be improved by increasing reliability or fixing issues when they break more efficiently. Both approaches are common in computer systems. The mainframe, which uses high reliability parts, redundant parts, and modularity to allow quicker repairs, shows that significant levels of availability are possible with this approach. For more information about the availability of specific {{site.data.keyword.cloud_notm}} services, see [Service Level Agreements (SLAs)](https://www.ibm.com/support/customer/csol/terms/?id=i126-9268).
 

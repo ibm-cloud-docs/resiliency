@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-08-28"
+lastupdated: "2025-10-28"
 
 keywords: disaster recovery, dr, disaster recovery strategy
 
@@ -107,7 +107,7 @@ An alternative method is to deploy and configure a [Veeam](/docs/vpc?topic=vpc-a
 
 It’s possible to create a read-replica database in the region chosen for DR for certain IBM Cloud databases. A copy of the database is maintained automatically in the second region, which can be turned into a stand-alone copy if disaster strikes. Read-replicas provide a more stringent RTO, while asynchronous replication from the production database aims to limit any transactional data loss to under 15 minutes.
 
-For other IBM Cloud Database services, the last backup must be restored to a new instance at the DR region, noting that some database types provide point-in-time recovery. For databases that don't provide point-in-time recovery, take on-demand backups in addition to the automatic daily backup to reduce data loss. On-demand backups can be scheduled as a cron job or use IBM Cloud Code Engine. Database restores can take several hours or more, and the time taken increases with the size of the database.
+For other IBM Cloud Database services, the last backup must be restored to a new instance at the DR region, noting that some database types provide point-in-time recovery. For databases that don't provide point-in-time recovery, take on-demand backups in addition to the automatic daily backup to reduce data loss. On-demand backups can be scheduled as a cron job or use IBM Cloud Code Engine. Database restores can take several hours or more, and the time taken increases with the volume of the database.
 
 In each of these cases, data loss depends on the time of the last available database backup, which might be up to 24 hours ago.
 

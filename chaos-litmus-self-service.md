@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-10-08"
+lastupdated: "2025-10-28"
 
 keywords: chaos testing, resiliency, client testing
 
@@ -75,7 +75,7 @@ Reverting the change: to terminate the scenario, revert the change by deleting t
 *   [DELETE /network_acls{network_acl_id}/rules/{rule_id}](https://cloud.ibm.com/apidocs/vpc/latest#delete-network-acl-rule)
 
 ## Writing your own chaos scenarios
-{: #chaos-custom-scenarios }
+{: #chaos-custom-scenarios}
 
 This list is, of course, non-exhaustive. However, you can test the resiliency of most IBM Cloud components and services through some common approaches. 
 

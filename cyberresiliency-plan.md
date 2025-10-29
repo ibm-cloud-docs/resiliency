@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-07-28"
+lastupdated: "2025-10-28"
 
 
 keywords: cyber resiliency plan, resilient app, cyber recovery
@@ -56,7 +56,7 @@ Cleanroom
 Recovery environment
 :   If a cyber incident occurs when production services are down, the recovery environment is built to host the critical applications that are restored to a valid recovery point and takeover the job of production. The recovery environment might be in the same region as old production or in a different region. Over time, a recovery environment might be promoted as new production or might cease to exist if another environment takes over as production.
 
-The [cyber resiliency pattern on VPC](/docs/pattern-cyber-resiliency-vpc?topic=pattern-cyber-resiliency-vpc-cyber-resiliency) provides an approach to build a cyber resiliency solution on top of a secure VPC environment.
+The [cyber resiliency pattern on VPC](/docs/pattern-cyber-resiliency-vpc?topic=pattern-cyber-resiliency-vpc-cyber-resiliency) provides an approach to build a cyber resiliency solution on a secure VPC environment.
 
 ## Automation and orchestration
 {: #orchestration}
