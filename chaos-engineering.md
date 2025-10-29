@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2025
-lastupdated: "2025-10-28"
+lastupdated: "2025-10-29"
 
 
 keywords: chaos testing, resilient app, client testing
@@ -67,6 +67,7 @@ Typically, an administrator sets up the clusters, configures the environment, cr
 #### Video transcript
 {: #chaos-demo-transcript-ui}
 {: notoc}
+
 This video will provide a brief overview of a secure reference architecture for performing chaos testing on IBM Cloud.
 
 The architecture will allow for installing LitmusChaos on a management cluster, and running chaos experiments against applications on a workload cluster in a safe and secure manner, even when the cluster is hosting shared workloads.
