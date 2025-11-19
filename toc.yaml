@@ -105,6 +105,7 @@ toc:
           label: Digital Operational Resilience Act (DORA)
           href: https://www.ibm.com/cloud/compliance/dora-eu
       - slo.md
+      - function-loss.md
       - services-ha-dr.md
   - navgroup:
       id: help
