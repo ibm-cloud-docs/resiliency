@@ -54,7 +54,6 @@ subcollection: resiliency
 - [Understanding high availability for NPSaaS](/docs/netezza?topic=netezza-ha)
 - [Understanding high availability for Workload Protection](/docs/workload-protection?topic=workload-protection-ha-dr)
 - [Understanding high availability for projects](/docs/secure-enterprise?topic=secure-enterprise-ha-dr)
-- [Understanding high availability for the AI assistant](/docs/ai-assistant?topic=ai-assistant-ha)
 - [Availability and Durability of VPC storage](/docs/vpc?topic=vpc-storageavailability)
 - [Understanding business continuity and disaster recovery for CIS](/docs/cis?topic=cis-bc-dr)
 - [Understanding business continuity and disaster recovery for Cloud Databases](/docs/cloud-databases?topic=cloud-databases-bc-dr)
