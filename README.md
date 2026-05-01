@@ -17,10 +17,10 @@ As part of a broader goal to deliver resiliency as a key capability of IBM Cloud
 
 ## Initial Scope
 
-- Reviewed a list of existing documentation links to merge and/or enhance. _Team working box note: [here](https://ibm.ent.box.com/file/1644965930257?s=48bp2gwgt4gxg8dkaf3ldgrkh6cwc0ds)_
+- Reviewed a list of existing documentation links to merge and/or enhance. 
 - Identified gaps where new content is to be added
 - Organized consolidated content per proposed solution guide outline
-- Updated Resiliency glossary terms for IBM Cloud. _Team working box note: [here](https://ibm.ent.box.com/notes/1667651992654?s=nwfybs96ktxilmfvqbfk2oolvxhje4he)_
+- Updated Resiliency glossary terms for IBM Cloud. 
 - Initial solution guide published on December 13, 2024
 
 ## RACI
@@ -60,6 +60,6 @@ As of 2024-10-29:
 
  ## Project
 
- IBM Cloud Resiliency project (documentation workstream) and latest status [here](https://github.ibm.com/orgs/cloud-docs-solutions/projects/1/views/2)
+
 
  Slack channel [#cloud-resiliency-solution-guide](https://ibm.enterprise.slack.com/archives/C07CBUBNVTJ)

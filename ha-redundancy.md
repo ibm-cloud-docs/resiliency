@@ -1,8 +1,8 @@
 ---
 
 copyright:
-   years: 2020, 2025
-lastupdated: "2025-07-28"
+   years: 2020, 2026
+lastupdated: "2026-05-01"
 
 keywords: load balancing, global load balancing, HA, DR, high availability, disaster recovery, HA for the platform, high availability for platform, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -170,10 +170,10 @@ For more information about best practices when you use platform services for hig
 | {{site.data.keyword.cloud-shell_short}} | [Understanding high availability and disaster recovery for Cloud Shell](/docs/cloud-shell?topic=cloud-shell-ha-dr) |
 | Console | [Navigating the console](/docs/overview?topic=overview-ui) |
 |      Global search and tagging         |    [Searching for resources](/docs/account?topic=account-manage_resource#searching-for-resources) and [Working with tags](/docs/account?topic=account-tag)        |
-| IAM       |      [What is IBM Cloud Identity and Access Management?](/docs/account?topic=account-iamoverview)  |
+| IAM       |      [What is IBM Cloud Identity and Access Management?](/docs/iam?topic=iam-iamoverview)  |
 | {{site.data.keyword.cloud_notm}} CLI | [Understanding high availability and disaster recovery for the {{site.data.keyword.cloud_notm}} CLI](/docs/cli?topic=cli-ha-dr) |
 | {{site.data.keyword.cloud_notm}} projects| [Understanding high availability and disaster recovery for projects](/docs/secure-enterprise?topic=secure-enterprise-ha-dr) |
-| {{site.data.keyword.compliance_short}} | [Understanding high availability](/docs/security-compliance?topic=security-compliance-ha) and [disaster recovery](/docs/security-compliance?topic=security-compliance-bc-dr) for {{site.data.keyword.compliance_short}} |
+| {{site.data.keyword.sysdigsecure_short}} | [Understanding high availability and disaster recovery](/docs/workload-protection?topic=workload-protection-ha-dr) for {{site.data.keyword.sysdigsecure_short}} |
 {: caption="Platform services" caption-side="top"}
 
 ### Network backbone redundancy

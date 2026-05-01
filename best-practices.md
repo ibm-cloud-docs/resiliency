@@ -1,8 +1,8 @@
 ---
 
 copyright:
-   years: 2020, 2025
-lastupdated: "2025-10-28"
+   years: 2020, 2026
+lastupdated: "2026-05-01"
 
 keywords: resiliency, DR, high availability, disaster recovery, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -51,7 +51,7 @@ Each {{site.data.keyword.cloud_notm}} service has a roles and responsibilities m
 ## Consider data resiliency and data residency requirements
 {: #data-resiliency-and-residency}
 
-Data resiliency refers to the ability to access, maintain or quickly recover data if failures or disasters occur. It is related to the concepts of high availability, disaster recovery, and cyber resiliency. For more information about data resiliency, see the [{{site.data.keyword.IBM_notm}} Well-Architected Framework](https://www.ibm.com/architectures/well-architected/resiliency#Practices){: external}.
+Data resiliency refers to the ability to access, maintain or quickly recover data if failures or disasters occur. It is related to the concepts of high availability, disaster recovery, and cyber resiliency. For more information about data resiliency, see the [{{site.data.keyword.IBM_notm}} Well-Architected Framework](https://www.ibm.com/think/architectures/well-architected/resiliency#Practices){: external}.
 
 Another important aspect to consider is data residency and any restrictions or requirements on your data's physical location, not just for production environments but also for backup and recovery.
 
@@ -125,4 +125,4 @@ IBM Cloud Logs provides advanced [features](/docs/cloud-logs?topic=cloud-logs-ab
 ## Stay updated with {{site.data.keyword.cloud_notm}} notifications
 {: #IBM-cloud-notifications}
 
-If a disaster occurs that affects an {{site.data.keyword.cloud_notm}} service or region, you receive notifications from {{site.data.keyword.cloud_notm}} in your account or by email. Sign up for notifications on your account by reviewing [View notifications](/docs/account?topic=account-viewing-notifications#subscribe-email-notifications). You can also view the {{site.data.keyword.cloud_notm}} [Status Overview](/status) page.
+If a disaster occurs that affects an {{site.data.keyword.cloud_notm}} service or region, you receive notifications from {{site.data.keyword.cloud_notm}} in your account or by email. Sign up for notifications on your account by reviewing [View notifications](/docs/support?topic=support-viewing-notifications#subscribe-email-notifications). You can also view the {{site.data.keyword.cloud_notm}} [Status Overview](/status) page.

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021, 2025
-lastupdated: "2025-10-16"
+  years: 2021, 2026
+lastupdated: "2026-05-01"
 
 keywords: DR testing, disaster recovery test, testing for a disaster scenario, dry test, switch over, DR simulation, kubernetes, IKS
 
@@ -87,7 +87,6 @@ For additional information on DR for {{site.data.keyword.cloud_notm}} Kubernetes
 
 * [Creating a highly available cluster strategy](/docs/containers?topic=containers-strategy)
 * [Documenting your environment architecture](/docs/containers?topic=containers-document-environment)
-* [Continuous integration and delivery for app development and deployment](/docs/containers?topic=containers-cicd)
 * [Backing up and restoring storage data](/docs/containers?topic=containers-storage_br)
 * [Understanding high availability and disaster recovery for IBM Cloud Kubernetes Service](/docs/containers?topic=containers-iks-ha-dr&interface=terraform)
 * [High availability for Container Registry](/docs/Registry?topic=Registry-ha-dr)

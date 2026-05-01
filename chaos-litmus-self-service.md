@@ -1,8 +1,8 @@
 ---
 
 copyright:
-   years: 2020, 2025
-lastupdated: "2025-10-28"
+   years: 2020, 2026
+lastupdated: "2026-05-01"
 
 keywords: chaos testing, resiliency, client testing
 
@@ -20,7 +20,7 @@ After you become comfortable running simple chaos testing scenarios that target 
 
 Chaos faults can affect a single resource or a set of resources based on some attributes. Identifying resources to target can be done by either listing all service instances that you have access to (e.g., list all clusters in containers API) or by using tags or resource groups. The [Global Search API](https://cloud.ibm.com/apidocs/search) allows you to search and filter for resources using a lucene syntax query string.
 
-Identifying sub-resources like worker nodes in clusters might require additional API calls exposed by the service such as the [GetClusterWorkers API](https://containers.cloud.ibm.com/global/swagger-global-api/#/clusters/GetClusterWorkers) which takes filters such as the worker pool ID within the cluster.
+Identifying sub-resources like worker nodes in clusters might require additional API calls exposed by the service such as the [GetClusterWorkers API](/apidocs/kubernetes/containers-v1-v2#/clusters/GetClusterWorkers) which takes filters such as the worker pool ID within the cluster.
 
 ### Scenario: AZ Failure Affecting IKS/ROKS Cluster Worker Node(s)
 {: #chaos-cluster-failure}

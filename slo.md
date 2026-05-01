@@ -1,8 +1,8 @@
 ---
 
 copyright:
-   years: 2020, 2025
-lastupdated: "2025-10-28"
+   years: 2020, 2026
+lastupdated: "2026-05-01"
 
 keywords: SLO, service level objectives
 
@@ -191,7 +191,7 @@ The following table describes the service level objectives (SLOs) for the high i
 | {{site.data.keyword.messages-for-rabbitmq_full_notm}} | 99.999% |[Performance](/docs/messages-for-rabbitmq?topic=messages-for-rabbitmq-performance) | Block Storage | [Object Storage](/docs/messages-for-rabbitmq?topic=messages-for-rabbitmq-security-compliance#data-resilience) | [Understanding high availability and disaster recovery for Messages for RabbitMQ](/docs/messages-for-rabbitmq?topic=messages-for-rabbitmq-rabbitmq-ha-dr) |
 | {{site.data.keyword.cloudant_short_notm}} | 99.999% | [Provisioned Throughtput Capacity](/docs/Cloudant?topic=Cloudant-usage-and-charges#scaling-provisioned-throughput-capacity) | Local Storage: [Data is stored in triplicate across 3 servers for data durability](/docs/Cloudant?topic=Cloudant-disaster-recovery-and-backup#in-region-automatic-data-redundancy), in 3 availability zones where available |  | [Understanding high availability and disaster recovery for IBM Cloudant](/docs/Cloudant?topic=Cloudant-service-name-ha-dr) |
 | {{site.data.keyword.Db2_on_Cloud_short}} | 99.999% |  | Block Storage | Object Storage  | [High availability (HA)](/docs/Db2onCloud?topic=Db2onCloud-high-availability-ha) |
-| {{site.data.keyword.dashdblong_notm}} | 99.999% |  | Block Storage | Object Storage  | [High availability (HA)](/docs/Db2whc?topic=Db2whc-ha) |
+| {{site.data.keyword.dashdblong_notm}} | 99.999% |  | Block Storage | Object Storage  | [High availability (HA)](/docs/db2wh-saas?topic=db2wh-saas-ha) |
 {: caption="Service level objectives (SLOs) for the {{site.data.keyword.cloud_notm}} databases services" caption-side="bottom"}
 
 
@@ -241,7 +241,7 @@ The following table describes the service level objectives (SLOs) for the high i
 |----------|---------|---------|
 | {{site.data.keyword.appid_full_notm}} | 99.999% |  [Understanding high availability and disaster recovery for App ID](/docs/appid?topic=appid-ha-dr) |
 | {{site.data.keyword.secrets-manager_full_notm}} | 99.999% |  [Understanding high availability and disaster recovery for Secrets Manager](/docs/secrets-manager?topic=secrets-manager-ha-dr) |
-| {{site.data.keyword.compliance_long}} | 99.999% | [Understanding high availability for Security and Compliance Center](/docs/security-compliance?topic=security-compliance-ha) |
+| {{site.data.keyword.compliance_long}} | 99.999% | [Understanding high availability for Workload Protection](/docs/workload-protection?topic=workload-protection-ha-dr) |
 {: caption="Service level objectives (SLOs) for the {{site.data.keyword.cloud_notm}} security services" caption-side="bottom"}
 
 
