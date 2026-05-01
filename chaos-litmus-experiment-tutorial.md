@@ -1,8 +1,8 @@
 ---
 
 copyright:
-   years: 2020, 2025
-lastupdated: "2025-10-28"
+   years: 2020, 2026
+lastupdated: "2026-05-01"
 
 keywords: chaos testing, resiliency, client testing
 
@@ -33,7 +33,7 @@ LitmusChaos is a cloud-native, open source chaos engineering framework that is d
 This tutorial requires:
 
 * [{{site.data.keyword.cloud_notm}} CLI](/docs/cli?topic=cli-getting-started)
-* [Red Hat OpenShift CLI](https://docs.openshift.com/container-platform/4.17/cli_reference/openshift_cli/getting-started-cli.html) for interacting with Red Hat OpenShift
+* [Red Hat OpenShift CLI](https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/cli_tools/openshift-cli-oc#cli-getting-started) for interacting with Red Hat OpenShift
 * [Helm](https://helm.sh/docs/intro/install/) for installing LitmusChaos
 
 ## Set up a management and workload cluster
@@ -275,7 +275,7 @@ This step describes how you run the chaos experiment, monitor the application he
 
 1. Make sure that all applications pods that are in the scope of the chaos experiment are labeled with the correct node topology. This is not done by default in Kubernetes or Red Hat OpenShift, so you have a choice here:
    - Label the pods manually. Use the label `ibm-cloud.kubernetes.io/zone=us-south-1` to again swap the cloud availability zone for the one you want to simulate an outage on.
-   - Use a policy-as-code framework such as [kyverno](https://kyverno.io/){: external} to mutate your pod specifications to include the cloud availability zone as labels. Consult the [installation](https://kyverno.io/docs/installation/){: external} documentation on how to install Kyverno. The specific policy to use is [Add scheduled Node's labels to a Pod](https://kyverno.io/policies/other/add-node-labels-pod/add-node-labels-pod/){: external}. Modify the policy to apply {{site.data.keyword.cloud_notm}} labels as shown in the following example.
+   - Use a policy-as-code framework such as [kyverno](https://kyverno.io/){: external} to mutate your pod specifications to include the cloud availability zone as labels. Consult the [installation](https://kyverno.io/docs/installation/installation/){: external} documentation on how to install Kyverno. The specific policy to use is [Add scheduled Node's labels to a Pod](https://kyverno.io/policies/other/add-node-labels-pod/add-node-labels-pod/){: external}. Modify the policy to apply {{site.data.keyword.cloud_notm}} labels as shown in the following example.
 
    ```yaml
    apiVersion: kyverno.io/v2beta1

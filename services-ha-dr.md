@@ -1,8 +1,8 @@
 ---
 
 copyright:
-   years: 2020, 2025
-lastupdated: "2025-10-28"
+   years: 2020, 2026
+lastupdated: "2026-05-01"
 
 
 keywords: disaster recovery plan, DR, resilient app, plan for DR, DR objectives
@@ -29,7 +29,6 @@ subcollection: resiliency
 - [Understanding high availability and disaster recovery for Event Notifications](/docs/event-notifications?topic=event-notifications-en-high-availability)
 - [Understanding high availability and disaster recovery for IBM Cloudant](/docs/Cloudant?topic=Cloudant-service-name-ha-dr)
 - [Understanding high availability and disaster recovery for IBM Cloud CLI](/docs/cli?topic=cli-ha-dr)
-- [Understanding high availability and disaster recovery for IBM Cloud HPC](/docs/hpc-cluster?topic=hpc-cluster-ha-dr)
 - [Understanding high availability and disaster recovery for IBM Cloud Object Storage](/docs/cloud-object-storage?topic=cloud-object-storage-cos-ha-dr)
 - [Understanding high availability and disaster recovery for IBM Cloud VPC](/docs/vpc?topic=vpc-ha-dr-vpc)
 - [Understanding high availability and disaster recovery for Logs Routing](/docs/logs-router?topic=logs-router-logs-router-ha-dr)
@@ -43,7 +42,6 @@ subcollection: resiliency
 - [Understanding high availability and disaster recovery for VMware Solutions](/docs/vmwaresolutions?topic=vmwaresolutions-ha-dr)
 - [Understanding high availability for App Configuration](/docs/app-configuration?topic=app-configuration-ac-ha)
 - [Understanding high availability for CIS](/docs/cis?topic=cis-ha)
-- [Understanding high availability for Cloud Databases for ETCD](/docs/databases-for-etcd?topic=databases-for-etcd-ha-dr)
 - [Understanding high availability for Cloud Databases for Elasticsearch](/docs/databases-for-elasticsearch?topic=databases-for-elasticsearch-elasticsearch-ha-dr)
 - [Understanding high availability for Cloud Databases for MongoDB](/docs/databases-for-mongodb?topic=databases-for-mongodb-mongodb-ha-dr)
 - [Understanding high availability for Cloud Databases for MySQL](/docs/databases-for-mysql?topic=databases-for-mysql-mysql-ha-dr)
@@ -54,7 +52,7 @@ subcollection: resiliency
 - [Understanding high availability for Direct Link](/docs/dl?topic=dl-ha-dr-dl)
 - [Understanding high availability for IBM OpenPages as a Service](/docs/openpages?topic=openpages-ha)
 - [Understanding high availability for NPSaaS](/docs/netezza?topic=netezza-ha)
-- [Understanding high availability for Security and Compliance Center](/docs/security-compliance?topic=security-compliance-ha)
+- [Understanding high availability for Workload Protection](/docs/workload-protection?topic=workload-protection-ha-dr)
 - [Understanding high availability for projects](/docs/secure-enterprise?topic=secure-enterprise-ha-dr)
 - [Understanding high availability for the AI assistant](/docs/ai-assistant?topic=ai-assistant-ha)
 - [Availability and Durability of VPC storage](/docs/vpc?topic=vpc-storageavailability)
@@ -64,7 +62,5 @@ subcollection: resiliency
 - [Understanding business continuity and disaster recovery for Event Notifications](/docs/event-notifications?topic=event-notifications-en-bc-dr)
 - [Understanding business continuity and disaster recovery for IBM OpenPages](/docs/openpages?topic=openpages-bc-dr)
 - [Understanding business continuity and disaster recovery for NPSaaS](/docs/netezza?topic=netezza-understanding-bc-dr)
-- [Understanding business continuity and disaster recovery for Security and Compliance Center](/docs/security-compliance?topic=security-compliance-bc-dr)
 - [Understanding business continuity and disaster recovery for projects](/docs/secure-enterprise?topic=secure-enterprise-bc-dr)
-- [Understanding business continuity and disaster recovery for the AI assistant](/docs/ai-assistant?topic=ai-assistant-bc-dr)
 - [Creating a routing configuration resilient to a regional disaster](/docs/metrics-router?topic=metrics-router-dr_config)

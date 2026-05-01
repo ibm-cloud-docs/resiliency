@@ -23,7 +23,7 @@
     {
       "title": "Resiliency IBM Well-Architected Framework",
       "description": "Resiliency is the capacity for your service or application to recover from different types of failures.",
-      "href": "https://www.ibm.com/architectures/well-architected/resiliency",
+      "href": "https://www.ibm.com/think/architectures/well-architected/resiliency",
       "type": "white-paper"
     },
     {
