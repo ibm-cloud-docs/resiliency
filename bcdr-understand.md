@@ -20,14 +20,16 @@ subcollection: resiliency
 
 When you design and build IT workloads, focus is often placed on maintaining [high availability](#x2284708){: term} (HA). HA is the process of designing out single points of failure so that workloads can survive and avoid outages that are otherwise caused by failing infrastructure.
 
-Disasters are different. Disasters cause a workload to go down despite attempts to make it highly available. The worst disasters have widespread consequences, which means that affected workloads might require recovery in a different region altogether.
+Disasters are different. Disasters cause a workload to go down despite attempts to make it highly available. When you design and deploy a cloud workload, you must consider how that workload might be affected by a disaster and how it can be recovered. In a disaster, there may be steps IBM Cloud must take as part of the recovery process - such as recover infrastructure, and there may be steps that you need to take too - such as recover data. You must ensure that your data, which often includes configuration data, is backed up and available for recovery.
+
+The worst disasters have widespread consequences, which means that affected workloads might require recovery in a different region altogether.
 
 ## What does disaster recovery mean?
 {: #disaster-recovery-what-is}
 
 To illustrate recovery to a second region, consider a scenario. Under normal circumstances, a customer runs their workloads in the {{site.data.keyword.cloud_notm}} `us-south` multizone region. Then, a major disaster occurs which affects and causes a prolonged outage for the whole of the `us-south` region. In such cases, returning to normal operation at `us-south` might take hours, days, or even months, depending on the scale of the outage. If the affected cloud workloads are critical to business operations, lengthy periods of downtime leave you with few options but to recover and run your workloads in a second {{site.data.keyword.cloud_notm}} region.
 
-Such circumstances typically result from a widespread issue that affects a particular geographical area, including natural disasters and regional or national emergencies. These types of disasters are unlikely to occur. Usually, {{site.data.keyword.cloud_notm}}’s MZR architecture provides adequate protection against zonal failure, and the failure of a whole region is unlikely. {{site.data.keyword.cloud_notm}}’s Service Level Agreements (SLA) for services that are deployed over an MZR is typically 99.99%, which equates to just over 52.5 minutes of unplanned downtime per year. For more information, see [{{site.data.keyword.cloud_notm}} Service Level Agreements](/docs/overview?topic=overview-slas).
+Such circumstances typically result from a widespread issue that affects a particular geographical area, including natural disasters and regional or national emergencies. These types of disasters are unlikely to occur. Usually, {{site.data.keyword.cloud_notm}}’s MZR architecture provides adequate protection against zonal failure, and the failure of a whole multi-zone region is unlikely. {{site.data.keyword.cloud_notm}}’s Service Level Agreements (SLA) for services that are deployed over an MZR is typically 99.99%, which equates to just over 52.5 minutes of unplanned downtime per year. For more information, see [{{site.data.keyword.cloud_notm}} Service Level Agreements](/docs/overview?topic=overview-slas).
 
 However, the chance remains that a disaster can take out the region where your critical workloads are running. Be prepared with a disaster recovery plan if you want to avoid extended periods of downtime caused by disasters.
 
@@ -95,3 +97,8 @@ These questions are as much business considerations as technical ones, as costs 
 {: #read-the-docs}
 
 Each {{site.data.keyword.cloud_notm}} service is documented separately and includes a section on BCDR requirements that are specific to that product. Ensure that you review and follow the guidance provided for each service that you use. For help finding specific links to topics, see [Service documentation for high availability and disaster recovery](/docs/resiliency?topic=resiliency-service-ha-dr).
+
+### Disaster Recovery is a Shared Responsibility
+{: #DR-is-a-shared-responsibility}
+
+Above all, remember that DR in {{site.data.keyword.cloud_notm}} is usually a shared responsibility. In general terms, {{site.data.keyword.cloud_notm}} is responsible for the recovery of any {{site.data.keyword.cloud_notm}} services that have been affected by a disaster. The customer is responsible for the recovery of their data and in some circumstances, for recreating service instances and related configuration. As well as the service-specific BCDR documenation, ensure you have read and understand {{site.data.keyword.cloud_notm}}'s [shared responsibility model](docs/resiliency?topic=resiliency-resiliency-and-shared-responsibility) too.
