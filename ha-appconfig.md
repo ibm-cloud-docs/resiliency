@@ -1,8 +1,8 @@
 ---
 
 copyright:
-   years: 2020, 2025
-lastupdated: "2025-07-28"
+   years: 2020, 2026
+lastupdated: "2026-08-12"
 
 keywords: high availability, regions, zones, resiliency
 
@@ -33,10 +33,14 @@ The following table shows application deployment options based on failure domain
 
 In single-zone deployments, multiple application instances are deployed in one zone. If an application instance runs in a single virtual server, [Placement Groups](/docs/vpc?topic=vpc-about-placement-groups-for-vpc) allow these virtual servers to be provisioned in separate physical hosts. [VPC Autoscale](/docs/vpc?topic=vpc-creating-auto-scale-instance-group) can be used to enable dynamic capacity adjustment based on workload changes. Single zone deployments provide cost-effective solutions with 99.9% infrastructure availability. This deployment might be appropriate for nonproduction environments or nonbusiness critical applications. However, single-zone deployments provide no protection from zone outages.
 
+When using this deloyment model, it is a best practice to avoid zonal imabalances. A zonal imbalance is where capacity - for example, VPC Virtual Server Instances (VSIs) - is not spread evenly across zones.  Consider an example where a workload is deployed with 70% of its VSI capacity in zone 1, 20% in zone 2 and 10% in zone 3. If zone 1 were to fail, the workload may continue to be avialable but with only 30% of it's capacity. One solution is to provision more resources if an outage to zone 1 occurs, but the outage may cause an abnormal spike in capacity demand in the remaining zones. A better solution is to remove the imbalance and ensure that the required capacity is spread across the zones, with an additional overhead of around 17% in each zone to counterbalance the loss of any single zone.  This ensures that the workload remains available and can operate at full capacity, should the loss of a zone occur.
+
 ## Multi-zone, single-region deployment
 {: #multi-zone-single-region}
 
-In a multi-zone, single-region deployment, multiple application instances are deployed across two or more availability zones within the region. Multi-zone, single region deployments can provide up to 99.99% infrastructure availability, when the application is deployed across three availability zones. This deployment protects the application from zone failures, and is suitable for production-level enterprise workloads with \>99.9% availability requirements. Actual application availability depends on the application high availability design.
+In a multi-zone, single-region deployment, multiple application instances are deployed across two or more availability zones within the region. Multi-zone, single-region deployments can provide up to 99.99% infrastructure availability when the application is deployed across three availability zones. This deployment protects the application from zone failures and is suitable for production-level enterprise workloads with \>99.9% availability requirements. Actual application availability depends on the application high availability design.
+
+When you use this deployment model, avoid zonal imbalances. A zonal imbalance occurs when capacity—for example, {{site.data.keyword.vsi_is_full}}s (VSIs)—is not spread evenly across zones. Consider an example where a workload is deployed with 70% of its VSI capacity in zone 1, 20% in zone 2, and 10% in zone 3. If zone 1 fails, the workload might remain available but with only 30% of its capacity. You could provision more resources when an outage occurs, but an outage can cause an abnormal spike in capacity demand across the remaining zones. Instead, remove the imbalance by spreading the required capacity evenly across zones, with an additional overhead of approximately 17% per zone to compensate for the loss of any single zone. This ensures that the workload remains available and can operate at full capacity if a zone fails.
 
 ## Multi-zone, multi-region deployment
 {: #multi-zone-multi-region}

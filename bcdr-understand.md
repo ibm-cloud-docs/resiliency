@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2026
-lastupdated: "2026-06-15"
+lastupdated: "2026-08-12"
 
 keywords: disaster recovery, DR, what is disaster recovery, DR strategy, disaster recovery options, disaster recovery strategy
 
@@ -97,8 +97,3 @@ These questions are as much business considerations as technical ones, as costs 
 {: #read-the-docs}
 
 Each {{site.data.keyword.cloud_notm}} service is documented separately and includes a section on BCDR requirements that are specific to that product. Ensure that you review and follow the guidance provided for each service that you use. For help finding specific links to topics, see [Service documentation for high availability and disaster recovery](/docs/resiliency?topic=resiliency-service-ha-dr).
-
-### Disaster recovery is a shared responsibility 
-{: #dr-shared}
-
-Remember that disaster recovery in {{site.data.keyword.cloud_notm}} is usually a shared responsibility. In general terms, {{site.data.keyword.cloud_notm}} is responsible for the recovery of any {{site.data.keyword.cloud_notm}} services that have been affected by a disaster. The customer is responsible for the recovery of their data and in some circumstances, for recreating service instances and related configurations. As well as the service-specific documenation, make sure that you read and understand {{site.data.keyword.cloud_notm}}'s [shared responsibility model](/docs/resiliency?topic=resiliency-resiliency-and-shared-responsibility) as well.
