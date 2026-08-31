@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2026
-lastupdated: "2026-05-01"
+lastupdated: "2026-08-31"
 
 keywords: load balancing, global load balancing, HA, DR, high availability, disaster recovery, HA for the platform, high availability for platform, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -140,8 +140,32 @@ The following table lists global platform services and the functions that they p
 | Identity and Access management  \n [IAM Identity Services API](/apidocs/iam-identity-token-api) | The IAM control plane enables the following:  \n * Authenticate and authorize the users log on and other action requests. \n * Manage service identifiers, trusted profiles, and API key identities. \n * Create, update, view, and delete IAM policies. An IAM policy enables a subject to access a resource. \n * Create, update, view, and delete access groups \n * Assign policies to users, service IDs and trusted profiles  | Active/Active |
 | Business Support Services   \n [User Management API](/apidocs/user-management)   \n [Usage Metering API](/apidocs/usage-metering)   \n [Usage Reports API](/apidocs/metering-reporting) | The Business Support Services enables the following:  \n * Manage accounts, enterprises, and users. \n * Manage the users in an account, such as inviting, retrieving, updating, or removing users. \n * Update user profiles and settings. \n * Collect services usage metrics and generate billing reports  | Active/Active |
 | {{site.data.keyword.cloud_notm}} Projects  \n [Projects API](/apidocs/projects) | The Project service enables the following:  \n * Create, update, view, and delete projects. \n * Deployment by using projects  | Active/Active |
-
 {: caption="Global platform services" caption-side="bottom"}
+
+#### Fault domains
+{: #global-platform-fault-domains}
+
+Because a core global service going down can stop a dependent service from working, even if the dependent service is still active, true high availabilty is only possible if core global services are resistent to cascade failures in which a failure spreads from one region to another.
+
+To make {{site.data.keyword.IBM_notm}} services even more resilient, {{site.data.keyword.cloud_notm}} uses a method of dividing regions into isolated sets, called "fault domains", where traffic to core global services is not retried across fault domains in the event of a failure. In this way, these core global services are resistant to cascading failures that could cause a failure across all regions. 
+
+For example, if IAM goes down in one domain, services that rely on IAM are down in that fault domain but services relying on IAM in the other fault domain remain up. This allows users to build resilient applications by deploying their application in a highly available configuration that can fail over from an instance in one fault domain to an instance in the other fault domain. In this way, your application is resilient even to a cascading failure of a core global service.
+
+The following table shows the Fault Domain pairing for {{site.data.keyword.cloud_notm}} regions:
+
+| Geography | Domain A | Domain B (DR pair) |
+| -------------- | -------------- | -------------- |
+| Americas | `ca-mon` | `ca-tor` |
+| Americas | `us-south` | `us-east` |
+| Americas | `us-south` | `br-sao` |
+| Asia Pacific | `in-che` | `in-mum` |
+| Asia Pacific | `jp-tok` | `jp-osa` |
+| Asia Pacific | `jp-tok` | `au-syd` |
+| Europe | `eu-de` | `eu-es` |
+| Europe | `eu-de` | `eu-gb` |
+{: row-headers}
+{: caption="Fault domain pairings for {{site.data.keyword.cloud_notm}} regions" caption-side="bottom"}
+{: summary="This table shows the fault domain pairings for {{site.data.keyword.cloud_notm}} regions. The first column identifies the geographic area, the second column shows Domain A regions, and the third column shows their corresponding Domain B disaster recovery pair regions."}
 
 #### Services with global control planes
 {: #service-global-control-plane}
