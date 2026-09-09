@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2026
-lastupdated: "2026-08-31"
+lastupdated: "2026-09-09"
 
 keywords: load balancing, global load balancing, HA, DR, high availability, disaster recovery, HA for the platform, high availability for platform, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -151,7 +151,7 @@ To make {{site.data.keyword.IBM_notm}} services even more resilient, {{site.data
 
 For example, if IAM goes down in one domain, services that rely on IAM are down in that fault domain but services relying on IAM in the other fault domain remain up. This allows users to build resilient applications by deploying their application in a highly available configuration that can fail over from an instance in one fault domain to an instance in the other fault domain. In this way, your application is resilient even to a cascading failure of a core global service.
 
-The following table shows the Fault Domain pairing for {{site.data.keyword.cloud_notm}} regions:
+The following table shows the fault domain pairing for {{site.data.keyword.cloud_notm}} regions:
 
 | Geography | Domain A | Domain B (DR pair) |
 | -------------- | -------------- | -------------- |
