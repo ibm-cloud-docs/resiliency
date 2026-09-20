@@ -38,6 +38,7 @@ The following table provides some examples of the responibilities that {{site.da
 | Responsibility Area | Examples |
 | - | - |
 | Regions and Zones | Providing and maintaining highly redundant, multi-zone regions, including power, cooling and security. Restoration and / or repair of the facilities in the event of an incident or disaster  |
+| Fault Domains | Grouping multi-zone regions into two fault domains to be used in disaster recovery. Global IBM Cloud services will fail over within a fault domain |
 | Cloud Fabric | Providing and maintaining redundant physical hardware, storage, networking and control plane. Repair and / or replacement in the event of an incident or disaster |
 | {{site.data.keyword.cloud_notm}} services | Providing and maintaining resilient services such as Virtual Private Cloud, IBM Cloud Databases, IBM Kubernetes Services etc. Recovery of the {{site.data.keyword.cloud_notm}} service in the event of an incident or disaster |
 | Monitoring of {{site.data.keyword.cloud_notm}} | Running internal incident and operations management to ensure that {{site.data.keyword.cloud_notm}} is functioning correctly, notifying customers if there are incidents that impact their operations |
@@ -53,7 +54,7 @@ The following table provides some examples of the responibilities that customers
 
 | Responsibility Area | Examples |
 | - | - |
-| Workload architecture | Ensuring that workloads have been deployed, configured and use {{site.data.keyword.cloud_notm}} services in such a way that customer resilience goals can be met. For example, deploying a load-balanced workload across multiple zones, or multiple regions |
+| Workload architecture | Ensuring that workloads have been deployed, configured and use {{site.data.keyword.cloud_notm}} services in such a way that customer resilience goals can be met. For example, deploying a load-balanced workload across multiple zones, regions or between fault domains |
 | Application data | Ensuring that application data, including backups, is stored with appropriate redundancy and replication. For example, the use of read-replica databases or cross-region snapshots. Customers are responsible for the recovery of application data |
 | Workload monitoring | Ensuring that workloads are running and performing as expected, using monitoring metrics and logs provided by the {{site.data.keyword.cloud_notm}} platform and / or by customer applications |
 | Workload resilience and recovery testing | Ensuring that you have a tested plan for the recovery of workloads in the event of an outage or disaster. This includes aspects such as data recovery, service deployment and configuration and internal communications |
