@@ -15,11 +15,8 @@ subcollection: resiliency
 # {{site.data.keyword.cloud_notm}} service level objectives
 {: #slo}
 
-Service level objectives (SLOs) describe the design points that the {{site.data.keyword.cloud}} services are engineered to meet in the following areas:
-
-* Availability
-* Operations management
-* Performance
+Service level objectives (SLOs) describe the design points that the {{site.data.keyword.cloud}} services are engineered to meet in the following areas: availability, operations management, and performance.
+{: shortdesc}
 
 The SLO is not a warranty and IBM will not issue credits for failure to meet an objective. Refer to the [Service Level Agreements (SLAs)](/docs/overview?topic=overview-slas) for commitments and credits that are issued for failure to meet any committed SLAs.
 
