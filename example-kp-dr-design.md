@@ -1,8 +1,8 @@
 ---
 
 copyright:
-   years: 2020, 2025
-lastupdated: "2025-10-28"
+   years: 2020, 2026
+lastupdated: "2026-11-06"
 
 keywords: DR testing, disaster recovery test, testing for a disaster scenario, dry test, switch over, DR simulation, key protect
 
@@ -12,10 +12,13 @@ subcollection: resiliency
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Designing DR for Key Protect
+# Designing disaster recovery for Key Protect
 {: #basic-kp-dr-design}
 
-Protecting your {{site.data.keyword.keymanagementservicefull}} resources via a disaster recovery solution can be achieved in any number of ways. However, to help you create a plan, consider starting with one of the following design options for a cross-region solution. Then, you can modify and test the options to meet your specific disaster recovery goals. Disaster recovery solutions for Key Protect are slightly different than other {{site.data.keyword.cloud_notm}} services as Key Protect offers cross-regional resiliency through either replication or multiple key deployments. 
+Protecting your {{site.data.keyword.keymanagementservicefull}} resources via a disaster recovery solution can be achieved in any number of ways. However, to help you create a plan, consider starting with one of the following design options for a cross-region solution. Then, you can modify and test the options to meet your specific disaster recovery goals.
+{: shortdesc}
+
+Disaster recovery solutions for Key Protect are slightly different than other {{site.data.keyword.cloud_notm}} services as Key Protect offers cross-regional resiliency through either replication or multiple key deployments.
 
 
 ## Option 1: Cross-region resiliency (replication)
@@ -23,9 +26,9 @@ Protecting your {{site.data.keyword.keymanagementservicefull}} resources via a d
 
 If you require a cross-region resiliency solution for Key Protect that uses replication, you must provision your Key Protect instance in one of the regions where cross-region resiliency is supported (`us-south`, `jp-tok`, and `eu-de`). You must also select a pricing plan that includes cross-region resiliency. If you do not select these options, automated cross-region resiliency is not available and your instance defaults to in-region resiliency, which means that if there is a regional Key Protect outage you cannot access your encryption keys until the region is restored.
 
-When operating with cross-region resiliency, the service automatically replicates data to the region where it has failover support. 
+When operating with cross-region resiliency, the service automatically replicates data to the region where it has failover support.
 
-If cross-region resiliency is configured, Key Protect automatically replicates data to the failover region. Then, if there is a region-wide disaster in which Key Protect suffers an outage, all requests can be automatically routed to the corresponding failover region. If the failover region is in `read-only` mode, you can't create, update, or delete keys with your affected instance. But, if an outage persists longer than 6 hours, write operations are automatically enabled. 
+If cross-region resiliency is configured, Key Protect automatically replicates data to the failover region. Then, if there is a region-wide disaster in which Key Protect suffers an outage, all requests can be automatically routed to the corresponding failover region. If the failover region is in `read-only` mode, you can't create, update, or delete keys with your affected instance. But, if an outage persists longer than 6 hours, write operations are automatically enabled.
 
 
 ### Understanding the architecture
@@ -43,7 +46,7 @@ The following diagram shows the basic architecture Key Protect uses for cross-re
 ### Enacting a recovery
 {: #kp-enact-recovery-option-one}
 
-With cross-region resiliency enabled a customer does not need to enact a recovery. Switching requests to the standby instance of the service is done automatically. 
+With cross-region resiliency enabled a customer does not need to enact a recovery. Switching requests to the standby instance of the service is done automatically.
 
 
 ## Failing back
@@ -65,7 +68,7 @@ This option can be especially useful in situations where the replication option 
 ### Enacting a recovery
 {: #kp-enact-recovery-option-two}
 
-If your application is configured to interact with both keys, there is no customer recovery required with this option. 
+If your application is configured to interact with both keys, there is no customer recovery required with this option.
 
 
 ## Failing back

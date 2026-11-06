@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2020, 2025
-lastupdated: "2025-10-16"
+  years: 2020, 2026
+lastupdated: "2026-11-06"
 
 keywords: DR testing, disaster recovery test, testing for a disaster scenario, dry test, switch over, DR simulation, databases
 
@@ -12,10 +12,11 @@ subcollection: resiliency
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Designing DR for {{site.data.keyword.cloud_notm}} Databases
+# Designing disaster recovery for {{site.data.keyword.cloud_notm}} Databases
 {: #basic-icd-dr-design}
 
 Protecting your {{site.data.keyword.cloud_notm}} Databases via a disaster recovery solution can be achieved in any number of ways. However, to help you create a plan, consider starting with one of the following design options for a cross-region solution. Then, you can modify and test the options to meet your specific disaster recovery goals.
+{: shortdesc}
 
 ## Option 1: Recovery from backup
 {: icd-dr-option-one}

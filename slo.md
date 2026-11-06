@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2026
-lastupdated: "2026-05-01"
+lastupdated: "2026-11-06"
 
 keywords: SLO, service level objectives
 
@@ -15,11 +15,8 @@ subcollection: resiliency
 # {{site.data.keyword.cloud_notm}} service level objectives
 {: #slo}
 
-Service level objectives (SLOs) describe the design points that the {{site.data.keyword.cloud}} services are engineered to meet in the following areas:
-
-* Availability
-* Operations management
-* Performance
+Service level objectives (SLOs) describe the design points that the {{site.data.keyword.cloud}} services are engineered to meet in the following areas: availability, operations management, and performance.
+{: shortdesc}
 
 The SLO is not a warranty and IBM will not issue credits for failure to meet an objective. Refer to the [Service Level Agreements (SLAs)](/docs/overview?topic=overview-slas) for commitments and credits that are issued for failure to meet any committed SLAs.
 
@@ -190,7 +187,7 @@ The following table describes the service level objectives (SLOs) for the high i
 | {{site.data.keyword.databases-for-elasticsearch_full_notm}} | 99.999% | [Performance](/docs/databases-for-elasticsearch?topic=databases-for-elasticsearch-performance) | Block Storage | Object Storage | [Understanding high availability and disaster recovery for Databases for Elasticsearch](/docs/databases-for-elasticsearch?topic=databases-for-elasticsearch-elasticsearch-ha-dr) |
 | {{site.data.keyword.messages-for-rabbitmq_full_notm}} | 99.999% |[Performance](/docs/messages-for-rabbitmq?topic=messages-for-rabbitmq-performance) | Block Storage | [Object Storage](/docs/messages-for-rabbitmq?topic=messages-for-rabbitmq-security-compliance#data-resilience) | [Understanding high availability and disaster recovery for Messages for RabbitMQ](/docs/messages-for-rabbitmq?topic=messages-for-rabbitmq-rabbitmq-ha-dr) |
 | {{site.data.keyword.cloudant_short_notm}} | 99.999% | [Provisioned Throughtput Capacity](/docs/Cloudant?topic=Cloudant-usage-and-charges#scaling-provisioned-throughput-capacity) | Local Storage: [Data is stored in triplicate across 3 servers for data durability](/docs/Cloudant?topic=Cloudant-disaster-recovery-and-backup#in-region-automatic-data-redundancy), in 3 availability zones where available |  | [Understanding high availability and disaster recovery for IBM Cloudant](/docs/Cloudant?topic=Cloudant-service-name-ha-dr) |
-| {{site.data.keyword.Db2_on_Cloud_short}} | 99.999% |  | Block Storage | Object Storage  | [High availability (HA)](/docs/Db2onCloud?topic=Db2onCloud-high-availability-ha) |
+| {{site.data.keyword.Db2_on_Cloud_short}} | 99.999% |  | Block Storage | Object Storage  | [High availability (HA)](/docs/db2-saas?topic=db2-saas-high-availability-ha) |
 | {{site.data.keyword.dashdblong_notm}} | 99.999% |  | Block Storage | Object Storage  | [High availability (HA)](/docs/db2wh-saas?topic=db2wh-saas-ha) |
 {: caption="Service level objectives (SLOs) for the {{site.data.keyword.cloud_notm}} databases services" caption-side="bottom"}
 

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-   years: 2020, 2025
-lastupdated: "2025-10-28"
+   years: 2020, 2026
+lastupdated: "2026-11-06"
 
 keywords: resilience testing, testing for resilience, dry test, switch over, resilience simulation
 
@@ -12,7 +12,7 @@ subcollection: resiliency
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Testing workload resiliency
+# Testing workload resiliency on {{site.data.keyword.cloud_notm}}
 {: #testing-workload-resilience}
 
 {{site.data.keyword.cloud_notm}} operates on a shared responsibility model in which {{site.data.keyword.cloud_notm}} is responsible for the resiliency of the cloud and customers are responsible for the workloads that they deploy. {{site.data.keyword.cloud_notm}} regularly conducts testing to ensure the resiliency of the cloud.

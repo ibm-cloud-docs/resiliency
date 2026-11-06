@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2026
-lastupdated: "2026-08-12"
+lastupdated: "2026-11-06"
 
 keywords: high availability, regions, zones, resiliency
 
@@ -14,6 +14,7 @@ subcollection: resiliency
 {: #high-availability-design}
 
 {{site.data.keyword.cloud_notm}} supports high availability application deployments within a single zone, across multiple zones in a multi-zone region, and across multiple regions.
+{: shortdesc}
 
 Failure domains determine the degree of protection from infrastructure failures for each deployment option. An application instance that is deployed in a single zone is not protected against a failure of that zone. Application instances that are deployed in multiple availability zones are protected against a failure of a single zone. The multiple availability zones are within the same metropolitan area and are connected by low latency network links that allow data to be synchronously replicated across the zones. Application instances that are deployed in multiple regions are protected against a failure of an entire region. Different regions are located in different countries or in different parts of a single country. The distance between regions typically only allows data to be replicated asynchronously.
 

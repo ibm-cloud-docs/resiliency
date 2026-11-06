@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2026
-lastupdated: "2026-05-01"
+lastupdated: "2026-11-06"
 
 keywords: DR testing, disaster recovery test, testing for a disaster scenario, dry test, switch over, DR simulation, kubernetes, IKS
 
@@ -12,10 +12,11 @@ subcollection: resiliency
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Designing DR for {{site.data.keyword.cloud_notm}} Kubernetes Service
+# Designing disaster recovery for {{site.data.keyword.cloud_notm}} Kubernetes Service
 {: #basic-iks-dr-design}
 
 Protecting your {{site.data.keyword.cloud_notm}} Kubernetes Service workload via a disaster recovery solution can be achieved in any number of ways. However, to help you create a plan, consider starting with one of the following design options to protect your clusters against a potential disaster. Then, you can modify and test the options to meet your specific disaster recovery goals.
+{: shortdesc}
 
 
 ## Option 1: Standby clusters

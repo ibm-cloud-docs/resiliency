@@ -1,8 +1,8 @@
 ---
 
 copyright:
-   years: 2020, 2025
-lastupdated: "2025-07-28"
+   years: 2020, 2026
+lastupdated: "2026-11-06"
 
 
 keywords: cyber resiliency overview, resilient app, cyber recovery
@@ -17,6 +17,7 @@ subcollection: resiliency
 {: #cyber-resiliency-overview}
 
 Cyber resiliency is part of an organization's ability to prevent, withstand and recover from cybersecurity incidents, including ransomware attacks and other malicious actions.
+{: shortdesc}
 
 Protect against such threats by using a 2-pronged approach: Cybersecurity focuses on preventing attacks in the first place, while cyber resiliency focuses on recovery and continuity after a breach. In an environment where threats and threat actors are continuously evolving, adopting a secure-by-design approach is essential to prepare for the inevitability of an attack. In business continuity planning, prioritize the safe and secure restoration of critical applications and infrastructure to maintain operational stability.
 

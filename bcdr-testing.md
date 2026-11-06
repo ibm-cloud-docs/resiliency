@@ -1,8 +1,8 @@
 ---
 
 copyright:
-   years: 2020, 2025
-lastupdated: "2025-07-28"
+   years: 2020, 2026
+lastupdated: "2026-11-06"
 
 keywords: DR testing, disaster recovery test, testing for a disaster scenario, dry test, switch over, DR simulation
 
@@ -12,10 +12,13 @@ subcollection: resiliency
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Disaster recovery testing
+# Testing your disaster recovery plan for business continuity
 {: #dr-testing}
 
-After you have a [disaster recovery (DR) plan](/docs/resiliency?topic=resiliency-PlanningforDR), regularly test the plan. You can avoid finding flaws when you face an actual disaster. Testing helps ensure that the plan works and achieves the result that you want. If the plan doesn't work during testing, you can make the necessary changes. Regular testing helps ensure that any changes in the workload environment are captured and adjustments are made if necessary.
+After you have a [disaster recovery (DR) plan](/docs/resiliency?topic=resiliency-PlanningforDR), regularly test the plan. By doing so, you can avoid finding flaws when you face an actual disaster.
+{: shortdesc}
+
+Testing helps ensure that the plan works and achieves the result that you want. If the plan doesn't work during testing, you can make the necessary changes. Regular testing helps ensure that any changes in the workload environment are captured and adjustments are made if necessary.
 
 To verify your plan, use different types of disaster recovery testing:
 

@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2026
-lastupdated: "2026-05-01"
+lastupdated: "2026-11-06"
 
 
 keywords: disaster recovery plan, DR, resilient app, plan for DR, DR objectives
@@ -16,7 +16,10 @@ subcollection: resiliency
 # Service documentation for high availability and disaster recovery
 {: #service-ha-dr}
 
-{{site.data.keyword.cloud_notm}} has a resilient global network of locations to host your highly available cloud workload, as described in [IBM Cloud region and data center locations for resource deployment](/docs/overview?topic=overview-locations). While services share a similar structure, each has unique characteristics to consider when you're building highly available solutions or planning for disaster recovery.
+{{site.data.keyword.cloud_notm}} has a resilient global network of locations to host your highly available cloud workload, as described in [IBM Cloud region and data center locations for resource deployment](/docs/overview?topic=overview-locations).
+{: shortdesc}
+
+While services share a similar structure, each has unique characteristics to consider when you're building highly available solutions or planning for disaster recovery.
 
 - [Understanding high availability and disaster recovery for Activity Tracker Event Routing](/docs/atracker?topic=atracker-atracker-ha-dr)
 - [Understanding high availability and disaster recovery for API Connect](/docs/apiconnect?topic=apiconnect-ha-dr)

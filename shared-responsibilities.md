@@ -1,8 +1,8 @@
 ---
 
 copyright:
-   years: 2020, 2025
-lastupdated: "2025-10-28"
+   years: 2020, 2026
+lastupdated: "2026-11-06"
 
 keywords: shared responsibility model, load balancing, global load balancing, HA, DR, high availability, disaster recovery, HA for the platform, high availability for platform, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -12,10 +12,13 @@ subcollection: resiliency
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Resiliency and {{site.data.keyword.cloud_notm}}'s Shared Responsibility Model
+# Resiliency and {{site.data.keyword.cloud_notm}}'s shared responsibility model
 {: #resiliency-and-shared-responsibility}
 
-{{site.data.keyword.cloud_notm}} operates a [shared responsibility model](/docs/overview?topic=overview-shared-responsibilities). This model covers the different resources that are available to use within {{site.data.keyword.cloud_notm}} and various aspects of those services, namely:
+{{site.data.keyword.cloud_notm}} operates a [shared responsibility model](/docs/overview?topic=overview-shared-responsibilities) that defines whether IBM, the customer, or both are responsible for resiliency and disaster recovery.
+{: shortdesc}
+
+This model covers the different resources that are available to use within {{site.data.keyword.cloud_notm}} and various aspects of those services, namely:
 
 * Incident and Operations Management
 * Change Management
