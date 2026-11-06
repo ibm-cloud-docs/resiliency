@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2026
-lastupdated: "2026-05-01"
+lastupdated: "2026-11-06"
 
 keywords: chaos testing, resiliency, client testing
 
@@ -20,7 +20,7 @@ After you become comfortable running simple chaos testing scenarios that target 
 
 Chaos faults can affect a single resource or a set of resources based on some attributes. Identifying resources to target can be done by either listing all service instances that you have access to (e.g., list all clusters in containers API) or by using tags or resource groups. The [Global Search API](https://cloud.ibm.com/apidocs/search) allows you to search and filter for resources using a lucene syntax query string.
 
-Identifying sub-resources like worker nodes in clusters might require additional API calls exposed by the service such as the [GetClusterWorkers API](/apidocs/kubernetes/containers-v1-v2#/clusters/GetClusterWorkers) which takes filters such as the worker pool ID within the cluster.
+Identifying sub-resources like worker nodes in clusters might require additional API calls exposed by the service such as the [GetClusterWorkers API](/docs/apis/kubernetes/containers-v1-v2#getclusterworkers) which takes filters such as the worker pool ID within the cluster.
 
 ### Scenario: AZ Failure Affecting IKS/ROKS Cluster Worker Node(s)
 {: #chaos-cluster-failure}
@@ -29,7 +29,7 @@ One approach to simulating a worker node failure would be to cordon off the sele
 
 A reboot of the worker node is more disruptive and closer to real-world behavior without actually pulling the plug. This is not possible using Kubernetes APIs and doing it over ssh using an admin user credentials, while feasible might not be acceptable from a security perspective.
 
-Here, we leverage existing IBM Cloud APIs to inject the chaos to perform a OS level reboot. 
+Here, we leverage existing IBM Cloud APIs to inject the chaos to perform a OS level reboot.
 
 Care must be taken to target only selected nodes, especially since the chaos framework is also running on the same cluster. Node selection can be limited by worker pool or zone. Additionally, sequential chaos injection, rebooting one node at a time allowing one to study the behavior incrementally.
 {: note}
@@ -68,7 +68,7 @@ Reverting the change: To terminate the chaos scenario, revert the change using t
 Access control lists and their associated rules can be used to control network connectivity to a VPC by blocking traffic. Failover to a redundant VPC or other region can also be tested in a chaos experiment.
 
 
-*   [POST /network_acls/{network_acl_id}/rules](https://cloud.ibm.com/apidocs/vpc/latest#create-network-acl-rule)
+*   [POST /network_acls/{network_acl_id}/rules](/docs/apis/vpc/latest#create-network-acl-rule)
 
 Reverting the change: to terminate the scenario, revert the change by deleting the relevant ACL rule.
 
@@ -77,8 +77,8 @@ Reverting the change: to terminate the scenario, revert the change by deleting t
 ## Writing your own chaos scenarios
 {: #chaos-custom-scenarios}
 
-This list is, of course, non-exhaustive. However, you can test the resiliency of most IBM Cloud components and services through some common approaches. 
+This list is, of course, non-exhaustive. However, you can test the resiliency of most IBM Cloud components and services through some common approaches.
 
-* Deleting, testing and re-creating resources using APIs can be very useful in determining if your application has redundant components to deal with an unexpected outage of these resources. Be careful when deleting resources - testing storage volumes would not benefit from this approach due to the loss of data, but resources such as network filters, load balancers etc can be easily recreated provided the right configuration is understood before undertaking the chaos experiments. 
+* Deleting, testing and re-creating resources using APIs can be very useful in determining if your application has redundant components to deal with an unexpected outage of these resources. Be careful when deleting resources - testing storage volumes would not benefit from this approach due to the loss of data, but resources such as network filters, load balancers etc can be easily recreated provided the right configuration is understood before undertaking the chaos experiments.
 
-* Use network tools such as filters and security groups to block access to a chaos probe to simulate network failure without needing to delete resources. 
+* Use network tools such as filters and security groups to block access to a chaos probe to simulate network failure without needing to delete resources.
