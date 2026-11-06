@@ -1,8 +1,8 @@
 ---
 
 copyright:
-   years: 2020, 2025
-lastupdated: "2025-10-28"
+   years: 2020, 2026
+lastupdated: "2026-11-06"
 
 keywords: resiliency, DR, high availability, disaster recovery, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -16,6 +16,7 @@ subcollection: resiliency
 {: #KeyServicesTitle}
 
 When you deploy a solution on IBM Cloud, it generally consists of one or more {{site.data.keyword.cloud_notm}} services. When the solution is deployed correctly, the services provide a resilient environment for your workload. However, a number of services can also be used in your disaster recovery design, that might not be part of your workload's deployment architecture. Learn more about those services in the following section.
+{: shortdesc}
 
 ## {{site.data.keyword.cos_full_notm}}
 {: #KeyServicesCOS}

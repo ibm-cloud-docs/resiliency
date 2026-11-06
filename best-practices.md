@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2026
-lastupdated: "2026-08-12"
+lastupdated: "2026-11-06"
 
 keywords: resiliency, DR, high availability, disaster recovery, disaster recovery plan, disaster event, zero downtime, workloads, failover, failover design, network resiliency, recovery time objective, recovery point objective
 
@@ -17,6 +17,7 @@ subcollection: resiliency
 {: #resiliency}
 
 Follow best practices for resiliency on {{site.data.keyword.cloud_notm}} to help ensure that your workloads are highly available and that you can recover from a disaster.
+{: shortdesc}
 
 ## Have a plan
 {: #have-a-plan}

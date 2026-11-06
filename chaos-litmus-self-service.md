@@ -14,6 +14,7 @@ keywords: chaos testing, resiliency, client testing
 {: #chaos-experiments}
 
 After you become comfortable running simple chaos testing scenarios that target specific application pods, you can expand your radius and start exploring additional scenarios by taking advantage of existing IBM Cloud APIs.
+{: shortdesc}
 
 ## Expanding the experiment scope
 {: #chaos-existing-apis}
