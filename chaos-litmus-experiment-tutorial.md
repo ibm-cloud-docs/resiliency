@@ -2,7 +2,7 @@
 
 copyright:
    years: 2020, 2026
-lastupdated: "2026-05-01"
+lastupdated: "2026-11-06"
 
 keywords: chaos testing, resiliency, client testing
 
@@ -16,14 +16,16 @@ completion-time: 1h
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Running a zone failure chaos experiment
+# Simulating zone failure with LitmusChaos on {{site.data.keyword.cloud_notm}}
 {: #tutorial-litmuschaos}
 {: toc-content-type="tutorial"}
 {: toc-services="resiliency, containers"}
 {: toc-completion-time="1h"}
 
-In this tutorial, you learn how to set up LitmusChaos on a Red Hat OpenShift management cluster, configure a chaos experiment on a workload cluster to simulate an availability zone (AZ) outage, and observe the resiliency of an application in an outage scenario. This application has multiple microservices, each running multiple replicas. The chaos fault consists of the pods that are partitioned from the network, which blocks ingress and egress traffic. The main aim of the tutorial is to show how to make an application resilient to such faults, along with providing a framework to conduct further chaos testing.
+In this tutorial, you learn how to set up LitmusChaos on a Red Hat OpenShift management cluster, configure a chaos experiment on a workload cluster to simulate an availability zone (AZ) outage, and observe the resiliency of an application in an outage scenario.
 {: shortdesc}
+
+This application has multiple microservices, each running multiple replicas. The chaos fault consists of the pods that are partitioned from the network, which blocks ingress and egress traffic. The main aim of the tutorial is to show how to make an application resilient to such faults, along with providing a framework to conduct further chaos testing.
 
 LitmusChaos is a cloud-native, open source chaos engineering framework that is designed to help SREs and developers identify weaknesses and potential outages in their infrastructure and applications by inducing controlled chaos scenarios. For the LitmusChaos reference architecture, see the chaos testing [Architecture](/docs/resiliency?topic=resiliency-chaos-testing#litmus-arch). Avoid chaos testing in production environments, at least until you are confident in your testing capabilities. Otherwise, you run the risk of disabling critical production infrastructure. Begin by chaos testing in staging or pre-production environments.
 
